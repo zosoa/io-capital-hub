@@ -13,7 +13,6 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "images.unsplash.com" },
     ],
   },
-  outputFileTracingRoot: "/sessions/epic-clever-pasteur/io-capital-hub",
 };
 
 export default nextConfig;
