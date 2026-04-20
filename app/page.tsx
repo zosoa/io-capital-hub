@@ -532,9 +532,10 @@ export default function LandingPage() {
         style={{ backgroundImage: "url('/hero-poster.jpg')" }}
       >
 
-        {/* ── Video background — pre-baked 20s palindrome (0→10s forward, 10→20s reversed) ──
-            The section background-image (poster) stays visible beneath on mobile/Low Power
-            Mode / reduced-motion where autoplay is blocked and the <video> never renders. */}
+        {/* ── Video background — 3s clip on native loop.
+            The section background-image (poster) stays visible beneath on mobile/Low
+            Power Mode / reduced-motion where autoplay is blocked and the <video>
+            never renders. */}
         <video
           autoPlay
           muted
@@ -545,7 +546,7 @@ export default function LandingPage() {
           className="absolute inset-0 w-full h-full object-cover"
           aria-hidden="true"
         >
-          <source src="/hero-loop-palindrome.mp4" type="video/mp4"/>
+          <source src="/hero-loop-short.mp4" type="video/mp4"/>
         </video>
 
         {/* ── Overlay stack (bottom → top) ── */}
