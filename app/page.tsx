@@ -447,16 +447,16 @@ function StatsSection() {
 }
 
 // ─── SOCIAL PROOF — trusted-by + testimonials ────────────────────────────────
-// Partner wordmarks are rendered as neutral SVG-style text blocks — no third-party
-// logos are hotlinked or reproduced, so this is safe to ship without extra permissions.
-// Testimonials are placeholder paraphrases (edit once real quotes are approved).
-const PARTNER_LOGOS = [
-  "CEO Summit IO",
-  "Cluster Capital & Finance",
-  "BOI · Mauritius",
-  "AFD · Proparco",
-  "SFI · IFC",
-  "EIB · BEI",
+// Logos are the actual partner marks provided by the user, stored in
+// /public/partners/*. Testimonials remain placeholder paraphrases.
+const PARTNER_LOGOS: { src: string; alt: string }[] = [
+  { src: "/partners/union-europeenne.png", alt: "Union Européenne" },
+  { src: "/partners/undp.png",             alt: "UNDP" },
+  { src: "/partners/sadc.png",             alt: "SADC" },
+  { src: "/partners/mauritius-finance.png", alt: "Mauritius Finance" },
+  { src: "/partners/afd.png",              alt: "AFD" },
+  { src: "/partners/edbm.png",             alt: "EDBM" },
+  { src: "/partners/mef.png",              alt: "MEF" },
 ];
 
 const TESTIMONIALS = [
@@ -479,60 +479,67 @@ const TESTIMONIALS = [
 
 function SocialProofSection() {
   return (
-    <section className="bg-[#07090F] border-t border-white/5">
-      {/* ── Trusted-by strip ── */}
-      <div className="max-w-6xl mx-auto px-6 lg:px-10 py-14">
-        <div className="text-center mb-8">
-          <span className="text-[#B8913A]/60 text-[10px] font-semibold uppercase tracking-[0.22em]">
-            Soutenu par l&apos;écosystème · Partenaires du CEO Summit
-          </span>
+    <>
+      {/* ── Trusted-by strip — white banner because the partner logos ship on
+          transparent / white backgrounds and don't render well on dark. ── */}
+      <section className="bg-white border-y border-[#E8E2D9]">
+        <div className="max-w-6xl mx-auto px-6 lg:px-10 py-12">
+          <div className="text-center mb-8">
+            <span className="text-[#8A7A4E] text-[10px] font-semibold uppercase tracking-[0.22em]">
+              Soutenu par l&apos;écosystème · Partenaires du CEO Summit
+            </span>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 md:gap-x-12">
+            {PARTNER_LOGOS.map(({ src, alt }) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={src}
+                src={src}
+                alt={alt}
+                loading="lazy"
+                className="h-10 md:h-14 w-auto object-contain opacity-85 hover:opacity-100 transition-opacity"
+              />
+            ))}
+          </div>
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
-          {PARTNER_LOGOS.map(name => (
-            <div key={name}
-              className="text-white/30 hover:text-white/55 transition-colors text-sm font-semibold tracking-widest uppercase font-display">
-              {name}
-            </div>
-          ))}
-        </div>
-      </div>
+      </section>
 
-      {/* ── Testimonial cards ── */}
-      <div className="max-w-6xl mx-auto px-6 lg:px-10 pb-20">
-        <div className="text-center mb-10">
-          <span className="text-[#B8913A] text-[10px] font-semibold uppercase tracking-[0.22em]">
-            Ils en parlent
-          </span>
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-white mt-3 leading-snug">
-            Porteurs de projets &amp; investisseurs<br className="hidden md:block"/>témoignent de leur expérience.
-          </h2>
-        </div>
+      {/* ── Testimonial cards — back on dark ── */}
+      <section className="bg-[#07090F]">
+        <div className="max-w-6xl mx-auto px-6 lg:px-10 py-20">
+          <div className="text-center mb-10">
+            <span className="text-[#B8913A] text-[10px] font-semibold uppercase tracking-[0.22em]">
+              Ils en parlent
+            </span>
+            <h2 className="font-display text-2xl md:text-3xl font-bold text-white mt-3 leading-snug">
+              Porteurs de projets &amp; investisseurs<br className="hidden md:block"/>témoignent de leur expérience.
+            </h2>
+          </div>
 
-        <div className="grid md:grid-cols-3 gap-5">
-          {TESTIMONIALS.map(t => (
-            <figure key={t.author}
-              className="rounded-2xl border border-white/8 bg-white/3 p-7 hover:border-[#B8913A]/30 hover:bg-[#B8913A]/5 transition-all flex flex-col">
-              {/* Decorative quote mark */}
-              <svg className="w-6 h-6 text-[#B8913A]/70 mb-4" fill="currentColor" viewBox="0 0 32 32" aria-hidden>
-                <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36 1 24.832 4.304 28 8.704 28c3.808 0 6.512-2.928 6.512-6.384 0-3.136-2.192-5.408-5.12-5.408-.592 0-1.392.112-1.568.224.48-3.264 3.52-7.104 6.56-9.024L9.352 4zm18.56 0c-4.832 3.456-8.288 9.12-8.288 15.36C19.624 24.832 22.928 28 27.328 28c3.744 0 6.448-2.928 6.448-6.384 0-3.136-2.128-5.408-5.056-5.408-.592 0-1.456.112-1.632.224.48-3.264 3.584-7.104 6.624-9.024L27.912 4z"/>
-              </svg>
-              <blockquote className="text-white/70 text-sm leading-relaxed font-light flex-1">
-                “{t.quote}”
-              </blockquote>
-              <figcaption className="mt-5 pt-5 border-t border-white/6">
-                <div className="text-white text-sm font-semibold">{t.author}</div>
-                <div className="text-[#B8913A]/75 text-xs mt-0.5">{t.role}</div>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {TESTIMONIALS.map(t => (
+              <figure key={t.author}
+                className="rounded-2xl border border-white/8 bg-white/3 p-7 hover:border-[#B8913A]/30 hover:bg-[#B8913A]/5 transition-all flex flex-col">
+                <svg className="w-6 h-6 text-[#B8913A]/70 mb-4" fill="currentColor" viewBox="0 0 32 32" aria-hidden>
+                  <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36 1 24.832 4.304 28 8.704 28c3.808 0 6.512-2.928 6.512-6.384 0-3.136-2.192-5.408-5.12-5.408-.592 0-1.392.112-1.568.224.48-3.264 3.52-7.104 6.56-9.024L9.352 4zm18.56 0c-4.832 3.456-8.288 9.12-8.288 15.36C19.624 24.832 22.928 28 27.328 28c3.744 0 6.448-2.928 6.448-6.384 0-3.136-2.128-5.408-5.056-5.408-.592 0-1.456.112-1.632.224.48-3.264 3.584-7.104 6.624-9.024L27.912 4z"/>
+                </svg>
+                <blockquote className="text-white/70 text-sm leading-relaxed font-light flex-1">
+                  “{t.quote}”
+                </blockquote>
+                <figcaption className="mt-5 pt-5 border-t border-white/6">
+                  <div className="text-white text-sm font-semibold">{t.author}</div>
+                  <div className="text-[#B8913A]/75 text-xs mt-0.5">{t.role}</div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
 
-        {/* Sub-note on confidentiality */}
-        <p className="text-center text-white/25 text-xs mt-8 max-w-xl mx-auto leading-relaxed">
-          Les témoignages sont anonymisés à la demande des auteurs — partage nominatif disponible sur demande auprès de notre équipe.
-        </p>
-      </div>
-    </section>
+          <p className="text-center text-white/25 text-xs mt-8 max-w-xl mx-auto leading-relaxed">
+            Les témoignages sont anonymisés à la demande des auteurs — partage nominatif disponible sur demande auprès de notre équipe.
+          </p>
+        </div>
+      </section>
+    </>
   );
 }
 
