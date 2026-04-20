@@ -181,32 +181,42 @@ function IconArrowRight({ className = "w-4 h-4" }: { className?: string }) {
 }
 
 // ─── HERO VIDEO ───────────────────────────────────────────────────────────────
-// Plays once when the hero is in viewport, pauses + resets when scrolled out,
-// replays from the start when scrolled back in. No native loop, so there's no
-// frozen-frame flash between loop iterations on mobile.
-function HeroVideo({ src, poster }: { src: string; poster: string }) {
+// Plays once when the hero enters the viewport, fades to transparent when it
+// ends (so no frozen last-frame artifact), replays from the start when the hero
+// is scrolled back into view. No <video poster> — on slow connections the
+// poster sits there looking frozen; the dark section bg underneath is nicer.
+function HeroVideo({ src }: { src: string }) {
   const ref = useRef<HTMLVideoElement>(null);
+  const [faded, setFaded] = useState(false);
 
   useEffect(() => {
     const v = ref.current;
     if (!v) return;
 
-    // Respect users who want reduced motion — hold on poster/first frame.
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const startPlayback = () => {
+      v.currentTime = 0;
+      setFaded(false);
+      void v.play().catch(() => { /* autoplay blocked — stays on dark bg */ });
+    };
 
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          v.currentTime = 0;
-          void v.play().catch(() => { /* autoplay blocked — poster stays visible */ });
-        } else {
-          v.pause();
-        }
+        if (entry.isIntersecting) startPlayback();
+        else                      v.pause();
       },
       { threshold: 0.15 },
     );
     io.observe(v);
-    return () => io.disconnect();
+
+    const onEnded = () => setFaded(true);
+    v.addEventListener("ended", onEnded);
+
+    return () => {
+      io.disconnect();
+      v.removeEventListener("ended", onEnded);
+    };
   }, []);
 
   return (
@@ -215,8 +225,9 @@ function HeroVideo({ src, poster }: { src: string; poster: string }) {
       muted
       playsInline
       preload="auto"
-      poster={poster}
-      className="absolute inset-0 w-full h-full object-cover"
+      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+        faded ? "opacity-0" : "opacity-100"
+      }`}
       aria-hidden="true"
     >
       <source src={src} type="video/mp4"/>
@@ -571,16 +582,13 @@ export default function LandingPage() {
       <Navbar />
 
       {/* ══ HERO ══════════════════════════════════════════════════════════════ */}
-      <section
-        className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#07090F] bg-cover bg-center"
-        style={{ backgroundImage: "url('/hero-poster.jpg')" }}
-      >
+      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#07090F]">
 
-        {/* ── Video background — plays once on view. Replays when scrolled back in,
-            pauses/resets when scrolled out. No loop (avoids mobile freeze-between-loop
-            artifact). Section bg-image is the first frame so it stays visible while
-            the video is paused. */}
-        <HeroVideo src="/hero-loop-short.mp4" poster="/hero-poster.jpg"/>
+        {/* ── Video background — plays once on view, fades out smoothly when it ends,
+            replays from the start when scrolled back in. No poster / bg-image — the
+            dark section bg shows for the ~200 ms while the video buffers, which is
+            way less noticeable than a frozen still. */}
+        <HeroVideo src="/hero-loop-short.mp4"/>
 
         {/* ── Overlay stack (bottom → top) ── */}
         <div className="absolute inset-0 pointer-events-none">
