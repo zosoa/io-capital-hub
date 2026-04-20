@@ -181,13 +181,14 @@ function IconArrowRight({ className = "w-4 h-4" }: { className?: string }) {
 }
 
 // ─── HERO VIDEO ───────────────────────────────────────────────────────────────
-// Plays once when the hero enters the viewport, fades to transparent when it
-// ends (so no frozen last-frame artifact), replays from the start when the hero
-// is scrolled back into view. No <video poster> — on slow connections the
-// poster sits there looking frozen; the dark section bg underneath is nicer.
+// Starts invisible over a solid dark bg — no frozen first-frame on load. The
+// moment the first video frame actually renders (`playing` event), we snap it
+// to visible. Plays once, freezes on the last frame. When the hero leaves the
+// viewport we pause + hide it; when it scrolls back in we reset to 0 and play
+// again. No poster, no fade — just black → video → frozen last frame.
 function HeroVideo({ src }: { src: string }) {
   const ref = useRef<HTMLVideoElement>(null);
-  const [faded, setFaded] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const v = ref.current;
@@ -195,27 +196,26 @@ function HeroVideo({ src }: { src: string }) {
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const startPlayback = () => {
-      v.currentTime = 0;
-      setFaded(false);
-      void v.play().catch(() => { /* autoplay blocked — stays on dark bg */ });
-    };
+    const onPlaying = () => setVisible(true);
+    v.addEventListener("playing", onPlaying);
 
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) startPlayback();
-        else                      v.pause();
+        if (entry.isIntersecting) {
+          v.currentTime = 0;
+          void v.play().catch(() => { /* autoplay blocked — stays on dark bg */ });
+        } else {
+          v.pause();
+          setVisible(false);
+        }
       },
       { threshold: 0.15 },
     );
     io.observe(v);
 
-    const onEnded = () => setFaded(true);
-    v.addEventListener("ended", onEnded);
-
     return () => {
       io.disconnect();
-      v.removeEventListener("ended", onEnded);
+      v.removeEventListener("playing", onPlaying);
     };
   }, []);
 
@@ -225,9 +225,8 @@ function HeroVideo({ src }: { src: string }) {
       muted
       playsInline
       preload="auto"
-      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-        faded ? "opacity-0" : "opacity-100"
-      }`}
+      className="absolute inset-0 w-full h-full object-cover"
+      style={{ opacity: visible ? 1 : 0 }}
       aria-hidden="true"
     >
       <source src={src} type="video/mp4"/>
