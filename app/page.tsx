@@ -1040,14 +1040,11 @@ export default function LandingPage() {
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-white/22 text-xs uppercase tracking-widest mb-2 font-medium">Partenaires</div>
-                <div className="flex items-center gap-2">
-                  <div className="bg-white/6 border border-white/8 rounded w-8 h-8 flex items-center justify-center">
-                    <span className="text-white/50 text-xs font-bold">b</span>
-                  </div>
-                  <div className="bg-white/6 border border-white/8 rounded w-8 h-8 flex items-center justify-center">
-                    <span className="text-white/50 text-xs font-bold">S</span>
-                  </div>
+                <div className="text-white/22 text-xs uppercase tracking-widest mb-2 font-medium">Powered by</div>
+                <div className="bg-white/4 border border-white/8 rounded px-4 py-2">
+                  <span className="text-white/55 text-xs font-medium tracking-wide">
+                    Gelios Investment &amp; Partners Ltd
+                  </span>
                 </div>
               </div>
             </div>
