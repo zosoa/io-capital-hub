@@ -180,6 +180,50 @@ function IconArrowRight({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
+// ─── HERO VIDEO ───────────────────────────────────────────────────────────────
+// Plays once when the hero is in viewport, pauses + resets when scrolled out,
+// replays from the start when scrolled back in. No native loop, so there's no
+// frozen-frame flash between loop iterations on mobile.
+function HeroVideo({ src, poster }: { src: string; poster: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+
+    // Respect users who want reduced motion — hold on poster/first frame.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          v.currentTime = 0;
+          void v.play().catch(() => { /* autoplay blocked — poster stays visible */ });
+        } else {
+          v.pause();
+        }
+      },
+      { threshold: 0.15 },
+    );
+    io.observe(v);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      muted
+      playsInline
+      preload="auto"
+      poster={poster}
+      className="absolute inset-0 w-full h-full object-cover"
+      aria-hidden="true"
+    >
+      <source src={src} type="video/mp4"/>
+    </video>
+  );
+}
+
 // ─── NAVBAR ───────────────────────────────────────────────────────────────────
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -532,22 +576,11 @@ export default function LandingPage() {
         style={{ backgroundImage: "url('/hero-poster.jpg')" }}
       >
 
-        {/* ── Video background — 3s clip on native loop.
-            The section background-image (poster) stays visible beneath on mobile/Low
-            Power Mode / reduced-motion where autoplay is blocked and the <video>
-            never renders. */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster="/hero-poster.jpg"
-          className="absolute inset-0 w-full h-full object-cover"
-          aria-hidden="true"
-        >
-          <source src="/hero-loop-short.mp4" type="video/mp4"/>
-        </video>
+        {/* ── Video background — plays once on view. Replays when scrolled back in,
+            pauses/resets when scrolled out. No loop (avoids mobile freeze-between-loop
+            artifact). Section bg-image is the first frame so it stays visible while
+            the video is paused. */}
+        <HeroVideo src="/hero-loop-short.mp4" poster="/hero-poster.jpg"/>
 
         {/* ── Overlay stack (bottom → top) ── */}
         <div className="absolute inset-0 pointer-events-none">
