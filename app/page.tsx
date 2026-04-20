@@ -497,7 +497,7 @@ function SocialProofSection() {
                 src={src}
                 alt={alt}
                 loading="lazy"
-                className="h-16 md:h-24 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                className="h-24 md:h-36 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
               />
             ))}
           </div>
