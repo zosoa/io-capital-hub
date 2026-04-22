@@ -2,6 +2,7 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
+import { dispatchPendingEmails } from "@/lib/notifications/server";
 
 // ─── Guard: throws if caller is not admin ─────────────────────
 async function requireAdmin() {
@@ -56,6 +57,11 @@ export async function updateProjectStatus(
   revalidatePath(`/admin/projects/${projectId}`);
   revalidatePath(`/dashboard/projects/${projectId}`);
   revalidatePath(`/dashboard`);
+
+  // Fire the email side-effects for any notifications the DB trigger just
+  // queued (owner status-change, admin queue alert, etc.). Fails open — if
+  // email dispatch errors, the status update still stands.
+  await dispatchPendingEmails().catch(() => { /* logged elsewhere */ });
 }
 
 // ─── Save admin notes (public + internal) ────────────────────
@@ -78,4 +84,8 @@ export async function saveAdminNotes(
   if (error) throw new Error(error.message);
 
   revalidatePath(`/admin/projects/${projectId}`);
+  revalidatePath(`/dashboard/projects/${projectId}`);
+
+  // Admin-note change also dispatches the "project.admin_note" email.
+  await dispatchPendingEmails().catch(() => { /* swallow */ });
 }

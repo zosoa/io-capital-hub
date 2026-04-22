@@ -58,21 +58,17 @@ function InterestButton({ projectId }: { projectId: string }) {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setStatus("submitting");
-    const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) { setStatus("error"); setMessage("Session expirée."); return; }
-
-    const { error } = await supabase.from("deal_interests").insert({
-      investor_user_id: user.id,
-      project_id:       projectId,
-      message:          msgText || null,
-    });
-
-    if (error) {
-      if (error.code === "23505") { setStatus("already"); } // unique constraint
-      else { setStatus("error"); setMessage(error.message); }
-    } else {
+    // Server action — handles the insert AND triggers the email dispatch
+    // (owner + investor + admin notifications).
+    const { expressInterest } = await import("@/app/actions/project");
+    const res = await expressInterest(projectId, msgText || null);
+    if (res.ok) {
       setStatus("done");
+    } else if (res.code === "DUPLICATE") {
+      setStatus("already");
+    } else {
+      setStatus("error");
+      setMessage(res.error);
     }
   }
 

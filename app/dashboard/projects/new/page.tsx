@@ -483,8 +483,18 @@ export default function NewProjectPage() {
     };
 
     const { data, error: err } = await supabase.from("projects").insert(payload).select("id").single();
+    if (err) { setLoading(false); setError(err.message); return; }
+
+    // If this was a real submission (not a draft save), the INSERT trigger just
+    // queued notifications for the owner + admins — fire their emails now.
+    if (status === "submitted") {
+      try {
+        const { flushNotifications } = await import("@/app/actions/project");
+        await flushNotifications();
+      } catch { /* non-blocking */ }
+    }
+
     setLoading(false);
-    if (err) { setError(err.message); return; }
     router.push(status === "draft" ? "/dashboard/projects" : `/dashboard/projects/${data.id}?submitted=1`);
   }
 

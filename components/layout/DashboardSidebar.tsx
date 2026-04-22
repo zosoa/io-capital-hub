@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import { useState } from "react";
 import type { Profile } from "@/types";
 import { LogoBadge, LogoMark } from "@/components/ui/logo";
+import NotificationBell from "@/components/notifications/NotificationBell";
 
 // ─── Icons ────────────────────────────────────────────────────
 const IconGrid = () => (
@@ -81,17 +82,20 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
   const SidebarContent = () => (
     <div className="flex flex-col h-full">
 
-      {/* ── Logo ── */}
+      {/* ── Logo + bell ── */}
       <div className="px-5 pt-6 pb-5 border-b border-white/6">
-        <Link href="/" className="block group">
-          <LogoBadge height={30} className="mb-3"/>
-          <div className="mt-2">
-            <div className="text-white/90 font-semibold text-xs tracking-wide leading-none">Investment Hub</div>
-            <div className="text-[#B8913A]/70 text-[10px] tracking-widest uppercase mt-1 leading-none font-medium">
-              Cluster Capital &amp; Finance
+        <div className="flex items-start justify-between gap-2">
+          <Link href="/" className="block group flex-1 min-w-0">
+            <LogoBadge height={30} className="mb-3"/>
+            <div className="mt-2">
+              <div className="text-white/90 font-semibold text-xs tracking-wide leading-none">Investment Hub</div>
+              <div className="text-[#B8913A]/70 text-[10px] tracking-widest uppercase mt-1 leading-none font-medium">
+                Cluster Capital &amp; Finance
+              </div>
             </div>
-          </div>
-        </Link>
+          </Link>
+          <NotificationBell/>
+        </div>
       </div>
 
       {/* ── User mini-card ── */}
@@ -213,6 +217,8 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
             <div className="text-[#B8913A]/60 text-[9px] tracking-widest uppercase leading-none mt-0.5">Investment Hub</div>
           </div>
         </div>
+        <div className="flex items-center gap-1">
+          <NotificationBell/>
         <button onClick={() => setMobileOpen(!mobileOpen)} className="text-white/40 hover:text-white p-3 transition-colors" aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}>
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             {mobileOpen
@@ -220,6 +226,7 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
               : <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>}
           </svg>
         </button>
+        </div>
       </div>
 
       {/* Mobile drawer */}

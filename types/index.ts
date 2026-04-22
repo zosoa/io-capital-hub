@@ -139,6 +139,32 @@ export interface ProjectFormData {
   impact_description: string;
 }
 
+// ─── Notifications ─────────────────────────────────────────────
+export type NotificationType =
+  | "project.submitted"
+  | "project.under_review"
+  | "project.approved"
+  | "project.rejected"
+  | "project.funded"
+  | "project.withdrawn"
+  | "project.admin_note"
+  | "project.interest_received"
+  | "interest.submitted"
+  | "admin.project_submitted"
+  | "admin.interest_expressed";
+
+export interface NotificationRow {
+  id: string;
+  recipient: string;
+  type: NotificationType;
+  title: string;
+  body: string | null;
+  data: Record<string, unknown>;
+  read_at: string | null;
+  email_sent_at: string | null;
+  created_at: string;
+}
+
 // ─── Investor profile ──────────────────────────────────────────
 export interface InvestorProfile {
   id: string;
