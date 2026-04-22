@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { LogoBadge } from "@/components/ui/logo";
+import Turnstile from "@/components/auth/Turnstile";
 
 const COUNTRIES = ["Madagascar","Maurice","Réunion","Comores","Mayotte","Seychelles",
   "Mozambique","Kenya","Tanzanie","Afrique du Sud","France","Belgique","Autre"];
@@ -40,6 +41,10 @@ function SignupForm() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const handleCaptcha = useCallback((token: string) => setCaptchaToken(token), []);
+  // If the widget isn't configured (dev), treat as "not required".
+  const captchaConfigured = typeof process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY === "string" && process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY.length > 0;
 
   function update(k: string, v: string) { setForm(f => ({ ...f, [k]: v })); }
 
@@ -47,26 +52,37 @@ function SignupForm() {
     e.preventDefault();
     if (form.password !== form.confirm_password) { setError("Les mots de passe ne correspondent pas."); return; }
     if (form.password.length < 8) { setError("Le mot de passe doit contenir au moins 8 caractères."); return; }
+    if (captchaConfigured && !captchaToken) {
+      setError("Veuillez compléter la vérification anti-bot ci-dessous.");
+      return;
+    }
     setLoading(true); setError("");
     const supabase = createClient();
     const { data, error: err } = await supabase.auth.signUp({
       email: form.email,
       password: form.password,
       options: {
-        data: { full_name: form.full_name },
+        // `intent` is consumed by the handle_new_user trigger to set the role
+        // atomically at INSERT time — the C3 role-escalation guard blocks any
+        // client-side role update, so this is the only path that actually works.
+        data: {
+          full_name: form.full_name,
+          intent:    isInvestor ? "investor" : "client",
+        },
         emailRedirectTo: `${window.location.origin}/auth/callback${isInvestor ? "?intent=investor" : ""}`,
+        // Cloudflare Turnstile token — validated server-side by Supabase.
+        ...(captchaToken ? { captchaToken } : {}),
       },
     });
     if (err) { setError(err.message); setLoading(false); return; }
 
-    // Save extra profile fields (trigger already created the row with name + email)
+    // Save extra profile fields (role was set by the trigger, don't touch it).
     if (data.user) {
       await supabase.from("profiles").update({
         organization: form.organization || null,
         job_title:    form.job_title    || null,
         country:      form.country,
         phone:        form.phone        || null,
-        ...(isInvestor ? { role: "investor" } : {}),
       }).eq("id", data.user.id);
     }
 
@@ -266,6 +282,7 @@ function SignupForm() {
                 <input type="tel" value={form.phone} onChange={e=>update("phone",e.target.value)}
                   className="form-input" placeholder="+261 34 00 000 00"/>
               </div>
+              <Turnstile onToken={handleCaptcha}/>
               <div className="flex gap-3 pt-1">
                 <button type="button" onClick={() => { setError(""); setStep(1); }}
                   className="btn-secondary flex-1 justify-center py-3.5">
@@ -295,8 +312,15 @@ function SignupForm() {
           </div>
         </div>
 
-        <p className="text-white/15 text-xs text-center mt-4">
-          En créant un compte, vous acceptez nos CGU et notre politique de confidentialité.
+        <p className="text-white/25 text-xs text-center mt-4 leading-relaxed">
+          En créant un compte, vous acceptez nos{" "}
+          <Link href="/legal/cgu" className="text-[#B8913A]/80 hover:text-[#B8913A] underline underline-offset-2 transition-colors">
+            CGU
+          </Link>
+          {" "}et notre{" "}
+          <Link href="/legal/privacy" className="text-[#B8913A]/80 hover:text-[#B8913A] underline underline-offset-2 transition-colors">
+            politique de confidentialité
+          </Link>.
         </p>
       </div>
     </div>

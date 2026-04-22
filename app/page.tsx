@@ -1089,8 +1089,8 @@ export default function LandingPage() {
           <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-white/22 text-xs font-light">
             <div>© 2026 CEO Summit IO · Investment Hub · Cluster Capital &amp; Finance. Tous droits réservés.</div>
             <div className="flex gap-5">
-              <span className="hover:text-white/45 cursor-pointer transition-colors">Confidentialité</span>
-              <span className="hover:text-white/45 cursor-pointer transition-colors">Conditions d&apos;utilisation</span>
+              <Link href="/legal/privacy" className="hover:text-white/45 transition-colors">Confidentialité</Link>
+              <Link href="/legal/cgu"     className="hover:text-white/45 transition-colors">Conditions d&apos;utilisation</Link>
             </div>
           </div>
         </div>

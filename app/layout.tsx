@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "sonner";
+import CookieBanner from "@/components/legal/CookieBanner";
 
 export const metadata: Metadata = {
   title: "CEO Summit Investment Hub — Plateforme de Financement Privée",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {children}
+        <CookieBanner/>
         <Toaster
           position="bottom-right"
           toastOptions={{
