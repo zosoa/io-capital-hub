@@ -24,7 +24,16 @@ import type { NotificationRow, NotificationType } from "@/types";
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
 
 function fromAddress(): string {
-  return process.env.RESEND_FROM || "CEO Summit IO <notifications@ceo-summit.mg>";
+  return process.env.RESEND_FROM || "CEO Summit IO <notifications@realsmartx.com>";
+}
+
+function replyToAddress(): string {
+  return process.env.RESEND_REPLY_TO || "capital@ceo-summit.mg";
+}
+
+function unsubscribeUrl(): string {
+  const base = process.env.NEXT_PUBLIC_APP_URL || "https://io-capital-hub.vercel.app";
+  return `${base}/dashboard/notifications`;
 }
 
 async function resendSend(opts: {
@@ -48,11 +57,20 @@ async function resendSend(opts: {
         "Content-Type":  "application/json",
       },
       body: JSON.stringify({
-        from:    fromAddress(),
-        to:      [opts.to],
-        subject: opts.subject,
-        html:    opts.html,
-        text:    opts.text,
+        from:     fromAddress(),
+        to:       [opts.to],
+        subject:  opts.subject,
+        html:     opts.html,
+        text:     opts.text,
+        reply_to: replyToAddress(),
+        // Deliverability headers — cuts down on Gmail / Outlook spam
+        // classification on a fresh sender domain. List-Unsubscribe is
+        // required by Gmail's bulk-sender guidelines (Feb 2024+).
+        headers: {
+          "List-Unsubscribe":      `<${unsubscribeUrl()}>, <mailto:unsubscribe@realsmartx.com>`,
+          "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+          "X-Entity-Ref-ID":       "ceo-summit-io-notifications",
+        },
       }),
     });
 
