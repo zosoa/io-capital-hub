@@ -19,6 +19,28 @@
 
 html { scroll-behavior: smooth; }
 
+/* ─── U-6: Accessible focus ring (WCAG 2.1 AA) ──────────────────────────────
+   Tailwind's preflight zeroes the native outline on interactive elements,
+   which left keyboard users with no visual feedback. Restore a gold ring that
+   only appears for keyboard focus (`focus-visible`), never for mouse clicks.
+   Applied universally so every link/button/input picks it up; specific styled
+   focus states on `.input` / `.form-input` override on their own precedence. */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+  outline: 2px solid rgba(184, 145, 58, 0.75);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+/* Kill the default outline for mouse users — focus-visible only. */
+:focus:not(:focus-visible) { outline: none; }
+
+
 body {
   background-color: var(--brand-navy);
   color: white;

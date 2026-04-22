@@ -123,7 +123,7 @@ export function renderEmail(type: NotificationType, ctx: TemplateCtx): EmailOutp
 
     case "project.approved":
       return {
-        subject: `🎉 Dossier « ${project} » qualifié`,
+        subject: `Dossier « ${project} » qualifié`,
         html: shell({
           preheader: "Votre dossier a été validé et est présenté à notre réseau d'investisseurs.",
           headline:  "Félicitations — votre dossier a été qualifié",

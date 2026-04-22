@@ -459,23 +459,10 @@ const PARTNER_LOGOS: { src: string; alt: string }[] = [
   { src: "/partners/mef.png",              alt: "MEF" },
 ];
 
-const TESTIMONIALS = [
-  {
-    quote: "L'équipe a su identifier en quelques jours les trois fonds régionaux les plus alignés avec notre thèse d'investissement énergie. Un gain de temps considérable.",
-    author: "Directrice d'investissement",
-    role: "Fonds PE — Maurice",
-  },
-  {
-    quote: "Nous avons obtenu une introduction qualifiée auprès d'une DFI deux semaines après le dépôt de notre dossier. Le filtre éditorial de CEO Summit fait la différence.",
-    author: "CEO & fondateur",
-    role: "Agri-industrie — Madagascar",
-  },
-  {
-    quote: "La qualité du deal flow est nettement au-dessus des plateformes publiques. Confidentialité respectée, dossiers préqualifiés, géographie ciblée.",
-    author: "Responsable crédit",
-    role: "Banque d'investissement régionale",
-  },
-];
+// Testimonials intentionally held back until real quotes are secured from
+// partners. Placeholder AI-voiced quotes removed per audit (H-1) — honest
+// emptiness beats fabricated proof.
+
 
 function SocialProofSection() {
   return (
@@ -504,39 +491,32 @@ function SocialProofSection() {
         </div>
       </section>
 
-      {/* ── Testimonial cards — back on dark ── */}
+      {/* ── Honest-placeholder block — replaces fabricated testimonials.
+           Reserved for real quotes; currently invites early adopters. ── */}
       <section className="bg-[#07090F]">
-        <div className="max-w-6xl mx-auto px-6 lg:px-10 py-20">
-          <div className="text-center mb-10">
-            <span className="text-[#B8913A] text-[10px] font-semibold uppercase tracking-[0.22em]">
-              Ils en parlent
-            </span>
-            <h2 className="font-display text-2xl md:text-3xl font-bold text-white mt-3 leading-snug">
-              Porteurs de projets &amp; investisseurs<br className="hidden md:block"/>témoignent de leur expérience.
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-5">
-            {TESTIMONIALS.map(t => (
-              <figure key={t.author}
-                className="rounded-2xl border border-white/8 bg-white/3 p-7 hover:border-[#B8913A]/30 hover:bg-[#B8913A]/5 transition-all flex flex-col">
-                <svg className="w-6 h-6 text-[#B8913A]/70 mb-4" fill="currentColor" viewBox="0 0 32 32" aria-hidden>
-                  <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36 1 24.832 4.304 28 8.704 28c3.808 0 6.512-2.928 6.512-6.384 0-3.136-2.192-5.408-5.12-5.408-.592 0-1.392.112-1.568.224.48-3.264 3.52-7.104 6.56-9.024L9.352 4zm18.56 0c-4.832 3.456-8.288 9.12-8.288 15.36C19.624 24.832 22.928 28 27.328 28c3.744 0 6.448-2.928 6.448-6.384 0-3.136-2.128-5.408-5.056-5.408-.592 0-1.456.112-1.632.224.48-3.264 3.584-7.104 6.624-9.024L27.912 4z"/>
-                </svg>
-                <blockquote className="text-white/70 text-sm leading-relaxed font-light flex-1">
-                  “{t.quote}”
-                </blockquote>
-                <figcaption className="mt-5 pt-5 border-t border-white/6">
-                  <div className="text-white text-sm font-semibold">{t.author}</div>
-                  <div className="text-[#B8913A]/75 text-xs mt-0.5">{t.role}</div>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-
-          <p className="text-center text-white/25 text-xs mt-8 max-w-xl mx-auto leading-relaxed">
-            Les témoignages sont anonymisés à la demande des auteurs — partage nominatif disponible sur demande auprès de notre équipe.
+        <div className="max-w-3xl mx-auto px-6 lg:px-10 py-20 text-center">
+          <span className="text-[#B8913A] text-[10px] font-semibold uppercase tracking-[0.22em]">
+            Construisons les premières références ensemble
+          </span>
+          <h2 className="font-display text-2xl md:text-3xl font-bold text-white mt-3 leading-snug">
+            Plateforme en phase d&apos;amorçage.<br className="hidden md:block"/>
+            <span className="text-white/60">Soyez parmi les premiers à la rejoindre.</span>
+          </h2>
+          <p className="text-white/45 text-sm mt-5 max-w-xl mx-auto leading-relaxed font-light">
+            Les premiers porteurs de projets et investisseurs qualifiés façonneront le réseau qui
+            servira toute la communauté du CEO Summit Indian Ocean. Nous préférons publier les
+            premiers retours authentiques plutôt que des témoignages anonymisés.
           </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
+            <Link href="/auth/signup"
+              className="bg-[#B8913A] hover:bg-[#9A7B3A] text-white font-semibold text-sm px-6 py-3 rounded transition-colors inline-flex items-center justify-center gap-2">
+              Déposer un dossier
+            </Link>
+            <Link href="/auth/signup?intent=investor"
+              className="bg-white/8 hover:bg-white/12 border border-[#B8913A]/50 hover:border-[#B8913A] text-white font-semibold text-sm px-6 py-3 rounded transition-colors inline-flex items-center justify-center gap-2">
+              Rejoindre le réseau investisseur
+            </Link>
+          </div>
         </div>
       </section>
     </>
