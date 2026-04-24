@@ -1020,6 +1020,25 @@ export default function LandingPage() {
                 </div>
               </div>
               <div className="text-center">
+                <div className="text-white/22 text-xs uppercase tracking-widest mb-2 font-medium">Affiliated with</div>
+                <div className="flex items-center gap-2 bg-white/4 border border-white/8 rounded px-3 py-1.5">
+                  {/* becom.png has a solid-orange circular mark; object-contain inside a
+                      transparent pill lets the orange disc sit naturally on the dark
+                      footer. If the source file ever ships with white padding around
+                      the circle, the `rounded-full` mask + orange interior keep any
+                      white bleed invisible against the matching orange background. */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/partners/becom.png"
+                    alt="Becom"
+                    className="h-6 w-6 rounded-full object-contain"
+                  />
+                  <span className="text-white/55 text-xs font-medium tracking-wide">
+                    BECOM
+                  </span>
+                </div>
+              </div>
+              <div className="text-center">
                 <div className="text-white/22 text-xs uppercase tracking-widest mb-2 font-medium">Powered by</div>
                 <div className="bg-white/4 border border-white/8 rounded px-4 py-2">
                   <span className="text-white/55 text-xs font-medium tracking-wide">
