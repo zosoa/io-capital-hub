@@ -8,6 +8,7 @@ import { createClient } from "@/lib/supabase/client";
 import CardSelectWithOther from "@/components/ui/CardSelectWithOther";
 import type { InvestorProfile } from "@/types";
 import { COUNTRIES } from "@/lib/countries";
+import { friendlyError } from "@/lib/friendlyError";
 
 // ─── Constants ────────────────────────────────────────────────
 const ROLE_TYPES = [
@@ -324,7 +325,7 @@ export default function InvestorProfilePage() {
     }
 
     setLoading(false);
-    if (err) { setError(err.message); toast.error("Erreur lors de la sauvegarde"); return; }
+    if (err) { setError(friendlyError(err)); toast.error("Erreur lors de la sauvegarde"); return; }
     setSaved(true);
     toast.success("Profil investisseur sauvegardé");
     setTimeout(() => router.push("/dashboard"), 1500);

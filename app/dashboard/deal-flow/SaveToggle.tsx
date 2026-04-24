@@ -30,34 +30,44 @@ export default function SaveToggle({
   variant?: "card" | "detail";
 }) {
   const [saved,   setSaved]   = useState(initialSaved);
+  const [busy,    setBusy]    = useState(false);
   const [pending, startTransition] = useTransition();
   const router = useRouter();
 
   async function toggle() {
-    const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) { router.push("/auth/login"); return; }
+    // I-H6 — guard against rapid-click races. Without this, clicking twice
+    // quickly while the first round-trip is in flight could land the DB in
+    // "saved" while the UI shows "not saved" (or vice versa).
+    if (busy) return;
+    setBusy(true);
+    try {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) { router.push("/auth/login"); return; }
 
-    const next = !saved;
-    setSaved(next);
+      const next = !saved;
+      setSaved(next);
 
-    if (next) {
-      const { error } = await supabase.from("deal_saves").insert({ user_id: user.id, project_id: projectId });
-      if (error && error.code !== "23505") { setSaved(false); return; }
-    } else {
-      const { error } = await supabase.from("deal_saves").delete()
-        .eq("user_id", user.id).eq("project_id", projectId);
-      if (error) { setSaved(true); return; }
+      if (next) {
+        const { error } = await supabase.from("deal_saves").insert({ user_id: user.id, project_id: projectId });
+        if (error && error.code !== "23505") { setSaved(false); return; }
+      } else {
+        const { error } = await supabase.from("deal_saves").delete()
+          .eq("user_id", user.id).eq("project_id", projectId);
+        if (error) { setSaved(true); return; }
+      }
+      // Refresh the server component so counts update.
+      startTransition(() => router.refresh());
+    } finally {
+      setBusy(false);
     }
-    // Refresh the server component so counts update.
-    startTransition(() => router.refresh());
   }
 
   if (variant === "detail") {
     return (
       <button
         onClick={toggle}
-        disabled={pending}
+        disabled={pending || busy}
         aria-pressed={saved}
         className={`w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
           saved

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { LogoBadge } from "@/components/ui/logo";
+import { friendlyError } from "@/lib/friendlyError";
 
 function LoginForm() {
   const router = useRouter();
@@ -23,13 +24,7 @@ function LoginForm() {
     const supabase = createClient();
     const { error: err } = await supabase.auth.signInWithPassword({ email, password });
     if (err) {
-      const msgs: Record<string, string> = {
-        "Email not confirmed":    "Votre email n'est pas encore confirmé. Vérifiez votre boîte mail.",
-        "Invalid login credentials": "Email ou mot de passe incorrect.",
-        "Too many requests":      "Trop de tentatives. Veuillez patienter quelques minutes.",
-        "User not found":         "Aucun compte trouvé avec cet email.",
-      };
-      setError(msgs[err.message] || err.message);
+      setError(friendlyError(err));
       setLoading(false);
       return;
     }

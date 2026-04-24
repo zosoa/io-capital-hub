@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { LogoBadge } from "@/components/ui/logo";
+import { friendlyError } from "@/lib/friendlyError";
 
 function PasswordStrength({ password }: { password: string }) {
   const len = password.length;
@@ -54,7 +55,7 @@ export default function UpdatePasswordPage() {
     const supabase = createClient();
     const { error: err } = await supabase.auth.updateUser({ password });
     setLoading(false);
-    if (err) { setError(err.message); return; }
+    if (err) { setError(friendlyError(err)); return; }
     // Sign out so the user must log in with the new password
     await supabase.auth.signOut();
     router.push("/auth/login?reset=1");

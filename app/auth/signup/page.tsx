@@ -8,6 +8,7 @@ import { LogoBadge } from "@/components/ui/logo";
 import Turnstile from "@/components/auth/Turnstile";
 
 import { COUNTRIES } from "@/lib/countries";
+import { friendlyError } from "@/lib/friendlyError";
 
 function PasswordStrength({ password }: { password: string }) {
   const len = password.length;
@@ -73,7 +74,7 @@ function SignupForm() {
         ...(captchaToken ? { captchaToken } : {}),
       },
     });
-    if (err) { setError(err.message); setLoading(false); return; }
+    if (err) { setError(friendlyError(err)); setLoading(false); return; }
 
     // Save extra profile fields (role was set by the trigger, don't touch it).
     // I-H5: await + surface errors so the user isn't silently left with an

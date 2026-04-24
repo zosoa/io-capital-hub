@@ -4,6 +4,7 @@ import { useState, Suspense } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { LogoBadge } from "@/components/ui/logo";
+import { friendlyError } from "@/lib/friendlyError";
 
 function ForgotPasswordForm() {
   const [email,   setEmail]   = useState("");
@@ -19,7 +20,7 @@ function ForgotPasswordForm() {
       redirectTo: `${window.location.origin}/auth/update-password`,
     });
     setLoading(false);
-    if (err) { setError(err.message); return; }
+    if (err) { setError(friendlyError(err)); return; }
     setSent(true);
   }
 

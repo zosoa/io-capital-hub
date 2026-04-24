@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase/client";
 import CardSelectWithOther from "@/components/ui/CardSelectWithOther";
 import type { Project, ProjectFormData } from "@/types";
 import { COUNTRIES } from "@/lib/countries";
+import { friendlyError } from "@/lib/friendlyError";
 
 // ─── Step Icons ───────────────────────────────────────────────
 const StepIcons: React.ReactNode[] = [
@@ -465,7 +466,7 @@ export default function EditProjectForm({ project }: { project: Project }) {
       .eq("id", project.id);
 
     setLoading(false);
-    if (err) { setError(err.message); return; }
+    if (err) { setError(friendlyError(err)); return; }
     router.push(`/dashboard/projects/${project.id}?updated=1`);
   }
 

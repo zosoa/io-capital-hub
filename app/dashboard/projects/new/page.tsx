@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase/client";
 import CardSelectWithOther from "@/components/ui/CardSelectWithOther";
 import type { ProjectFormData } from "@/types";
 import { COUNTRIES } from "@/lib/countries";
+import { friendlyError } from "@/lib/friendlyError";
 
 // ─── Step Icons ───────────────────────────────────────────────
 const StepIcons: React.ReactNode[] = [
@@ -483,7 +484,7 @@ export default function NewProjectPage() {
     };
 
     const { data, error: err } = await supabase.from("projects").insert(payload).select("id").single();
-    if (err) { setLoading(false); setError(err.message); return; }
+    if (err) { setLoading(false); setError(friendlyError(err)); return; }
 
     // If this was a real submission (not a draft save), the INSERT trigger just
     // queued notifications for the owner + admins — fire their emails now.
