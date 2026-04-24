@@ -46,14 +46,44 @@ export async function flushNotifications(): Promise<void> {
 }
 
 // ─── Express interest as a server action (fires notifications + email) ───
+// Validation layering (audit items I-C3 + I-C5):
+//   1. RLS does the hard enforcement (role in investor/admin, project status=approved, not self-interest)
+//   2. This layer adds friendly error messages + pre-checks to avoid ugly RLS
+//      error leakage.
 export async function expressInterest(
   projectId: string,
   message: string | null,
 ): Promise<{ ok: true } | { ok: false; error: string; code?: string }> {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return { ok: false, error: "Non authentifié." };
+  if (!user) return { ok: false, error: "Non authentifié.", code: "NO_AUTH" };
 
+  // 1. Verify project exists and is currently approved (public deal flow).
+  const { data: project } = await supabase
+    .from("projects")
+    .select("id, user_id, status")
+    .eq("id", projectId)
+    .eq("status", "approved")
+    .maybeSingle();
+
+  if (!project) {
+    return { ok: false, error: "Ce projet n'est plus disponible dans le deal flow.", code: "NOT_AVAILABLE" };
+  }
+
+  // 2. No self-interest — would misleadingly notify the owner about themselves.
+  if (project.user_id === user.id) {
+    return { ok: false, error: "Vous ne pouvez pas exprimer un intérêt pour votre propre projet.", code: "SELF" };
+  }
+
+  // 3. Role gate — only investors (and admins) can express interest.
+  const { data: profile } = await supabase
+    .from("profiles").select("role").eq("id", user.id).single();
+
+  if (!profile || !["investor", "admin"].includes(profile.role)) {
+    return { ok: false, error: "Seuls les investisseurs peuvent exprimer un intérêt. Rejoignez le réseau depuis votre profil.", code: "WRONG_ROLE" };
+  }
+
+  // 4. Insert — RLS re-validates all of the above as defence-in-depth.
   const { error } = await supabase.from("deal_interests").insert({
     investor_user_id: user.id,
     project_id:       projectId,
@@ -61,8 +91,11 @@ export async function expressInterest(
   });
 
   if (error) {
-    if (error.code === "23505") return { ok: false, error: "Vous avez déjà exprimé votre intérêt pour ce projet.", code: "DUPLICATE" };
-    return { ok: false, error: error.message };
+    if (error.code === "23505") {
+      return { ok: false, error: "Vous avez déjà exprimé votre intérêt pour ce projet.", code: "DUPLICATE" };
+    }
+    // Don't leak raw PG error strings to the UI. Log would go here in prod.
+    return { ok: false, error: "Une erreur technique est survenue. Merci de réessayer.", code: "UNKNOWN" };
   }
 
   revalidatePath(`/dashboard/deal-flow/${projectId}`);
