@@ -561,7 +561,7 @@ function OriginStorySection() {
                 className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-2 border-[#B8913A]/40 shadow-lg"
               />
               <div className="absolute -bottom-1 -right-1 bg-[#B8913A] text-white text-[9px] font-bold uppercase tracking-widest px-2 py-1 rounded">
-                Fondatrice
+                Head of Finance
               </div>
             </div>
           </div>
@@ -581,10 +581,11 @@ function OriginStorySection() {
               de l&apos;Océan Indien.
               <span className="text-white/85 font-medium"> Cette plateforme est cette passerelle.</span>
             </p>
-            <div className="mt-6 pt-5 border-t border-white/8 flex items-baseline gap-2">
-              <span className="text-white font-display text-lg font-bold">Zosoa Rasoarahona</span>
-              <span className="text-[#B8913A] text-xs">·</span>
-              <span className="text-white/45 text-sm">Co-fondatrice du cluster</span>
+            <div className="mt-6 pt-5 border-t border-white/8">
+              <div className="text-white font-display text-lg font-bold">Zosoa Rasoarahona</div>
+              <div className="text-[#B8913A]/80 text-sm mt-0.5">
+                Board Member · Head of Finance — CEO Summit IO
+              </div>
             </div>
           </div>
         </div>
@@ -611,7 +612,7 @@ function OriginStorySection() {
               Dans la salle ce jour-là
             </div>
             <div className="font-display text-3xl md:text-5xl font-bold text-white leading-none tracking-tight">
-              50 000 <span className="text-white/40 font-light">—</span> 10 M <span className="text-[#C8992A]">USD+</span>
+              25 000 <span className="text-white/40 font-light">—</span> 100 M <span className="text-[#C8992A]">USD+</span>
             </div>
             <div className="text-white/50 text-sm mt-3">
               Spectre complet des tickets représentés · amorçage → croissance → scale-up
@@ -635,7 +636,7 @@ function OriginStorySection() {
               <span className="text-white/25"> (avril 2026)</span>.
               Gap de financement africain chiffré à <span className="text-white font-semibold">331 Mds USD</span> par l&apos;IFC.
               <span className="block mt-1 text-white/45 italic">
-                L&apos;argent est là — il lui faut juste la bonne porte d&apos;entrée.
+                Les fonds sont là — il leur faut juste un pont de confiance.
               </span>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
