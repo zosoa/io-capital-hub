@@ -561,7 +561,7 @@ function OriginStorySection() {
                 className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-2 border-[#B8913A]/40 shadow-lg"
               />
               <div className="absolute -bottom-1 -right-1 bg-[#B8913A] text-white text-[9px] font-bold uppercase tracking-widest px-2 py-1 rounded">
-                Head of Finance
+                Head of Capital &amp; Finance
               </div>
             </div>
           </div>
@@ -584,7 +584,7 @@ function OriginStorySection() {
             <div className="mt-6 pt-5 border-t border-white/8">
               <div className="text-white font-display text-lg font-bold">Zosoa Rasoarahona</div>
               <div className="text-[#B8913A]/80 text-sm mt-0.5">
-                Board Member · Head of Finance — CEO Summit IO
+                Board Member · Head of Capital &amp; Finance — CEO Summit IO
               </div>
             </div>
           </div>
@@ -592,11 +592,14 @@ function OriginStorySection() {
 
         {/* Panel photo — landscape, full width of the content column */}
         <figure className="mb-14 rounded-2xl overflow-hidden border border-white/8">
+          {/* aspect-[16/9] + object-bottom drops the top ~15% of the source
+              image (too much ceiling/lights) while keeping the panelists
+              anchored to the lower edge. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/origin/panel-cluster-finance-2026.jpg"
             alt="Panel inaugural du Cluster Capital & Finance, CEO Summit Indian Ocean, avril 2026"
-            className="w-full h-auto object-cover"
+            className="w-full aspect-[16/9] object-cover object-bottom"
           />
           <figcaption className="bg-[#0A0D18] px-5 py-3 text-white/45 text-xs leading-relaxed border-t border-white/6">
             <span className="text-[#B8913A] font-semibold">Panel inaugural · 9 avril 2026 — Antananarivo.</span>{" "}
