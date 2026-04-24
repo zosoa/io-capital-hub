@@ -523,6 +523,139 @@ function SocialProofSection() {
   );
 }
 
+// ─── ORIGIN STORY — founder + panel + "in the room" proof ────────────────────
+// Extracts only the positive signal from the post-summit report: who was in
+// the room, what ticket range they represented, and why the platform exists.
+// Tone = personal + confident, no hype. Placeholder for two images:
+//   /public/origin/zosoa.jpg                  — founder portrait (square/circle)
+//   /public/origin/panel-cluster-finance-2026.jpg — landscape panel photo
+function OriginStorySection() {
+  const PANELISTS = [
+    { name: "BRED",    role: "Dette bancaire PME" },
+    { name: "I&P",     role: "Capital-investissement" },
+    { name: "FSA",     role: "Garantie multilatérale" },
+    { name: "LAPLACE", role: "Gestion de patrimoine" },
+    { name: "GUILEX",  role: "Structuration juridique" },
+  ];
+
+  return (
+    <section className="bg-[#07090F] border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-6 lg:px-10 py-20 md:py-24">
+
+        {/* Eyebrow */}
+        <div className="text-center mb-12">
+          <span className="text-[#B8913A] text-[10px] font-semibold uppercase tracking-[0.22em]">
+            Née du Cluster Capital &amp; Finance · CEO Summit Indian Ocean 2026
+          </span>
+        </div>
+
+        {/* Top grid: founder portrait + quote */}
+        <div className="grid md:grid-cols-[240px,1fr] gap-8 md:gap-12 items-start mb-14">
+          {/* Portrait */}
+          <div className="flex justify-center md:justify-start">
+            <div className="relative">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/origin/zosoa.jpg"
+                alt="Zosoa Rasoarahona"
+                className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-2 border-[#B8913A]/40 shadow-lg"
+              />
+              <div className="absolute -bottom-1 -right-1 bg-[#B8913A] text-white text-[9px] font-bold uppercase tracking-widest px-2 py-1 rounded">
+                Fondatrice
+              </div>
+            </div>
+          </div>
+
+          {/* Quote */}
+          <div>
+            <svg className="w-8 h-8 text-[#B8913A]/40 mb-4" fill="currentColor" viewBox="0 0 32 32" aria-hidden>
+              <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36 1 24.832 4.304 28 8.704 28c3.808 0 6.512-2.928 6.512-6.384 0-3.136-2.192-5.408-5.12-5.408-.592 0-1.392.112-1.568.224.48-3.264 3.52-7.104 6.56-9.024L9.352 4zm18.56 0c-4.832 3.456-8.288 9.12-8.288 15.36C19.624 24.832 22.928 28 27.328 28c3.744 0 6.448-2.928 6.448-6.384 0-3.136-2.128-5.408-5.056-5.408-.592 0-1.456.112-1.632.224.48-3.264 3.584-7.104 6.624-9.024L27.912 4z"/>
+            </svg>
+            <p className="text-white/85 text-lg md:text-xl leading-relaxed font-light">
+              En avril 2026, j&apos;ai animé le panel inaugural du Cluster Capital &amp; Finance du CEO Summit
+              Indian Ocean. Dans la salle : <strong className="text-white font-semibold">BRED, I&amp;P, FSA,
+              LAPLACE, GUILEX</strong> — et des investisseurs actifs parmi les simples participants.
+            </p>
+            <p className="text-white/60 text-base leading-relaxed mt-4 font-light">
+              Le capital existait. Il manquait la passerelle pour le connecter aux porteurs de projets
+              de l&apos;Océan Indien.
+              <span className="text-white/85 font-medium"> Cette plateforme est cette passerelle.</span>
+            </p>
+            <div className="mt-6 pt-5 border-t border-white/8 flex items-baseline gap-2">
+              <span className="text-white font-display text-lg font-bold">Zosoa Rasoarahona</span>
+              <span className="text-[#B8913A] text-xs">·</span>
+              <span className="text-white/45 text-sm">Co-fondatrice du cluster</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Panel photo — landscape, full width of the content column */}
+        <figure className="mb-14 rounded-2xl overflow-hidden border border-white/8">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/origin/panel-cluster-finance-2026.jpg"
+            alt="Panel inaugural du Cluster Capital & Finance, CEO Summit Indian Ocean, avril 2026"
+            className="w-full h-auto object-cover"
+          />
+          <figcaption className="bg-[#0A0D18] px-5 py-3 text-white/45 text-xs leading-relaxed border-t border-white/6">
+            <span className="text-[#B8913A] font-semibold">Panel inaugural · 9 avril 2026 — Antananarivo.</span>{" "}
+            Banques commerciales, capital-investissement, DFIs, family offices et conseil juridique — un
+            écosystème complet réuni pour la première fois autour d&apos;une même table.
+          </figcaption>
+        </figure>
+
+        {/* "In the room" band */}
+        <div className="bg-gradient-to-br from-[#B8913A]/10 via-[#0A0D18] to-[#0A0D18] border border-[#B8913A]/25 rounded-2xl p-6 md:p-8">
+          <div className="text-center mb-8">
+            <div className="text-[#B8913A] text-[10px] font-semibold uppercase tracking-[0.22em] mb-3">
+              Dans la salle ce jour-là
+            </div>
+            <div className="font-display text-3xl md:text-5xl font-bold text-white leading-none tracking-tight">
+              50 000 <span className="text-white/40 font-light">—</span> 10 M <span className="text-[#C8992A]">USD+</span>
+            </div>
+            <div className="text-white/50 text-sm mt-3">
+              Spectre complet des tickets représentés · amorçage → croissance → scale-up
+            </div>
+          </div>
+
+          {/* Panelist strip */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
+            {PANELISTS.map(p => (
+              <div key={p.name} className="bg-white/4 border border-white/8 rounded-lg px-3 py-3 text-center">
+                <div className="text-white font-display font-bold text-sm tracking-wide">{p.name}</div>
+                <div className="text-white/40 text-[10px] leading-tight mt-1">{p.role}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Macro context + CTA */}
+          <div className="grid md:grid-cols-[1fr,auto] gap-6 items-center pt-6 border-t border-white/8">
+            <div className="text-white/55 text-sm leading-relaxed">
+              <span className="text-white font-semibold">183 M USD</span> en attente de décaissement du FMI pour Madagascar
+              <span className="text-white/25"> (avril 2026)</span>.
+              Gap de financement africain chiffré à <span className="text-white font-semibold">331 Mds USD</span> par l&apos;IFC.
+              <span className="block mt-1 text-white/45 italic">
+                L&apos;argent est là — il lui faut juste la bonne porte d&apos;entrée.
+              </span>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+              <Link href="/auth/signup"
+                className="bg-[#B8913A] hover:bg-[#9A7B3A] text-white font-semibold text-sm px-5 py-3 rounded transition-colors text-center">
+                Déposer un dossier
+              </Link>
+              <Link href="/auth/signup?intent=investor"
+                className="border border-[#B8913A]/60 hover:bg-[#B8913A]/10 text-[#B8913A] font-semibold text-sm px-5 py-3 rounded transition-colors text-center">
+                Rejoindre le réseau
+              </Link>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
 // ─── STEP CARD ────────────────────────────────────────────────────────────────
 function StepCard({ n, icon, title, desc }: {
   n: string;
@@ -670,6 +803,9 @@ export default function LandingPage() {
 
       {/* ══ SOCIAL PROOF — trusted-by + testimonials ═════════════════════════ */}
       <SocialProofSection />
+
+      {/* ══ ORIGIN STORY — panel + founder + "in the room" proof ═════════════ */}
+      <OriginStorySection />
 
       {/* ══ WHY — cream section ═══════════════════════════════════════════════ */}
       <section id="pourquoi" className="py-28 bg-[#F6F4EF]">
