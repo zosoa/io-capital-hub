@@ -255,20 +255,53 @@ export default function InvestorProfilePage() {
     setter(prev => prev.includes(v) ? prev.filter(x => x !== v) : [...prev, v]);
   }
 
-  function validate(): string {
-    if (step === 1) {
-      if (!fullName.trim()) return "Votre nom complet est requis.";
-      if (!roleType)        return "Veuillez sélectionner votre rôle.";
-      if (roleType === "other" && !roleOther.trim()) return "Veuillez préciser votre rôle.";
-    }
-    if (step === 2) {
-      if (sectors.length === 0) return "Sélectionnez au moins un secteur prioritaire.";
+  // validate(n) runs the rules for step n. validate() (no arg) runs all rules
+  // across every step — used on final submit when the user may have edited
+  // earlier steps via the wizard back button.
+  function validate(n: number = 0): string {
+    const run = (which: number) => {
+      if (which === 1) {
+        if (!fullName.trim()) return "Votre nom complet est requis.";
+        if (!roleType)        return "Veuillez sélectionner votre rôle.";
+        if (roleType === "other" && !roleOther.trim()) return "Veuillez préciser votre rôle.";
+        // I-M2: LinkedIn — accept empty; otherwise must be a recognisable URL.
+        if (linkedin.trim()) {
+          const linkedinOK = /^https?:\/\/(www\.|[a-z]{2}\.)?linkedin\.com\/(in|company|pub)\/[\w\-_%/.]+\/?$/i.test(linkedin.trim());
+          if (!linkedinOK) return "Le lien LinkedIn semble invalide (format attendu : https://www.linkedin.com/in/...).";
+        }
+        // I-M2: Phone — accept empty, otherwise ≥7 digits and only legal chars.
+        if (phone.trim()) {
+          const digits = phone.replace(/\D/g, "");
+          const phoneOK = /^\+?[\d\s().\-]{7,}$/.test(phone.trim()) && digits.length >= 7;
+          if (!phoneOK) return "Le numéro de téléphone semble invalide.";
+        }
+      }
+      if (which === 2) {
+        if (sectors.length === 0) return "Sélectionnez au moins un secteur prioritaire.";
+        // I-M1: ticket range sanity.
+        const min = ticketMin ? parseInt(ticketMin) : null;
+        const max = ticketMax ? parseInt(ticketMax) : null;
+        if (min != null && max != null && min > max) {
+          return "Le ticket minimum ne peut pas dépasser le maximum.";
+        }
+      }
+      if (which === 3) {
+        // I-M3: bio hard cap — also enforced on the textarea but server-truncation is ugly.
+        if (bio.length > 2000) return `La biographie est trop longue (${bio.length} / 2000 caractères).`;
+      }
+      return "";
+    };
+
+    if (n > 0) return run(n);
+    for (const s of [1, 2, 3]) {
+      const e = run(s);
+      if (e) return e;
     }
     return "";
   }
 
   function nextStep() {
-    const err = validate();
+    const err = validate(step);
     if (err) { setError(err); return; }
     setError("");
     setStep(s => Math.min(s + 1, 3));
@@ -276,6 +309,11 @@ export default function InvestorProfilePage() {
   }
 
   async function handleSubmit() {
+    // Re-run all-step validators on final submit — user may have edited an
+    // earlier step via the wizard back button without re-clicking Suivant.
+    const err = validate();
+    if (err) { setError(err); return; }
+
     setLoading(true); setError("");
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
@@ -315,17 +353,17 @@ export default function InvestorProfilePage() {
     // The UNIQUE index on user_id enforces one row per investor server-side;
     // using onConflict lets a concurrent second submit update rather than
     // create a zombie duplicate.
-    let err;
+    let saveErr;
     if (existingId) {
-      ({ error: err } = await supabase.from("investor_profiles").update(payload).eq("id", existingId));
+      ({ error: saveErr } = await supabase.from("investor_profiles").update(payload).eq("id", existingId));
     } else {
-      ({ error: err } = await supabase
+      ({ error: saveErr } = await supabase
         .from("investor_profiles")
         .upsert(payload, { onConflict: "user_id" }));
     }
 
     setLoading(false);
-    if (err) { setError(friendlyError(err)); toast.error("Erreur lors de la sauvegarde"); return; }
+    if (saveErr) { setError(friendlyError(saveErr)); toast.error("Erreur lors de la sauvegarde"); return; }
     setSaved(true);
     toast.success("Profil investisseur sauvegardé");
     setTimeout(() => router.push("/dashboard"), 1500);
@@ -690,11 +728,17 @@ export default function InvestorProfilePage() {
                 </FormField>
               )}
 
-              {/* Bio */}
+              {/* Bio — I-M3: hard cap + live counter */}
               <FormField label="Biographie professionnelle" hint="Présentez votre parcours, expertise et vision d'investissement">
-                <textarea value={bio} onChange={e => setBio(e.target.value)}
+                <textarea value={bio} onChange={e => setBio(e.target.value.slice(0, 2000))}
+                  maxLength={2000}
                   className="form-input resize-y" rows={4}
                   placeholder="Décrivez votre expérience, vos domaines d'expertise et ce que vous apportez aux projets que vous accompagnez..."/>
+                <div className={`text-right text-[10px] mt-1 tabular-nums ${
+                  bio.length > 1800 ? "text-[#B8913A]" : "text-white/25"
+                }`}>
+                  {bio.length} / 2000
+                </div>
               </FormField>
 
               {/* Photo consent */}

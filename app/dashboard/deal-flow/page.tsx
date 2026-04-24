@@ -1,8 +1,10 @@
+import { Suspense } from "react";
 import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
 import { formatCurrency, SECTOR_LABELS, STAGE_LABELS, FUNDING_TYPE_LABELS } from "@/lib/utils";
 import type { Project, InvestorProfile } from "@/types";
 import SaveToggle from "./SaveToggle";
+import SortPersist from "./SortPersist";
 import { expandZones, zoneMatches, type ZoneExpansion } from "@/lib/zones";
 
 // ─── Match score (0–4) between project and investor profile ────────────────
@@ -138,6 +140,8 @@ export default async function DealFlowPage({
 
   return (
     <div className="p-6 md:p-8 pt-[68px] md:pt-8 max-w-5xl mx-auto">
+      <Suspense fallback={null}><SortPersist/></Suspense>
+
       {/* Header */}
       <div className="mb-8">
         <h1 className="font-display text-2xl md:text-3xl font-bold text-white mb-1.5">Deal Flow</h1>
@@ -165,6 +169,33 @@ export default async function DealFlowPage({
           {tabLink("newest",       "Plus récents")}
           <span className="mx-2 h-4 w-px bg-white/10"/>
           {tabLink("saved",        `Sauvegardés${savedCount ? ` (${savedCount})` : ""}`)}
+        </div>
+      )}
+
+      {/* I-M6 — Soft prompt when logged in but investor profile is blank or
+          has no priority_sectors (→ matching is effectively off). Only shown
+          on the default "match" sort so we don't nag when they're browsing
+          saved deals. */}
+      {user && (!investorProfile || !investorProfile.priority_sectors?.length)
+        && projects.length > 0 && sort === "match" && !savedOnly && (
+        <div className="mb-6 p-4 rounded-xl bg-[#B8913A]/6 border border-[#B8913A]/25 flex items-start gap-3 text-sm">
+          <svg className="w-5 h-5 text-[#B8913A] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <div className="flex-1 min-w-0">
+            <p className="text-white/75 font-medium mb-0.5">Activez la correspondance automatique</p>
+            <p className="text-white/45 text-xs leading-relaxed">
+              Sans profil d&apos;investissement complet, tous les projets apparaissent sans score de pertinence.
+              Renseignez vos secteurs, ticket et zones pour voir en priorité les dossiers alignés à votre mandat.
+            </p>
+            <Link href="/dashboard/investor-profile?onboarding=1"
+              className="inline-flex items-center gap-1.5 mt-2 text-[#B8913A] hover:text-[#C8992A] text-xs font-medium transition-colors">
+              Compléter mon profil
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+              </svg>
+            </Link>
+          </div>
         </div>
       )}
 
