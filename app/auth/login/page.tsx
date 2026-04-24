@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, Suspense } from "react";
+import { useState, Suspense, useCallback } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { LogoBadge } from "@/components/ui/logo";
 import { friendlyError } from "@/lib/friendlyError";
+import Turnstile from "@/components/auth/Turnstile";
 
 function LoginForm() {
   const router = useRouter();
@@ -17,15 +18,34 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [loading,  setLoading]  = useState(false);
   const [error,    setError]    = useState("");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  // Bump this to force the widget to re-render & issue a fresh token after a
+  // failed attempt (Turnstile tokens are single-use — a wrong-password retry
+  // would otherwise trip a "captcha already used" 500 from Supabase).
+  const [captchaKey, setCaptchaKey] = useState(0);
+  const handleCaptcha = useCallback((token: string) => setCaptchaToken(token), []);
+  const captchaConfigured = typeof process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY === "string"
+    && process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY.length > 0;
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
+    if (captchaConfigured && !captchaToken) {
+      setError("Veuillez compléter la vérification anti-bot ci-dessous.");
+      return;
+    }
     setLoading(true); setError("");
     const supabase = createClient();
-    const { error: err } = await supabase.auth.signInWithPassword({ email, password });
+    const { error: err } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+      options: captchaToken ? { captchaToken } : undefined,
+    });
     if (err) {
       setError(friendlyError(err));
       setLoading(false);
+      // Consumed captcha token can't be reused — remount the widget.
+      setCaptchaToken(null);
+      setCaptchaKey(k => k + 1);
       return;
     }
     router.push(redirect);
@@ -96,6 +116,7 @@ function LoginForm() {
               <input type="password" required value={password} onChange={e => setPassword(e.target.value)}
                 className="form-input" placeholder="••••••••" autoComplete="current-password"/>
             </div>
+            <Turnstile key={captchaKey} onToken={handleCaptcha}/>
             <button type="submit" disabled={loading} className="btn-primary w-full justify-center py-3.5 mt-1 disabled:opacity-60">
               {loading ? (
                 <span className="flex items-center gap-2">

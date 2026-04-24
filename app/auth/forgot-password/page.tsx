@@ -1,26 +1,42 @@
 "use client";
 
-import { useState, Suspense } from "react";
+import { useState, Suspense, useCallback } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { LogoBadge } from "@/components/ui/logo";
 import { friendlyError } from "@/lib/friendlyError";
+import Turnstile from "@/components/auth/Turnstile";
 
 function ForgotPasswordForm() {
   const [email,   setEmail]   = useState("");
   const [loading, setLoading] = useState(false);
   const [sent,    setSent]    = useState(false);
   const [error,   setError]   = useState("");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaKey,   setCaptchaKey]   = useState(0);
+  const handleCaptcha = useCallback((token: string) => setCaptchaToken(token), []);
+  const captchaConfigured = typeof process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY === "string"
+    && process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY.length > 0;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (captchaConfigured && !captchaToken) {
+      setError("Veuillez compléter la vérification anti-bot ci-dessous.");
+      return;
+    }
     setLoading(true); setError("");
     const supabase = createClient();
     const { error: err } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}/auth/update-password`,
+      ...(captchaToken ? { captchaToken } : {}),
     });
     setLoading(false);
-    if (err) { setError(friendlyError(err)); return; }
+    if (err) {
+      setError(friendlyError(err));
+      setCaptchaToken(null);
+      setCaptchaKey(k => k + 1);
+      return;
+    }
     setSent(true);
   }
 
@@ -98,6 +114,7 @@ function ForgotPasswordForm() {
               <input type="email" required value={email} onChange={e => setEmail(e.target.value)}
                 className="form-input" placeholder="vous@example.com" autoComplete="email"/>
             </div>
+            <Turnstile key={captchaKey} onToken={handleCaptcha}/>
             <button type="submit" disabled={loading}
               className="btn-primary w-full justify-center py-3.5 mt-1 disabled:opacity-60">
               {loading ? (

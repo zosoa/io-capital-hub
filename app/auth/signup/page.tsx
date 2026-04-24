@@ -42,6 +42,7 @@ function SignupForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaKey,   setCaptchaKey]   = useState(0);
   const handleCaptcha = useCallback((token: string) => setCaptchaToken(token), []);
   // If the widget isn't configured (dev), treat as "not required".
   const captchaConfigured = typeof process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY === "string" && process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY.length > 0;
@@ -74,7 +75,13 @@ function SignupForm() {
         ...(captchaToken ? { captchaToken } : {}),
       },
     });
-    if (err) { setError(friendlyError(err)); setLoading(false); return; }
+    if (err) {
+      setError(friendlyError(err));
+      setLoading(false);
+      setCaptchaToken(null);
+      setCaptchaKey(k => k + 1);
+      return;
+    }
 
     // Save extra profile fields (role was set by the trigger, don't touch it).
     // I-H5: await + surface errors so the user isn't silently left with an
@@ -293,7 +300,7 @@ function SignupForm() {
                 <input type="tel" value={form.phone} onChange={e=>update("phone",e.target.value)}
                   className="form-input" placeholder="+261 34 00 000 00"/>
               </div>
-              <Turnstile onToken={handleCaptcha}/>
+              <Turnstile key={captchaKey} onToken={handleCaptcha}/>
               <div className="flex gap-3 pt-1">
                 <button type="button" onClick={() => { setError(""); setStep(1); }}
                   className="btn-secondary flex-1 justify-center py-3.5">
