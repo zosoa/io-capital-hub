@@ -43,5 +43,8 @@ next-env.d.ts
 # editor / agent sessions
 /.claude/
 
+# diagnostic screenshots dropped for bug reports
+/Screenshot app errors/
+
 # source assets kept outside public/
 /Video Hero loop CEO Summit.mp4
