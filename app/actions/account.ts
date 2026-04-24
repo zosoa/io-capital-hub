@@ -5,32 +5,39 @@ import { createClient as createAdminClient } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
 
 // ── Delete account ────────────────────────────────────────────────────────────
-// Requires SUPABASE_SERVICE_ROLE_KEY in env to use admin API.
+// GDPR right-to-erasure. Two-phase (audit D-5):
+//   Phase 1 — anonymize_own_profile() RPC scrubs all PII on profiles +
+//             investor_profiles and stamps deleted_at. Always runs.
+//   Phase 2 — if SUPABASE_SERVICE_ROLE_KEY is configured, admin-delete the
+//             auth.users row (cascades to everything referencing the user id).
+//             When the key is missing, the anonymized profile remains but
+//             the dashboard layout redirects the user to a terminal screen
+//             on any future login attempt.
 export async function deleteAccount(): Promise<{ error?: string }> {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return { error: "Non authentifié." };
 
-  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!serviceKey) {
-    // Fallback: mark account as deletion requested (admin will process manually)
-    await supabase
-      .from("profiles")
-      .update({ role: "deletion_requested" } as Record<string, unknown>)
-      .eq("id", user.id);
-    await supabase.auth.signOut();
-    redirect("/auth/login?deleted=1");
-  }
+  // Phase 1 — anonymize. This runs regardless of admin-key availability.
+  const { error: anonErr } = await supabase.rpc("anonymize_own_profile");
+  if (anonErr) return { error: anonErr.message };
 
-  try {
-    const admin = createAdminClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      serviceKey
-    );
-    const { error } = await admin.auth.admin.deleteUser(user.id);
-    if (error) return { error: error.message };
-  } catch (e) {
-    return { error: (e as Error).message };
+  // Phase 2 — full admin delete when we have the service role.
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (serviceKey) {
+    try {
+      const admin = createAdminClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        serviceKey,
+        { auth: { persistSession: false } },
+      );
+      const { error } = await admin.auth.admin.deleteUser(user.id);
+      if (error) return { error: error.message };
+    } catch (e) {
+      // Anonymization already happened, so fall through to sign-out.
+      // Log would go here.
+      void e;
+    }
   }
 
   await supabase.auth.signOut();

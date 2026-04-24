@@ -13,6 +13,13 @@ export default async function DashboardLayout({ children }: { children: React.Re
   if (!user.email_confirmed_at) redirect("/auth/verify-email");
 
   const { data: profile } = await supabase.from("profiles").select("*").eq("id", user.id).single();
+
+  // D-5: anonymized accounts must not be able to use the app. The row still
+  // exists (so the admin-side audit trail is preserved), but the owner is
+  // bounced to a terminal "compte supprimé" screen and effectively signed
+  // out on next request.
+  if (profile?.deleted_at) redirect("/auth/account-deleted");
+
   const isInvestor = profile?.role === "investor";
 
   return (
