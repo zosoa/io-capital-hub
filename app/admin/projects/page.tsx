@@ -98,9 +98,40 @@ export default async function AdminProjectsPage({
               })}
             </tbody>
           </table>
-          {filtered.length === 0 && (
-            <div className="text-center py-12 text-gray-500">Aucun projet trouvé</div>
-          )}
+          {filtered.length === 0 && (() => {
+            // U-2: differentiate the three "empty" shapes so the copy matches
+            // the actual situation instead of the generic catch-all.
+            if (all.length === 0) {
+              return (
+                <div className="text-center py-12">
+                  <div className="text-gray-400 font-medium mb-1">Aucun dossier soumis pour le moment</div>
+                  <div className="text-gray-600 text-sm">Les nouveaux projets apparaîtront ici dès qu&apos;un porteur aura terminé le formulaire.</div>
+                </div>
+              );
+            }
+            if (resolvedParams.q && resolvedParams.q.trim()) {
+              return (
+                <div className="text-center py-12">
+                  <div className="text-gray-400 font-medium mb-1">Aucun projet ne correspond à la recherche</div>
+                  <div className="text-gray-600 text-sm">
+                    Aucun dossier ne contient « {resolvedParams.q} ».{" "}
+                    <Link href="/admin/projects" className="text-brand-red hover:underline">Effacer la recherche</Link>
+                  </div>
+                </div>
+              );
+            }
+            // Status filter is active + has no matches
+            const activeTab = statusTabs.find(t => t.v === (resolvedParams.status || "all"));
+            return (
+              <div className="text-center py-12">
+                <div className="text-gray-400 font-medium mb-1">Aucun projet dans « {activeTab?.l || "cette catégorie"} »</div>
+                <div className="text-gray-600 text-sm">
+                  Essayez un autre onglet, ou{" "}
+                  <Link href="/admin/projects" className="text-brand-red hover:underline">voir tous les dossiers</Link>.
+                </div>
+              </div>
+            );
+          })()}
         </div>
       </div>
     </div>

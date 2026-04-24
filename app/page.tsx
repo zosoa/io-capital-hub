@@ -259,7 +259,7 @@ function Navbar() {
             <LogoBadge height={30}/>
             <div>
               <div className="text-white font-bold text-sm leading-tight tracking-wide">CEO Summit IO</div>
-              <div className="text-[#B8913A] font-medium text-[10px] tracking-widest uppercase leading-tight mt-0.5">Investment Hub · Cluster Finance</div>
+              <div className="text-[#B8913A] font-medium text-[10px] tracking-widest uppercase leading-tight mt-0.5">Investment Hub · Cluster Capital & Finance</div>
             </div>
           </Link>
 
@@ -750,7 +750,7 @@ export default function LandingPage() {
                 n="Étape 03"
                 icon={<IconSearch className="w-5 h-5"/>}
                 title="Notre équipe analyse et qualifie"
-                desc="Le cluster Capital & Funding du CEO Summit passe en revue votre dossier. Nous identifions les investisseurs les mieux placés parmi notre réseau actif."
+                desc="Le cluster Capital & Finance du CEO Summit passe en revue votre dossier. Nous identifions les investisseurs les mieux placés parmi notre réseau actif."
               />
               <StepCard
                 n="Étape 04"
@@ -883,7 +883,7 @@ export default function LandingPage() {
                 {[
                   "Réseau d'investisseurs préqualifiés et actifs dans la région",
                   "Processus de matching confidentiel et personnalisé",
-                  "Suivi par l'équipe du Cluster Capital & Funding",
+                  "Suivi par l'équipe du Cluster Capital & Finance",
                   "Lien direct avec l'écosystème CEO Summit",
                 ].map(item => (
                   <div key={item} className="flex items-start gap-3 text-white/55 text-sm font-light">

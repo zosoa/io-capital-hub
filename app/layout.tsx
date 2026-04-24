@@ -5,7 +5,7 @@ import CookieBanner from "@/components/legal/CookieBanner";
 
 export const metadata: Metadata = {
   title: "CEO Summit Investment Hub — Plateforme de Financement Privée",
-  description: "Soumettez votre dossier de financement. Notre équipe du Cluster Capital & Funding du CEO Summit Indian Ocean vous met en relation avec les bons investisseurs — en toute confidentialité.",
+  description: "Soumettez votre dossier de financement. Notre équipe du Cluster Capital & Finance du CEO Summit Indian Ocean vous met en relation avec les bons investisseurs — en toute confidentialité.",
   keywords: "financement, investissement, CEO Summit, Océan Indien, Madagascar, PME, capital, equity, private equity, impact",
   openGraph: {
     title: "CEO Summit Investment Hub",

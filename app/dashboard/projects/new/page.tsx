@@ -1017,49 +1017,59 @@ export default function NewProjectPage() {
           )}
         </div>
 
-        {/* Navigation */}
-        <div className="flex items-center justify-between mt-6">
-          <button onClick={prevStep} disabled={step === 1}
-            className="btn-secondary disabled:opacity-30 disabled:cursor-not-allowed py-3 px-6">
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/>
-            </svg>
-            Précédent
-          </button>
+        {/* Spacer so the last form field isn't hidden behind the sticky
+            mobile nav bar. On desktop the bar is inline, so no spacer needed. */}
+        <div className="h-24 md:hidden"/>
 
-          <div className="text-white/45 text-sm">{step} / {STEPS.length}</div>
-
-          {step < 5 ? (
-            <button onClick={nextStep} className="btn-primary py-3 px-8">
-              Suivant
+        {/* Navigation — sticky to the bottom of the viewport on mobile,
+            inline (mt-6) on md+. Audit U-4 fix. */}
+        <div className="fixed bottom-0 inset-x-0 z-40 bg-brand-navy/95 backdrop-blur border-t border-white/8 px-4 py-3
+                        md:static md:mt-6 md:bg-transparent md:border-0 md:p-0 md:backdrop-blur-none">
+          <div className="max-w-4xl mx-auto flex items-center justify-between gap-3">
+            <button onClick={prevStep} disabled={step === 1}
+              className="btn-secondary disabled:opacity-30 disabled:cursor-not-allowed py-2.5 md:py-3 px-4 md:px-6 text-sm">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/>
               </svg>
+              <span className="hidden sm:inline">Précédent</span>
             </button>
-          ) : (
-            <div className="flex gap-3">
-              <button onClick={saveDraft} disabled={loading || savingDraft}
-                className="btn-secondary py-3 px-5 text-sm disabled:opacity-50">
-                Sauvegarder brouillon
+
+            <div className="text-white/45 text-xs md:text-sm tabular-nums flex-shrink-0">{step} / {STEPS.length}</div>
+
+            {step < 5 ? (
+              <button onClick={nextStep} className="btn-primary py-2.5 md:py-3 px-6 md:px-8 text-sm">
+                Suivant
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                </svg>
               </button>
-              <button onClick={() => submitProject("submitted")} disabled={loading}
-                className="btn-primary py-3 px-8 disabled:opacity-60">
-                {loading ? (
-                  <span className="flex items-center gap-2">
-                    <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"/>
-                    Envoi...
-                  </span>
-                ) : (
-                  <>
-                    Soumettre le dossier
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/>
-                    </svg>
-                  </>
-                )}
-              </button>
-            </div>
-          )}
+            ) : (
+              <div className="flex gap-2 items-center">
+                <button onClick={saveDraft} disabled={loading || savingDraft}
+                  className="btn-secondary py-2.5 md:py-3 px-3 md:px-5 text-xs md:text-sm disabled:opacity-50 whitespace-nowrap">
+                  <span className="hidden sm:inline">Sauvegarder brouillon</span>
+                  <span className="sm:hidden">Brouillon</span>
+                </button>
+                <button onClick={() => submitProject("submitted")} disabled={loading}
+                  className="btn-primary py-2.5 md:py-3 px-4 md:px-8 text-sm disabled:opacity-60 whitespace-nowrap">
+                  {loading ? (
+                    <span className="flex items-center gap-2">
+                      <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"/>
+                      Envoi...
+                    </span>
+                  ) : (
+                    <>
+                      <span className="hidden sm:inline">Soumettre le dossier</span>
+                      <span className="sm:hidden">Soumettre</span>
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/>
+                      </svg>
+                    </>
+                  )}
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
