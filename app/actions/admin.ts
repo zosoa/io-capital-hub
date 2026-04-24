@@ -2,7 +2,33 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
+import { z } from "zod";
 import { dispatchPendingEmails } from "@/lib/notifications/server";
+
+// ─── Input schemas (audit S-2) ────────────────────────────────
+// Server actions get invoked from the client and are therefore adversarial
+// surface. Every typed param below is still validated at runtime to block
+// tampered inputs before they hit the DB.
+const UuidSchema = z.string().uuid("Identifiant invalide.");
+
+const ProjectStatusSchema = z.enum([
+  "draft", "submitted", "under_review",
+  "approved", "rejected", "closed", "funded", "withdrawn",
+]);
+
+const UpdateProjectStatusInput = z.object({
+  projectId:           UuidSchema,
+  newStatus:           ProjectStatusSchema,
+  adminNotesPublic:    z.string().max(4000).default(""),
+  rejectionReason:     z.string().max(2000).nullable().default(null),
+  adminNotesInternal:  z.string().max(8000).optional(),
+});
+
+const SaveAdminNotesInput = z.object({
+  projectId:     UuidSchema,
+  notesPublic:   z.string().max(4000),
+  notesInternal: z.string().max(8000).optional(),
+});
 
 // ─── Guard: throws if caller is not admin ─────────────────────
 async function requireAdmin() {
@@ -21,71 +47,70 @@ async function requireAdmin() {
 export async function updateProjectStatus(
   projectId:        string,
   newStatus:        string,
-  adminNotesPublic: string,   // visible to project owner
+  adminNotesPublic: string,
   rejectionReason:  string | null,
-  adminNotesInternal?: string, // confidential, admin-only
+  adminNotesInternal?: string,
 ) {
+  const v = UpdateProjectStatusInput.parse({
+    projectId, newStatus, adminNotesPublic, rejectionReason, adminNotesInternal,
+  });
   const { supabase, adminId } = await requireAdmin();
 
   const { error } = await supabase
     .from("projects")
     .update({
-      status:               newStatus,
-      // Legacy column kept for backward compat — mirrors public notes
-      admin_notes:          adminNotesPublic || null,
-      admin_notes_public:   adminNotesPublic || null,
-      admin_notes_internal: adminNotesInternal || null,
-      rejection_reason:     newStatus === "rejected" ? (rejectionReason || null) : null,
+      status:               v.newStatus,
+      // Legacy column kept for backward compat — mirrors public notes.
+      admin_notes:          v.adminNotesPublic || null,
+      admin_notes_public:   v.adminNotesPublic || null,
+      admin_notes_internal: v.adminNotesInternal || null,
+      rejection_reason:     v.newStatus === "rejected" ? (v.rejectionReason || null) : null,
       reviewed_at:          new Date().toISOString(),
     })
-    .eq("id", projectId);
+    .eq("id", v.projectId);
 
   if (error) throw new Error(error.message);
 
-  // Write audit trail
   await supabase.from("activity_log").insert({
     actor_id:    adminId,
     target_type: "project",
-    target_id:   projectId,
-    action:      `status_changed_to_${newStatus}`,
+    target_id:   v.projectId,
+    action:      `status_changed_to_${v.newStatus}`,
     metadata:    {
-      admin_notes_public: adminNotesPublic,
-      rejection_reason:   rejectionReason,
+      admin_notes_public: v.adminNotesPublic,
+      rejection_reason:   v.rejectionReason,
     },
   });
 
-  revalidatePath(`/admin/projects/${projectId}`);
-  revalidatePath(`/dashboard/projects/${projectId}`);
+  revalidatePath(`/admin/projects/${v.projectId}`);
+  revalidatePath(`/dashboard/projects/${v.projectId}`);
   revalidatePath(`/dashboard`);
 
-  // Fire the email side-effects for any notifications the DB trigger just
-  // queued (owner status-change, admin queue alert, etc.). Fails open — if
-  // email dispatch errors, the status update still stands.
   await dispatchPendingEmails().catch(() => { /* logged elsewhere */ });
 }
 
 // ─── Save admin notes (public + internal) ────────────────────
 export async function saveAdminNotes(
-  projectId:        string,
-  notesPublic:      string,
-  notesInternal?:   string,
+  projectId:     string,
+  notesPublic:   string,
+  notesInternal?: string,
 ) {
+  const v = SaveAdminNotesInput.parse({ projectId, notesPublic, notesInternal });
   const { supabase } = await requireAdmin();
 
   const { error } = await supabase
     .from("projects")
     .update({
-      admin_notes:          notesPublic || null,   // legacy compat
-      admin_notes_public:   notesPublic || null,
-      admin_notes_internal: notesInternal || null,
+      admin_notes:          v.notesPublic || null,   // legacy compat
+      admin_notes_public:   v.notesPublic || null,
+      admin_notes_internal: v.notesInternal || null,
     })
-    .eq("id", projectId);
+    .eq("id", v.projectId);
 
   if (error) throw new Error(error.message);
 
-  revalidatePath(`/admin/projects/${projectId}`);
-  revalidatePath(`/dashboard/projects/${projectId}`);
+  revalidatePath(`/admin/projects/${v.projectId}`);
+  revalidatePath(`/dashboard/projects/${v.projectId}`);
 
-  // Admin-note change also dispatches the "project.admin_note" email.
   await dispatchPendingEmails().catch(() => { /* swallow */ });
 }

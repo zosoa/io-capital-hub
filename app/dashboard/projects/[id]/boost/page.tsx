@@ -475,6 +475,19 @@ export default function BoostPage() {
 
   async function uploadLogo(file: File) {
     if (!file.type.startsWith("image/")) return;
+    // S-3: verify file bytes (not just MIME header) before hitting storage.
+    try {
+      const { assertIsImage } = await import("@/lib/imageMime");
+      await assertIsImage(file, ["jpeg", "png", "webp", "svg"]);
+    } catch (err) {
+      setSaveError(err instanceof Error ? err.message : "Fichier invalide.");
+      return;
+    }
+    // Cap upload size at 5 MB — bucket allows more but the UI never needs it.
+    if (file.size > 5 * 1024 * 1024) {
+      setSaveError("Le fichier dépasse 5 Mo.");
+      return;
+    }
     setLogoUploading(true);
     setSaveError(null);
     const supabase = createClient();

@@ -79,6 +79,9 @@ const PHOTO_CONSENTS = [
 
 const CURRENCIES = ["USD", "EUR", "MGA", "MUR", "XOF"];
 
+// I-L3 — localStorage key for first-timers' wizard draft. Cleared on save.
+const DRAFT_KEY = "investorProfile.draft.v1";
+
 // ─── Steps ────────────────────────────────────────────────────
 const STEPS = [
   { n: 1, label: "Votre profil",  desc: "Identité & rôle" },
@@ -245,11 +248,68 @@ export default function InvestorProfilePage() {
             setCountryOther(profileCountry);
           }
         }
+
+        // I-L3 — rehydrate any draft saved from a previous visit. Only fires
+        // when the user has NO saved investor profile yet (first-time flow);
+        // existing-profile users always take the DB as source of truth.
+        try {
+          const raw = localStorage.getItem(DRAFT_KEY);
+          if (raw) {
+            const d = JSON.parse(raw) as Record<string, unknown>;
+            if (typeof d.fullName     === "string") setFullName(d.fullName);
+            if (typeof d.title        === "string") setTitle(d.title);
+            if (typeof d.organization === "string") setOrg(d.organization);
+            if (typeof d.email        === "string") setEmail(d.email);
+            if (typeof d.phone        === "string") setPhone(d.phone);
+            if (typeof d.linkedin     === "string") setLinkedin(d.linkedin);
+            if (typeof d.country      === "string") setCountry(d.country);
+            if (typeof d.countryOther === "string") setCountryOther(d.countryOther);
+            if (typeof d.city         === "string") setCity(d.city);
+            if (typeof d.roleType     === "string") setRoleType(d.roleType);
+            if (typeof d.roleOther    === "string") setRoleOther(d.roleOther);
+            if (Array.isArray(d.sectors))     setSectors(d.sectors as string[]);
+            if (typeof d.sectorOther  === "string") setSectorOther(d.sectorOther);
+            if (typeof d.currency     === "string") setCurrency(d.currency);
+            if (typeof d.ticketMin    === "string") setTicketMin(d.ticketMin);
+            if (typeof d.ticketMax    === "string") setTicketMax(d.ticketMax);
+            if (Array.isArray(d.durations))   setDurations(d.durations as string[]);
+            if (Array.isArray(d.geoZones))    setGeoZones(d.geoZones as string[]);
+            if (typeof d.geoOther     === "string") setGeoOther(d.geoOther);
+            if (typeof d.mandateConditions === "string") setMandate(d.mandateConditions);
+            if (Array.isArray(d.objectives))  setObjectives(d.objectives as string[]);
+            if (typeof d.openToFlow   === "boolean") setOpenToFlow(d.openToFlow);
+            if (typeof d.flowConditions === "string") setFlowConditions(d.flowConditions);
+            if (typeof d.bio          === "string") setBio(d.bio);
+            if (typeof d.photoConsent === "string") setPhotoConsent(d.photoConsent);
+          }
+        } catch { /* ignore malformed/disabled storage */ }
       }
       setPageLoading(false);
     }
     load();
   }, [router]);
+
+  // I-L3 — persist the current form state as a draft on every change, but
+  // only for first-time users (existingId null). Skipped while the initial
+  // load is still happening to avoid clobbering with empty state.
+  useEffect(() => {
+    if (pageLoading) return;
+    if (existingId) return;
+    try {
+      localStorage.setItem(DRAFT_KEY, JSON.stringify({
+        fullName, title, organization, email, phone, linkedin,
+        country, countryOther, city, roleType, roleOther,
+        sectors, sectorOther, currency, ticketMin, ticketMax,
+        durations, geoZones, geoOther, mandateConditions,
+        objectives, openToFlow, flowConditions, bio, photoConsent,
+      }));
+    } catch { /* quota / disabled */ }
+  }, [pageLoading, existingId,
+    fullName, title, organization, email, phone, linkedin,
+    country, countryOther, city, roleType, roleOther,
+    sectors, sectorOther, currency, ticketMin, ticketMax,
+    durations, geoZones, geoOther, mandateConditions,
+    objectives, openToFlow, flowConditions, bio, photoConsent]);
 
   function toggleChip(setter: React.Dispatch<React.SetStateAction<string[]>>, v: string) {
     setter(prev => prev.includes(v) ? prev.filter(x => x !== v) : [...prev, v]);
@@ -364,6 +424,7 @@ export default function InvestorProfilePage() {
 
     setLoading(false);
     if (saveErr) { setError(friendlyError(saveErr)); toast.error("Erreur lors de la sauvegarde"); return; }
+    try { localStorage.removeItem(DRAFT_KEY); } catch { /* ignore */ }
     setSaved(true);
     toast.success("Profil investisseur sauvegardé");
     setTimeout(() => router.push("/dashboard"), 1500);
@@ -398,9 +459,10 @@ export default function InvestorProfilePage() {
 
   return (
     <div className="min-h-screen bg-brand-navy">
-      {/* Top bar */}
+      {/* Top bar — I-L6 cleanup: single source of truth for the page title,
+          existing-profile users get a back link, first-timers don't. */}
       <div className="bg-brand-navyMid border-b border-white/5 px-4 sm:px-6 py-4">
-        <div className="max-w-3xl mx-auto flex items-center justify-between">
+        <div className="max-w-3xl mx-auto flex items-center justify-between gap-4">
           {existingId ? (
             <Link href="/dashboard" className="flex items-center gap-2 text-white/40 hover:text-white/70 transition-colors text-sm">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -408,18 +470,11 @@ export default function InvestorProfilePage() {
               </svg>
               Mon espace
             </Link>
-          ) : (
-            <div className="flex items-center gap-2 text-white/20 text-sm">
-              <svg className="w-4 h-4 text-[#B8913A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-              Configuration du profil investisseur
-            </div>
-          )}
-          <div className="text-white/50 text-sm font-medium">
+          ) : <div className="w-24"/>}
+          <div className="text-white font-medium text-sm flex-1 text-center truncate">
             {existingId ? "Modifier mon profil investisseur" : "Créer mon profil investisseur"}
           </div>
-          <div className="w-20"/>
+          <div className="w-24"/>
         </div>
       </div>
 

@@ -14,6 +14,17 @@ async function uploadImage(
   file: File,
   pathKey: "avatar" | "logo"
 ): Promise<string | null> {
+  // S-3: verify real image bytes before upload. The file-picker accepts
+  // image/jpeg,png,webp,gif — match that.
+  try {
+    const { assertIsImage } = await import("@/lib/imageMime");
+    await assertIsImage(file, ["jpeg", "png", "webp", "gif"]);
+  } catch (err) {
+    console.error("Rejected non-image upload:", err instanceof Error ? err.message : err);
+    return null;
+  }
+  if (file.size > 5 * 1024 * 1024) { console.error("File > 5 MB"); return null; }
+
   const ext  = file.name.split(".").pop() || "jpg";
   const path = `${userId}/${pathKey}.${ext}`;
   const { error } = await supabase.storage
