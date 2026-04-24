@@ -7,6 +7,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import CardSelectWithOther from "@/components/ui/CardSelectWithOther";
 import type { InvestorProfile } from "@/types";
+import { COUNTRIES } from "@/lib/countries";
 
 // ─── Constants ────────────────────────────────────────────────
 const ROLE_TYPES = [
@@ -181,10 +182,9 @@ export default function InvestorProfilePage() {
         setEmail(data.email || "");
         setPhone(data.phone || "");
         setLinkedin(data.linkedin_url || "");
-        // Detect custom country value
-        const KNOWN_COUNTRIES = ["Madagascar","Maurice","Réunion","Comores","Seychelles","Kenya","France","Belgique","Autre"];
+        // Detect custom country value using the canonical list
         const loadedCountry = data.country || "Madagascar";
-        if (KNOWN_COUNTRIES.includes(loadedCountry)) {
+        if (COUNTRIES.includes(loadedCountry)) {
           setCountry(loadedCountry);
         } else {
           setCountry("Autre");
@@ -236,10 +236,8 @@ export default function InvestorProfilePage() {
           setOrg(profile.organization || "");
           setTitle(profile.job_title || "");
           setPhone(profile.phone || "");
-          // Detect custom country value from profile
-          const KNOWN_COUNTRIES_PF = ["Madagascar","Maurice","Réunion","Comores","Seychelles","Kenya","France","Belgique","Autre"];
           const profileCountry = profile.country || "Madagascar";
-          if (KNOWN_COUNTRIES_PF.includes(profileCountry)) {
+          if (COUNTRIES.includes(profileCountry)) {
             setCountry(profileCountry);
           } else {
             setCountry("Autre");
@@ -284,9 +282,11 @@ export default function InvestorProfilePage() {
 
     const payload = {
       user_id:            user.id,
-      full_name:          fullName,
-      title:              title || null,
-      organization:       organization || null,
+      // Trim defensively so a user typing just whitespace doesn't hit the
+      // CHECK constraint (investor_profiles_full_name_nonempty, audit I-H7).
+      full_name:          fullName.trim(),
+      title:              title.trim() || null,
+      organization:       organization.trim() || null,
       email:              email || null,
       phone:              phone || null,
       linkedin_url:       linkedin || null,
@@ -507,9 +507,7 @@ export default function InvestorProfilePage() {
               <div className="grid grid-cols-2 gap-4">
                 <FormField label="Pays">
                   <select value={country} onChange={e => setCountry(e.target.value)} className="form-input">
-                    {["Madagascar","Maurice","Réunion","Comores","Seychelles","Kenya","France","Belgique","Autre"].map(c => (
-                      <option key={c}>{c}</option>
-                    ))}
+                    {COUNTRIES.map(c => <option key={c}>{c}</option>)}
                   </select>
                   {country === "Autre" && (
                     <input type="text" value={countryOther} onChange={e => setCountryOther(e.target.value)}

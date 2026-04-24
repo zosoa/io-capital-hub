@@ -7,8 +7,7 @@ import { createClient } from "@/lib/supabase/client";
 import { LogoBadge } from "@/components/ui/logo";
 import Turnstile from "@/components/auth/Turnstile";
 
-const COUNTRIES = ["Madagascar","Maurice","Réunion","Comores","Mayotte","Seychelles",
-  "Mozambique","Kenya","Tanzanie","Afrique du Sud","France","Belgique","Autre"];
+import { COUNTRIES } from "@/lib/countries";
 
 function PasswordStrength({ password }: { password: string }) {
   const len = password.length;
@@ -77,13 +76,24 @@ function SignupForm() {
     if (err) { setError(err.message); setLoading(false); return; }
 
     // Save extra profile fields (role was set by the trigger, don't touch it).
+    // I-H5: await + surface errors so the user isn't silently left with an
+    // incomplete profile (blank organization, job_title, phone) after signup.
     if (data.user) {
-      await supabase.from("profiles").update({
+      const { error: updateErr } = await supabase.from("profiles").update({
         organization: form.organization || null,
         job_title:    form.job_title    || null,
         country:      form.country,
         phone:        form.phone        || null,
       }).eq("id", data.user.id);
+
+      if (updateErr) {
+        // Soft-fail: account was created, but extra profile fields didn't
+        // save. Tell the user so they can complete them later instead of
+        // silently proceeding.
+        setError("Compte créé, mais certaines informations de profil n'ont pas pu être enregistrées. Vous pourrez les compléter depuis votre espace.");
+        // Still move forward so they aren't stuck on this screen — the
+        // auth.users row exists regardless.
+      }
     }
 
     // If email confirmation is disabled we get a session immediately → go to destination

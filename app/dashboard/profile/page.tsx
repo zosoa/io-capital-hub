@@ -5,9 +5,7 @@ import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { toast } from "sonner";
 import type { Profile } from "@/types";
-
-const COUNTRIES = ["Madagascar","Maurice","Réunion","Comores","Mayotte","Seychelles",
-  "Mozambique","Kenya","Tanzanie","Afrique du Sud","France","Belgique","Autre"];
+import { COUNTRIES } from "@/lib/countries";
 
 // ── Upload helper ────────────────────────────────────────────────
 async function uploadImage(

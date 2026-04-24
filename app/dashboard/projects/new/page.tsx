@@ -6,6 +6,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import CardSelectWithOther from "@/components/ui/CardSelectWithOther";
 import type { ProjectFormData } from "@/types";
+import { COUNTRIES } from "@/lib/countries";
 
 // ─── Step Icons ───────────────────────────────────────────────
 const StepIcons: React.ReactNode[] = [
@@ -154,8 +155,7 @@ const CURRENCIES    = ["USD","EUR","MGA","MUR","XOF","ZAR","KES","TZS"];
 const CURRENCY_SYMBOLS: Record<string, string> = {
   USD: "$", EUR: "€", MGA: "Ar", MUR: "₨", XOF: "CFA", ZAR: "R", KES: "KSh", TZS: "TSh",
 };
-const COUNTRIES = ["Madagascar","Maurice","Réunion","Comores","Mayotte","Seychelles",
-  "Mozambique","Kenya","Tanzanie","Afrique du Sud","France","Belgique","Autre"];
+// COUNTRIES now imported from @/lib/countries
 
 // ─── Legal note by country ────────────────────────────────────
 const LEGAL_NOTES: Record<string, string> = {
