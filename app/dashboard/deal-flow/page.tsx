@@ -3,17 +3,21 @@ import Link from "next/link";
 import { formatCurrency, SECTOR_LABELS, STAGE_LABELS, FUNDING_TYPE_LABELS } from "@/lib/utils";
 import type { Project, InvestorProfile } from "@/types";
 import SaveToggle from "./SaveToggle";
+import { expandZones, zoneMatches, type ZoneExpansion } from "@/lib/zones";
 
 // ─── Match score (0–4) between project and investor profile ────────────────
-// Four binary criteria, summed into a score. UI displays a maximum of 4 stars.
-//   1. Sector: investor stores DB keys (I-C1) → direct equality.
-//   2. Ticket: investor's min/max converted to USD (I-C2) → in-range check.
-//   3. Geo:    exact-substring country match (I-H1 zone-grouping still backlog).
-//   4. Duration: investor duration_prefs includes project's funding_duration_range (I-H2).
+// Four binary criteria, summed. UI displays up to 4 stars.
+//   1. Sector:   investor stores DB keys (I-C1) → direct equality.
+//   2. Ticket:   investor's min/max converted to USD via fx_rates (I-C2).
+//   3. Geo:      zone expansion (I-H1) — "Région Océan Indien" expands to its
+//                countries, "International" matches everything, individual
+//                countries match themselves.
+//   4. Duration: investor duration_prefs includes project's range (I-H2).
 function matchScore(
   project: Pick<Project, "sector"|"amount_requested"|"country"|"funding_duration_range"> & { normalized_usd_amount?: number | null },
   inv: InvestorProfile | null,
   fxToUsd: number,
+  zoneExp: ZoneExpansion,
 ): number {
   if (!inv) return 0;
   let score = 0;
@@ -30,10 +34,9 @@ function matchScore(
     if (usdProject >= invMinUsd && usdProject <= invMaxUsd) score++;
   }
 
-  if (inv.geographic_zones?.some(z => project.country?.toLowerCase().includes(z.toLowerCase()))) score++;
+  // Zone-aware match: pre-expanded once per scorer invocation for efficiency.
+  if (zoneMatches(zoneExp, project.country)) score++;
 
-  // Duration — match if investor selected the project's duration range, or
-  // if the investor didn't specify any preference (treat as "no filter").
   if (
     inv.duration_prefs && inv.duration_prefs.length > 0 &&
     project.funding_duration_range &&
@@ -74,6 +77,9 @@ export default async function DealFlowPage({
     if (fxRow?.rate_to_usd) fxToUsd = Number(fxRow.rate_to_usd);
   }
 
+  // Pre-expand geographic zones once (I-H1) — scorer is called per project.
+  const zoneExp = expandZones(investorProfile?.geographic_zones ?? null);
+
   // Load the user's saved project ids in parallel
   const { data: savedRows } = user
     ? await supabase.from("deal_saves").select("project_id").eq("user_id", user.id)
@@ -91,7 +97,7 @@ export default async function DealFlowPage({
   const projects = allProjects || [];
   const hasProfile = !!investorProfile;
 
-  const scored = projects.map(p => ({ ...p, _match: matchScore(p, investorProfile, fxToUsd), _saved: savedIds.has(p.id) }));
+  const scored = projects.map(p => ({ ...p, _match: matchScore(p, investorProfile, fxToUsd, zoneExp), _saved: savedIds.has(p.id) }));
 
   // Apply sort
   let sorted: typeof scored;
