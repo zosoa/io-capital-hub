@@ -186,6 +186,7 @@ export interface InvestorProfile {
   priority_sectors: string[] | null;
   ticket_min: number | null;
   ticket_max: number | null;
+  ticket_currency: string;   // 'USD'|'EUR'|'MGA'|'MUR'|'XOF'|'KES'|'ZAR'
   duration_prefs: string[] | null;
   geographic_zones: string[] | null;
   mandate_conditions: string | null;

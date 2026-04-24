@@ -19,11 +19,24 @@ const ROLE_TYPES = [
   { v: "other",        l: "Autre profil",                    desc: "Autre rôle dans l'écosystème capital & financement" },
 ];
 
-const SECTORS = [
-  "Énergie", "Agriculture", "Technologie", "Immobilier",
-  "Infrastructure", "Industrie", "Tourisme", "Santé",
-  "Éducation", "Services financiers", "Autre",
+// DB keys (projects.sector) with French display labels. We store keys in
+// investor_profiles.priority_sectors so the deal-flow scorer can string-match
+// against projects.sector (English keys) directly. Custom "other" free text
+// is persisted as a plain string in the array alongside keys.
+const SECTOR_OPTIONS: { v: string; l: string }[] = [
+  { v: "energy",             l: "Énergie" },
+  { v: "agriculture",        l: "Agriculture" },
+  { v: "tech",               l: "Technologie" },
+  { v: "real_estate",        l: "Immobilier" },
+  { v: "infrastructure",     l: "Infrastructure" },
+  { v: "manufacturing",      l: "Industrie" },
+  { v: "tourism",            l: "Tourisme" },
+  { v: "health",             l: "Santé" },
+  { v: "education",          l: "Éducation" },
+  { v: "financial_services", l: "Services financiers" },
+  { v: "other",              l: "Autre" },
 ];
+const KNOWN_SECTOR_KEYS = SECTOR_OPTIONS.map(o => o.v);
 
 const DURATION_PREFS = [
   { v: "short",     l: "Court terme (< 2 ans)" },
@@ -38,11 +51,8 @@ const GEO_ZONES = [
   "Afrique subsaharienne", "Région Océan Indien", "International", "Autre",
 ];
 
-const KNOWN_SECTORS = [
-  "Énergie", "Agriculture", "Technologie", "Immobilier",
-  "Infrastructure", "Industrie", "Tourisme", "Santé",
-  "Éducation", "Services financiers", "Autre",
-];
+// Legacy constant kept for reference; new code uses KNOWN_SECTOR_KEYS above.
+
 
 const KNOWN_GEO_ZONES = [
   "Madagascar", "Maurice", "Réunion", "Comores", "Seychelles",
@@ -184,12 +194,14 @@ export default function InvestorProfilePage() {
         setRoleType(data.role_type || "");
         setRoleOther(data.role_other || "");
 
-        // Handle custom sector value (non-standard = was typed via "Autre")
+        // Sectors are stored as DB keys (audit fix I-C1). Any string that
+        // isn't a known key is a free-text "other" value — pop it into the
+        // sectorOther field and add "other" as selected.
         const loadedSectors = data.priority_sectors || [];
-        const customSector = loadedSectors.find(s => !KNOWN_SECTORS.includes(s));
+        const customSector = loadedSectors.find(s => !KNOWN_SECTOR_KEYS.includes(s));
         if (customSector) {
           setSectorOther(customSector);
-          setSectors([...loadedSectors.filter(s => KNOWN_SECTORS.includes(s)), "Autre"]);
+          setSectors([...loadedSectors.filter(s => KNOWN_SECTOR_KEYS.includes(s)), "other"]);
         } else {
           setSectors(loadedSectors);
         }
@@ -206,6 +218,7 @@ export default function InvestorProfilePage() {
 
         setTicketMin(data.ticket_min?.toString() || "");
         setTicketMax(data.ticket_max?.toString() || "");
+        setCurrency(data.ticket_currency || "USD");
         setDurations(data.duration_prefs || []);
         setMandate(data.mandate_conditions || "");
         setObjectives(data.objectives || []);
@@ -281,9 +294,11 @@ export default function InvestorProfilePage() {
       city:               city || null,
       role_type:          roleType,
       role_other:         roleType === "other" ? roleOther : null,
-      priority_sectors:   sectors.map(s => s === "Autre" && sectorOther ? sectorOther : s),
+      // Keep DB keys as-is. "other" gets replaced with the free-text value if provided.
+      priority_sectors:   sectors.map(s => s === "other" && sectorOther ? sectorOther : s),
       ticket_min:         ticketMin ? parseInt(ticketMin) : null,
       ticket_max:         ticketMax ? parseInt(ticketMax) : null,
+      ticket_currency:    currency,
       duration_prefs:     durations,
       geographic_zones:   geoZones.map(z => z === "Autre" && geoOther ? geoOther : z),
       mandate_conditions: mandateConditions || null,
@@ -295,11 +310,17 @@ export default function InvestorProfilePage() {
       is_active:          true,
     };
 
+    // Upsert on user_id to eliminate the double-click race (audit I-C6).
+    // The UNIQUE index on user_id enforces one row per investor server-side;
+    // using onConflict lets a concurrent second submit update rather than
+    // create a zombie duplicate.
     let err;
     if (existingId) {
       ({ error: err } = await supabase.from("investor_profiles").update(payload).eq("id", existingId));
     } else {
-      ({ error: err } = await supabase.from("investor_profiles").insert(payload));
+      ({ error: err } = await supabase
+        .from("investor_profiles")
+        .upsert(payload, { onConflict: "user_id" }));
     }
 
     setLoading(false);
@@ -526,21 +547,21 @@ export default function InvestorProfilePage() {
                   <span className="text-white/25 normal-case font-normal ml-1">(plusieurs choix)</span>
                 </label>
                 <div className="flex flex-wrap gap-2 mt-1.5">
-                  {SECTORS.map(s => {
-                    const active = sectors.includes(s);
+                  {SECTOR_OPTIONS.map(({ v, l }) => {
+                    const active = sectors.includes(v);
                     return (
-                      <button key={s} type="button" onClick={() => toggleChip(setSectors, s)}
+                      <button key={v} type="button" onClick={() => toggleChip(setSectors, v)}
                         className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
                           active
                             ? "bg-[#B8913A]/15 border-[#B8913A]/40 text-[#B8913A]"
                             : "bg-brand-navyMid border-white/10 text-white/40 hover:border-[#B8913A]/30 hover:text-white/60"
                         }`}>
-                        {s}
+                        {l}
                       </button>
                     );
                   })}
                 </div>
-                {sectors.includes("Autre") && (
+                {sectors.includes("other") && (
                   <input
                     type="text"
                     value={sectorOther}

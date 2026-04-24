@@ -122,9 +122,9 @@ async function InvestorDashboard({ userId, firstName }: { userId: string; firstN
               <div>
                 <div className="text-white/30 text-[10px] uppercase tracking-wider mb-0.5">Ticket</div>
                 <div className="text-white text-sm font-medium tabular-nums">
-                  {investorProfile.ticket_min ? formatCurrency(investorProfile.ticket_min, "USD") : "—"}
+                  {investorProfile.ticket_min ? formatCurrency(investorProfile.ticket_min, investorProfile.ticket_currency || "USD") : "—"}
                   {" – "}
-                  {investorProfile.ticket_max ? formatCurrency(investorProfile.ticket_max, "USD") : "—"}
+                  {investorProfile.ticket_max ? formatCurrency(investorProfile.ticket_max, investorProfile.ticket_currency || "USD") : "—"}
                 </div>
               </div>
             )}
