@@ -23,7 +23,7 @@ export default async function AdminUsersPage() {
               <tr key={p.id} className="hover:bg-white/2 transition-colors">
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-brand-red/15 rounded-full flex items-center justify-center text-brand-red text-sm font-bold">
+                    <div className="w-8 h-8 bg-brand-gold/15 rounded-full flex items-center justify-center text-brand-gold text-sm font-bold">
                       {p.full_name?.[0]?.toUpperCase()||"?"}
                     </div>
                     <div>

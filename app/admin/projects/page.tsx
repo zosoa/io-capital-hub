@@ -31,17 +31,32 @@ export default async function AdminProjectsPage({
     <div className="p-6 md:p-8 max-w-6xl mx-auto">
       <h1 className="text-2xl font-black text-white mb-6">Tous les projets</h1>
 
-      {/* Filter tabs */}
-      <div className="flex flex-wrap gap-2 mb-6">
-        {statusTabs.map(t=>(
-          <Link key={t.v} href={`/admin/projects${t.v !== "all" ? `?status=${t.v}` : ""}`}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
-              (resolvedParams.status||"all")===t.v ? "bg-brand-red text-white" : "bg-white/5 text-gray-400 hover:bg-white/10"
-            }`}>
-            {t.l}
-            {t.count > 0 && <span className="bg-white/20 rounded-full px-1.5 text-xs">{t.count}</span>}
-          </Link>
-        ))}
+      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
+        {/* Filter tabs */}
+        <div className="flex flex-wrap gap-2">
+          {statusTabs.map(t=>(
+            <Link key={t.v} href={`/admin/projects${t.v !== "all" ? `?status=${t.v}` : ""}`}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
+                (resolvedParams.status||"all")===t.v ? "bg-brand-gold text-white" : "bg-white/5 text-gray-400 hover:bg-white/10"
+              }`}>
+              {t.l}
+              {t.count > 0 && <span className="bg-white/20 rounded-full px-1.5 text-xs">{t.count}</span>}
+            </Link>
+          ))}
+        </div>
+        {/* Search (no-JS GET form; preserves status filter) */}
+        <form method="GET" className="sm:ml-auto flex items-center gap-2">
+          {resolvedParams.status && <input type="hidden" name="status" value={resolvedParams.status}/>}
+          <input
+            type="text" name="q" defaultValue={resolvedParams.q || ""}
+            placeholder="Rechercher projet ou porteur…"
+            className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-brand-gold/40 w-full sm:w-64"/>
+          <button type="submit" className="px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 text-sm transition-colors flex-shrink-0">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+            </svg>
+          </button>
+        </form>
       </div>
 
       {/* Table */}
@@ -89,7 +104,7 @@ export default async function AdminProjectsPage({
                     </td>
                     <td className="px-4 py-3 text-gray-500 text-xs whitespace-nowrap">{formatDate(p.created_at)}</td>
                     <td className="px-4 py-3">
-                      <Link href={`/admin/projects/${p.id}`} className="text-brand-red hover:text-red-400 text-sm transition-colors">
+                      <Link href={`/admin/projects/${p.id}`} className="text-brand-gold hover:text-[#C8992A] text-sm transition-colors">
                         Voir →
                       </Link>
                     </td>
@@ -115,7 +130,7 @@ export default async function AdminProjectsPage({
                   <div className="text-gray-400 font-medium mb-1">Aucun projet ne correspond à la recherche</div>
                   <div className="text-gray-600 text-sm">
                     Aucun dossier ne contient « {resolvedParams.q} ».{" "}
-                    <Link href="/admin/projects" className="text-brand-red hover:underline">Effacer la recherche</Link>
+                    <Link href="/admin/projects" className="text-brand-gold hover:underline">Effacer la recherche</Link>
                   </div>
                 </div>
               );
@@ -127,7 +142,7 @@ export default async function AdminProjectsPage({
                 <div className="text-gray-400 font-medium mb-1">Aucun projet dans « {activeTab?.l || "cette catégorie"} »</div>
                 <div className="text-gray-600 text-sm">
                   Essayez un autre onglet, ou{" "}
-                  <Link href="/admin/projects" className="text-brand-red hover:underline">voir tous les dossiers</Link>.
+                  <Link href="/admin/projects" className="text-brand-gold hover:underline">voir tous les dossiers</Link>.
                 </div>
               </div>
             );

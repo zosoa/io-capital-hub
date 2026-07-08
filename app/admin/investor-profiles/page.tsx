@@ -12,6 +12,14 @@ const ROLE_LABELS: Record<string, string> = {
   other:         "Autre",
 };
 
+// Compact ticket formatter — k / M shorthand, no currency suffix (added separately).
+function fmtTicket(n: number | null): string {
+  if (n == null) return "?";
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(n % 1_000_000 === 0 ? 0 : 1)}M`;
+  if (n >= 1_000)     return `${Math.round(n / 1_000)}k`;
+  return `${n}`;
+}
+
 export default async function AdminInvestorProfilesPage() {
   const supabase = await createClient();
   const { data: profiles } = await supabase
@@ -118,12 +126,10 @@ export default async function AdminInvestorProfilesPage() {
                         )}
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-xs text-gray-400 whitespace-nowrap">
+                    <td className="px-4 py-3 text-xs text-gray-400 whitespace-nowrap tabular-nums">
                       {p.ticket_min || p.ticket_max ? (
                         <span>
-                          {p.ticket_min ? `${(p.ticket_min / 1000).toFixed(0)}k` : "?"}
-                          {" – "}
-                          {p.ticket_max ? `${(p.ticket_max / 1000).toFixed(0)}k` : "?"}
+                          {fmtTicket(p.ticket_min)} – {fmtTicket(p.ticket_max)} {p.ticket_currency || "USD"}
                         </span>
                       ) : "—"}
                     </td>

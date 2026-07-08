@@ -1204,8 +1204,13 @@ export default function LandingPage() {
             <div>
               <div className="text-white/40 font-medium text-xs uppercase tracking-widest mb-4">Plateforme</div>
               <div className="space-y-2.5 text-white/30 text-sm font-light">
-                {["Déposer un dossier","Comment ça marche","Secteurs couverts","Accéder à mon espace"].map(l => (
-                  <div key={l} className="hover:text-white/60 cursor-pointer transition-colors">{l}</div>
+                {[
+                  { label: "Déposer un dossier",     href: "/auth/signup" },
+                  { label: "Comment ça marche",      href: "/#comment" },
+                  { label: "Secteurs couverts",      href: "/#secteurs" },
+                  { label: "Accéder à mon espace",   href: "/auth/login" },
+                ].map(({ label, href }) => (
+                  <Link key={label} href={href} className="block hover:text-white/60 transition-colors">{label}</Link>
                 ))}
               </div>
             </div>

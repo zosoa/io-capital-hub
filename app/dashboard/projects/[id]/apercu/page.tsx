@@ -241,7 +241,7 @@ export default async function AperuPage({ params }: { params: Promise<{ id: stri
                 <span className="text-[#B8913A] text-xs font-semibold uppercase tracking-wider">Dossier qualifié</span>
               </div>
               <p className="text-[#5A6280] text-xs leading-relaxed">
-                Ce dossier a été examiné et validé par l&apos;équipe Cluster Capital &amp; Funding du CEO Summit Indian Ocean.
+                Ce dossier a été examiné et validé par l&apos;équipe Cluster Capital &amp; Finance du CEO Summit Indian Ocean.
               </p>
             </div>
           </div>
@@ -251,7 +251,7 @@ export default async function AperuPage({ params }: { params: Promise<{ id: stri
         <div className="mt-10 pt-6 border-t border-[#E8E2D9] flex items-center justify-between gap-4 flex-wrap">
           <div>
             <div className="font-display text-sm font-bold text-[#0F1320] mb-0.5">CEO Summit Investment Hub</div>
-            <div className="text-[#5A6280] text-xs">Cluster Capital &amp; Funding — Indian Ocean</div>
+            <div className="text-[#5A6280] text-xs">Cluster Capital &amp; Finance — Indian Ocean</div>
           </div>
           <div className="text-right">
             <div className="text-[#5A6280] text-xs font-mono mb-0.5">{dealRef}</div>

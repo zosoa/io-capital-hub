@@ -5,48 +5,7 @@ import { formatCurrency, SECTOR_LABELS, STAGE_LABELS, FUNDING_TYPE_LABELS } from
 import type { Project, InvestorProfile } from "@/types";
 import SaveToggle from "./SaveToggle";
 import SortPersist from "./SortPersist";
-import { expandZones, zoneMatches, type ZoneExpansion } from "@/lib/zones";
-
-// ─── Match score (0–4) between project and investor profile ────────────────
-// Four binary criteria, summed. UI displays up to 4 stars.
-//   1. Sector:   investor stores DB keys (I-C1) → direct equality.
-//   2. Ticket:   investor's min/max converted to USD via fx_rates (I-C2).
-//   3. Geo:      zone expansion (I-H1) — "Région Océan Indien" expands to its
-//                countries, "International" matches everything, individual
-//                countries match themselves.
-//   4. Duration: investor duration_prefs includes project's range (I-H2).
-function matchScore(
-  project: Pick<Project, "sector"|"amount_requested"|"country"|"funding_duration_range"> & { normalized_usd_amount?: number | null },
-  inv: InvestorProfile | null,
-  fxToUsd: number,
-  zoneExp: ZoneExpansion,
-): number {
-  if (!inv) return 0;
-  let score = 0;
-
-  if (inv.priority_sectors?.includes(project.sector || "")) score++;
-
-  const usdProject = project.normalized_usd_amount ?? project.amount_requested;
-  if (
-    inv.ticket_min != null && inv.ticket_max != null &&
-    usdProject != null && fxToUsd > 0
-  ) {
-    const invMinUsd = inv.ticket_min * fxToUsd;
-    const invMaxUsd = inv.ticket_max * fxToUsd;
-    if (usdProject >= invMinUsd && usdProject <= invMaxUsd) score++;
-  }
-
-  // Zone-aware match: pre-expanded once per scorer invocation for efficiency.
-  if (zoneMatches(zoneExp, project.country)) score++;
-
-  if (
-    inv.duration_prefs && inv.duration_prefs.length > 0 &&
-    project.funding_duration_range &&
-    inv.duration_prefs.includes(project.funding_duration_range)
-  ) score++;
-
-  return score;
-}
+import { buildFxMap, scoreMatch } from "@/lib/match";
 
 type SortKey = "match" | "amount_desc" | "amount_asc" | "newest";
 
@@ -68,19 +27,9 @@ export default async function DealFlowPage({
     ? await supabase.from("investor_profiles").select("*").eq("user_id", user.id).maybeSingle() as { data: InvestorProfile | null }
     : { data: null };
 
-  // Resolve the investor's ticket currency → USD rate (fallback to 1 if missing).
-  let fxToUsd = 1;
-  if (investorProfile?.ticket_currency && investorProfile.ticket_currency !== "USD") {
-    const { data: fxRow } = await supabase
-      .from("fx_rates")
-      .select("rate_to_usd")
-      .eq("currency", investorProfile.ticket_currency)
-      .maybeSingle();
-    if (fxRow?.rate_to_usd) fxToUsd = Number(fxRow.rate_to_usd);
-  }
-
-  // Pre-expand geographic zones once (I-H1) — scorer is called per project.
-  const zoneExp = expandZones(investorProfile?.geographic_zones ?? null);
+  // Load all FX rates once → fxMap for the shared scorer.
+  const { data: fxRows } = await supabase.from("fx_rates").select("currency, rate_to_usd");
+  const fxMap = buildFxMap(fxRows);
 
   // Load the user's saved project ids in parallel
   const { data: savedRows } = user
@@ -99,7 +48,7 @@ export default async function DealFlowPage({
   const projects = allProjects || [];
   const hasProfile = !!investorProfile;
 
-  const scored = projects.map(p => ({ ...p, _match: matchScore(p, investorProfile, fxToUsd, zoneExp), _saved: savedIds.has(p.id) }));
+  const scored = projects.map(p => ({ ...p, _match: scoreMatch(p, investorProfile, fxMap).score, _saved: savedIds.has(p.id) }));
 
   // Apply sort
   let sorted: typeof scored;

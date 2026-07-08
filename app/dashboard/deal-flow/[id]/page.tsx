@@ -235,11 +235,11 @@ export default function DealFlowDetailPage() {
               )}
             </div>
 
-            <h1 className="font-display text-2xl md:text-3xl font-bold text-white leading-snug mb-2">
+            <h1 className="font-display text-2xl md:text-3xl font-bold text-white leading-snug mb-2 break-words">
               {project.title}
             </h1>
             {project.tagline && (
-              <p className="text-white/50 text-base leading-relaxed">{project.tagline}</p>
+              <p className="text-white/55 text-base leading-relaxed break-words">{project.tagline}</p>
             )}
           </div>
 

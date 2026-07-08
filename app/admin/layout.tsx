@@ -39,6 +39,13 @@ function IconArrowLeft() {
     </svg>
   );
 }
+function IconIntro() {
+  return (
+    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"/>
+    </svg>
+  );
+}
 function IconCog() {
   return (
     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
@@ -51,6 +58,7 @@ function IconCog() {
 const NAV_ITEMS: { href: string; icon: React.ReactNode; label: string }[] = [
   { href: "/admin",                   icon: <IconGrid/>,      label: "Vue d'ensemble" },
   { href: "/admin/projects",          icon: <IconFolder/>,    label: "Tous les projets" },
+  { href: "/admin/intros",            icon: <IconIntro/>,     label: "Introductions" },
   { href: "/admin/investor-profiles", icon: <IconHandshake/>, label: "Investisseurs" },
   { href: "/admin/users",             icon: <IconUsers/>,     label: "Utilisateurs" },
   { href: "/dashboard",               icon: <IconArrowLeft/>, label: "Mon espace" },
@@ -65,7 +73,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   if (!profile || profile.role !== "admin") redirect("/dashboard");
 
   return (
-    <div className="min-h-screen bg-brand-navy flex">
+    <div className="min-h-screen bg-brand-navy md:flex">
+      {/* Desktop sidebar */}
       <aside className="hidden md:flex flex-col w-56 bg-brand-navyMid border-r border-white/5 flex-shrink-0">
         <div className="p-5 border-b border-white/5">
           <Link href="/" className="flex items-center gap-3">
@@ -88,6 +97,26 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           ))}
         </nav>
       </aside>
+
+      {/* Mobile top bar + horizontal nav (no JS — scrollable pills) */}
+      <div className="md:hidden sticky top-0 z-40 bg-brand-navyMid border-b border-white/5">
+        <div className="flex items-center gap-2 px-4 py-3">
+          <div className="w-7 h-7 bg-brand-gold rounded-lg flex items-center justify-center text-brand-navy flex-shrink-0">
+            <IconCog/>
+          </div>
+          <span className="font-bold text-white text-sm">Admin Panel</span>
+        </div>
+        <nav className="flex gap-2 px-4 pb-3 overflow-x-auto">
+          {NAV_ITEMS.map(item => (
+            <Link key={item.href} href={item.href}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-gray-400 bg-white/5 hover:text-white whitespace-nowrap flex-shrink-0 transition-colors">
+              <span className="w-3.5 h-3.5 flex items-center justify-center">{item.icon}</span>
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+      </div>
+
       <main className="flex-1 min-w-0 overflow-auto">{children}</main>
     </div>
   );

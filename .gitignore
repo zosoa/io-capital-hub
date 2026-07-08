@@ -48,3 +48,5 @@ next-env.d.ts
 
 # source assets kept outside public/
 /Video Hero loop CEO Summit.mp4
+
+.vercel

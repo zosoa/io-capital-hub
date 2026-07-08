@@ -4,26 +4,30 @@ import { useState, useTransition } from "react";
 import { updateProjectStatus, saveAdminNotes } from "@/app/actions/admin";
 import type { Project } from "@/types";
 
-const STATUS_ACTIONS: Record<string, { label: string; status: string; color: string }[]> = {
+// `confirm` = requires a second click before firing (irreversible / notifies owner).
+type ActionDef = { label: string; status: string; color: string; confirm?: boolean };
+
+const STATUS_ACTIONS: Record<string, ActionDef[]> = {
   submitted:    [
     { label: "Mettre en revue",       status: "under_review", color: "bg-yellow-500 hover:bg-yellow-600" },
-    { label: "Approuver",             status: "approved",     color: "bg-green-600 hover:bg-green-700" },
-    { label: "Refuser",               status: "rejected",     color: "bg-red-600 hover:bg-red-700" },
+    { label: "Approuver",             status: "approved",     color: "bg-green-600 hover:bg-green-700", confirm: true },
+    { label: "Refuser",               status: "rejected",     color: "bg-red-600 hover:bg-red-700",     confirm: true },
   ],
   under_review: [
-    { label: "Approuver",             status: "approved",     color: "bg-green-600 hover:bg-green-700" },
-    { label: "Refuser",               status: "rejected",     color: "bg-red-600 hover:bg-red-700" },
+    { label: "Approuver",             status: "approved",     color: "bg-green-600 hover:bg-green-700", confirm: true },
+    { label: "Refuser",               status: "rejected",     color: "bg-red-600 hover:bg-red-700",     confirm: true },
   ],
   approved: [
-    { label: "Marquer Financé",       status: "funded",       color: "bg-[#B8913A] hover:bg-[#9A7B3A]" },
-    { label: "Annuler approbation",   status: "under_review", color: "bg-gray-600 hover:bg-gray-700" },
+    { label: "Marquer Financé",       status: "funded",       color: "bg-[#B8913A] hover:bg-[#9A7B3A]", confirm: true },
+    { label: "Annuler approbation",   status: "under_review", color: "bg-gray-600 hover:bg-gray-700",   confirm: true },
   ],
   rejected: [
     { label: "Réexaminer",            status: "under_review", color: "bg-yellow-500 hover:bg-yellow-600" },
   ],
+  // Drafts were never submitted by the owner — an admin approving one would be
+  // surprising and premature. Only allow reject (to clear a stuck draft).
   draft: [
-    { label: "Approuver directement", status: "approved",     color: "bg-green-600 hover:bg-green-700" },
-    { label: "Refuser",               status: "rejected",     color: "bg-red-600 hover:bg-red-700" },
+    { label: "Refuser",               status: "rejected",     color: "bg-red-600 hover:bg-red-700",     confirm: true },
   ],
 };
 
@@ -35,11 +39,27 @@ export default function AdminProjectActions({ project }: { project: Project }) {
   const [notesInternal, setNotesInternal] = useState((project as unknown as Record<string, string>).admin_notes_internal || "");
   const [rejection,     setRejection]     = useState(project.rejection_reason || "");
   const [msg,           setMsg]           = useState<{ text: string; ok: boolean } | null>(null);
+  // Which action is awaiting a confirmation click (status key), or null.
+  const [confirming,    setConfirming]    = useState<string | null>(null);
 
   const actions = STATUS_ACTIONS[project.status] || [];
 
-  function handleUpdateStatus(newStatus: string) {
+  function handleUpdateStatus(newStatus: string, needsConfirm: boolean) {
     setMsg(null);
+
+    // Rejecting requires a reason — surface it before the confirm step.
+    if (newStatus === "rejected" && !rejection.trim()) {
+      setMsg({ text: "Indiquez un motif de refus avant de refuser.", ok: false });
+      return;
+    }
+
+    // Two-step confirm for irreversible / owner-notifying transitions.
+    if (needsConfirm && confirming !== newStatus) {
+      setConfirming(newStatus);
+      return;
+    }
+
+    setConfirming(null);
     startTransition(async () => {
       try {
         await updateProjectStatus(project.id, newStatus, notesPublic, rejection || null, notesInternal);
@@ -74,22 +94,56 @@ export default function AdminProjectActions({ project }: { project: Project }) {
         </div>
       )}
 
+      {/* Rejection reason — must be filled before "Refuser" is allowed. Shown
+          whenever a reject action is available (submitted/under_review/draft)
+          or the project is already rejected. */}
+      {(actions.some(a => a.status === "rejected") || project.status === "rejected") && (
+        <div className="mb-4">
+          <label className="text-xs text-gray-400 mb-1.5 block">
+            Motif du refus {actions.some(a => a.status === "rejected") && <span className="text-red-400">(requis pour refuser)</span>}
+          </label>
+          <textarea
+            value={rejection}
+            onChange={e => setRejection(e.target.value)}
+            className="w-full bg-brand-navyMid border border-red-500/20 rounded-lg px-3 py-2 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-red-500/40 resize-none"
+            rows={2}
+            placeholder="Expliquez pourquoi le projet n'est pas retenu (visible du porteur)..."/>
+        </div>
+      )}
+
       {/* Status actions */}
       {actions.length > 0 && (
         <div className="space-y-2 mb-4">
-          {actions.map(a => (
-            <button key={a.status}
-              onClick={() => handleUpdateStatus(a.status)}
-              disabled={isPending}
-              className={`w-full py-2 px-4 rounded-lg text-white text-sm font-medium transition-all disabled:opacity-50 ${a.color}`}>
-              {isPending ? (
-                <span className="flex items-center justify-center gap-2">
-                  <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"/>
-                  En cours...
-                </span>
-              ) : a.label}
+          {actions.map(a => {
+            const isConfirming = confirming === a.status;
+            return (
+              <button key={a.status}
+                onClick={() => handleUpdateStatus(a.status, !!a.confirm)}
+                onBlur={() => isConfirming && setConfirming(null)}
+                disabled={isPending}
+                className={`w-full py-2 px-4 rounded-lg text-white text-sm font-medium transition-all disabled:opacity-50 ${
+                  isConfirming ? "bg-white/10 border border-white/25 ring-1 ring-white/20" : a.color
+                }`}>
+                {isPending ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"/>
+                    En cours...
+                  </span>
+                ) : isConfirming ? (
+                  <span className="flex items-center justify-center gap-1.5">
+                    Confirmer : {a.label} ?
+                  </span>
+                ) : a.label}
+              </button>
+            );
+          })}
+          {confirming && (
+            <button
+              onClick={() => setConfirming(null)}
+              className="w-full py-1.5 text-gray-500 hover:text-gray-300 text-xs transition-colors">
+              Annuler
             </button>
-          ))}
+          )}
         </div>
       )}
 
@@ -127,18 +181,6 @@ export default function AdminProjectActions({ project }: { project: Project }) {
             rows={3}
             placeholder="Due diligence, risques, contacts investisseurs, commentaires confidentiels..."/>
         </div>
-
-        {project.status === "rejected" && (
-          <div>
-            <label className="text-xs text-gray-400 mb-1.5 block">Motif du refus *</label>
-            <textarea
-              value={rejection}
-              onChange={e => setRejection(e.target.value)}
-              className="w-full bg-brand-navyMid border border-red-500/20 rounded-lg px-3 py-2 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-red-500/40 resize-none"
-              rows={2}
-              placeholder="Expliquez pourquoi le projet n'est pas retenu..."/>
-          </div>
-        )}
 
         <button
           onClick={handleSaveNotes}

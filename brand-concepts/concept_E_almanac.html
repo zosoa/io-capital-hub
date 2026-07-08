@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FinkSmart — The Almanac (Concept E)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Roboto+Condensed:wght@400;700&family=Special+Elite&display=swap');
+
+  :root{
+    --paper:#EFE6D2;
+    --paper2:#E7DCC2;
+    --ink:#2E3B2C;
+    --teal:#3F7E7A;
+    --vermilion:#C84B31;
+    --mustard:#D9A441;
+    --char:#3A3A38;
+    --rule:#b9ac8c;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Cormorant Garamond', Garamond, serif;
+    font-size:19px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    /* faint aged texture */
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(0,0,0,.025) 0, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(0,0,0,.03) 0, transparent 45%);
+  }
+  .label{font-family:'Roboto Condensed',sans-serif;text-transform:uppercase;letter-spacing:.22em}
+  .type{font-family:'Special Elite',monospace}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 34px}
+
+  /* double-rule frame around whole page */
+  .page-frame{border:2px solid var(--ink);margin:14px;padding:0;position:relative}
+  .page-frame::before{content:"";position:absolute;inset:6px;border:1px solid var(--ink);pointer-events:none}
+
+  /* ---------- Masthead ---------- */
+  .top{padding:22px 0 0}
+  .top .row{display:flex;justify-content:space-between;align-items:center;font-size:13px}
+  .top .row .label{color:var(--char)}
+  .plate-no{font-family:'Special Elite';font-size:13px;color:var(--vermilion)}
+  .masthead{text-align:center;padding:14px 0 10px}
+  .masthead .pre{font-family:'Roboto Condensed';text-transform:uppercase;letter-spacing:.4em;font-size:12px;color:var(--teal);margin-bottom:8px}
+  .masthead h1{font-family:'Cormorant Garamond';font-weight:600;font-size:72px;line-height:.95;letter-spacing:.01em}
+  .masthead h1 .amp{color:var(--vermilion)}
+  .masthead .sub{font-style:italic;font-size:21px;color:var(--char);margin-top:4px}
+  .rule-d{border:none;border-top:2px solid var(--ink);position:relative;margin:14px 0}
+  .rule-d::after{content:"❦";position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--paper);padding:0 14px;color:var(--vermilion);font-size:18px}
+
+  /* nav as catalogue index */
+  nav{text-align:center;padding:6px 0 16px}
+  nav a{font-family:'Roboto Condensed';text-transform:uppercase;letter-spacing:.16em;font-size:12px;color:var(--ink);text-decoration:none;margin:0 16px}
+  nav a:hover{color:var(--vermilion)}
+
+  /* ---------- Hero: specimen plate ---------- */
+  .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:0;border-top:2px solid var(--ink)}
+  .hero .text{padding:40px 38px;border-right:2px solid var(--ink)}
+  .hero .plate{padding:30px 30px;background:var(--paper2);position:relative}
+  .hero .kick{font-family:'Roboto Condensed';text-transform:uppercase;letter-spacing:.2em;font-size:12px;color:var(--vermilion);margin-bottom:14px}
+  .hero h2{font-family:'Cormorant Garamond';font-weight:600;font-size:44px;line-height:1.06;margin-bottom:18px}
+  .hero h2 em{font-style:italic;color:var(--teal)}
+  .hero .drop::first-letter{float:left;font-size:76px;line-height:.66;padding:8px 12px 0 0;color:var(--vermilion);font-weight:600}
+  .hero p{font-size:19px;margin-bottom:14px}
+  .hero .seal{display:inline-flex;align-items:center;gap:12px;margin-top:14px;border:1.5px solid var(--ink);padding:10px 18px;border-radius:2px;text-decoration:none;color:var(--ink);font-family:'Roboto Condensed';text-transform:uppercase;letter-spacing:.14em;font-size:12px;background:var(--mustard)}
+  .hero .seal:hover{background:var(--vermilion);color:var(--paper)}
+
+  .plate-cap{text-align:center;font-style:italic;color:var(--char);margin-top:14px;font-size:16px}
+  .plate-cap b{font-family:'Special Elite';font-style:normal;font-size:13px;color:var(--vermilion);display:block;letter-spacing:.05em;text-transform:uppercase}
+  .specimen{width:100%;height:auto;display:block}
+  .corner{position:absolute;width:18px;height:18px;border:2px solid var(--ink)}
+  .corner.tl{top:10px;left:10px;border-right:none;border-bottom:none}
+  .corner.tr{top:10px;right:10px;border-left:none;border-bottom:none}
+  .corner.bl{bottom:10px;left:10px;border-right:none;border-top:none}
+  .corner.br{bottom:10px;right:10px;border-left:none;border-top:none}
+
+  /* ---------- Section 1: field notes (three specimens) ---------- */
+  .field{padding:42px 38px;border-top:2px solid var(--ink)}
+  .field .sec-h{display:flex;align-items:baseline;gap:14px;margin-bottom:30px}
+  .field .sec-h h2{font-family:'Cormorant Garamond';font-weight:600;font-size:32px}
+  .field .sec-h .label{font-size:11px;color:var(--teal);margin-left:auto}
+  .specimens{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  .spec{padding:0 26px;border-right:1px dashed var(--rule);text-align:center}
+  .spec:last-child{border-right:none}
+  .spec .fig{font-family:'Special Elite';font-size:12px;color:var(--vermilion);letter-spacing:.05em;margin-bottom:10px}
+  .spec svg{display:block;margin:0 auto 14px}
+  .spec h3{font-family:'Cormorant Garamond';font-weight:600;font-size:24px;margin-bottom:4px}
+  .spec .latin{font-style:italic;color:var(--teal);font-size:15px;margin-bottom:10px}
+  .spec p{font-size:16px;color:var(--char);text-align:left}
+
+  /* ---------- Section 2: this week's entry ---------- */
+  .entry{padding:42px 38px;border-top:2px solid var(--ink);background:var(--paper2);display:grid;grid-template-columns:.9fr 1.1fr;gap:38px;align-items:center}
+  .entry .stamp{display:inline-block;font-family:'Special Elite';font-size:12px;color:var(--vermilion);border:1.5px solid var(--vermilion);padding:5px 12px;transform:rotate(-3deg);margin-bottom:18px;letter-spacing:.06em}
+  .entry h2{font-family:'Cormorant Garamond';font-weight:600;font-size:38px;line-height:1.08;margin-bottom:16px}
+  .entry p{font-size:19px;margin-bottom:14px}
+  .entry .marginalia{font-style:italic;color:var(--teal);font-size:17px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:12px 0;margin:18px 0}
+  .entry .read{font-family:'Roboto Condensed';text-transform:uppercase;letter-spacing:.16em;font-size:12px;color:var(--vermilion);text-decoration:none;border-bottom:2px solid var(--vermilion);padding-bottom:3px}
+  .ledger{background:var(--paper);border:2px solid var(--ink);padding:18px}
+
+  /* ---------- Footer (colophon) ---------- */
+  footer{border-top:2px solid var(--ink);padding:40px 38px 34px}
+  .colophon{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px}
+  .colophon .mk{font-family:'Cormorant Garamond';font-weight:600;font-size:30px;margin-bottom:8px}
+  .colophon .mk .amp{color:var(--vermilion)}
+  .colophon .blurb{font-style:italic;color:var(--char);font-size:16px;max-width:280px}
+  .colophon h5{font-family:'Roboto Condensed';text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:var(--teal);margin-bottom:12px}
+  .colophon a{display:block;color:var(--ink);text-decoration:none;font-size:17px;margin-bottom:7px}
+  .colophon a:hover{color:var(--vermilion)}
+  .foot-rule{border-top:1px solid var(--rule);margin-top:28px;padding-top:16px;display:flex;justify-content:space-between;font-family:'Roboto Condensed';text-transform:uppercase;letter-spacing:.12em;font-size:11px;color:var(--char)}
+
+  @media(max-width:880px){
+    .page-frame{margin:8px}
+    .masthead h1{font-size:48px}
+    nav a{display:inline-block;margin:4px 10px}
+    .hero{grid-template-columns:1fr}
+    .hero .text{border-right:none;border-bottom:2px solid var(--ink)}
+    .hero h2{font-size:34px}
+    .specimens{grid-template-columns:1fr}
+    .spec{border-right:none;border-bottom:1px dashed var(--rule);padding:22px 0}
+    .spec:last-child{border-bottom:none}
+    .entry{grid-template-columns:1fr}
+    .colophon{grid-template-columns:1fr 1fr}
+    .foot-rule{flex-direction:column;gap:6px}
+  }
+</style>
+</head>
+<body>
+<div class="page-frame">
+
+  <!-- MASTHEAD -->
+  <div class="top wrap">
+    <div class="row">
+      <span class="label">No. XXIV · Established MMXXVI</span>
+      <span class="plate-no">Folio 1 — recto</span>
+    </div>
+  </div>
+
+  <div class="masthead">
+    <div class="pre">A Field Guide to the Wild World of Money</div>
+    <h1>Fink<span class="amp">·</span>Smart</h1>
+    <div class="sub">The Investor's Almanac &amp; Compendium of Curious Markets</div>
+  </div>
+  <div class="wrap"><hr class="rule-d" /></div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#">The Specimens</a>
+    <a href="#">Field Notes</a>
+    <a href="#">This Week's Entry</a>
+    <a href="#">The Glossary</a>
+    <a href="#">Almanac Archive</a>
+  </nav>
+
+  <!-- HERO: SPECIMEN PLATE -->
+  <header class="hero">
+    <div class="text">
+      <div class="kick">Plate I · The Creatures of the Market</div>
+      <h2>Money is a <em>wild thing.</em><br>Learn to read its tracks.</h2>
+      <p class="drop">Most guides treat the markets like a machine — cold, technical, joyless. We treat them like a living wilderness, full of curious creatures with names, habits, and moods worth knowing.</p>
+      <p>Each week we catalogue a new specimen and pin it to the page, so that the ordinary explorer might wander these woods without fear.</p>
+      <a class="seal" href="#">❧ Begin the expedition</a>
+    </div>
+    <div class="plate">
+      <span class="corner tl"></span><span class="corner tr"></span>
+      <span class="corner bl"></span><span class="corner br"></span>
+      <!-- specimen plate: the Bull & the Bear as botanical-style creatures -->
+      <svg class="specimen" viewBox="0 0 360 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Engraved specimen plate of the Bull and Bear of the market">
+        <rect width="360" height="420" fill="#E7DCC2"/>
+        <g stroke="#2E3B2C" stroke-width="1.6" fill="none">
+          <!-- THE BULL (upper) -->
+          <g transform="translate(60,40)">
+            <!-- body -->
+            <path d="M30 70 q40 -34 90 -8 q30 16 36 40 q4 26 -16 36 q-50 16 -94 -4 q-26 -14 -16 -64Z" fill="#C84B31" fill-opacity="0.12"/>
+            <!-- head -->
+            <path d="M120 62 q26 -6 34 14 q4 18 -14 24 q-20 4 -26 -14 q-4 -18 6 -24Z" fill="#C84B31" fill-opacity="0.18"/>
+            <!-- horns -->
+            <path d="M126 56 q-10 -22 -28 -22 M150 56 q12 -22 30 -20"/>
+            <!-- eye -->
+            <circle cx="138" cy="76" r="2.4" fill="#2E3B2C"/>
+            <!-- legs -->
+            <path d="M50 104 v34 M86 110 v34 M112 110 v32"/>
+            <!-- tail -->
+            <path d="M28 78 q-22 6 -16 30"/>
+            <!-- upward arrow hatch -->
+            <path d="M150 118 l22 -22 M164 96 h8 v8" stroke="#C84B31" stroke-width="2"/>
+          </g>
+          <text x="180" y="40" class="type" font-size="11" fill="#2E3B2C" stroke="none" text-anchor="middle" style="font-family:'Special Elite'">Fig. 1 — Taurus Optimus</text>
+
+          <!-- divider -->
+          <line x1="40" y1="232" x2="320" y2="232" stroke="#b9ac8c"/>
+
+          <!-- THE BEAR (lower) -->
+          <g transform="translate(70,250)">
+            <path d="M40 60 q30 -40 78 -26 q34 10 40 44 q4 28 -24 38 q-48 14 -86 -8 q-22 -16 -8 -48Z" fill="#3F7E7A" fill-opacity="0.14"/>
+            <!-- head -->
+            <path d="M24 56 q-22 -2 -24 18 q0 18 20 18 q18 -2 16 -20 q-2 -14 -12 -16Z" fill="#3F7E7A" fill-opacity="0.2"/>
+            <circle cx="14" cy="70" r="2.4" fill="#2E3B2C"/>
+            <!-- ears -->
+            <circle cx="6" cy="50" r="6"/><circle cx="30" cy="46" r="6"/>
+            <!-- legs -->
+            <path d="M50 96 v34 M84 100 v34 M112 98 v34"/>
+            <!-- downward arrow -->
+            <path d="M150 96 l22 22 M164 122 h8 v-8" stroke="#3F7E7A" stroke-width="2"/>
+          </g>
+          <text x="180" y="406" class="type" font-size="11" fill="#2E3B2C" stroke="none" text-anchor="middle" style="font-family:'Special Elite'">Fig. 2 — Ursus Cautious</text>
+        </g>
+      </svg>
+      <div class="plate-cap">
+        <b>Specimen of the week</b>
+        The Bull &amp; the Bear — the eternal pair whose moods move all markets.
+      </div>
+    </div>
+  </header>
+
+  <!-- SECTION 1: FIELD NOTES -->
+  <section class="field">
+    <div class="sec-h">
+      <h2>Field Notes</h2>
+      <span class="label">Catalogued for the curious</span>
+    </div>
+    <div class="specimens">
+      <div class="spec">
+        <div class="fig">Fig. 3</div>
+        <svg width="120" height="110" viewBox="0 0 120 110" role="img" aria-label="The Compound Tortoise">
+          <g stroke="#2E3B2C" stroke-width="1.6" fill="none">
+            <path d="M24 70 q36 -40 72 0 q-36 22 -72 0Z" fill="#D9A441" fill-opacity="0.25"/>
+            <path d="M40 56 q20 -14 40 0 M48 62 v14 M60 56 v22 M72 62 v14"/>
+            <path d="M96 64 q16 -4 18 8 q-6 8 -16 2"/>
+            <circle cx="110" cy="66" r="1.8" fill="#2E3B2C"/>
+            <path d="M30 78 v16 M50 84 v12 M72 84 v12 M90 78 v16"/>
+          </g>
+        </svg>
+        <h3>The Compound Tortoise</h3>
+        <div class="latin">Testudo Patientia</div>
+        <p>Slow, steady, and astonishingly powerful over decades. The patient investor's truest companion.</p>
+      </div>
+      <div class="spec">
+        <div class="fig">Fig. 4</div>
+        <svg width="120" height="110" viewBox="0 0 120 110" role="img" aria-label="The Volatility Hare">
+          <g stroke="#2E3B2C" stroke-width="1.6" fill="none">
+            <path d="M50 88 q-6 -30 10 -42 q18 -10 26 6 q8 18 -6 36 q-14 12 -30 0Z" fill="#C84B31" fill-opacity="0.18"/>
+            <path d="M58 46 q-8 -30 2 -38 M76 46 q10 -30 22 -34"/>
+            <circle cx="64" cy="62" r="2" fill="#2E3B2C"/>
+            <path d="M44 92 q-14 4 -18 -6 M86 92 q14 4 18 -6"/>
+          </g>
+        </svg>
+        <h3>The Volatility Hare</h3>
+        <div class="latin">Lepus Nervosus</div>
+        <p>Darting up and down without warning. Thrilling to watch — exhausting to chase. Best admired from a distance.</p>
+      </div>
+      <div class="spec">
+        <div class="fig">Fig. 5</div>
+        <svg width="120" height="110" viewBox="0 0 120 110" role="img" aria-label="The Dividend Bee">
+          <g stroke="#2E3B2C" stroke-width="1.6" fill="none">
+            <ellipse cx="60" cy="64" rx="22" ry="14" fill="#D9A441" fill-opacity="0.3"/>
+            <path d="M48 56 v16 M58 53 v22 M68 56 v16"/>
+            <ellipse cx="44" cy="50" rx="14" ry="8" fill="#3F7E7A" fill-opacity="0.2"/>
+            <ellipse cx="76" cy="50" rx="14" ry="8" fill="#3F7E7A" fill-opacity="0.2"/>
+            <circle cx="84" cy="60" r="2" fill="#2E3B2C"/>
+            <path d="M88 58 q8 -4 10 2"/>
+          </g>
+        </svg>
+        <h3>The Dividend Bee</h3>
+        <div class="latin">Apis Generosa</div>
+        <p>Returns to the hive each quarter bearing small gifts. Quietly, the most beloved creature of all.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: THIS WEEK'S ENTRY -->
+  <section class="entry">
+    <div>
+      <span class="stamp">★ Entry No. 24 · This Sunday</span>
+      <h2>The Migration of Capital, observed in autumn.</h2>
+      <p>This week's illustrated entry follows where money travels when fear arrives — from the bright meadows of stocks to the deep burrows of bonds and gold.</p>
+      <div class="marginalia">"To know where the herd is heading, first learn what frightens it." — marginal note, folio 23</div>
+      <a class="read" href="#">Read this week's entry →</a>
+    </div>
+    <div class="ledger">
+      <!-- a hand-drawn migration map -->
+      <svg width="100%" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A hand-drawn map of capital migrating between asset habitats">
+        <rect width="420" height="300" fill="#EFE6D2"/>
+        <g stroke="#2E3B2C" stroke-width="1.4" fill="none">
+          <!-- habitats -->
+          <circle cx="86" cy="90" r="42" fill="#C84B31" fill-opacity="0.12"/>
+          <text x="86" y="94" text-anchor="middle" font-family="Cormorant Garamond" font-size="16" fill="#2E3B2C" stroke="none" font-style="italic">Stocks</text>
+          <circle cx="330" cy="120" r="46" fill="#3F7E7A" fill-opacity="0.14"/>
+          <text x="330" y="124" text-anchor="middle" font-family="Cormorant Garamond" font-size="16" fill="#2E3B2C" stroke="none" font-style="italic">Bonds</text>
+          <circle cx="210" cy="230" r="40" fill="#D9A441" fill-opacity="0.22"/>
+          <text x="210" y="234" text-anchor="middle" font-family="Cormorant Garamond" font-size="16" fill="#2E3B2C" stroke="none" font-style="italic">Gold</text>
+          <!-- dotted migration routes with arrowheads -->
+          <path d="M126 104 q90 -2 160 8" stroke-dasharray="2 8" stroke-width="1.6"/>
+          <path d="M282 116 l-12 -3 m12 3 l-9 9" />
+          <path d="M120 122 q50 70 70 78" stroke-dasharray="2 8" stroke-width="1.6"/>
+          <path d="M188 198 l-3 -12 m3 12 l9 -8"/>
+          <!-- compass rose -->
+          <g transform="translate(372,250)">
+            <circle r="20"/><path d="M0 -20 L4 0 L0 20 L-4 0Z" fill="#C84B31" fill-opacity="0.5"/>
+            <path d="M-20 0 L0 -4 L20 0 L0 4Z"/>
+            <text x="0" y="-24" text-anchor="middle" font-family="Special Elite" font-size="9" fill="#2E3B2C" stroke="none">N</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <!-- FOOTER / COLOPHON -->
+  <footer>
+    <div class="colophon">
+      <div>
+        <div class="mk">Fink<span class="amp">·</span>Smart</div>
+        <p class="blurb">An illustrated almanac for the curious investor — printed weekly upon the wild internet, est. MMXXVI.</p>
+      </div>
+      <div>
+        <h5>The Guide</h5>
+        <a href="#">Specimens</a><a href="#">Field Notes</a><a href="#">Glossary</a>
+      </div>
+      <div>
+        <h5>The Almanac</h5>
+        <a href="#">Weekly Entry</a><a href="#">Archive</a><a href="#">Subscribe</a>
+      </div>
+      <div>
+        <h5>The Society</h5>
+        <a href="#">About</a><a href="#">Correspondence</a><a href="#">Join the expedition</a>
+      </div>
+    </div>
+    <div class="foot-rule">
+      <span>© MMXXVI FinkSmart Almanac Society</span>
+      <span>Set in Cormorant &amp; Roboto Condensed · Folio I</span>
+    </div>
+  </footer>
+
+</div><!-- /page-frame -->
+</body>
+</html>

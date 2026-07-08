@@ -354,11 +354,11 @@ export default function InvestisseursPage() {
                 <div className="grid grid-cols-2 gap-3">
                   <div className="bg-[#0A0D18] border border-white/8 rounded-lg p-3">
                     <div className="text-white/25 text-[9px] uppercase tracking-wider mb-1">Ticket min</div>
-                    <div className="text-white text-sm font-semibold font-mono">500k USD</div>
+                    <div className="text-white text-sm font-semibold font-mono tabular-nums">500k USD</div>
                   </div>
                   <div className="bg-[#0A0D18] border border-white/8 rounded-lg p-3">
                     <div className="text-white/25 text-[9px] uppercase tracking-wider mb-1">Ticket max</div>
-                    <div className="text-white text-sm font-semibold font-mono">5M USD</div>
+                    <div className="text-white text-sm font-semibold font-mono tabular-nums">5M USD</div>
                   </div>
                 </div>
                 {/* Zones */}
