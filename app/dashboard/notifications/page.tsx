@@ -16,7 +16,7 @@ function accent(type: string): { bg: string; dot: string; label: string } {
     return { bg: "bg-emerald-500/5 border-emerald-500/20", dot: "bg-emerald-400", label: "Bonne nouvelle" };
   if (type === "project.rejected")
     return { bg: "bg-red-500/5 border-red-500/20", dot: "bg-red-400", label: "À revoir" };
-  if (type === "project.interest_received" || type === "interest.submitted")
+  if (type === "project.interest_received" || type === "interest.submitted" || type === "digest.weekly")
     return { bg: "bg-[#B8913A]/5 border-[#B8913A]/20", dot: "bg-[#B8913A]", label: "Deal flow" };
   return { bg: "bg-white/3 border-white/8", dot: "bg-white/40", label: "Info" };
 }

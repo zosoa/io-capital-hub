@@ -23,6 +23,7 @@ function typeAccent(type: string): { dot: string; label: string } {
   if (type === "project.rejected")          return { dot: "bg-red-400",     label: "À revoir" };
   if (type === "project.interest_received" || type === "interest.submitted")
                                             return { dot: "bg-[#B8913A]",   label: "Deal flow" };
+  if (type === "digest.weekly")             return { dot: "bg-[#B8913A]",   label: "Deal flow" };
   return { dot: "bg-white/40", label: "Info" };
 }
 

@@ -151,7 +151,8 @@ export type NotificationType =
   | "project.interest_received"
   | "interest.submitted"
   | "admin.project_submitted"
-  | "admin.interest_expressed";
+  | "admin.interest_expressed"
+  | "digest.weekly";
 
 export interface NotificationRow {
   id: string;
@@ -205,6 +206,7 @@ export interface InvestorProfile {
 
   is_active: boolean;
   verified: boolean;
+  last_digest_at: string | null;
   created_at: string;
   updated_at: string;
 }

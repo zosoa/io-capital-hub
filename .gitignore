@@ -53,3 +53,6 @@ next-env.d.ts
 
 # FinkSmart brand-concept HTML (wrong project — kept local only)
 /brand-concepts/
+
+# Offline landing snapshot (local archive, not deployed)
+/offline-snapshot/
