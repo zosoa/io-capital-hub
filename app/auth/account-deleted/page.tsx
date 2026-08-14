@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import { LogoBadge } from "@/components/ui/logo";
 import { redirect } from "next/navigation";
 
 /**
@@ -27,30 +26,30 @@ export default async function AccountDeletedPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#06080E] flex items-center justify-center px-4 py-16">
+    <div className="min-h-screen ed bg-[#F7F5F1] flex items-center justify-center px-4 py-16">
       <div className="w-full max-w-md text-center">
         <Link href="/" className="flex flex-col items-center gap-3 mb-10">
-          <LogoBadge height={36}/>
+          <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-9 w-auto"/>
           <div>
-            <div className="font-bold text-white text-sm tracking-wide">CEO Summit IO</div>
-            <div className="text-[#B8913A] text-xs tracking-[0.15em] uppercase mt-0.5">
+            <div className="font-bold text-[#22201B] text-sm tracking-wide">CEO Summit IO</div>
+            <div className="text-[#BC5A34] text-xs tracking-[0.15em] uppercase mt-0.5">
               Investment Hub · Cluster Capital &amp; Finance
             </div>
           </div>
         </Link>
 
-        <div className="glass-card rounded-2xl p-10 border border-white/8">
-          <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-            <svg className="w-8 h-8 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <div className="bg-white rounded-2xl p-10 border border-[#EAE4D8]">
+          <div className="w-16 h-16 bg-[#F7F5F1] border border-[#E2DACB] rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <svg className="w-8 h-8 text-[#575249]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
           </div>
-          <h1 className="font-display text-2xl font-bold text-white mb-3">Compte supprimé</h1>
-          <p className="text-white/45 text-sm leading-relaxed mb-6">
+          <h1 className="font-display text-2xl font-bold text-[#22201B] mb-3">Compte supprimé</h1>
+          <p className="text-[#575249] text-sm leading-relaxed mb-6">
             Votre compte a été anonymisé à votre demande. Vos données personnelles ont été supprimées
             de la plateforme, conformément à notre politique de confidentialité.
           </p>
-          <p className="text-white/30 text-xs leading-relaxed mb-8">
+          <p className="text-[#918A7C] text-xs leading-relaxed mb-8">
             Les dossiers et interactions historiques sont conservés de façon anonymisée pour
             l&apos;intégrité des audits. Vous n&apos;avez plus accès à cet espace.
           </p>

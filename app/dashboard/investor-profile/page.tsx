@@ -95,7 +95,7 @@ function FormField({ label, children, hint }: { label: string; children: React.R
     <div>
       <label className="form-label">{label}</label>
       {children}
-      {hint && <p className="text-xs text-white/30 mt-1.5 leading-relaxed">{hint}</p>}
+      {hint && <p className="text-xs text-[#918A7C] mt-1.5 leading-relaxed">{hint}</p>}
     </div>
   );
 }
@@ -114,8 +114,8 @@ function Chips({ items, selected, onToggle, multi = true }: {
           <button key={item.v} type="button" onClick={() => onToggle(item.v)}
             className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
               active
-                ? "bg-[#B8913A]/15 border-[#B8913A]/40 text-[#B8913A]"
-                : "bg-brand-navyMid border-white/10 text-white/40 hover:border-[#B8913A]/30 hover:text-white/60"
+                ? "bg-[#BC5A34]/15 border-[#BC5A34]/40 text-[#BC5A34]"
+                : "bg-whiteMid border-[#E2DACB] text-[#918A7C] hover:border-[#BC5A34]/30 hover:text-[#575249]"
             }`}>
             {item.l}
           </button>
@@ -432,23 +432,23 @@ export default function InvestorProfilePage() {
 
   if (pageLoading) {
     return (
-      <div className="min-h-screen bg-brand-navy flex items-center justify-center">
-        <div className="w-6 h-6 border-2 border-[#B8913A]/30 border-t-[#B8913A] rounded-full animate-spin"/>
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="w-6 h-6 border-2 border-[#BC5A34]/30 border-t-[#BC5A34] rounded-full animate-spin"/>
       </div>
     );
   }
 
   if (saved) {
     return (
-      <div className="min-h-screen bg-brand-navy flex items-center justify-center">
+      <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 bg-[#B8913A]/15 border border-[#B8913A]/30 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg className="w-8 h-8 text-[#B8913A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <div className="w-16 h-16 bg-[#BC5A34]/15 border border-[#BC5A34]/30 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg className="w-8 h-8 text-[#BC5A34]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
             </svg>
           </div>
-          <h2 className="text-white font-display text-xl font-bold mb-1">Profil enregistré</h2>
-          <p className="text-white/40 text-sm">Redirection en cours...</p>
+          <h2 className="text-[#22201B] font-display text-xl font-bold mb-1">Profil enregistré</h2>
+          <p className="text-[#918A7C] text-sm">Redirection en cours...</p>
         </div>
       </div>
     );
@@ -458,20 +458,20 @@ export default function InvestorProfilePage() {
   const currentStep = STEPS[step - 1];
 
   return (
-    <div className="min-h-screen bg-brand-navy">
+    <div className="min-h-screen bg-white">
       {/* Top bar — I-L6 cleanup: single source of truth for the page title,
           existing-profile users get a back link, first-timers don't. */}
-      <div className="bg-brand-navyMid border-b border-white/5 px-4 sm:px-6 py-4">
+      <div className="bg-whiteMid border-b border-[#EAE4D8] px-4 sm:px-6 py-4">
         <div className="max-w-3xl mx-auto flex items-center justify-between gap-4">
           {existingId ? (
-            <Link href="/dashboard" className="flex items-center gap-2 text-white/40 hover:text-white/70 transition-colors text-sm">
+            <Link href="/dashboard" className="flex items-center gap-2 text-[#918A7C] hover:text-[#575249] transition-colors text-sm">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/>
               </svg>
               Mon espace
             </Link>
           ) : <div className="w-24"/>}
-          <div className="text-white font-medium text-sm flex-1 text-center truncate">
+          <div className="text-[#22201B] font-medium text-sm flex-1 text-center truncate">
             {existingId ? "Modifier mon profil investisseur" : "Créer mon profil investisseur"}
           </div>
           <div className="w-24"/>
@@ -479,26 +479,26 @@ export default function InvestorProfilePage() {
       </div>
 
       {/* Progress */}
-      <div className="h-0.5 bg-white/5">
-        <div className="h-full bg-[#B8913A] transition-all duration-500 ease-out" style={{ width: `${progress}%` }}/>
+      <div className="h-0.5 bg-[#F7F5F1]">
+        <div className="h-full bg-[#BC5A34] transition-all duration-500 ease-out" style={{ width: `${progress}%` }}/>
       </div>
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
         {/* Onboarding banner — shown when redirected from dashboard without a profile */}
         {isOnboarding && !existingId && (
-          <div className="mb-8 p-4 rounded-xl bg-[#B8913A]/8 border border-[#B8913A]/20 flex items-start gap-3">
-            <svg className="w-5 h-5 text-[#B8913A] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <div className="mb-8 p-4 rounded-xl bg-[#BC5A34]/8 border border-[#BC5A34]/20 flex items-start gap-3">
+            <svg className="w-5 h-5 text-[#BC5A34] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
             </svg>
             <div className="flex-1 min-w-0">
-              <p className="text-white/80 text-sm font-medium mb-1">Complétez votre profil pour des recommandations personnalisées</p>
-              <p className="text-white/40 text-xs leading-relaxed">
+              <p className="text-[#22201B]/80 text-sm font-medium mb-1">Complétez votre profil pour des recommandations personnalisées</p>
+              <p className="text-[#918A7C] text-xs leading-relaxed">
                 En renseignant vos critères d&apos;investissement, nos algorithmes mettront en avant les dossiers qui correspondent à votre mandat.
               </p>
               <div className="mt-3 flex items-center gap-3">
                 <button
                   onClick={() => router.push("/dashboard/deal-flow")}
-                  className="text-xs text-white/30 hover:text-white/60 transition-colors underline underline-offset-2">
+                  className="text-xs text-[#918A7C] hover:text-[#575249] transition-colors underline underline-offset-2">
                   Parcourir le deal flow d&apos;abord
                 </button>
               </div>
@@ -514,9 +514,9 @@ export default function InvestorProfilePage() {
                 step === s.n ? "opacity-100" : step > s.n ? "opacity-60" : "opacity-25"
               }`}>
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0 transition-all ${
-                  step > s.n  ? "bg-[#B8913A]/20 text-[#B8913A] border border-[#B8913A]/30" :
-                  step === s.n ? "bg-[#B8913A] text-white" :
-                                 "bg-white/5 text-white/30 border border-white/10"
+                  step > s.n  ? "bg-[#BC5A34]/20 text-[#BC5A34] border border-[#BC5A34]/30" :
+                  step === s.n ? "bg-[#BC5A34] text-white" :
+                                 "bg-[#F7F5F1] text-[#918A7C] border border-[#E2DACB]"
                 }`}>
                   {step > s.n ? (
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -525,22 +525,22 @@ export default function InvestorProfilePage() {
                   ) : s.n}
                 </div>
                 <div className="hidden sm:block">
-                  <div className={`text-xs font-medium ${step === s.n ? "text-white" : "text-white/40"}`}>{s.label}</div>
-                  <div className="text-xs text-white/20">{s.desc}</div>
+                  <div className={`text-xs font-medium ${step === s.n ? "text-[#22201B]" : "text-[#918A7C]"}`}>{s.label}</div>
+                  <div className="text-xs text-[#B3AA9C]">{s.desc}</div>
                 </div>
               </div>
               {i < STEPS.length - 1 && (
-                <div className={`w-10 sm:w-16 h-px mx-3 flex-shrink-0 transition-all ${step > s.n ? "bg-[#B8913A]/40" : "bg-white/8"}`}/>
+                <div className={`w-10 sm:w-16 h-px mx-3 flex-shrink-0 transition-all ${step > s.n ? "bg-[#BC5A34]/40" : "bg-[#F7F5F1]"}`}/>
               )}
             </div>
           ))}
         </div>
 
         {/* Card */}
-        <div className="glass-card rounded-2xl p-6 sm:p-8 border border-white/8">
+        <div className="glass-card rounded-2xl p-6 sm:p-8 border border-[#EAE4D8]">
           {/* Header */}
-          <div className="flex items-center gap-3 mb-7 pb-6 border-b border-white/5">
-            <div className="w-10 h-10 bg-[#B8913A]/10 border border-[#B8913A]/20 rounded-xl flex items-center justify-center text-[#B8913A]">
+          <div className="flex items-center gap-3 mb-7 pb-6 border-b border-[#EAE4D8]">
+            <div className="w-10 h-10 bg-[#BC5A34]/10 border border-[#BC5A34]/20 rounded-xl flex items-center justify-center text-[#BC5A34]">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 {step === 1 && <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>}
                 {step === 2 && <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M7.5 8.25h9M7.5 12H12"/>}
@@ -548,8 +548,8 @@ export default function InvestorProfilePage() {
               </svg>
             </div>
             <div>
-              <h2 className="font-display text-xl font-bold text-white">{currentStep.label}</h2>
-              <p className="text-white/40 text-sm">{currentStep.desc}</p>
+              <h2 className="font-display text-xl font-bold text-[#22201B]">{currentStep.label}</h2>
+              <p className="text-[#918A7C] text-sm">{currentStep.desc}</p>
             </div>
           </div>
 
@@ -636,7 +636,7 @@ export default function InvestorProfilePage() {
               <div>
                 <label className="form-label">
                   Secteurs prioritaires *
-                  <span className="text-white/25 normal-case font-normal ml-1">(plusieurs choix)</span>
+                  <span className="text-[#8A8275] normal-case font-normal ml-1">(plusieurs choix)</span>
                 </label>
                 <div className="flex flex-wrap gap-2 mt-1.5">
                   {SECTOR_OPTIONS.map(({ v, l }) => {
@@ -645,8 +645,8 @@ export default function InvestorProfilePage() {
                       <button key={v} type="button" onClick={() => toggleChip(setSectors, v)}
                         className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
                           active
-                            ? "bg-[#B8913A]/15 border-[#B8913A]/40 text-[#B8913A]"
-                            : "bg-brand-navyMid border-white/10 text-white/40 hover:border-[#B8913A]/30 hover:text-white/60"
+                            ? "bg-[#BC5A34]/15 border-[#BC5A34]/40 text-[#BC5A34]"
+                            : "bg-whiteMid border-[#E2DACB] text-[#918A7C] hover:border-[#BC5A34]/30 hover:text-[#575249]"
                         }`}>
                         {l}
                       </button>
@@ -682,14 +682,14 @@ export default function InvestorProfilePage() {
                       className="form-input font-mono" placeholder="Max (ex : 5 000 000)" min={0}/>
                   </div>
                 </div>
-                <p className="text-white/25 text-xs mt-1.5">Ticket minimum et maximum par opération</p>
+                <p className="text-[#8A8275] text-xs mt-1.5">Ticket minimum et maximum par opération</p>
               </div>
 
               {/* Duration preferences */}
               <div>
                 <label className="form-label">
                   Durée d&apos;investissement préférée
-                  <span className="text-white/25 normal-case font-normal ml-1">(plusieurs choix)</span>
+                  <span className="text-[#8A8275] normal-case font-normal ml-1">(plusieurs choix)</span>
                 </label>
                 <Chips
                   items={DURATION_PREFS}
@@ -702,7 +702,7 @@ export default function InvestorProfilePage() {
               <div>
                 <label className="form-label">
                   Zones géographiques d&apos;intervention
-                  <span className="text-white/25 normal-case font-normal ml-1">(plusieurs choix)</span>
+                  <span className="text-[#8A8275] normal-case font-normal ml-1">(plusieurs choix)</span>
                 </label>
                 <div className="flex flex-wrap gap-2 mt-1.5">
                   {GEO_ZONES.map(z => {
@@ -711,8 +711,8 @@ export default function InvestorProfilePage() {
                       <button key={z} type="button" onClick={() => toggleChip(setGeoZones, z)}
                         className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
                           active
-                            ? "bg-[#B8913A]/15 border-[#B8913A]/40 text-[#B8913A]"
-                            : "bg-brand-navyMid border-white/10 text-white/40 hover:border-[#B8913A]/30 hover:text-white/60"
+                            ? "bg-[#BC5A34]/15 border-[#BC5A34]/40 text-[#BC5A34]"
+                            : "bg-whiteMid border-[#E2DACB] text-[#918A7C] hover:border-[#BC5A34]/30 hover:text-[#575249]"
                         }`}>
                         {z}
                       </button>
@@ -746,7 +746,7 @@ export default function InvestorProfilePage() {
               <div>
                 <label className="form-label">
                   Vos objectifs sur la plateforme
-                  <span className="text-white/25 normal-case font-normal ml-1">(plusieurs choix)</span>
+                  <span className="text-[#8A8275] normal-case font-normal ml-1">(plusieurs choix)</span>
                 </label>
                 <Chips
                   items={OBJECTIVES}
@@ -766,10 +766,10 @@ export default function InvestorProfilePage() {
                     <button key={String(opt.v)} type="button" onClick={() => setOpenToFlow(opt.v)}
                       className={`flex-1 text-left p-4 rounded-xl border-2 transition-all ${
                         openToFlow === opt.v
-                          ? "border-[#B8913A] bg-[#B8913A]/8 text-white"
-                          : "border-white/8 bg-brand-navyMid text-white/40 hover:border-[#B8913A]/30"
+                          ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#22201B]"
+                          : "border-[#EAE4D8] bg-whiteMid text-[#918A7C] hover:border-[#BC5A34]/30"
                       }`}>
-                      <div className={`text-xs font-medium leading-snug ${openToFlow === opt.v ? "text-white" : ""}`}>{opt.l}</div>
+                      <div className={`text-xs font-medium leading-snug ${openToFlow === opt.v ? "text-[#22201B]" : ""}`}>{opt.l}</div>
                     </button>
                   ))}
                 </div>
@@ -790,7 +790,7 @@ export default function InvestorProfilePage() {
                   className="form-input resize-y" rows={4}
                   placeholder="Décrivez votre expérience, vos domaines d'expertise et ce que vous apportez aux projets que vous accompagnez..."/>
                 <div className={`text-right text-[10px] mt-1 tabular-nums ${
-                  bio.length > 1800 ? "text-[#B8913A]" : "text-white/25"
+                  bio.length > 1800 ? "text-[#BC5A34]" : "text-[#8A8275]"
                 }`}>
                   {bio.length} / 2000
                 </div>
@@ -799,7 +799,7 @@ export default function InvestorProfilePage() {
               {/* Photo consent */}
               <div>
                 <label className="form-label">Visibilité sur la plateforme</label>
-                <p className="text-white/25 text-xs mb-2 leading-relaxed">
+                <p className="text-[#8A8275] text-xs mb-2 leading-relaxed">
                   Votre profil peut apparaître dans notre annuaire des acteurs du financement (avec votre accord).
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
@@ -807,17 +807,17 @@ export default function InvestorProfilePage() {
                     <button key={pc.v} type="button" onClick={() => setPhotoConsent(pc.v)}
                       className={`text-left p-4 rounded-xl border-2 transition-all ${
                         photoConsent === pc.v
-                          ? "border-[#B8913A] bg-[#B8913A]/8 text-white"
-                          : "border-white/8 bg-brand-navyMid text-white/50 hover:border-[#B8913A]/30"
+                          ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#22201B]"
+                          : "border-[#EAE4D8] bg-whiteMid text-[#6B655B] hover:border-[#BC5A34]/30"
                       }`}>
-                      <div className={`font-semibold text-sm mb-0.5 ${photoConsent === pc.v ? "text-white" : ""}`}>{pc.l}</div>
+                      <div className={`font-semibold text-sm mb-0.5 ${photoConsent === pc.v ? "text-[#22201B]" : ""}`}>{pc.l}</div>
                       <div className="text-xs opacity-55 leading-snug">{pc.desc}</div>
                     </button>
                   ))}
                 </div>
               </div>
 
-              <div className="p-4 bg-brand-navyMid rounded-xl border border-white/8 text-xs text-white/30 leading-relaxed">
+              <div className="p-4 bg-whiteMid rounded-xl border border-[#EAE4D8] text-xs text-[#918A7C] leading-relaxed">
                 En enregistrant votre profil, vous consentez à ce que vos informations soient utilisées dans le cadre des activités de mise en relation du CEO Summit Investment Hub. Vos données ne seront jamais partagées avec des tiers sans votre accord explicite.
               </div>
             </div>
@@ -834,7 +834,7 @@ export default function InvestorProfilePage() {
             </svg>
             Précédent
           </button>
-          <div className="text-white/45 text-sm">{step} / {STEPS.length}</div>
+          <div className="text-[#6B655B] text-sm">{step} / {STEPS.length}</div>
           {step < 3 ? (
             <button onClick={nextStep} className="btn-primary py-3 px-8">
               Suivant

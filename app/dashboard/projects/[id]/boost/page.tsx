@@ -102,7 +102,7 @@ function SectionCard({ title, icon, score, maxScore, children, saving, lastSaved
     <div className="card overflow-hidden">
       <div className={`px-6 py-4 border-b flex items-center justify-between gap-3 ${done ? "bg-green-50 border-green-100" : "bg-[#FAF7F3] border-[#EDE7DE]"}`}>
         <div className="flex items-center gap-2.5">
-          <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${done ? "bg-green-100 text-green-600" : "bg-[#B8913A]/10 text-[#B8913A]"}`}>
+          <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${done ? "bg-green-100 text-green-600" : "bg-[#BC5A34]/10 text-[#BC5A34]"}`}>
             {done ? (
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
@@ -112,12 +112,12 @@ function SectionCard({ title, icon, score, maxScore, children, saving, lastSaved
           <span className={`font-bold text-sm ${done ? "text-green-800" : "text-[#0F1320]"}`}>{title}</span>
         </div>
         <div className="flex items-center gap-2">
-          {saving    && <span className="text-[10px] text-[#B8913A] animate-pulse">Sauvegarde…</span>}
+          {saving    && <span className="text-[10px] text-[#BC5A34] animate-pulse">Sauvegarde…</span>}
           {!saving && lastSaved && <span className="text-[10px] text-green-600 flex items-center gap-1">
             <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
             Sauvegardé
           </span>}
-          <div className={`text-xs font-semibold px-2 py-0.5 rounded-full ${done ? "bg-green-100 text-green-700" : pct > 0 ? "bg-[#B8913A]/10 text-[#B8913A]" : "bg-[#F0EEE9] text-[#B0A898]"}`}>
+          <div className={`text-xs font-semibold px-2 py-0.5 rounded-full ${done ? "bg-green-100 text-green-700" : pct > 0 ? "bg-[#BC5A34]/10 text-[#BC5A34]" : "bg-[#F0EEE9] text-[#B0A898]"}`}>
             {pct}%
           </div>
         </div>
@@ -152,9 +152,9 @@ function MultiChip({ options, selected, onChange }: {
         return (
           <button key={o.v} type="button" onClick={() => toggle(o.v)}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-medium transition-all ${
-              on ? "border-[#B8913A] bg-[#B8913A]/8 text-[#0F1320]" : "border-[#DDD8D0] text-[#7A8098] hover:border-[#B8913A]/40"
+              on ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#0F1320]" : "border-[#DDD8D0] text-[#7A8098] hover:border-[#BC5A34]/40"
             }`}>
-            {on && <svg className="w-3 h-3 text-[#B8913A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>}
+            {on && <svg className="w-3 h-3 text-[#BC5A34]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>}
             {o.l}
           </button>
         );
@@ -174,7 +174,7 @@ function RadioCards({ options, value, onChange, cols = 2 }: {
       {options.map(o => (
         <button key={o.v} type="button" onClick={() => onChange(o.v)}
           className={`text-left p-3 rounded-xl border-2 transition-all ${
-            value === o.v ? "border-[#B8913A] bg-[#B8913A]/6" : "border-[#E8E2D9] hover:border-[#B8913A]/30"
+            value === o.v ? "border-[#BC5A34] bg-[#BC5A34]/6" : "border-[#E8E2D9] hover:border-[#BC5A34]/30"
           }`}>
           <div className={`text-sm font-semibold ${value === o.v ? "text-[#0F1320]" : "text-[#5A6280]"}`}>{o.l}</div>
           {o.sub && <div className="text-[11px] text-[#9A9FAF] mt-0.5 leading-snug">{o.sub}</div>}
@@ -190,7 +190,7 @@ function ToggleField({ checked, onChange, labelOn, labelOff }: {
   return (
     <div className="flex items-center gap-3 p-3.5 bg-[#FAF7F3] rounded-xl border border-[#E8E2D9] cursor-pointer"
       onClick={() => onChange(!checked)}>
-      <div className={`w-10 h-5 rounded-full transition-all flex items-center px-0.5 flex-shrink-0 ${checked ? "bg-[#B8913A]" : "bg-[#DDD8D0]"}`}>
+      <div className={`w-10 h-5 rounded-full transition-all flex items-center px-0.5 flex-shrink-0 ${checked ? "bg-[#BC5A34]" : "bg-[#DDD8D0]"}`}>
         <div className={`w-4 h-4 bg-white rounded-full shadow transition-transform ${checked ? "translate-x-5" : "translate-x-0"}`}/>
       </div>
       <span className="text-[#0F1320] text-sm select-none">{checked ? labelOn : labelOff}</span>
@@ -296,7 +296,7 @@ function ScoreBreakdown(props: {
         onClick={() => setOpen(o => !o)}
         className="w-full px-6 py-4 flex items-center justify-between gap-3 bg-[#FAF7F3] border-b border-[#EDE7DE] hover:bg-[#F5F0E8] transition-colors">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-[#B8913A]/10 text-[#B8913A] flex items-center justify-center flex-shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-[#BC5A34]/10 text-[#BC5A34] flex items-center justify-center flex-shrink-0">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>
             </svg>
@@ -324,12 +324,12 @@ function ScoreBreakdown(props: {
                 <div key={cat.label} className="p-4 rounded-xl border border-[#E8E2D9] bg-[#FAF7F3]">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-xs font-semibold text-[#0F1320]">{cat.label}</span>
-                    <span className={`text-xs font-bold tabular-nums ${pct === 100 ? "text-green-600" : "text-[#B8913A]"}`}>
+                    <span className={`text-xs font-bold tabular-nums ${pct === 100 ? "text-green-600" : "text-[#BC5A34]"}`}>
                       {earnedPts}/{cat.pts} pts
                     </span>
                   </div>
                   <div className="h-1 bg-[#E8E2D9] rounded-full overflow-hidden mb-3">
-                    <div className={`h-full rounded-full transition-all duration-500 ${pct === 100 ? "bg-green-500" : "bg-[#B8913A]"}`} style={{ width: `${pct}%` }}/>
+                    <div className={`h-full rounded-full transition-all duration-500 ${pct === 100 ? "bg-green-500" : "bg-[#BC5A34]"}`} style={{ width: `${pct}%` }}/>
                   </div>
                   <ul className="space-y-1">
                     {cat.items.map(item => (
@@ -344,7 +344,7 @@ function ScoreBreakdown(props: {
                           )}
                         </div>
                         <span className={item.done ? "text-[#5A6280] line-through" : "text-[#7A8098]"}>{item.label}</span>
-                        <span className={`ml-auto font-semibold tabular-nums flex-shrink-0 ${item.done ? "text-green-600" : "text-[#B8913A]"}`}>
+                        <span className={`ml-auto font-semibold tabular-nums flex-shrink-0 ${item.done ? "text-green-600" : "text-[#BC5A34]"}`}>
                           +{item.pts}
                         </span>
                       </li>
@@ -357,18 +357,18 @@ function ScoreBreakdown(props: {
 
           {/* Next steps hint */}
           {missing.length > 0 && (
-            <div className="p-4 rounded-xl bg-[#B8913A]/6 border border-[#B8913A]/20">
-              <div className="text-xs font-bold text-[#B8913A] uppercase tracking-wider mb-2">
+            <div className="p-4 rounded-xl bg-[#BC5A34]/6 border border-[#BC5A34]/20">
+              <div className="text-xs font-bold text-[#BC5A34] uppercase tracking-wider mb-2">
                 Pour gagner le plus de points rapidement
               </div>
               <ul className="space-y-1.5">
                 {missing.slice(0, 3).map(item => (
                   <li key={item.label} className="flex items-center gap-2 text-xs text-[#5A6280]">
-                    <svg className="w-3 h-3 text-[#B8913A] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <svg className="w-3 h-3 text-[#BC5A34] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
                     </svg>
                     <span>{item.label}</span>
-                    <span className="ml-auto font-semibold text-[#B8913A]">+{item.pts} pts</span>
+                    <span className="ml-auto font-semibold text-[#BC5A34]">+{item.pts} pts</span>
                   </li>
                 ))}
               </ul>
@@ -534,7 +534,7 @@ export default function BoostPage() {
 
   if (loading) return (
     <div className="p-8 flex items-center justify-center min-h-[60vh]">
-      <div className="w-6 h-6 border-2 border-[#B8913A]/30 border-t-[#B8913A] rounded-full animate-spin"/>
+      <div className="w-6 h-6 border-2 border-[#BC5A34]/30 border-t-[#BC5A34] rounded-full animate-spin"/>
     </div>
   );
   if (!project) return null;
@@ -570,7 +570,7 @@ export default function BoostPage() {
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 mb-6 text-sm">
         <Link href={`/dashboard/projects/${projectId}`}
-          className="text-[#9A9FAF] hover:text-[#B8913A] transition-colors flex items-center gap-1.5">
+          className="text-[#9A9FAF] hover:text-[#BC5A34] transition-colors flex items-center gap-1.5">
           <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/>
           </svg>
@@ -586,7 +586,7 @@ export default function BoostPage() {
         <div className="relative w-20 h-20 flex-shrink-0">
           <svg viewBox="0 0 36 36" className="w-20 h-20 -rotate-90">
             <circle cx="18" cy="18" r="15.5" fill="none" stroke="#EDE7DE" strokeWidth="3"/>
-            <circle cx="18" cy="18" r="15.5" fill="none" stroke="#B8913A" strokeWidth="3"
+            <circle cx="18" cy="18" r="15.5" fill="none" stroke="#BC5A34" strokeWidth="3"
               strokeDasharray={`${(globalScore / 100) * 97.4} 97.4`}
               strokeLinecap="round" className="transition-all duration-700"/>
           </svg>
@@ -602,7 +602,7 @@ export default function BoostPage() {
             Chaque section se sauvegarde automatiquement.
           </p>
           <div className="mt-3 h-1.5 bg-[#EDE7DE] rounded-full overflow-hidden">
-            <div className="h-full bg-[#B8913A] rounded-full transition-all duration-700" style={{ width: `${globalScore}%` }}/>
+            <div className="h-full bg-[#BC5A34] rounded-full transition-all duration-700" style={{ width: `${globalScore}%` }}/>
           </div>
         </div>
       </div>
@@ -635,7 +635,7 @@ export default function BoostPage() {
         <div className="card overflow-hidden">
           <div className="px-6 py-4 border-b border-[#EDE7DE] bg-[#FAF7F3] flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#B8913A]/10 text-[#B8913A] flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-[#BC5A34]/10 text-[#BC5A34] flex items-center justify-center">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
                 </svg>
@@ -654,7 +654,7 @@ export default function BoostPage() {
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={logoUrl} alt="Logo" className="w-full h-full object-cover"/>
                 ) : (
-                  <span className="text-[#B8913A] font-bold text-2xl">{project?.title?.charAt(0).toUpperCase()}</span>
+                  <span className="text-[#BC5A34] font-bold text-2xl">{project?.title?.charAt(0).toUpperCase()}</span>
                 )}
               </div>
               {/* Upload */}
@@ -663,11 +663,11 @@ export default function BoostPage() {
                   Un logo professionnel renforce la crédibilité de votre dossier auprès des investisseurs. Format JPG, PNG ou SVG — max 2 Mo.
                 </p>
                 <label className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-medium cursor-pointer transition-all ${
-                  logoUploading ? "opacity-50 cursor-not-allowed" : "border-[#B8913A]/30 text-[#B8913A] hover:bg-[#B8913A]/5"
+                  logoUploading ? "opacity-50 cursor-not-allowed" : "border-[#BC5A34]/30 text-[#BC5A34] hover:bg-[#BC5A34]/5"
                 }`}>
                   {logoUploading ? (
                     <>
-                      <span className="w-3.5 h-3.5 border-2 border-[#B8913A]/30 border-t-[#B8913A] rounded-full animate-spin"/>
+                      <span className="w-3.5 h-3.5 border-2 border-[#BC5A34]/30 border-t-[#BC5A34] rounded-full animate-spin"/>
                       Envoi en cours…
                     </>
                   ) : (
@@ -761,7 +761,7 @@ export default function BoostPage() {
 
           {isEquity && (
             <div className="pt-2 border-t border-[#EDE7DE]">
-              <div className="text-xs font-bold text-[#B8913A] uppercase tracking-wider mb-4">
+              <div className="text-xs font-bold text-[#BC5A34] uppercase tracking-wider mb-4">
                 Conditions proposées à l&apos;investisseur en capital
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -939,10 +939,10 @@ export default function BoostPage() {
                     save("docs", { documents_available: next });
                   }}
                   className={`flex items-center gap-2.5 p-3 rounded-xl border text-left transition-all ${
-                    on ? "border-[#B8913A] bg-[#B8913A]/6" : "border-[#E8E2D9] hover:border-[#B8913A]/30"
+                    on ? "border-[#BC5A34] bg-[#BC5A34]/6" : "border-[#E8E2D9] hover:border-[#BC5A34]/30"
                   }`}>
-                  <div className={`w-4 h-4 rounded border-2 flex-shrink-0 flex items-center justify-center transition-all ${on ? "border-[#B8913A] bg-[#B8913A]" : "border-[#C8C0B5]"}`}>
-                    {on && <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>}
+                  <div className={`w-4 h-4 rounded border-2 flex-shrink-0 flex items-center justify-center transition-all ${on ? "border-[#BC5A34] bg-[#BC5A34]" : "border-[#C8C0B5]"}`}>
+                    {on && <svg className="w-2.5 h-2.5 text-[#22201B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>}
                   </div>
                   <span className={`text-sm ${on ? "text-[#0F1320] font-medium" : "text-[#5A6280]"}`}>{d.l}</span>
                 </button>

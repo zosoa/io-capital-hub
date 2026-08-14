@@ -34,7 +34,7 @@ export default function NotificationListActions({ hasUnread }: { hasUnread: bool
     <button
       onClick={markAllRead}
       disabled={busy || pending}
-      className="flex-shrink-0 px-3 py-1.5 rounded-lg border border-[#B8913A]/40 text-[#B8913A] text-xs font-medium hover:bg-[#B8913A]/10 hover:border-[#B8913A]/70 transition-all disabled:opacity-50">
+      className="flex-shrink-0 px-3 py-1.5 rounded-lg border border-[#BC5A34]/40 text-[#BC5A34] text-xs font-medium hover:bg-[#BC5A34]/10 hover:border-[#BC5A34]/70 transition-all disabled:opacity-50">
       {busy || pending ? "…" : "Tout marquer lu"}
     </button>
   );

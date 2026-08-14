@@ -13,6 +13,19 @@
   --brand-muted:       #5A6280;
   --brand-border:      #E8E2D9;
   --brand-red:         #C0392B; /* retained for logo only */
+
+  /* ── Editorial theme (light) — used by the `.ed` scope on user-facing pages ── */
+  --forest:    #1C3A30;
+  --forest-2:  #2A5346;
+  --terra:     #BC5A34;
+  --terra-2:   #A44B29;
+  --paper:     #FFFFFF;
+  --paper-2:   #F7F5F1;
+  --ink:       #22201B;
+  --ink-soft:  #575249;
+  --ink-faint: #918A7C;
+  --e-line:    #EAE4D8;
+  --e-line-2:  #E2DACB;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -58,7 +71,8 @@ body {
 
 /* ── Display font ── */
 .font-display {
-  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-family: 'Fraunces', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-optical-sizing: auto;
 }
 
 /* ── Gradient text ── */
@@ -247,3 +261,69 @@ body {
   text-decoration: none;
 }
 .btn-outline-gold:hover { background-color: rgba(184,145,58,0.10); }
+
+/* ─── Editorial scope ───────────────────────────────────────────────────────
+   Add `ed` to a page wrapper to flip the shared primitives to the light
+   editorial theme (forest / terracotta / paper) WITHOUT touching the dark
+   admin panel, which never carries `.ed`. Backgrounds + text still set per
+   page via Tailwind; this covers the reusable component classes. */
+.ed { color: var(--ink); }
+.ed ::selection { background: rgba(188,90,52,0.18); }
+
+.ed .form-input {
+  background-color: #FFFFFF;
+  border: 1.5px solid var(--e-line-2);
+  border-radius: 0.6rem;
+  color: var(--ink);
+  font-weight: 400;
+}
+.ed .form-input::placeholder { color: var(--ink-faint); }
+.ed .form-input:focus {
+  outline: none;
+  border-color: var(--forest);
+  box-shadow: 0 0 0 3px rgba(28,58,48,0.10);
+}
+.ed .form-label { color: var(--ink-soft); font-weight: 600; }
+
+.ed .btn-primary {
+  background-color: var(--forest);
+  color: #fff;
+  border-radius: 0.6rem;
+  box-shadow: 0 10px 24px -12px rgba(28,58,48,0.5);
+}
+.ed .btn-primary:hover { background-color: var(--forest-2); }
+
+.ed .btn-secondary {
+  background-color: var(--paper-2);
+  color: var(--ink);
+  border: 1px solid var(--e-line-2);
+  border-radius: 0.6rem;
+}
+.ed .btn-secondary:hover { background-color: #EFEBE3; color: var(--ink); }
+
+/* Terracotta accent for editorial links/buttons */
+.ed .btn-accent {
+  background-color: var(--terra);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.6rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  box-shadow: 0 10px 24px -8px rgba(188,90,52,0.45);
+}
+.ed .btn-accent:hover { background-color: var(--terra-2); }
+
+/* Editorial focus ring (terracotta, replaces the gold one inside `.ed`) */
+.ed a:focus-visible,
+.ed button:focus-visible,
+.ed input:focus-visible,
+.ed select:focus-visible,
+.ed textarea:focus-visible {
+  outline-color: rgba(188,90,52,0.6);
+}

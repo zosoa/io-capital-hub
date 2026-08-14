@@ -5,10 +5,10 @@ export const metadata = {
 
 export default function CguPage() {
   return (
-    <article className="prose prose-invert max-w-none prose-headings:font-display prose-headings:font-bold prose-h1:text-3xl prose-h2:text-xl prose-h2:mt-10 prose-h2:text-[#C8992A] prose-p:text-white/70 prose-p:leading-relaxed prose-li:text-white/70 prose-strong:text-white">
-      <div className="text-[#B8913A] text-[10px] font-semibold uppercase tracking-[0.22em] mb-4">Mentions légales</div>
-      <h1 className="font-display text-3xl font-bold text-white mb-2">Conditions Générales d&apos;Utilisation</h1>
-      <p className="text-white/40 text-sm mb-10">Version 1.0 · En vigueur au 21 avril 2026</p>
+    <article className="prose  max-w-none prose-headings:font-display prose-headings:font-bold prose-h1:text-3xl prose-h2:text-xl prose-h2:mt-10 prose-h2:text-[#A44B29] prose-p:text-[#575249] prose-p:leading-relaxed prose-li:text-[#575249] prose-strong:text-[#22201B]">
+      <div className="text-[#BC5A34] text-[10px] font-semibold uppercase tracking-[0.22em] mb-4">Mentions légales</div>
+      <h1 className="font-display text-3xl font-bold text-[#22201B] mb-2">Conditions Générales d&apos;Utilisation</h1>
+      <p className="text-[#918A7C] text-sm mb-10">Version 1.0 · En vigueur au 21 avril 2026</p>
 
       <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-4 mb-10 text-amber-100 text-sm">
         <strong>Document en cours de finalisation.</strong> Les présentes conditions sont fournies à titre informatif
@@ -31,7 +31,7 @@ export default function CguPage() {
       <h2>2. Acceptation</h2>
       <p>
         L&apos;inscription à la Plateforme vaut acceptation sans réserve des présentes CGU ainsi que de la
-        <a href="/legal/privacy" className="text-[#B8913A] hover:underline"> Politique de Confidentialité</a>.
+        <a href="/legal/privacy" className="text-[#BC5A34] hover:underline"> Politique de Confidentialité</a>.
         Tout utilisateur déclare avoir pris connaissance de ces documents et être en mesure juridique
         de contracter.
       </p>
@@ -106,7 +106,7 @@ export default function CguPage() {
       <h2>11. Contact</h2>
       <p>
         Pour toute question relative aux présentes CGU :<br/>
-        <a href="mailto:capital@ceo-summit.mg" className="text-[#B8913A] hover:underline">capital@ceo-summit.mg</a>
+        <a href="mailto:capital@ceo-summit.mg" className="text-[#BC5A34] hover:underline">capital@ceo-summit.mg</a>
       </p>
     </article>
   );

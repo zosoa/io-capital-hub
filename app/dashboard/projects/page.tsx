@@ -61,8 +61,8 @@ export default async function ProjectsPage() {
       {/* ── Empty state ── */}
       {(!projects || projects.length === 0) ? (
         <div className="card p-12 text-center">
-          <div className="w-12 h-12 bg-[#B8913A]/8 border border-[#B8913A]/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-            <svg className="w-6 h-6 text-[#B8913A]/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <div className="w-12 h-12 bg-[#BC5A34]/8 border border-[#BC5A34]/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg className="w-6 h-6 text-[#BC5A34]/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H6.911a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661z"/>
             </svg>
           </div>
@@ -83,17 +83,17 @@ export default async function ProjectsPage() {
             const cfg = STATUS_CONFIG[p.status] || { label: p.status, color: "text-[#5A6280]", bg: "bg-[#5A6280]/10" };
             return (
               <Link key={p.id} href={`/dashboard/projects/${p.id}`}
-                className="block card hover:border-[#B8913A]/40 hover:shadow-sm transition-all duration-200 group overflow-hidden">
+                className="block card hover:border-[#BC5A34]/40 hover:shadow-sm transition-all duration-200 group overflow-hidden">
                 <div className="p-5">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex items-start gap-3.5 flex-1 min-w-0">
                       {/* Logo badge */}
-                      <div className="w-11 h-11 rounded-xl border-2 border-[#E8D9B5] bg-[#B8913A]/8 flex items-center justify-center flex-shrink-0 overflow-hidden mt-0.5">
+                      <div className="w-11 h-11 rounded-xl border-2 border-[#E8D9B5] bg-[#BC5A34]/8 flex items-center justify-center flex-shrink-0 overflow-hidden mt-0.5">
                         {p.project_logo_url ? (
                           // eslint-disable-next-line @next/next/no-img-element
                           <img src={p.project_logo_url} alt={p.title} className="w-full h-full object-cover"/>
                         ) : (
-                          <span className="text-[#B8913A] font-bold text-base">{p.title.charAt(0).toUpperCase()}</span>
+                          <span className="text-[#BC5A34] font-bold text-base">{p.title.charAt(0).toUpperCase()}</span>
                         )}
                       </div>
                       <div className="flex-1 min-w-0">
@@ -105,7 +105,7 @@ export default async function ProjectsPage() {
                         </span>
                       </div>
 
-                      <h3 className="text-[#0F1320] font-semibold group-hover:text-[#B8913A] transition-colors truncate">
+                      <h3 className="text-[#0F1320] font-semibold group-hover:text-[#BC5A34] transition-colors truncate">
                         {p.title}
                       </h3>
                       {p.tagline && (
@@ -156,14 +156,14 @@ export default async function ProjectsPage() {
                         </div>
                       )}
                       {(p.boost_score > 0) && (
-                        <div className="flex items-center gap-1 text-[10px] text-[#B8913A] font-semibold">
+                        <div className="flex items-center gap-1 text-[10px] text-[#BC5A34] font-semibold">
                           <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>
                           </svg>
                           {p.boost_score}/100
                         </div>
                       )}
-                      <svg className="w-4 h-4 text-[#C8C0B5] group-hover:text-[#B8913A] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <svg className="w-4 h-4 text-[#C8C0B5] group-hover:text-[#BC5A34] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                       </svg>
                     </div>

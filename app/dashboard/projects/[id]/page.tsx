@@ -41,13 +41,13 @@ function StatusPipeline({ status }: { status: string }) {
         return (
           <div key={s.key} className="flex items-center flex-shrink-0">
             <div className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium transition-all ${
-              current ? "bg-[#B8913A]/10 border border-[#B8913A]/25 text-[#B8913A]" :
+              current ? "bg-[#BC5A34]/10 border border-[#BC5A34]/25 text-[#BC5A34]" :
               done    ? "text-[#7A8098]" :
                         "text-[#C0BAB2]"
             }`}>
               <span className={`w-5 h-5 rounded-full flex items-center justify-center text-xs flex-shrink-0 font-semibold ${
-                done    ? "bg-[#B8913A]/15 text-[#B8913A]" :
-                current ? "bg-[#B8913A] text-white" :
+                done    ? "bg-[#BC5A34]/15 text-[#BC5A34]" :
+                current ? "bg-[#BC5A34] text-white" :
                           "bg-[#EDE7DE] text-[#C0BAB2]"
               }`}>
                 {done ? (
@@ -59,7 +59,7 @@ function StatusPipeline({ status }: { status: string }) {
               <span className="hidden sm:block">{s.label}</span>
             </div>
             {i < PIPELINE_STEPS.length - 1 && (
-              <div className={`w-6 h-px flex-shrink-0 transition-all ${done ? "bg-[#B8913A]/30" : "bg-[#DDD8D0]"}`}/>
+              <div className={`w-6 h-px flex-shrink-0 transition-all ${done ? "bg-[#BC5A34]/30" : "bg-[#DDD8D0]"}`}/>
             )}
           </div>
         );
@@ -74,7 +74,7 @@ function getBannerStyle(status: string) {
     return { wrap: "bg-green-50 border-green-200",  icon: "text-green-600", title: "text-green-800",  desc: "text-green-700" };
   if (status === "rejected")
     return { wrap: "bg-red-50 border-red-200",      icon: "text-red-500",   title: "text-red-800",   desc: "text-red-600" };
-  return   { wrap: "bg-[#FBF8F3] border-[#E8D9B5]", icon: "text-[#B8913A]", title: "text-[#0F1320]", desc: "text-[#7A8098]" };
+  return   { wrap: "bg-[#FBF8F3] border-[#E8D9B5]", icon: "text-[#BC5A34]", title: "text-[#0F1320]", desc: "text-[#7A8098]" };
 }
 
 // ─── Status icons ─────────────────────────────────────────────
@@ -123,7 +123,7 @@ function ActivityMetric({ label, value, tone = "neutral" }: {
   tone?: "neutral" | "gold" | "emerald";
 }) {
   const toneCls = tone === "gold"
-    ? "text-[#B8913A]"
+    ? "text-[#BC5A34]"
     : tone === "emerald" ? "text-emerald-600" : "text-[#0F1320]";
   return (
     <div className="flex-1 min-w-0 text-center sm:text-left">
@@ -177,7 +177,7 @@ function ActivityCard({
             const note  = evt.metadata?.admin_notes_public;
             return (
               <div key={evt.id} className="flex items-start gap-3 text-sm">
-                <div className="flex-shrink-0 w-2 h-2 rounded-full bg-[#B8913A] mt-1.5"/>
+                <div className="flex-shrink-0 w-2 h-2 rounded-full bg-[#BC5A34] mt-1.5"/>
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-baseline gap-x-2">
                     <span className="text-[#0F1320] font-medium">{label}</span>
@@ -251,7 +251,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       {/* ── Breadcrumb ── */}
       <div className="flex items-center gap-2 mb-6 text-sm">
         <Link href="/dashboard/projects"
-          className="text-[#9A9FAF] hover:text-[#B8913A] transition-colors flex items-center gap-1.5">
+          className="text-[#9A9FAF] hover:text-[#BC5A34] transition-colors flex items-center gap-1.5">
           <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/>
           </svg>
@@ -275,7 +275,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
               <div className={`font-semibold mb-0.5 ${banner.title}`}>{sm.title}</div>
               <p className={`text-sm ${banner.desc}`}>{sm.desc}</p>
               {(project.admin_notes_public || project.admin_notes) && (
-                <div className="mt-3 p-3 bg-white/60 rounded-lg border border-[#E8E2D9]">
+                <div className="mt-3 p-3 bg-[#F7F5F1]0 rounded-lg border border-[#E8E2D9]">
                   <div className="text-xs text-[#8A8FA8] mb-1 font-semibold uppercase tracking-wider">Note de l&apos;équipe</div>
                   <p className="text-[#0F1320] text-sm">{project.admin_notes_public || project.admin_notes}</p>
                 </div>
@@ -283,7 +283,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
               {project.status === "rejected" && (
                 <div className="mt-4 flex gap-2">
                   <Link href={`/dashboard/projects/${project.id}/edit`}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white text-sm font-medium transition-colors">
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-[#22201B] text-sm font-medium transition-colors">
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"/>
                     </svg>
@@ -309,12 +309,12 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       <div className="flex items-start justify-between gap-4 mb-6">
         <div className="flex items-start gap-4 flex-1 min-w-0">
           {/* Logo badge */}
-          <div className="w-14 h-14 rounded-xl flex-shrink-0 overflow-hidden border-2 border-[#E8D9B5] bg-[#B8913A]/10 flex items-center justify-center">
+          <div className="w-14 h-14 rounded-xl flex-shrink-0 overflow-hidden border-2 border-[#E8D9B5] bg-[#BC5A34]/10 flex items-center justify-center">
             {project.project_logo_url ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={project.project_logo_url} alt={project.title} className="w-full h-full object-cover"/>
             ) : (
-              <span className="text-[#B8913A] font-bold text-xl">{project.title.charAt(0).toUpperCase()}</span>
+              <span className="text-[#BC5A34] font-bold text-xl">{project.title.charAt(0).toUpperCase()}</span>
             )}
           </div>
           <div className="flex-1 min-w-0">
@@ -341,7 +341,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           )}
           {project.status !== "approved" && project.status !== "funded" && (
             <Link href={`/dashboard/projects/${project.id}/edit`}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-white/10 text-white/50 hover:text-white/80 hover:border-white/20 text-sm transition-all">
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#E2DACB] text-[#6B655B] hover:text-[#22201B]/80 hover:border-white/20 text-sm transition-all">
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"/>
               </svg>
@@ -409,7 +409,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             <h2 className="text-[10px] font-bold text-[#B8A898] uppercase tracking-widest mb-3">Récapitulatif</h2>
             {project.amount_requested && (
               <div className="text-center py-3 border-b border-[#EDE7DE] mb-3">
-                <div className="text-2xl font-bold text-[#B8913A]">{formatCurrency(project.amount_requested, project.currency)}</div>
+                <div className="text-2xl font-bold text-[#BC5A34]">{formatCurrency(project.amount_requested, project.currency)}</div>
                 <div className="text-[#9A9FAF] text-xs mt-1">Financement recherché</div>
               </div>
             )}
@@ -420,7 +420,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           {/* Draft CTA */}
           {project.status === "draft" && (
             <div className="card p-5 border-[#E8D9B5] bg-[#FBF8F3]">
-              <h3 className="text-[#B8913A] font-semibold text-sm mb-2">Prochaine étape</h3>
+              <h3 className="text-[#BC5A34] font-semibold text-sm mb-2">Prochaine étape</h3>
               <p className="text-[#7A8098] text-xs mb-3 leading-relaxed">
                 Finalisez votre dossier et soumettez-le pour examen par notre équipe sous 48h.
               </p>
@@ -433,14 +433,14 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           {/* Boost CTA — shown once submitted */}
           {(project.status === "submitted" || project.status === "under_review" || project.status === "approved") && (
             <Link href={`/dashboard/projects/${project.id}/boost`}
-              className="card p-5 border-[#E8D9B5] bg-[#FBF8F3] hover:border-[#B8913A]/40 hover:shadow-sm transition-all group block">
+              className="card p-5 border-[#E8D9B5] bg-[#FBF8F3] hover:border-[#BC5A34]/40 hover:shadow-sm transition-all group block">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <svg className="w-4 h-4 text-[#B8913A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <svg className="w-4 h-4 text-[#BC5A34]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>
                     </svg>
-                    <h3 className="text-[#B8913A] font-semibold text-sm">Boostez votre visibilité</h3>
+                    <h3 className="text-[#BC5A34] font-semibold text-sm">Boostez votre visibilité</h3>
                   </div>
                   <p className="text-[#7A8098] text-xs leading-relaxed">
                     Complétez votre profil pour maximiser vos chances d&apos;être mis en relation avec les bons investisseurs.
@@ -450,17 +450,17 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                 <div className="flex-shrink-0 relative w-14 h-14">
                   <svg className="w-14 h-14 -rotate-90" viewBox="0 0 44 44">
                     <circle cx="22" cy="22" r="18" fill="none" stroke="#EDE7DE" strokeWidth="4"/>
-                    <circle cx="22" cy="22" r="18" fill="none" stroke="#B8913A" strokeWidth="4"
+                    <circle cx="22" cy="22" r="18" fill="none" stroke="#BC5A34" strokeWidth="4"
                       strokeDasharray={`${((project.boost_score ?? 0) / 100) * 113} 113`}
                       strokeLinecap="round"/>
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <div className="text-[#B8913A] font-bold text-sm leading-none">{project.boost_score ?? 0}</div>
+                    <div className="text-[#BC5A34] font-bold text-sm leading-none">{project.boost_score ?? 0}</div>
                     <div className="text-[#C0BAB2] text-[8px] leading-none mt-0.5">/ 100</div>
                   </div>
                 </div>
               </div>
-              <div className="mt-3 flex items-center gap-1 text-xs text-[#B8913A]/70 font-medium group-hover:text-[#B8913A] transition-colors">
+              <div className="mt-3 flex items-center gap-1 text-xs text-[#BC5A34]/70 font-medium group-hover:text-[#BC5A34] transition-colors">
                 Compléter mon dossier
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
@@ -475,7 +475,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
               <h2 className="text-[10px] font-bold text-[#B8A898] uppercase tracking-widest mb-3">Impact</h2>
               {project.job_creation_expected && (
                 <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-2xl font-bold text-[#B8913A]">{project.job_creation_expected}</span>
+                  <span className="text-2xl font-bold text-[#BC5A34]">{project.job_creation_expected}</span>
                   <span className="text-[#9A9FAF] text-xs">emplois créés estimés</span>
                 </div>
               )}
@@ -488,12 +488,12 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           {/* Investor view link */}
           {project.status === "approved" && (
             <Link href={`/dashboard/projects/${project.id}/apercu`}
-              className="card p-5 border-[#E8D9B5] hover:border-[#B8913A]/40 hover:shadow-sm transition-all group flex items-center justify-between">
+              className="card p-5 border-[#E8D9B5] hover:border-[#BC5A34]/40 hover:shadow-sm transition-all group flex items-center justify-between">
               <div>
-                <div className="text-[#B8913A] font-semibold text-sm mb-0.5">Aperçu investisseur</div>
+                <div className="text-[#BC5A34] font-semibold text-sm mb-0.5">Aperçu investisseur</div>
                 <div className="text-[#9A9FAF] text-xs">Vue telle que présentée</div>
               </div>
-              <svg className="w-4 h-4 text-[#C8C0B5] group-hover:text-[#B8913A] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <svg className="w-4 h-4 text-[#C8C0B5] group-hover:text-[#BC5A34] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
               </svg>
             </Link>

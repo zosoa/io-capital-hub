@@ -6,7 +6,7 @@ export default function DashboardProjectsLoading() {
           <div className="h-7 w-40 bg-black/8 rounded mb-2"/>
           <div className="h-4 w-64 bg-black/5 rounded"/>
         </div>
-        <div className="h-10 w-36 bg-[#B8913A]/20 rounded-lg"/>
+        <div className="h-10 w-36 bg-[#BC5A34]/20 rounded-lg"/>
       </div>
       <div className="mb-6 flex gap-2 animate-pulse">
         {[1,2,3,4,5].map(i => (

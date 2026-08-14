@@ -7,13 +7,13 @@ export function Breadcrumb({ crumbs }: { crumbs: Crumb[] }) {
     <nav className="flex items-center gap-1.5 mb-6 text-sm flex-wrap" aria-label="Breadcrumb">
       {crumbs.map((c, i) => (
         <span key={i} className="flex items-center gap-1.5">
-          {i > 0 && <span className="text-white/20">/</span>}
+          {i > 0 && <span className="text-[#B3AA9C]">/</span>}
           {c.href ? (
-            <Link href={c.href} className="text-white/35 hover:text-[#B8913A] transition-colors">
+            <Link href={c.href} className="text-[#918A7C] hover:text-[#BC5A34] transition-colors">
               {c.label}
             </Link>
           ) : (
-            <span className="text-white/70 font-medium">{c.label}</span>
+            <span className="text-[#575249] font-medium">{c.label}</span>
           )}
         </span>
       ))}

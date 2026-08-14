@@ -19,7 +19,7 @@ function StatCard({ label, value, accent = false }: {
 }) {
   return (
     <div className="card p-5">
-      <div className={`text-3xl font-bold tracking-tight mb-1 ${accent ? "text-[#B8913A]" : "text-[#0F1320]"}`}>
+      <div className={`text-3xl font-bold tracking-tight mb-1 ${accent ? "text-[#BC5A34]" : "text-[#0F1320]"}`}>
         {value}
       </div>
       <div className="text-[#8A8FA8] text-xs uppercase tracking-wider font-semibold">{label}</div>
@@ -79,18 +79,18 @@ async function InvestorDashboard({ userId, firstName }: { userId: string; firstN
   const greeting = hour < 12 ? "Bonjour" : hour < 18 ? "Bon après-midi" : "Bonsoir";
 
   return (
-    <div className="p-6 md:p-8 pt-[68px] md:pt-8 max-w-5xl mx-auto text-white">
+    <div className="p-6 md:p-8 pt-[68px] md:pt-8 max-w-5xl mx-auto text-[#22201B]">
       {/* Header */}
       <div className="mb-8 flex items-start justify-between gap-4">
         <div>
-          <p className="text-white/40 text-sm font-medium mb-1">{greeting}</p>
-          <h1 className="font-display text-2xl md:text-3xl font-bold text-white">{firstName}</h1>
-          <p className="text-white/40 text-sm mt-1.5">
+          <p className="text-[#918A7C] text-sm font-medium mb-1">{greeting}</p>
+          <h1 className="font-display text-2xl md:text-3xl font-bold text-[#22201B]">{firstName}</h1>
+          <p className="text-[#918A7C] text-sm mt-1.5">
             Bienvenue sur votre espace investisseur — accédez aux opportunités du Deal Flow.
           </p>
         </div>
         <Link href="/dashboard/deal-flow"
-          className="flex-shrink-0 flex items-center gap-2 px-4 py-2.5 bg-[#B8913A]/15 border border-[#B8913A]/30 text-[#B8913A] rounded-lg text-sm font-medium hover:bg-[#B8913A]/25 transition-colors hidden sm:flex">
+          className="flex-shrink-0 flex items-center gap-2 px-4 py-2.5 bg-[#BC5A34]/15 border border-[#BC5A34]/30 text-[#BC5A34] rounded-lg text-sm font-medium hover:bg-[#BC5A34]/25 transition-colors hidden sm:flex">
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"/>
           </svg>
@@ -100,28 +100,28 @@ async function InvestorDashboard({ userId, firstName }: { userId: string; firstN
 
       {/* Investor profile card */}
       {investorProfile && (
-        <div className="mb-6 rounded-2xl border border-white/8 bg-white/3 p-5">
+        <div className="mb-6 rounded-2xl border border-[#EAE4D8] bg-white p-5">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-white/70 text-xs uppercase tracking-wider font-bold">Mon profil investisseur</h2>
-            <Link href="/dashboard/investor-profile" className="text-[#B8913A] text-xs hover:text-[#C8992A] transition-colors">
+            <h2 className="text-[#575249] text-xs uppercase tracking-wider font-bold">Mon profil investisseur</h2>
+            <Link href="/dashboard/investor-profile" className="text-[#BC5A34] text-xs hover:text-[#A44B29] transition-colors">
               Modifier →
             </Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div>
-              <div className="text-white/30 text-[10px] uppercase tracking-wider mb-0.5">Type</div>
-              <div className="text-white text-sm font-medium">{ROLE_TYPE_LABELS[investorProfile.role_type] || investorProfile.role_type}</div>
+              <div className="text-[#918A7C] text-[10px] uppercase tracking-wider mb-0.5">Type</div>
+              <div className="text-[#22201B] text-sm font-medium">{ROLE_TYPE_LABELS[investorProfile.role_type] || investorProfile.role_type}</div>
             </div>
             {investorProfile.priority_sectors && investorProfile.priority_sectors.length > 0 && (
               <div>
-                <div className="text-white/30 text-[10px] uppercase tracking-wider mb-0.5">Secteurs</div>
-                <div className="text-white text-sm font-medium">{investorProfile.priority_sectors.slice(0, 2).join(", ")}{investorProfile.priority_sectors.length > 2 ? ` +${investorProfile.priority_sectors.length - 2}` : ""}</div>
+                <div className="text-[#918A7C] text-[10px] uppercase tracking-wider mb-0.5">Secteurs</div>
+                <div className="text-[#22201B] text-sm font-medium">{investorProfile.priority_sectors.slice(0, 2).join(", ")}{investorProfile.priority_sectors.length > 2 ? ` +${investorProfile.priority_sectors.length - 2}` : ""}</div>
               </div>
             )}
             {(investorProfile.ticket_min || investorProfile.ticket_max) && (
               <div>
-                <div className="text-white/30 text-[10px] uppercase tracking-wider mb-0.5">Ticket</div>
-                <div className="text-white text-sm font-medium tabular-nums">
+                <div className="text-[#918A7C] text-[10px] uppercase tracking-wider mb-0.5">Ticket</div>
+                <div className="text-[#22201B] text-sm font-medium tabular-nums">
                   {investorProfile.ticket_min ? formatCurrency(investorProfile.ticket_min, investorProfile.ticket_currency || "USD") : "—"}
                   {" – "}
                   {investorProfile.ticket_max ? formatCurrency(investorProfile.ticket_max, investorProfile.ticket_currency || "USD") : "—"}
@@ -130,8 +130,8 @@ async function InvestorDashboard({ userId, firstName }: { userId: string; firstN
             )}
             {investorProfile.geographic_zones && investorProfile.geographic_zones.length > 0 && (
               <div>
-                <div className="text-white/30 text-[10px] uppercase tracking-wider mb-0.5">Zones</div>
-                <div className="text-white text-sm font-medium">{investorProfile.geographic_zones.slice(0, 2).join(", ")}{investorProfile.geographic_zones.length > 2 ? ` +${investorProfile.geographic_zones.length - 2}` : ""}</div>
+                <div className="text-[#918A7C] text-[10px] uppercase tracking-wider mb-0.5">Zones</div>
+                <div className="text-[#22201B] text-sm font-medium">{investorProfile.geographic_zones.slice(0, 2).join(", ")}{investorProfile.geographic_zones.length > 2 ? ` +${investorProfile.geographic_zones.length - 2}` : ""}</div>
               </div>
             )}
           </div>
@@ -140,9 +140,9 @@ async function InvestorDashboard({ userId, firstName }: { userId: string; firstN
 
       {/* Deal flow preview */}
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-white/70 text-xs uppercase tracking-wider font-bold">Opportunités récentes</h2>
+        <h2 className="text-[#575249] text-xs uppercase tracking-wider font-bold">Opportunités récentes</h2>
         <Link href="/dashboard/deal-flow"
-          className="text-[#B8913A] hover:text-[#C8992A] text-sm font-medium transition-colors flex items-center gap-1.5">
+          className="text-[#BC5A34] hover:text-[#A44B29] text-sm font-medium transition-colors flex items-center gap-1.5">
           Voir tout
           <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
@@ -153,58 +153,58 @@ async function InvestorDashboard({ userId, firstName }: { userId: string; firstN
       {approvedProjects && approvedProjects.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
           {approvedProjects.map(project => (
-            <div key={project.id} className="rounded-xl border border-white/8 bg-white/3 p-4 hover:border-[#B8913A]/30 transition-colors">
+            <div key={project.id} className="rounded-xl border border-[#EAE4D8] bg-white p-4 hover:border-[#BC5A34]/30 transition-colors">
               <div className="flex items-start justify-between gap-2 mb-2">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#B8913A] bg-[#B8913A]/10 px-2 py-0.5 rounded-full">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#BC5A34] bg-[#BC5A34]/10 px-2 py-0.5 rounded-full">
                   {SECTOR_LABELS[project.sector || ""] || project.sector || "—"}
                 </span>
                 {project.boost_score > 0 && (
-                  <span className="text-[10px] text-white/30 font-mono">{project.boost_score}pts</span>
+                  <span className="text-[10px] text-[#918A7C] font-mono">{project.boost_score}pts</span>
                 )}
               </div>
-              <h3 className="text-white font-semibold text-sm mb-1 leading-snug">{project.title}</h3>
+              <h3 className="text-[#22201B] font-semibold text-sm mb-1 leading-snug">{project.title}</h3>
               {project.tagline && (
-                <p className="text-white/40 text-xs leading-snug mb-3 line-clamp-2">{project.tagline}</p>
+                <p className="text-[#918A7C] text-xs leading-snug mb-3 line-clamp-2">{project.tagline}</p>
               )}
               <div className="flex items-center justify-between text-xs">
-                <span className="text-white/30">{STAGE_LABELS[project.stage || ""] || project.stage || "—"}</span>
+                <span className="text-[#918A7C]">{STAGE_LABELS[project.stage || ""] || project.stage || "—"}</span>
                 {project.amount_requested && (
-                  <span className="text-white/70 font-semibold tabular-nums">{formatCurrency(project.amount_requested, project.currency)}</span>
+                  <span className="text-[#575249] font-semibold tabular-nums">{formatCurrency(project.amount_requested, project.currency)}</span>
                 )}
               </div>
             </div>
           ))}
         </div>
       ) : (
-        <div className="rounded-xl border border-white/8 bg-white/3 p-8 text-center mb-6">
-          <p className="text-white/30 text-sm">Aucune opportunité disponible pour le moment.</p>
+        <div className="rounded-xl border border-[#EAE4D8] bg-white p-8 text-center mb-6">
+          <p className="text-[#918A7C] text-sm">Aucune opportunité disponible pour le moment.</p>
         </div>
       )}
 
       {/* Quick actions */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <Link href="/dashboard/deal-flow"
-          className="flex items-center gap-3 p-4 rounded-xl border border-white/8 bg-white/3 hover:border-[#B8913A]/30 hover:bg-[#B8913A]/5 transition-all group">
-          <div className="w-9 h-9 rounded-lg bg-[#B8913A]/10 border border-[#B8913A]/20 flex items-center justify-center text-[#B8913A] flex-shrink-0">
+          className="flex items-center gap-3 p-4 rounded-xl border border-[#EAE4D8] bg-white hover:border-[#BC5A34]/30 hover:bg-[#BC5A34]/5 transition-all group">
+          <div className="w-9 h-9 rounded-lg bg-[#BC5A34]/10 border border-[#BC5A34]/20 flex items-center justify-center text-[#BC5A34] flex-shrink-0">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"/>
             </svg>
           </div>
           <div>
-            <div className="text-white/80 font-medium text-sm group-hover:text-white transition-colors">Voir tout le deal flow →</div>
-            <div className="text-white/30 text-xs">Toutes les opportunités approuvées</div>
+            <div className="text-[#22201B]/80 font-medium text-sm group-hover:text-[#22201B] transition-colors">Voir tout le deal flow →</div>
+            <div className="text-[#918A7C] text-xs">Toutes les opportunités approuvées</div>
           </div>
         </Link>
         <Link href="/dashboard/investor-profile"
-          className="flex items-center gap-3 p-4 rounded-xl border border-white/8 bg-white/3 hover:border-[#B8913A]/30 hover:bg-[#B8913A]/5 transition-all group">
-          <div className="w-9 h-9 rounded-lg bg-[#B8913A]/10 border border-[#B8913A]/20 flex items-center justify-center text-[#B8913A] flex-shrink-0">
+          className="flex items-center gap-3 p-4 rounded-xl border border-[#EAE4D8] bg-white hover:border-[#BC5A34]/30 hover:bg-[#BC5A34]/5 transition-all group">
+          <div className="w-9 h-9 rounded-lg bg-[#BC5A34]/10 border border-[#BC5A34]/20 flex items-center justify-center text-[#BC5A34] flex-shrink-0">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
             </svg>
           </div>
           <div>
-            <div className="text-white/80 font-medium text-sm group-hover:text-white transition-colors">Modifier mon profil →</div>
-            <div className="text-white/30 text-xs">Critères, secteurs, ticket d&apos;intervention</div>
+            <div className="text-[#22201B]/80 font-medium text-sm group-hover:text-[#22201B] transition-colors">Modifier mon profil →</div>
+            <div className="text-[#918A7C] text-xs">Critères, secteurs, ticket d&apos;intervention</div>
           </div>
         </Link>
       </div>
@@ -278,8 +278,8 @@ export default async function DashboardPage() {
 
         /* Empty state */
         <div className="card p-12 text-center">
-          <div className="w-14 h-14 bg-[#B8913A]/8 border border-[#B8913A]/20 rounded-2xl flex items-center justify-center mx-auto mb-5">
-            <svg className="w-7 h-7 text-[#B8913A]/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <div className="w-14 h-14 bg-[#BC5A34]/8 border border-[#BC5A34]/20 rounded-2xl flex items-center justify-center mx-auto mb-5">
+            <svg className="w-7 h-7 text-[#BC5A34]/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
             </svg>
           </div>
@@ -302,7 +302,7 @@ export default async function DashboardPage() {
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-sm font-bold text-[#0F1320] uppercase tracking-wider">Dossiers récents</h2>
             <Link href="/dashboard/projects"
-              className="text-[#B8913A] hover:text-[#9A7B3A] text-sm font-medium transition-colors flex items-center gap-1.5">
+              className="text-[#BC5A34] hover:text-[#A44B29] text-sm font-medium transition-colors flex items-center gap-1.5">
               Voir tout
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
@@ -316,11 +316,11 @@ export default async function DashboardPage() {
                 className={`flex items-center gap-4 px-5 py-4 hover:bg-[#F8F5F0] transition-colors group ${
                   i < (projects?.length || 0) - 1 ? "border-b border-[#EDE7DE]" : ""
                 }`}>
-                <div className="w-8 h-8 rounded-lg bg-[#B8913A]/8 border border-[#B8913A]/15 flex items-center justify-center text-[#B8913A]/70 group-hover:text-[#B8913A] flex-shrink-0 transition-colors">
+                <div className="w-8 h-8 rounded-lg bg-[#BC5A34]/8 border border-[#BC5A34]/15 flex items-center justify-center text-[#BC5A34]/70 group-hover:text-[#BC5A34] flex-shrink-0 transition-colors">
                   <SectorIcon sector={p.sector}/>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-[#0F1320] font-medium text-sm truncate group-hover:text-[#B8913A] transition-colors">
+                  <div className="text-[#0F1320] font-medium text-sm truncate group-hover:text-[#BC5A34] transition-colors">
                     {p.title}
                   </div>
                   <div className="text-[#9A9FAF] text-xs mt-0.5">
@@ -334,7 +334,7 @@ export default async function DashboardPage() {
                     </span>
                   )}
                   <StatusPill status={p.status}/>
-                  <svg className="w-4 h-4 text-[#C8C0B5] group-hover:text-[#B8913A] transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <svg className="w-4 h-4 text-[#C8C0B5] group-hover:text-[#BC5A34] transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
                 </div>
@@ -354,9 +354,9 @@ export default async function DashboardPage() {
       )}
 
       {/* ── Advisory tip ── */}
-      <div className="mt-6 card p-5 border-l-2 border-l-[#B8913A] rounded-l-none" style={{ borderLeftWidth: 3 }}>
+      <div className="mt-6 card p-5 border-l-2 border-l-[#BC5A34] rounded-l-none" style={{ borderLeftWidth: 3 }}>
         <div className="flex items-start gap-3">
-          <svg className="w-4 h-4 text-[#B8913A] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <svg className="w-4 h-4 text-[#BC5A34] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/>
           </svg>
           <div>
@@ -375,7 +375,7 @@ export default async function DashboardPage() {
         {/* Header */}
         <div className="px-6 py-5 border-b border-[#EDE7DE] bg-[#FAF7F3]">
           <div className="flex items-center gap-2.5">
-            <svg className="w-4 h-4 text-[#B8913A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <svg className="w-4 h-4 text-[#BC5A34]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
               <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
             </svg>
@@ -435,13 +435,13 @@ export default async function DashboardPage() {
                   {i < 2 && (
                     <>
                       <div className="hidden sm:block absolute top-5 left-[calc(50%+1.25rem)] right-0 h-px bg-[#EDE7DE]"/>
-                      {(isDone) && <div className="hidden sm:block absolute top-5 left-[calc(50%+1.25rem)] right-0 h-px bg-[#B8913A]/40"/>}
+                      {(isDone) && <div className="hidden sm:block absolute top-5 left-[calc(50%+1.25rem)] right-0 h-px bg-[#BC5A34]/40"/>}
                     </>
                   )}
                   {/* Icon circle */}
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 transition-all ${
-                    isDone   ? "bg-[#B8913A]/12 border border-[#B8913A]/30 text-[#B8913A]" :
-                    isActive ? "bg-[#F0EBDF] border-2 border-[#B8913A]/50 text-[#B8913A]" :
+                    isDone   ? "bg-[#BC5A34]/12 border border-[#BC5A34]/30 text-[#BC5A34]" :
+                    isActive ? "bg-[#F0EBDF] border-2 border-[#BC5A34]/50 text-[#BC5A34]" :
                                "bg-[#F5F3EF] border border-[#EDE7DE] text-[#C8C0B5]"
                   }`}>
                     {isDone ? (
@@ -457,8 +457,8 @@ export default async function DashboardPage() {
                     </div>
                     <div className="text-[11px] text-[#9A9FAF] leading-snug">{step.sub}</div>
                     {isActive && !isDone && (
-                      <div className="mt-1.5 inline-flex items-center gap-1 text-[10px] text-[#B8913A] font-medium">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#B8913A] animate-pulse"/>
+                      <div className="mt-1.5 inline-flex items-center gap-1 text-[10px] text-[#BC5A34] font-medium">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#BC5A34] animate-pulse"/>
                         En cours
                       </div>
                     )}
@@ -472,7 +472,7 @@ export default async function DashboardPage() {
         {/* Opportunities */}
         <div className="px-6 pb-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="rounded-xl border border-[#EDE7DE] bg-[#FAF7F3] p-4 flex items-start gap-3">
-            <div className="w-8 h-8 rounded-lg bg-[#B8913A]/10 border border-[#B8913A]/20 flex items-center justify-center text-[#B8913A] flex-shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-[#BC5A34]/10 border border-[#BC5A34]/20 flex items-center justify-center text-[#BC5A34] flex-shrink-0">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>
               </svg>
@@ -485,7 +485,7 @@ export default async function DashboardPage() {
             </div>
           </div>
           <div className="rounded-xl border border-[#EDE7DE] bg-[#FAF7F3] p-4 flex items-start gap-3">
-            <div className="w-8 h-8 rounded-lg bg-[#B8913A]/10 border border-[#B8913A]/20 flex items-center justify-center text-[#B8913A] flex-shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-[#BC5A34]/10 border border-[#BC5A34]/20 flex items-center justify-center text-[#BC5A34] flex-shrink-0">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/>
               </svg>

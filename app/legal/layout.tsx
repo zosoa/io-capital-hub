@@ -1,16 +1,15 @@
 import Link from "next/link";
-import { LogoBadge } from "@/components/ui/logo";
 
-// Shared layout for /legal/* pages — clean reading surface, dark brand.
+// Shared layout for /legal/* pages — clean editorial reading surface.
 export default function LegalLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-[#07090F] text-white">
-      <header className="border-b border-white/5 px-6 py-5">
+    <div className="ed min-h-screen bg-[#F7F5F1] text-[#22201B]">
+      <header className="bg-white border-b border-[#EAE4D8] px-6 py-5">
         <Link href="/" className="inline-flex items-center gap-3">
-          <LogoBadge height={28}/>
+          <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-8 w-auto"/>
           <div>
-            <div className="text-white font-bold text-sm leading-tight tracking-wide">CEO Summit IO</div>
-            <div className="text-[#B8913A] font-medium text-[10px] tracking-widest uppercase leading-tight mt-0.5">
+            <div className="font-display text-[#22201B] font-semibold text-base leading-tight tracking-wide">CEO Summit IO</div>
+            <div className="text-[#BC5A34] font-semibold text-[10px] tracking-widest uppercase leading-tight mt-0.5">
               Investment Hub · Cluster Capital &amp; Finance
             </div>
           </div>
@@ -22,10 +21,10 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
       </main>
 
       <footer className="max-w-3xl mx-auto px-6 lg:px-10 pb-16">
-        <nav className="flex flex-wrap gap-6 pt-8 border-t border-white/6 text-sm text-white/40">
-          <Link href="/" className="hover:text-white/70 transition-colors">← Retour à l&apos;accueil</Link>
-          <Link href="/legal/cgu"     className="hover:text-white/70 transition-colors">CGU</Link>
-          <Link href="/legal/privacy" className="hover:text-white/70 transition-colors">Politique de confidentialité</Link>
+        <nav className="flex flex-wrap gap-6 pt-8 border-t border-[#EAE4D8] text-sm text-[#918A7C]">
+          <Link href="/" className="hover:text-[#22201B] transition-colors">← Retour à l&apos;accueil</Link>
+          <Link href="/legal/cgu"     className="hover:text-[#22201B] transition-colors">CGU</Link>
+          <Link href="/legal/privacy" className="hover:text-[#22201B] transition-colors">Politique de confidentialité</Link>
         </nav>
       </footer>
     </div>

@@ -56,3 +56,11 @@ next-env.d.ts
 
 # Offline landing snapshot (local archive, not deployed)
 /offline-snapshot/
+
+# Design mockups, sibling-project previews & scratch (not part of the app)
+/redesign/
+/_fk_preview/
+/io-capital-hub/
+*.pptx
+PREVIEW_LANDING.html
+/Video Hero loop*.mp4

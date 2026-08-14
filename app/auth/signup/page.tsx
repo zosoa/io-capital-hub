@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
-import { LogoBadge } from "@/components/ui/logo";
 import Turnstile from "@/components/auth/Turnstile";
 
 import { COUNTRIES } from "@/lib/countries";
@@ -13,16 +12,16 @@ import { friendlyError } from "@/lib/friendlyError";
 function PasswordStrength({ password }: { password: string }) {
   const len = password.length;
   const strength = len === 0 ? 0 : len < 6 ? 1 : len < 8 ? 2 : len < 12 ? 3 : 4;
-  const colors = ["bg-white/10","bg-red-400","bg-yellow-400","bg-[#B8913A]","bg-green-400"];
+  const colors = ["bg-[#EAE4D8]","bg-red-500","bg-yellow-500","bg-[#BC5A34]","bg-green-500"];
   const labels = ["","Trop court","Faible","Bon","Fort"];
   return (
     <div className="mt-2">
       <div className="flex gap-1 mb-1">
         {[1,2,3,4].map(i=>(
-          <div key={i} className={`h-1 flex-1 rounded-full transition-all duration-300 ${i <= strength ? colors[strength] : "bg-white/10"}`}/>
+          <div key={i} className={`h-1 flex-1 rounded-full transition-all duration-300 ${i <= strength ? colors[strength] : "bg-[#EAE4D8]"}`}/>
         ))}
       </div>
-      {len > 0 && <p className={`text-xs ${strength < 2 ? "text-red-400" : strength < 3 ? "text-yellow-400" : "text-white/40"}`}>{labels[strength]}</p>}
+      {len > 0 && <p className={`text-xs ${strength < 2 ? "text-red-600" : strength < 3 ? "text-yellow-600" : "text-[#918A7C]"}`}>{labels[strength]}</p>}
     </div>
   );
 }
@@ -46,6 +45,23 @@ function SignupForm() {
   const handleCaptcha = useCallback((token: string) => setCaptchaToken(token), []);
   // If the widget isn't configured (dev), treat as "not required".
   const captchaConfigured = typeof process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY === "string" && process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY.length > 0;
+
+  // Pre-onboarding handoff: prefill name / email / country from the /eligibilite
+  // funnel (stored in sessionStorage). The full project data is carried into the
+  // project wizard after signup; here we only lift the identity fields.
+  useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem("capitalhub_lead");
+      if (!raw) return;
+      const lead = JSON.parse(raw) as { full_name?: string; email?: string; country?: string };
+      setForm(f => ({
+        ...f,
+        full_name: f.full_name || lead.full_name || "",
+        email:     f.email     || lead.email     || "",
+        country:   lead.country && COUNTRIES.includes(lead.country) ? lead.country : f.country,
+      }));
+    } catch { /* private mode / bad JSON — ignore */ }
+  }, []);
 
   function update(k: string, v: string) { setForm(f => ({ ...f, [k]: v })); }
 
@@ -126,30 +142,30 @@ function SignupForm() {
   // ── Email confirmation screen ──────────────────────────────
   if (confirmed) {
     return (
-      <div className="min-h-screen bg-[#06080E] flex items-center justify-center px-4 py-16">
+      <div className="min-h-screen ed bg-[#F7F5F1] flex items-center justify-center px-4 py-16">
         <div className="relative z-10 w-full max-w-md text-center">
           <Link href="/" className="flex flex-col items-center gap-3 mb-10">
-            <LogoBadge height={36}/>
+            <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-9 w-auto"/>
             <div>
-              <div className="font-bold text-white text-sm tracking-wide">CEO Summit IO</div>
-              <div className="text-[#B8913A] text-xs tracking-[0.15em] uppercase mt-0.5">Investment Hub · Cluster Capital &amp; Finance</div>
+              <div className="font-bold text-[#22201B] text-sm tracking-wide">CEO Summit IO</div>
+              <div className="text-[#BC5A34] text-xs tracking-[0.15em] uppercase mt-0.5">Investment Hub · Cluster Capital &amp; Finance</div>
             </div>
           </Link>
 
-          <div className="glass-card rounded-2xl p-10 border border-white/8">
+          <div className="bg-white rounded-2xl p-10 border border-[#EAE4D8] shadow-[0_30px_60px_-40px_rgba(34,32,27,0.28)]">
             {/* Envelope icon */}
-            <div className="w-16 h-16 bg-[#B8913A]/10 border border-[#B8913A]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <svg className="w-8 h-8 text-[#B8913A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <div className="w-16 h-16 bg-[#BC5A34]/10 border border-[#BC5A34]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <svg className="w-8 h-8 text-[#BC5A34]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
               </svg>
             </div>
 
-            <h1 className="font-display text-2xl font-bold text-white mb-2">Vérifiez vos emails</h1>
-            <p className="text-white/40 text-sm leading-relaxed mb-2">
+            <h1 className="font-display text-2xl font-bold text-[#22201B] mb-2">Vérifiez vos emails</h1>
+            <p className="text-[#918A7C] text-sm leading-relaxed mb-2">
               Un lien de confirmation a été envoyé à
             </p>
-            <p className="text-[#B8913A] font-medium mb-6">{confirmedEmail}</p>
-            <p className="text-white/30 text-xs leading-relaxed mb-8">
+            <p className="text-[#BC5A34] font-medium mb-6">{confirmedEmail}</p>
+            <p className="text-[#918A7C] text-xs leading-relaxed mb-8">
               Cliquez sur le lien dans l&apos;email pour activer votre compte, puis revenez vous connecter.
             </p>
 
@@ -158,9 +174,9 @@ function SignupForm() {
             </Link>
           </div>
 
-          <p className="text-white/15 text-xs mt-4">
+          <p className="text-[#B3AA9C] text-xs mt-4">
             Pas reçu ? Vérifiez vos spams ou{" "}
-            <button onClick={() => setConfirmed(false)} className="text-white/30 hover:text-white/50 underline transition-colors">
+            <button onClick={() => setConfirmed(false)} className="text-[#918A7C] hover:text-[#22201B]/50 underline transition-colors">
               recommencez
             </button>
           </p>
@@ -170,22 +186,22 @@ function SignupForm() {
   }
 
   return (
-    <div className="min-h-screen bg-[#06080E] flex items-center justify-center px-4 py-16">
+    <div className="min-h-screen ed bg-[#F7F5F1] flex items-center justify-center px-4 py-16">
 
       <div className="relative z-10 w-full max-w-lg">
         {/* Logo */}
         <Link href="/" className="flex flex-col items-center gap-3 mb-10">
-          <LogoBadge height={36}/>
+          <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-9 w-auto"/>
           <div className="text-center">
-            <div className="font-bold text-white text-sm tracking-wide">CEO Summit IO</div>
-            <div className="text-[#B8913A] text-xs tracking-[0.15em] uppercase mt-0.5">Investment Hub · Cluster Capital &amp; Finance</div>
+            <div className="font-bold text-[#22201B] text-sm tracking-wide">CEO Summit IO</div>
+            <div className="text-[#BC5A34] text-xs tracking-[0.15em] uppercase mt-0.5">Investment Hub · Cluster Capital &amp; Finance</div>
           </div>
         </Link>
         {isInvestor && (
           <div className="flex items-center justify-center gap-2 mb-6">
-            <div className="h-px flex-1 bg-white/8"/>
-            <span className="text-[#B8913A]/70 text-xs font-medium tracking-wide px-3">Réseau investisseur</span>
-            <div className="h-px flex-1 bg-white/8"/>
+            <div className="h-px flex-1 bg-[#EAE4D8]"/>
+            <span className="text-[#BC5A34]/70 text-xs font-medium tracking-wide px-3">Réseau investisseur</span>
+            <div className="h-px flex-1 bg-[#EAE4D8]"/>
           </div>
         )}
 
@@ -198,7 +214,7 @@ function SignupForm() {
             <div key={s.n} className="flex items-center gap-2">
               <div className="flex items-center gap-2">
                 <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold transition-all duration-300 ${
-                  step > s.n ? "bg-[#B8913A] text-white" : step === s.n ? "bg-[#B8913A]/15 border border-[#B8913A]/40 text-[#B8913A]" : "bg-white/5 text-white/25 border border-white/10"
+                  step > s.n ? "bg-[#BC5A34] text-white" : step === s.n ? "bg-[#BC5A34]/15 border border-[#BC5A34]/40 text-[#BC5A34]" : "bg-[#F7F5F1] text-[#8A8275] border border-[#E2DACB]"
                 }`}>
                   {step > s.n ? (
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -206,27 +222,27 @@ function SignupForm() {
                     </svg>
                   ) : s.n}
                 </div>
-                <span className={`text-xs hidden sm:block transition-colors ${step === s.n ? "text-white/60" : "text-white/20"}`}>{s.label}</span>
+                <span className={`text-xs hidden sm:block transition-colors ${step === s.n ? "text-[#575249]" : "text-[#B3AA9C]"}`}>{s.label}</span>
               </div>
-              {i < 1 && <div className={`w-12 h-px transition-all duration-300 ${step > 1 ? "bg-[#B8913A]/50" : "bg-white/10"}`}/>}
+              {i < 1 && <div className={`w-12 h-px transition-all duration-300 ${step > 1 ? "bg-[#BC5A34]/50" : "bg-[#EAE4D8]"}`}/>}
             </div>
           ))}
         </div>
 
-        <div className="glass-card rounded-2xl p-8 border border-white/8">
-          <h1 className="font-display text-2xl font-bold text-white mb-1.5">
+        <div className="bg-white rounded-2xl p-8 border border-[#EAE4D8] shadow-[0_30px_60px_-40px_rgba(34,32,27,0.28)]">
+          <h1 className="font-display text-2xl font-bold text-[#22201B] mb-1.5">
             {step === 1
               ? (isInvestor ? "Rejoindre le réseau investisseur" : "Créer votre compte")
               : (isInvestor ? "Votre profil professionnel" : "Votre profil professionnel")}
           </h1>
-          <p className="text-white/40 text-sm mb-7">
+          <p className="text-[#918A7C] text-sm mb-7">
             {step === 1
               ? (isInvestor ? "Accès gratuit · Réseau qualifié Océan Indien & Afrique" : "Accès 100% gratuit · Aucune carte bancaire requise")
               : (isInvestor ? "Ces informations nous permettent de vous envoyer les bons deals" : "Aidez-nous à mieux vous mettre en relation avec les investisseurs")}
           </p>
 
           {error && (
-            <div className="mb-5 p-3 bg-red-500/8 border border-red-500/20 rounded-lg text-red-400 text-sm flex items-center gap-2">
+            <div className="mb-5 p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm flex items-center gap-2">
               <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9.303 3.376c.866 1.5-.217 3.374-1.948 3.374H4.645c-1.73 0-2.813-1.874-1.948-3.374l7.02-12.124c.866-1.5 3.032-1.5 3.898 0l6.588 11.375z"/>
               </svg>
@@ -257,7 +273,7 @@ function SignupForm() {
                 <input type="password" required value={form.confirm_password} onChange={e=>update("confirm_password",e.target.value)}
                   className="form-input" placeholder="••••••••" autoComplete="new-password"/>
                 {form.confirm_password && form.password !== form.confirm_password && (
-                  <p className="text-red-400 text-xs mt-1.5">Les mots de passe ne correspondent pas</p>
+                  <p className="text-red-600 text-xs mt-1.5">Les mots de passe ne correspondent pas</p>
                 )}
               </div>
               <button type="submit" className="btn-primary w-full justify-center py-3.5 mt-1">
@@ -322,21 +338,21 @@ function SignupForm() {
             </form>
           )}
 
-          <div className="mt-6 pt-5 border-t border-white/5 text-center text-sm text-white/30">
+          <div className="mt-6 pt-5 border-t border-[#EAE4D8] text-center text-sm text-[#918A7C]">
             {isInvestor ? "Déjà membre du réseau ?" : "Déjà inscrit ?"}{" "}
-            <Link href="/auth/login" className="text-[#B8913A] hover:text-[#C8992A] font-medium transition-colors">
+            <Link href="/auth/login" className="text-[#BC5A34] hover:text-[#A44B29] font-medium transition-colors">
               Se connecter
             </Link>
           </div>
         </div>
 
-        <p className="text-white/25 text-xs text-center mt-4 leading-relaxed">
+        <p className="text-[#8A8275] text-xs text-center mt-4 leading-relaxed">
           En créant un compte, vous acceptez nos{" "}
-          <Link href="/legal/cgu" className="text-[#B8913A]/80 hover:text-[#B8913A] underline underline-offset-2 transition-colors">
+          <Link href="/legal/cgu" className="text-[#BC5A34]/80 hover:text-[#BC5A34] underline underline-offset-2 transition-colors">
             CGU
           </Link>
           {" "}et notre{" "}
-          <Link href="/legal/privacy" className="text-[#B8913A]/80 hover:text-[#B8913A] underline underline-offset-2 transition-colors">
+          <Link href="/legal/privacy" className="text-[#BC5A34]/80 hover:text-[#BC5A34] underline underline-offset-2 transition-colors">
             politique de confidentialité
           </Link>.
         </p>
@@ -348,7 +364,7 @@ function SignupForm() {
 // useSearchParams() requires a Suspense boundary for Next 15 prerendering.
 export default function SignupPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#06080E]"/>}>
+    <Suspense fallback={<div className="min-h-screen ed bg-[#F7F5F1]"/>}>
       <SignupForm/>
     </Suspense>
   );

@@ -83,13 +83,13 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
     <div className="flex flex-col h-full">
 
       {/* ── Logo + bell ── */}
-      <div className="px-5 pt-6 pb-5 border-b border-white/6">
+      <div className="px-5 pt-6 pb-5 border-b border-white/10">
         <div className="flex items-start justify-between gap-2">
           <Link href="/" className="block group flex-1 min-w-0">
             <LogoBadge height={30} className="mb-3"/>
             <div className="mt-2">
-              <div className="text-white/90 font-semibold text-xs tracking-wide leading-none">Investment Hub</div>
-              <div className="text-[#B8913A]/70 text-[10px] tracking-widest uppercase mt-1 leading-none font-medium">
+              <div className="text-white font-semibold text-xs tracking-wide leading-none">Investment Hub</div>
+              <div className="text-[#DDB47E]/70 text-[10px] tracking-widest uppercase mt-1 leading-none font-medium">
                 Cluster Capital &amp; Finance
               </div>
             </div>
@@ -99,7 +99,7 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
       </div>
 
       {/* ── User mini-card ── */}
-      <div className="mx-3 mt-4 mb-2 rounded-lg border border-white/6 bg-white/4 px-3 py-3">
+      <div className="mx-3 mt-4 mb-2 rounded-lg border border-white/10 bg-white/6 px-3 py-3">
 
         {/* Row 1: avatar + name */}
         <div className="flex items-center gap-2.5">
@@ -110,15 +110,15 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
               alt={profile.full_name || ""}
             />
           ) : (
-            <div className="w-8 h-8 rounded-full bg-[#B8913A]/15 border border-[#B8913A]/25 flex items-center justify-center text-[#B8913A] font-semibold text-xs flex-shrink-0">
+            <div className="w-8 h-8 rounded-full bg-[#DDB47E]/15 border border-[#DDB47E]/25 flex items-center justify-center text-[#DDB47E] font-semibold text-xs flex-shrink-0">
               {profile?.full_name?.[0]?.toUpperCase() || "U"}
             </div>
           )}
           <div className="min-w-0 flex-1">
-            <div className="text-white/85 text-xs font-medium truncate leading-none mb-0.5">
+            <div className="text-white text-xs font-medium truncate leading-none mb-0.5">
               {profile?.full_name || "Utilisateur"}
             </div>
-            <div className="text-white/30 text-[10px] truncate leading-none">
+            <div className="text-white/45 text-[10px] truncate leading-none">
               {profile?.email || ""}
             </div>
           </div>
@@ -126,7 +126,7 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
 
         {/* Row 2: company logo + org name */}
         {(profile?.company_logo_url || profile?.organization) && (
-          <div className="flex items-center gap-2 mt-2.5 pt-2.5 border-t border-white/6">
+          <div className="flex items-center gap-2 mt-2.5 pt-2.5 border-t border-white/10">
             {profile.company_logo_url ? (
               <img
                 src={profile.company_logo_url}
@@ -134,13 +134,13 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
                 alt={profile.organization || ""}
               />
             ) : (
-              <div className="w-5 h-5 rounded bg-[#B8913A]/10 border border-[#B8913A]/20 flex items-center justify-center flex-shrink-0">
-                <span className="text-[#B8913A] text-[8px] font-bold leading-none">
+              <div className="w-5 h-5 rounded bg-[#DDB47E]/10 border border-[#DDB47E]/20 flex items-center justify-center flex-shrink-0">
+                <span className="text-[#DDB47E] text-[8px] font-bold leading-none">
                   {profile.organization?.[0]?.toUpperCase()}
                 </span>
               </div>
             )}
-            <div className="text-white/35 text-[10px] truncate leading-none">
+            <div className="text-white/50 text-[10px] truncate leading-none">
               {profile.organization}
             </div>
           </div>
@@ -150,7 +150,7 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
       {/* ── Navigation ── */}
       <nav className="flex-1 px-3 py-2 space-y-0.5 overflow-y-auto">
 
-        <div className="text-white/20 text-[9px] uppercase tracking-[0.15em] font-bold px-2 pt-2 pb-1.5">
+        <div className="text-white/55 text-[9px] uppercase tracking-[0.15em] font-bold px-2 pt-2 pb-1.5">
           Navigation
         </div>
 
@@ -162,10 +162,10 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
               onClick={() => setMobileOpen(false)}
               className={`flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-all duration-150 ${
                 active
-                  ? "bg-[#B8913A]/12 text-[#C8992A]"
-                  : "text-white/38 hover:text-white/75 hover:bg-white/5"
+                  ? "bg-white/12 text-white"
+                  : "text-white/55 hover:text-white hover:bg-white/8"
               }`}>
-              <span className={`flex-shrink-0 ${active ? "text-[#B8913A]" : ""}`}>{item.icon}</span>
+              <span className={`flex-shrink-0 ${active ? "text-[#DDB47E]" : ""}`}>{item.icon}</span>
               {item.label}
             </Link>
           );
@@ -173,14 +173,14 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
 
         {/* Admin section */}
         {profile?.role === "admin" && (
-          <div className="pt-3 border-t border-white/5 mt-3">
-            <div className="text-white/20 text-[9px] uppercase tracking-[0.15em] font-bold px-2 pb-1.5">Admin</div>
+          <div className="pt-3 border-t border-white/10 mt-3">
+            <div className="text-white/55 text-[9px] uppercase tracking-[0.15em] font-bold px-2 pb-1.5">Admin</div>
             <Link href="/admin"
               onClick={() => setMobileOpen(false)}
               className={`flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-all duration-150 ${
                 pathname.startsWith("/admin")
-                  ? "bg-[#B8913A]/12 text-[#C8992A]"
-                  : "text-white/38 hover:text-white/75 hover:bg-white/5"
+                  ? "bg-white/12 text-white"
+                  : "text-white/55 hover:text-white hover:bg-white/8"
               }`}>
               <span className="flex-shrink-0"><IconCog/></span>
               Administration
@@ -190,9 +190,9 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
       </nav>
 
       {/* ── Sign out ── */}
-      <div className="px-3 pb-4 border-t border-white/5 pt-3">
+      <div className="px-3 pb-4 border-t border-white/10 pt-3">
         <button onClick={handleSignOut}
-          className="w-full flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] text-white/28 hover:text-white/55 hover:bg-white/5 transition-all duration-150">
+          className="w-full flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] text-white/55 hover:text-white hover:bg-white/8 transition-all duration-150">
           <span className="flex-shrink-0"><IconLogout/></span>
           Déconnexion
         </button>
@@ -203,23 +203,23 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden md:flex flex-col w-52 bg-[#080A12] border-r border-white/5 flex-shrink-0">
+      <aside className="hidden md:flex flex-col w-52 bg-[#1C3A30] border-r border-white/10 flex-shrink-0">
         <SidebarContent/>
       </aside>
 
       {/* Mobile top bar */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-[#080A12] border-b border-white/5 h-13 flex items-center justify-between px-4"
+      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-[#1C3A30] border-b border-white/10 h-13 flex items-center justify-between px-4"
            style={{ height: 52 }}>
         <div className="flex items-center gap-2.5">
           <LogoMark size={26} variant="light"/>
           <div>
             <div className="text-white font-semibold text-sm leading-none">CEO Summit IO</div>
-            <div className="text-[#B8913A]/60 text-[9px] tracking-widest uppercase leading-none mt-0.5">Investment Hub</div>
+            <div className="text-[#DDB47E]/60 text-[9px] tracking-widest uppercase leading-none mt-0.5">Investment Hub</div>
           </div>
         </div>
         <div className="flex items-center gap-1">
           <NotificationBell/>
-        <button onClick={() => setMobileOpen(!mobileOpen)} className="text-white/40 hover:text-white p-3 transition-colors" aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}>
+        <button onClick={() => setMobileOpen(!mobileOpen)} className="text-white/55 hover:text-white p-3 transition-colors" aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}>
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             {mobileOpen
               ? <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
@@ -232,7 +232,7 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
       {/* Mobile drawer */}
       {mobileOpen && (
         <div className="md:hidden fixed inset-0 z-40 flex">
-          <div className="w-56 bg-[#080A12] border-r border-white/5 h-full overflow-y-auto" style={{ paddingTop: 52 }}>
+          <div className="w-56 bg-[#1C3A30] border-r border-white/10 h-full overflow-y-auto" style={{ paddingTop: 52 }}>
             <SidebarContent/>
           </div>
           <div className="flex-1 bg-black/50 backdrop-blur-sm" onClick={() => setMobileOpen(false)}/>

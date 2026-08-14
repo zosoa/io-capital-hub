@@ -20,7 +20,7 @@ function MetricRow({ label, value }: { label: string; value: string | number | n
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="text-[#B8913A] text-xs uppercase tracking-[0.15em] font-semibold mb-3">
+    <div className="text-[#BC5A34] text-xs uppercase tracking-[0.15em] font-semibold mb-3">
       {children}
     </div>
   );
@@ -53,7 +53,7 @@ export default async function AperuPage({ params }: { params: Promise<{ id: stri
         <div className="flex items-center gap-3">
           <span className="text-[#5A6280] text-xs">Aperçu investisseur</span>
           <button onClick={() => typeof window !== "undefined" && window.print()}
-            className="flex items-center gap-1.5 text-xs font-medium text-[#B8913A] border border-[#B8913A]/30 px-3 py-1.5 rounded-lg hover:bg-[#B8913A]/5 transition-colors">
+            className="flex items-center gap-1.5 text-xs font-medium text-[#BC5A34] border border-[#BC5A34]/30 px-3 py-1.5 rounded-lg hover:bg-[#BC5A34]/5 transition-colors">
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z"/>
             </svg>
@@ -80,7 +80,7 @@ export default async function AperuPage({ params }: { params: Promise<{ id: stri
         <div className="bg-white rounded-2xl p-8 mb-6 border border-[#E8E2D9] shadow-sm">
           <div className="flex items-start gap-6">
             {/* Logo placeholder */}
-            <div className="w-16 h-16 bg-[#B8913A]/10 border-2 border-[#B8913A]/20 rounded-xl flex items-center justify-center flex-shrink-0 text-[#B8913A] font-bold text-xl">
+            <div className="w-16 h-16 bg-[#BC5A34]/10 border-2 border-[#BC5A34]/20 rounded-xl flex items-center justify-center flex-shrink-0 text-[#BC5A34] font-bold text-xl">
               {project.title.charAt(0).toUpperCase()}
             </div>
 
@@ -92,7 +92,7 @@ export default async function AperuPage({ params }: { params: Promise<{ id: stri
                 </div>
                 {project.amount_requested && (
                   <div className="text-right flex-shrink-0">
-                    <div className="text-3xl font-bold text-[#B8913A]">
+                    <div className="text-3xl font-bold text-[#BC5A34]">
                       {formatCurrency(project.amount_requested, project.currency)}
                     </div>
                     <div className="text-[#5A6280] text-xs mt-0.5">Financement recherché</div>
@@ -108,7 +108,7 @@ export default async function AperuPage({ params }: { params: Promise<{ id: stri
                   </span>
                 )}
                 {project.stage && (
-                  <span className="bg-[#B8913A]/10 text-[#B8913A] text-xs px-3 py-1 rounded-full font-medium">
+                  <span className="bg-[#BC5A34]/10 text-[#BC5A34] text-xs px-3 py-1 rounded-full font-medium">
                     {STAGE_LABELS[project.stage] || project.stage}
                   </span>
                 )}
@@ -166,7 +166,7 @@ export default async function AperuPage({ params }: { params: Promise<{ id: stri
                 {project.amount_requested && (
                   <div className="p-3 bg-[#F6F4EF] rounded-lg">
                     <div className="text-[#5A6280] text-xs uppercase tracking-wider mb-1">Montant</div>
-                    <div className="text-[#B8913A] font-bold text-sm">
+                    <div className="text-[#BC5A34] font-bold text-sm">
                       {formatCurrency(project.amount_requested, project.currency)}
                     </div>
                   </div>
@@ -186,7 +186,7 @@ export default async function AperuPage({ params }: { params: Promise<{ id: stri
                 <SectionLabel>Impact & Développement durable</SectionLabel>
                 {project.job_creation_expected && (
                   <div className="flex items-baseline gap-2 mb-3">
-                    <span className="text-3xl font-bold text-[#B8913A]">{project.job_creation_expected}</span>
+                    <span className="text-3xl font-bold text-[#BC5A34]">{project.job_creation_expected}</span>
                     <span className="text-[#5A6280] text-sm">emplois directs estimés sur 3 ans</span>
                   </div>
                 )}
@@ -233,12 +233,12 @@ export default async function AperuPage({ params }: { params: Promise<{ id: stri
             )}
 
             {/* CEO Summit stamp */}
-            <div className="rounded-xl p-5 border border-[#B8913A]/20 bg-[#B8913A]/5">
+            <div className="rounded-xl p-5 border border-[#BC5A34]/20 bg-[#BC5A34]/5">
               <div className="flex items-center gap-2 mb-2">
-                <svg className="w-4 h-4 text-[#B8913A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <svg className="w-4 h-4 text-[#BC5A34]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
                 </svg>
-                <span className="text-[#B8913A] text-xs font-semibold uppercase tracking-wider">Dossier qualifié</span>
+                <span className="text-[#BC5A34] text-xs font-semibold uppercase tracking-wider">Dossier qualifié</span>
               </div>
               <p className="text-[#5A6280] text-xs leading-relaxed">
                 Ce dossier a été examiné et validé par l&apos;équipe Cluster Capital &amp; Finance du CEO Summit Indian Ocean.
