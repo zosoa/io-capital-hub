@@ -23,7 +23,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
   const isInvestor = profile?.role === "investor";
 
   return (
-    <div className="min-h-screen flex ed" style={{ background: "#F7F5F1" }}>
+    <div className="min-h-screen flex ed" style={{ background: "#FFFFFF" }}>
       <DashboardSidebar profile={profile} isInvestor={isInvestor} />
       <main className="flex-1 min-w-0 overflow-auto">
         {children}

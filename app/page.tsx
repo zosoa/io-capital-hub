@@ -6,7 +6,7 @@ import LandingFx from "./LandingFx";
 export const metadata: Metadata = {
   title: "Capital Hub — CEO Summit IO · Financement privé de l'Océan Indien",
   description:
-    "Là où le capital rencontre les projets de l'Océan Indien. Capital Hub connecte les projets prêts à financer aux investisseurs, fonds, family offices et banques de la région — en toute confidentialité.",
+    "Mise en relation directe entre projets bancables et investisseurs de l'Océan Indien. Capital Hub centralise les opportunités qualifiées pour les fonds, family offices et banques de la région, en toute confidentialité.",
 };
 
 const Arrow = () => (
@@ -55,11 +55,11 @@ export default function LandingPage() {
           <div>
             <span className="kicker rv">1ʳᵉ plateforme de financement — Océan Indien</span>
             <h1 className="serif rv">
-              Là où le capital rencontre les projets de l&apos;<span>Océan Indien</span>.
+              Mise en relation directe entre projets bancables et investisseurs de l&apos;<span>Océan Indien</span>.
             </h1>
             <p className="lead rv">
-              Capital Hub connecte les projets prêts à financer aux investisseurs, fonds, family offices et banques en
-              quête d&apos;opportunités dans la région — en toute confidentialité.
+              Capital Hub centralise les opportunités d&apos;investissement qualifiées et les présente en toute
+              confidentialité aux fonds, family offices et banques de la région.
             </p>
             <div className="hero-cta rv">
               <Link href="/eligibilite" className="btn btn-forest">Je cherche des financements <Arrow /></Link>
@@ -75,7 +75,7 @@ export default function LandingPage() {
             <div className="hero-metrics rv">
               <div className="metric"><div className="n"><span data-count="25">0</span>k–<span data-count="50">0</span>M&nbsp;$</div><div className="l">Fourchette de tickets</div></div>
               <div className="metric"><div className="n"><span data-count="8">0</span></div><div className="l">Secteurs financés</div></div>
-              <div className="metric"><div className="n">Privé</div><div className="l">Confidentiel par défaut</div></div>
+              <div className="metric"><div className="n">Privé</div><div className="l">Confidentialité stricte</div></div>
             </div>
           </div>
 
@@ -127,8 +127,8 @@ export default function LandingPage() {
         <div className="wrap">
           <div className="head rv">
             <span className="idx">Secteurs</span>
-            <h2 className="serif">Nous ne listons aucun dossier.<br />Voici où notre réseau investit.</h2>
-            <p>Vos données restent privées. Ces catégories montrent les secteurs porteurs de la région — et les tickets que nos investisseurs y engagent.</p>
+            <h2 className="serif">Secteurs d&apos;intervention &amp; tickets moyens</h2>
+            <p>Pour protéger la confidentialité des porteurs, aucun projet n&apos;est publié en libre accès. Voici les secteurs ciblés par nos investisseurs partenaires et les ordres de grandeur financés.</p>
           </div>
           <div className="cards">
             <div className="card c1 rv"><span className="icochip"><img src="/landing/ico-solar.png" alt="" /></span><h3>Énergie &amp; Transition</h3><p>Solaire, hydro, transition énergétique et réseaux.</p><div className="tk">500k – 10M&nbsp;$</div></div>
@@ -148,8 +148,8 @@ export default function LandingPage() {
         <div className="wrap">
           <div className="head rv">
             <span className="idx">Espace investisseurs</span>
-            <h2 className="serif">Ne cherchez pas les deals.<br />Laissez les bons deals vous trouver.</h2>
-            <p>Capital Hub donne aux investisseurs un accès privé à un flux d&apos;opportunités qualifiées à travers l&apos;Océan Indien et l&apos;Afrique — filtrées selon votre secteur, votre géographie, votre ticket et votre mandat d&apos;investissement.</p>
+            <h2 className="serif">Un deal-flow qualifié, filtré selon vos critères.</h2>
+            <p>Accédez à des dossiers structurés à travers l&apos;Océan Indien et l&apos;Afrique. Recevez uniquement les opportunités qui correspondent à votre thèse d&apos;investissement (secteur, géographie, ticket, instrument).</p>
           </div>
 
           <div className="device rv">
@@ -181,9 +181,9 @@ export default function LandingPage() {
           </div>
 
           <div className="inv-why rv">
-            <div className="iw"><h3>Curé, pas encombré</h3><p>Pas de marketplace publique d&apos;annonces anonymes. Uniquement des opportunités qui correspondent au réseau et à votre mandat.</p></div>
-            <div className="iw"><h3>Intelligence humaine</h3><p>La technologie identifie une correspondance. La relation, le contexte et le jugement déterminent si elle vaut la peine.</p></div>
-            <div className="iw"><h3>Confidentiel par conception</h3><p>Les projets ne sont jamais listés publiquement. L&apos;information est partagée progressivement, selon les autorisations.</p></div>
+            <div className="iw"><h3>Flux qualifié, sans bruit</h3><p>Pas de marketplace publique ni d&apos;annonces anonymes. Uniquement des opportunités auditées.</p></div>
+            <div className="iw"><h3>Analyse &amp; filtre humain</h3><p>La technologie filtre les critères ; nos équipes valident la pertinence et la viabilité avant présentation.</p></div>
+            <div className="iw"><h3>Confidentialité stricte</h3><p>Rien n&apos;est public. Vos données financières ne sont partagées qu&apos;après votre accord et sous NDA.</p></div>
           </div>
 
           <div className="investor-types-bar rv">
@@ -209,8 +209,8 @@ export default function LandingPage() {
           <div className="founder rv">
             <span className="idx">La méthode</span>
             <blockquote className="serif" style={{ marginTop: 14 }}>
-              « Des banques, des fonds, des family offices — et des investisseurs actifs, assis parmi les participants,{" "}
-              <span>que personne n&apos;avait identifiés</span>. Cette plateforme est née ce jour-là. »
+              « Lors du sommet, nous avons réalisé que des investisseurs actifs et des porteurs de projets à fort potentiel étaient{" "}
+              <span>dans la même pièce sans se trouver</span>. Capital Hub a été créé pour combler ce vide, de manière structurée et discrète. »
             </blockquote>
             <div className="sig">
               <img className="sig-av" src="/landing/founder-avatar.jpg" alt="Zosoa Rasoarahona" />
@@ -232,9 +232,9 @@ export default function LandingPage() {
       <div className="wrap">
         <section className="confid rv">
           
-          <span className="eb">La confidentialité, par défaut</span>
-          <h2 className="serif">Vos chiffres ne quittent jamais la pièce sans votre accord.</h2>
-          <p>Aucun projet publié. Vos données financières et vos projections ne sont partagées qu&apos;avec les investisseurs que vous avez approuvés — et seulement après votre accord explicite.</p>
+          <span className="eb">Confidentialité</span>
+          <h2 className="serif">Aucun projet n&apos;est publié. Rien ne circule sans votre accord.</h2>
+          <p>Vos données financières et vos projections ne sont partagées qu&apos;avec les investisseurs que vous approuvez, et uniquement après votre accord explicite, sous NDA.</p>
         </section>
       </div>
 
@@ -242,8 +242,8 @@ export default function LandingPage() {
       <section className="final">
         <div className="wrap">
           
-          <h2 className="serif rv">Votre projet mérite les <span>bons partenaires</span>.</h2>
-          <p className="rv">Rejoignez le réseau de financement privé du CEO Summit Indian Ocean.</p>
+          <h2 className="serif rv">Présentez votre projet aux <span>investisseurs du réseau</span>.</h2>
+          <p className="rv">Accédez à notre réseau de financement privé au sein du CEO Summit Indian Ocean.</p>
           <div className="duo rv">
             <Link href="/eligibilite" className="btn btn-terra">Déposer mon projet <Arrow /></Link>
             <Link href="/auth/signup?intent=investor" className="btn btn-line">Je suis investisseur</Link>

@@ -209,7 +209,7 @@ function Toggle({ checked, onChange, labelOn, labelOff }: {
   checked: boolean; onChange: (v: boolean) => void; labelOn: string; labelOff: string;
 }) {
   return (
-    <div className="flex items-center gap-3 p-4 bg-whiteMid rounded-xl border border-[#E4E7EC] cursor-pointer"
+    <div className="flex items-center gap-3 p-4 bg-[#F6F7F9] rounded-xl border border-[#E4E7EC] cursor-pointer"
       onClick={() => onChange(!checked)}>
       <div className={`w-11 h-6 rounded-full transition-all duration-300 flex items-center px-0.5 flex-shrink-0 ${checked ? "bg-[#BC5A34]" : "bg-[#EDEFF2]"}`}>
         <div className={`w-5 h-5 bg-white rounded-full shadow transition-transform duration-300 ${checked ? "translate-x-5" : "translate-x-0"}`}/>
@@ -229,7 +229,7 @@ function FundingTypeCard({ type, selected, expanded, onSelect, onToggleExpand }:
 }) {
   return (
     <div className={`rounded-xl border-2 transition-all duration-200 overflow-hidden ${
-      selected ? "border-[#BC5A34] bg-[#BC5A34]/8" : "border-[#E4E7EC] bg-whiteMid hover:border-[#BC5A34]/30"
+      selected ? "border-[#BC5A34] bg-[#BC5A34]/8" : "border-[#E4E7EC] bg-[#F6F7F9] hover:border-[#BC5A34]/30"
     }`}>
       {/* Main clickable area */}
       <button type="button" onClick={onSelect} className="text-left w-full p-4">
@@ -542,7 +542,7 @@ export default function NewProjectPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Top bar */}
-      <div className="bg-whiteMid border-b border-[#E4E7EC] px-4 sm:px-6 py-4">
+      <div className="bg-[#F6F7F9] border-b border-[#E4E7EC] px-4 sm:px-6 py-4">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <Link href="/dashboard" className="flex items-center gap-2 text-[#918A7C] hover:text-[#575249] transition-colors text-sm">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -646,7 +646,7 @@ export default function NewProjectPage() {
                       className={`text-left p-4 rounded-xl border-2 transition-all duration-200 w-full relative ${
                         selectedSectors.includes(s.v)
                           ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#22201B]"
-                          : "border-[#E4E7EC] bg-whiteMid text-[#6B655B] hover:border-[#BC5A34]/30 hover:text-[#575249]"
+                          : "border-[#E4E7EC] bg-[#F6F7F9] text-[#6B655B] hover:border-[#BC5A34]/30 hover:text-[#575249]"
                       }`}>
                       <div className="font-medium text-sm">{s.l}</div>
                       {selectedSectors.includes(s.v) && (
@@ -692,7 +692,7 @@ export default function NewProjectPage() {
                       className={`text-left p-4 rounded-xl border-2 transition-all duration-200 w-full ${
                         form.stage === s.v
                           ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#22201B]"
-                          : "border-[#E4E7EC] bg-whiteMid text-[#6B655B] hover:border-[#BC5A34]/30 hover:text-[#575249]"
+                          : "border-[#E4E7EC] bg-[#F6F7F9] text-[#6B655B] hover:border-[#BC5A34]/30 hover:text-[#575249]"
                       }`}>
                       <div className={`font-semibold text-sm mb-1 ${form.stage === s.v ? "text-[#22201B]" : ""}`}>{s.l}</div>
                       <div className="text-xs opacity-60 leading-snug">{s.desc}</div>
@@ -765,7 +765,7 @@ export default function NewProjectPage() {
                       className={`text-left p-3 rounded-xl border-2 transition-all duration-200 ${
                         form.funding_duration_range === d.v
                           ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#22201B]"
-                          : "border-[#E4E7EC] bg-whiteMid text-[#6B655B] hover:border-[#BC5A34]/30"
+                          : "border-[#E4E7EC] bg-[#F6F7F9] text-[#6B655B] hover:border-[#BC5A34]/30"
                       }`}>
                       <div className={`text-xs font-semibold leading-snug ${form.funding_duration_range === d.v ? "text-[#22201B]" : ""}`}>{d.l}</div>
                     </button>
@@ -790,7 +790,7 @@ export default function NewProjectPage() {
                         className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 border ${
                           sel
                             ? "bg-[#BC5A34]/15 border-[#BC5A34]/40 text-[#BC5A34]"
-                            : "bg-whiteMid border-[#DADEE4] text-[#918A7C] hover:border-[#BC5A34]/30 hover:text-[#575249]"
+                            : "bg-[#F6F7F9] border-[#DADEE4] text-[#918A7C] hover:border-[#BC5A34]/30 hover:text-[#575249]"
                         }`}>
                         {t.l}
                       </button>
@@ -801,7 +801,7 @@ export default function NewProjectPage() {
 
               {/* Equity-specific fields — shown only when funding_type === "equity" */}
               {form.funding_type === "equity" && (
-                <div className="p-5 bg-whiteMid rounded-xl border border-[#BC5A34]/20 space-y-4">
+                <div className="p-5 bg-[#F6F7F9] rounded-xl border border-[#BC5A34]/20 space-y-4">
                   <div className="flex items-center gap-2 mb-1">
                     <svg className="w-4 h-4 text-[#BC5A34]/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605"/>
@@ -924,7 +924,7 @@ export default function NewProjectPage() {
           {step === 4 && (
             <div className="space-y-6">
               {/* Positive intro */}
-              <div className="p-5 bg-whiteMid rounded-xl border border-[#E4E7EC]">
+              <div className="p-5 bg-[#F6F7F9] rounded-xl border border-[#E4E7EC]">
                 <div className="flex items-start gap-3">
                   <svg className="w-5 h-5 text-[#BC5A34]/70 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.562.562 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/>
@@ -949,7 +949,7 @@ export default function NewProjectPage() {
                         className={`text-left p-4 rounded-xl border-2 transition-all duration-200 w-full relative ${
                           active
                             ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#22201B]"
-                            : "border-[#E4E7EC] bg-whiteMid text-[#6B655B] hover:border-[#BC5A34]/30 hover:text-[#575249]"
+                            : "border-[#E4E7EC] bg-[#F6F7F9] text-[#6B655B] hover:border-[#BC5A34]/30 hover:text-[#575249]"
                         }`}>
                         <div className={`font-semibold text-sm mb-0.5 ${active ? "text-[#22201B]" : ""}`}>{c.l}</div>
                         <div className="text-xs opacity-55 leading-snug">{c.desc}</div>
@@ -999,7 +999,7 @@ export default function NewProjectPage() {
           {/* ══ STEP 5: Impact & Review ══ */}
           {step === 5 && (
             <div className="space-y-6">
-              <div className="p-5 bg-whiteMid rounded-xl border border-[#E4E7EC]">
+              <div className="p-5 bg-[#F6F7F9] rounded-xl border border-[#E4E7EC]">
                 <div className="flex items-start gap-3">
                   <svg className="w-5 h-5 text-[#BC5A34]/60 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/>
@@ -1061,7 +1061,7 @@ export default function NewProjectPage() {
                 </div>
               </div>
 
-              <div className="p-4 bg-whiteMid rounded-xl border border-[#E4E7EC] text-sm text-[#918A7C] leading-relaxed">
+              <div className="p-4 bg-[#F6F7F9] rounded-xl border border-[#E4E7EC] text-sm text-[#918A7C] leading-relaxed">
                 En soumettant ce dossier, vous confirmez que les informations fournies sont exactes et vous engagez à fournir des documents complémentaires si demandés par notre équipe.
               </div>
             </div>

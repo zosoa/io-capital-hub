@@ -115,7 +115,7 @@ function Chips({ items, selected, onToggle, multi = true }: {
             className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
               active
                 ? "bg-[#BC5A34]/15 border-[#BC5A34]/40 text-[#BC5A34]"
-                : "bg-whiteMid border-[#DADEE4] text-[#918A7C] hover:border-[#BC5A34]/30 hover:text-[#575249]"
+                : "bg-[#F6F7F9] border-[#DADEE4] text-[#918A7C] hover:border-[#BC5A34]/30 hover:text-[#575249]"
             }`}>
             {item.l}
           </button>
@@ -461,7 +461,7 @@ export default function InvestorProfilePage() {
     <div className="min-h-screen bg-white">
       {/* Top bar — I-L6 cleanup: single source of truth for the page title,
           existing-profile users get a back link, first-timers don't. */}
-      <div className="bg-whiteMid border-b border-[#E4E7EC] px-4 sm:px-6 py-4">
+      <div className="bg-[#F6F7F9] border-b border-[#E4E7EC] px-4 sm:px-6 py-4">
         <div className="max-w-3xl mx-auto flex items-center justify-between gap-4">
           {existingId ? (
             <Link href="/dashboard" className="flex items-center gap-2 text-[#918A7C] hover:text-[#575249] transition-colors text-sm">
@@ -646,7 +646,7 @@ export default function InvestorProfilePage() {
                         className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
                           active
                             ? "bg-[#BC5A34]/15 border-[#BC5A34]/40 text-[#BC5A34]"
-                            : "bg-whiteMid border-[#DADEE4] text-[#918A7C] hover:border-[#BC5A34]/30 hover:text-[#575249]"
+                            : "bg-[#F6F7F9] border-[#DADEE4] text-[#918A7C] hover:border-[#BC5A34]/30 hover:text-[#575249]"
                         }`}>
                         {l}
                       </button>
@@ -712,7 +712,7 @@ export default function InvestorProfilePage() {
                         className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
                           active
                             ? "bg-[#BC5A34]/15 border-[#BC5A34]/40 text-[#BC5A34]"
-                            : "bg-whiteMid border-[#DADEE4] text-[#918A7C] hover:border-[#BC5A34]/30 hover:text-[#575249]"
+                            : "bg-[#F6F7F9] border-[#DADEE4] text-[#918A7C] hover:border-[#BC5A34]/30 hover:text-[#575249]"
                         }`}>
                         {z}
                       </button>
@@ -767,7 +767,7 @@ export default function InvestorProfilePage() {
                       className={`flex-1 text-left p-4 rounded-xl border-2 transition-all ${
                         openToFlow === opt.v
                           ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#22201B]"
-                          : "border-[#E4E7EC] bg-whiteMid text-[#918A7C] hover:border-[#BC5A34]/30"
+                          : "border-[#E4E7EC] bg-[#F6F7F9] text-[#918A7C] hover:border-[#BC5A34]/30"
                       }`}>
                       <div className={`text-xs font-medium leading-snug ${openToFlow === opt.v ? "text-[#22201B]" : ""}`}>{opt.l}</div>
                     </button>
@@ -808,7 +808,7 @@ export default function InvestorProfilePage() {
                       className={`text-left p-4 rounded-xl border-2 transition-all ${
                         photoConsent === pc.v
                           ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#22201B]"
-                          : "border-[#E4E7EC] bg-whiteMid text-[#6B655B] hover:border-[#BC5A34]/30"
+                          : "border-[#E4E7EC] bg-[#F6F7F9] text-[#6B655B] hover:border-[#BC5A34]/30"
                       }`}>
                       <div className={`font-semibold text-sm mb-0.5 ${photoConsent === pc.v ? "text-[#22201B]" : ""}`}>{pc.l}</div>
                       <div className="text-xs opacity-55 leading-snug">{pc.desc}</div>
@@ -817,7 +817,7 @@ export default function InvestorProfilePage() {
                 </div>
               </div>
 
-              <div className="p-4 bg-whiteMid rounded-xl border border-[#E4E7EC] text-xs text-[#918A7C] leading-relaxed">
+              <div className="p-4 bg-[#F6F7F9] rounded-xl border border-[#E4E7EC] text-xs text-[#918A7C] leading-relaxed">
                 En enregistrant votre profil, vous consentez à ce que vos informations soient utilisées dans le cadre des activités de mise en relation du CEO Summit Investment Hub. Vos données ne seront jamais partagées avec des tiers sans votre accord explicite.
               </div>
             </div>

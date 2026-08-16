@@ -192,7 +192,7 @@ function Toggle({ checked, onChange, labelOn, labelOff }: {
   checked: boolean; onChange: (v: boolean) => void; labelOn: string; labelOff: string;
 }) {
   return (
-    <div className="flex items-center gap-3 p-4 bg-whiteMid rounded-xl border border-[#E4E7EC] cursor-pointer"
+    <div className="flex items-center gap-3 p-4 bg-[#F6F7F9] rounded-xl border border-[#E4E7EC] cursor-pointer"
       onClick={() => onChange(!checked)}>
       <div className={`w-11 h-6 rounded-full transition-all duration-300 flex items-center px-0.5 flex-shrink-0 ${checked ? "bg-[#BC5A34]" : "bg-[#EDEFF2]"}`}>
         <div className={`w-5 h-5 bg-white rounded-full shadow transition-transform duration-300 ${checked ? "translate-x-5" : "translate-x-0"}`}/>
@@ -208,7 +208,7 @@ function FundingTypeCard({ type, selected, expanded, onSelect, onToggleExpand }:
 }) {
   return (
     <div className={`rounded-xl border-2 transition-all duration-200 overflow-hidden ${
-      selected ? "border-[#BC5A34] bg-[#BC5A34]/8" : "border-[#E4E7EC] bg-whiteMid hover:border-[#BC5A34]/30"
+      selected ? "border-[#BC5A34] bg-[#BC5A34]/8" : "border-[#E4E7EC] bg-[#F6F7F9] hover:border-[#BC5A34]/30"
     }`}>
       <button type="button" onClick={onSelect} className="text-left w-full p-4">
         <div className="flex items-start gap-3">
@@ -478,7 +478,7 @@ export default function EditProjectForm({ project }: { project: Project }) {
   return (
     <div className="min-h-screen bg-white">
       {/* Top bar */}
-      <div className="bg-whiteMid border-b border-[#E4E7EC] px-4 sm:px-6 py-4">
+      <div className="bg-[#F6F7F9] border-b border-[#E4E7EC] px-4 sm:px-6 py-4">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <Link href={`/dashboard/projects/${project.id}`}
             className="flex items-center gap-2 text-[#918A7C] hover:text-[#575249] transition-colors text-sm">
@@ -606,7 +606,7 @@ export default function EditProjectForm({ project }: { project: Project }) {
                       className={`text-left p-4 rounded-xl border-2 transition-all duration-200 w-full relative ${
                         selectedSectors.includes(s.v)
                           ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#22201B]"
-                          : "border-[#E4E7EC] bg-whiteMid text-[#6B655B] hover:border-[#BC5A34]/30 hover:text-[#575249]"
+                          : "border-[#E4E7EC] bg-[#F6F7F9] text-[#6B655B] hover:border-[#BC5A34]/30 hover:text-[#575249]"
                       }`}>
                       <div className="font-medium text-sm">{s.l}</div>
                       {selectedSectors.includes(s.v) && (
@@ -651,7 +651,7 @@ export default function EditProjectForm({ project }: { project: Project }) {
                       className={`text-left p-4 rounded-xl border-2 transition-all duration-200 w-full ${
                         form.stage === s.v
                           ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#22201B]"
-                          : "border-[#E4E7EC] bg-whiteMid text-[#6B655B] hover:border-[#BC5A34]/30 hover:text-[#575249]"
+                          : "border-[#E4E7EC] bg-[#F6F7F9] text-[#6B655B] hover:border-[#BC5A34]/30 hover:text-[#575249]"
                       }`}>
                       <div className={`font-semibold text-sm mb-1 ${form.stage === s.v ? "text-[#22201B]" : ""}`}>{s.l}</div>
                       <div className="text-xs opacity-60 leading-snug">{s.desc}</div>
@@ -714,7 +714,7 @@ export default function EditProjectForm({ project }: { project: Project }) {
                       className={`text-left p-3 rounded-xl border-2 transition-all duration-200 ${
                         form.funding_duration_range === d.v
                           ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#22201B]"
-                          : "border-[#E4E7EC] bg-whiteMid text-[#6B655B] hover:border-[#BC5A34]/30"
+                          : "border-[#E4E7EC] bg-[#F6F7F9] text-[#6B655B] hover:border-[#BC5A34]/30"
                       }`}>
                       <div className={`text-xs font-semibold leading-snug ${form.funding_duration_range === d.v ? "text-[#22201B]" : ""}`}>{d.l}</div>
                     </button>
@@ -737,7 +737,7 @@ export default function EditProjectForm({ project }: { project: Project }) {
                       <button key={t.v} type="button" onClick={() => toggleInvestorType(t.v)}
                         className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 border ${
                           sel ? "bg-[#BC5A34]/15 border-[#BC5A34]/40 text-[#BC5A34]"
-                              : "bg-whiteMid border-[#DADEE4] text-[#918A7C] hover:border-[#BC5A34]/30 hover:text-[#575249]"
+                              : "bg-[#F6F7F9] border-[#DADEE4] text-[#918A7C] hover:border-[#BC5A34]/30 hover:text-[#575249]"
                         }`}>
                         {t.l}
                       </button>
@@ -747,7 +747,7 @@ export default function EditProjectForm({ project }: { project: Project }) {
               </div>
 
               {form.funding_type === "equity" && (
-                <div className="p-5 bg-whiteMid rounded-xl border border-[#BC5A34]/20 space-y-4">
+                <div className="p-5 bg-[#F6F7F9] rounded-xl border border-[#BC5A34]/20 space-y-4">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-[#BC5A34]/70 text-xs font-semibold uppercase tracking-wider">Termes du partenariat (optionnel)</span>
                   </div>
@@ -852,7 +852,7 @@ export default function EditProjectForm({ project }: { project: Project }) {
           {/* ══ STEP 4: Assets & Strengths ══ */}
           {step === 4 && (
             <div className="space-y-6">
-              <div className="p-5 bg-whiteMid rounded-xl border border-[#E4E7EC]">
+              <div className="p-5 bg-[#F6F7F9] rounded-xl border border-[#E4E7EC]">
                 <div className="flex items-start gap-3">
                   <svg className="w-5 h-5 text-[#BC5A34]/70 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.562.562 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/>
@@ -875,7 +875,7 @@ export default function EditProjectForm({ project }: { project: Project }) {
                       <button key={c.v} type="button" onClick={() => toggleCollateral(c.v)}
                         className={`text-left p-4 rounded-xl border-2 transition-all duration-200 w-full relative ${
                           active ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#22201B]"
-                                 : "border-[#E4E7EC] bg-whiteMid text-[#6B655B] hover:border-[#BC5A34]/30 hover:text-[#575249]"
+                                 : "border-[#E4E7EC] bg-[#F6F7F9] text-[#6B655B] hover:border-[#BC5A34]/30 hover:text-[#575249]"
                         }`}>
                         <div className={`font-semibold text-sm mb-0.5 ${active ? "text-[#22201B]" : ""}`}>{c.l}</div>
                         <div className="text-xs opacity-55 leading-snug">{c.desc}</div>
