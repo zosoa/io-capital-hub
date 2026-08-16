@@ -35,7 +35,7 @@ export default function CookieBanner() {
       aria-label="Cookies et confidentialité"
       aria-live="polite"
       className="fixed bottom-4 left-4 right-4 md:left-6 md:right-auto md:max-w-md z-[100]
-                 bg-white/98 backdrop-blur-xl border border-[#E2DACB] rounded-xl shadow-2xl
+                 bg-white/98 backdrop-blur-xl border border-[#DADEE4] rounded-xl shadow-2xl
                  p-5 md:p-6"
     >
       <div className="flex items-start gap-3 mb-3">
@@ -59,12 +59,12 @@ export default function CookieBanner() {
       <div className="flex flex-wrap gap-2 pt-1">
         <button
           onClick={accept}
-          className="flex-1 bg-[#1C3A30] hover:bg-[#2A5346] text-white text-xs font-semibold py-2.5 rounded-lg transition-colors">
+          className="flex-1 bg-[#1A5FB4] hover:bg-[#154C90] text-white text-xs font-semibold py-2.5 rounded-lg transition-colors">
           J&apos;ai compris
         </button>
         <Link
           href="/legal/privacy"
-          className="flex-1 text-center border border-[#E2DACB] hover:border-[#BC5A34]/50 text-[#575249] hover:text-[#22201B] text-xs font-medium py-2.5 rounded-lg transition-all">
+          className="flex-1 text-center border border-[#DADEE4] hover:border-[#BC5A34]/50 text-[#575249] hover:text-[#22201B] text-xs font-medium py-2.5 rounded-lg transition-all">
           Détails
         </Link>
       </div>

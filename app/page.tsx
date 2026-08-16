@@ -25,12 +25,6 @@ const Tick = () => (
 export default function LandingPage() {
   return (
     <div className="lp">
-      {/* star symbol used by watermarks */}
-      <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true">
-        <symbol id="star" viewBox="0 0 48 48">
-          <path d="M24 2L28 20L46 24L28 28L24 46L20 28L2 24L20 20Z" fill="currentColor" />
-        </symbol>
-      </svg>
 
       {/* NAV */}
       <nav id="lpnav">
@@ -137,14 +131,14 @@ export default function LandingPage() {
             <p>Vos données restent privées. Ces catégories montrent les secteurs porteurs de la région — et les tickets que nos investisseurs y engagent.</p>
           </div>
           <div className="cards">
-            <div className="card c1 rv"><svg className="starwm"><use href="#star" /></svg><span className="icochip"><img src="/landing/ico-solar.png" alt="" /></span><h3>Énergie &amp; Transition</h3><p>Solaire, hydro, transition énergétique et réseaux.</p><div className="tk">500k – 10M&nbsp;$</div></div>
-            <div className="card c2 rv"><svg className="starwm"><use href="#star" /></svg><span className="icochip"><img src="/landing/ico-tractor.png" alt="" /></span><h3>Agro et Industriel</h3><p>Production, transformation et chaînes de valeur.</p><div className="tk">100k – 5M&nbsp;$</div></div>
-            <div className="card c3 rv"><svg className="starwm"><use href="#star" /></svg><span className="icochip"><img src="/landing/ico-monitor.png" alt="" /></span><h3>Tech &amp; Fintech</h3><p>SaaS, fintech, plateformes et scale-ups.</p><div className="tk">25k – 2M&nbsp;$</div></div>
-            <div className="card c4 rv"><svg className="starwm"><use href="#star" /></svg><span className="icochip"><img src="/landing/ico-tourism.png" alt="" /></span><h3>Tourisme &amp; Hôtellerie</h3><p>Éco-tourisme, hôtellerie et patrimoine.</p><div className="tk">250k – 8M&nbsp;$</div></div>
-            <div className="card c5 rv"><svg className="starwm"><use href="#star" /></svg><span className="icochip"><img src="/landing/ico-construction.png" alt="" /></span><h3>Infrastructure &amp; Logistique</h3><p>Ports, routes, entrepôts et chaînes logistiques.</p><div className="tk">1M – 25M&nbsp;$</div></div>
-            <div className="card c6 rv"><svg className="starwm"><use href="#star" /></svg><span className="icochip"><img src="/landing/ico-ship.png" alt="" /></span><h3>Économie bleue</h3><p>Pêche durable, aquaculture et maritime.</p><div className="tk">200k – 6M&nbsp;$</div></div>
-            <div className="card c7 rv"><svg className="starwm"><use href="#star" /></svg><span className="icochip"><img src="/landing/ico-mines.png" alt="" /></span><h3>Mines &amp; Ressources</h3><p>Extraction responsable et valorisation locale.</p><div className="tk">2M – 50M&nbsp;$</div></div>
-            <div className="card c8 rv"><svg className="starwm"><use href="#star" /></svg><span className="icochip"><img src="/landing/ico-book.png" alt="" /></span><h3>Savoir &amp; Éducation</h3><p>Edtech, formation et enseignement supérieur.</p><div className="tk">50k – 3M&nbsp;$</div></div>
+            <div className="card c1 rv"><span className="icochip"><img src="/landing/ico-solar.png" alt="" /></span><h3>Énergie &amp; Transition</h3><p>Solaire, hydro, transition énergétique et réseaux.</p><div className="tk">500k – 10M&nbsp;$</div></div>
+            <div className="card c2 rv"><span className="icochip"><img src="/landing/ico-tractor.png" alt="" /></span><h3>Agro et Industriel</h3><p>Production, transformation et chaînes de valeur.</p><div className="tk">100k – 5M&nbsp;$</div></div>
+            <div className="card c3 rv"><span className="icochip"><img src="/landing/ico-monitor.png" alt="" /></span><h3>Tech &amp; Fintech</h3><p>SaaS, fintech, plateformes et scale-ups.</p><div className="tk">25k – 2M&nbsp;$</div></div>
+            <div className="card c4 rv"><span className="icochip"><img src="/landing/ico-tourism.png" alt="" /></span><h3>Tourisme &amp; Hôtellerie</h3><p>Éco-tourisme, hôtellerie et patrimoine.</p><div className="tk">250k – 8M&nbsp;$</div></div>
+            <div className="card c5 rv"><span className="icochip"><img src="/landing/ico-construction.png" alt="" /></span><h3>Infrastructure &amp; Logistique</h3><p>Ports, routes, entrepôts et chaînes logistiques.</p><div className="tk">1M – 25M&nbsp;$</div></div>
+            <div className="card c6 rv"><span className="icochip"><img src="/landing/ico-ship.png" alt="" /></span><h3>Économie bleue</h3><p>Pêche durable, aquaculture et maritime.</p><div className="tk">200k – 6M&nbsp;$</div></div>
+            <div className="card c7 rv"><span className="icochip"><img src="/landing/ico-mines.png" alt="" /></span><h3>Mines &amp; Ressources</h3><p>Extraction responsable et valorisation locale.</p><div className="tk">2M – 50M&nbsp;$</div></div>
+            <div className="card c8 rv"><span className="icochip"><img src="/landing/ico-book.png" alt="" /></span><h3>Savoir &amp; Éducation</h3><p>Edtech, formation et enseignement supérieur.</p><div className="tk">50k – 3M&nbsp;$</div></div>
           </div>
         </div>
       </section>
@@ -224,9 +218,9 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="steps">
-            <div className="step rv"><div className="no serif">01</div><h4 className="serif">Vous déposez</h4><p>Un dossier structuré, en quelques minutes. Privé — jamais listé, jamais public.</p></div>
-            <div className="step rv"><div className="no serif">02</div><h4 className="serif">Nous qualifions</h4><p>Une équipe humaine — pas un algorithme — confronte votre projet aux mandats actifs du réseau.</p></div>
-            <div className="step rv"><div className="no serif">03</div><h4 className="serif">Nous introduisons</h4><p>Une mise en relation directe avec les investisseurs dont le mandat correspond. Vous gardez le contrôle.</p></div>
+            <div className="step rv"><div className="no"><svg viewBox="0 0 24 24" fill="none"><path strokeLinecap="round" strokeLinejoin="round" d="M12 16V4m0 0L8 8m4-4l4 4M4 15v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></svg></div><h4 className="serif">Vous déposez</h4><p>Un dossier structuré, en quelques minutes. Privé — jamais listé, jamais public.</p></div>
+            <div className="step rv"><div className="no"><svg viewBox="0 0 24 24" fill="none"><path strokeLinecap="round" strokeLinejoin="round" d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z"/><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4"/></svg></div><h4 className="serif">Nous qualifions</h4><p>Une équipe humaine — pas un algorithme — confronte votre projet aux mandats actifs du réseau.</p></div>
+            <div className="step rv"><div className="no"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3"/><path strokeLinecap="round" strokeLinejoin="round" d="M3 20v-1a4 4 0 014-4h4a4 4 0 014 4v1M17 4.2a3 3 0 010 5.6M21 20v-1a4 4 0 00-3-3.8"/></svg></div><h4 className="serif">Nous introduisons</h4><p>Une mise en relation directe avec les investisseurs dont le mandat correspond. Vous gardez le contrôle.</p></div>
           </div>
         </div>
       </section>
@@ -234,7 +228,7 @@ export default function LandingPage() {
       {/* CONFIDENTIAL */}
       <div className="wrap">
         <section className="confid rv">
-          <svg className="starwm"><use href="#star" /></svg>
+          
           <span className="eb">La confidentialité, par défaut</span>
           <h2 className="serif">Vos chiffres ne quittent jamais la pièce sans votre accord.</h2>
           <p>Aucun projet publié. Vos données financières et vos projections ne sont partagées qu&apos;avec les investisseurs que vous avez approuvés — et seulement après votre accord explicite.</p>
@@ -244,7 +238,7 @@ export default function LandingPage() {
       {/* FINAL */}
       <section className="final">
         <div className="wrap">
-          <svg className="star rv"><use href="#star" /></svg>
+          
           <h2 className="serif rv">Votre projet mérite les <span>bons partenaires</span>.</h2>
           <p className="rv">Rejoignez le réseau de financement privé du CEO Summit Indian Ocean.</p>
           <div className="duo rv">

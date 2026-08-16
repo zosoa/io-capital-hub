@@ -41,7 +41,7 @@ function ForgotPasswordForm() {
 
   if (sent) {
     return (
-      <div className="min-h-screen ed bg-[#F7F5F1] flex items-center justify-center px-4 py-16">
+      <div className="min-h-screen ed bg-white flex items-center justify-center px-4 py-16">
         <div className="w-full max-w-md text-center">
           <Link href="/" className="flex flex-col items-center gap-3 mb-10">
             <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-9 w-auto"/>
@@ -50,7 +50,7 @@ function ForgotPasswordForm() {
               <div className="text-[#BC5A34] text-xs tracking-[0.15em] uppercase mt-0.5">Investment Hub · Cluster Capital &amp; Finance</div>
             </div>
           </Link>
-          <div className="bg-white rounded-2xl p-10 border border-[#EAE4D8]">
+          <div className="bg-white rounded-2xl p-10 border border-[#E4E7EC]">
             <div className="w-16 h-16 bg-[#BC5A34]/10 border border-[#BC5A34]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
               <svg className="w-8 h-8 text-[#BC5A34]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
@@ -82,7 +82,7 @@ function ForgotPasswordForm() {
   }
 
   return (
-    <div className="min-h-screen ed bg-[#F7F5F1] flex items-center justify-center px-4 py-16">
+    <div className="min-h-screen ed bg-white flex items-center justify-center px-4 py-16">
       <div className="w-full max-w-md">
         <Link href="/" className="flex flex-col items-center gap-3 mb-10">
           <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-9 w-auto"/>
@@ -92,7 +92,7 @@ function ForgotPasswordForm() {
           </div>
         </Link>
 
-        <div className="bg-white rounded-2xl p-8 border border-[#EAE4D8]">
+        <div className="bg-white rounded-2xl p-8 border border-[#E4E7EC]">
           <h1 className="font-display text-2xl font-bold text-[#22201B] mb-1.5">Mot de passe oublié ?</h1>
           <p className="text-[#918A7C] text-sm mb-7">
             Entrez votre adresse email — nous vous enverrons un lien pour réinitialiser votre mot de passe.
@@ -125,7 +125,7 @@ function ForgotPasswordForm() {
             </button>
           </form>
 
-          <div className="mt-6 pt-5 border-t border-[#EAE4D8] text-center text-sm text-[#918A7C]">
+          <div className="mt-6 pt-5 border-t border-[#E4E7EC] text-center text-sm text-[#918A7C]">
             <Link href="/auth/login" className="text-[#BC5A34] hover:text-[#A44B29] font-medium transition-colors">
               ← Retour à la connexion
             </Link>

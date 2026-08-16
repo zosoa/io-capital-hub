@@ -18,7 +18,7 @@ function accent(type: string): { bg: string; dot: string; label: string } {
     return { bg: "bg-red-500/5 border-red-500/20", dot: "bg-red-400", label: "À revoir" };
   if (type === "project.interest_received" || type === "interest.submitted" || type === "digest.weekly")
     return { bg: "bg-[#BC5A34]/5 border-[#BC5A34]/20", dot: "bg-[#BC5A34]", label: "Deal flow" };
-  return { bg: "bg-white border-[#EAE4D8]", dot: "bg-white0", label: "Info" };
+  return { bg: "bg-white border-[#E4E7EC]", dot: "bg-white0", label: "Info" };
 }
 
 export default async function NotificationsPage() {
@@ -53,8 +53,8 @@ export default async function NotificationsPage() {
       </div>
 
       {items.length === 0 ? (
-        <div className="rounded-xl border border-[#EAE4D8] bg-white p-12 text-center">
-          <div className="w-12 h-12 rounded-xl bg-[#F7F5F1] border border-[#EAE4D8] flex items-center justify-center mx-auto mb-4 text-[#918A7C]">
+        <div className="rounded-xl border border-[#E4E7EC] bg-white p-12 text-center">
+          <div className="w-12 h-12 rounded-xl bg-white border border-[#E4E7EC] flex items-center justify-center mx-auto mb-4 text-[#918A7C]">
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/>
             </svg>
@@ -71,7 +71,7 @@ export default async function NotificationsPage() {
             const content = (
               <div className={`rounded-xl border p-4 transition-colors ${a.bg} ${!n.read_at ? "ring-1 ring-[#BC5A34]/30" : ""} hover:border-white/20`}>
                 <div className="flex items-start gap-3">
-                  <span className={`flex-shrink-0 w-2 h-2 rounded-full mt-1.5 ${n.read_at ? "bg-[#EFEBE3]" : a.dot}`}/>
+                  <span className={`flex-shrink-0 w-2 h-2 rounded-full mt-1.5 ${n.read_at ? "bg-[#EDEFF2]" : a.dot}`}/>
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
                       <span className="text-[10px] font-bold uppercase tracking-widest text-[#6B655B]">{a.label}</span>

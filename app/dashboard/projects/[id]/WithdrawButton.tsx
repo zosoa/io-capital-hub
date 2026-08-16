@@ -36,13 +36,13 @@ export default function WithdrawButton({ projectId }: { projectId: string }) {
           className={`flex-1 py-2 px-3 rounded-lg text-xs font-medium transition-all disabled:opacity-50 border ${
             confirming
               ? "bg-red-500/10 border-red-500/30 text-red-400 hover:bg-red-500/20"
-              : "border-[#E2DACB] text-[#918A7C] hover:text-[#6B655B] hover:border-white/20"
+              : "border-[#DADEE4] text-[#918A7C] hover:text-[#6B655B] hover:border-white/20"
           }`}>
           {isPending ? "Retrait en cours…" : confirming ? "Confirmer le retrait" : "Retirer le dossier"}
         </button>
         {confirming && !isPending && (
           <button onClick={() => setConfirming(false)}
-            className="py-2 px-3 rounded-lg text-xs border border-[#EAE4D8] text-[#918A7C] hover:text-[#6B655B] transition-all">
+            className="py-2 px-3 rounded-lg text-xs border border-[#E4E7EC] text-[#918A7C] hover:text-[#6B655B] transition-all">
             Annuler
           </button>
         )}

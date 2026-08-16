@@ -106,15 +106,15 @@ export default function NotificationBell() {
           <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/>
         </svg>
         {unread > 0 && (
-          <span className="absolute top-1 right-1 min-w-[16px] h-4 px-1 rounded-full bg-[#BC5A34] text-[10px] font-bold text-white flex items-center justify-center ring-2 ring-[#1C3A30]">
+          <span className="absolute top-1 right-1 min-w-[16px] h-4 px-1 rounded-full bg-[#BC5A34] text-[10px] font-bold text-white flex items-center justify-center ring-2 ring-[#1A5FB4]">
             {unread > 9 ? "9+" : unread}
           </span>
         )}
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-[22rem] max-w-[calc(100vw-2rem)] bg-white border border-[#E2DACB] rounded-xl shadow-2xl z-50 overflow-hidden">
-          <div className="flex items-center justify-between px-4 py-3 border-b border-[#EAE4D8]">
+        <div className="absolute right-0 mt-2 w-[22rem] max-w-[calc(100vw-2rem)] bg-white border border-[#DADEE4] rounded-xl shadow-2xl z-50 overflow-hidden">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-[#E4E7EC]">
             <div>
               <div className="text-[#22201B] text-sm font-semibold">Notifications</div>
               <div className="text-[#918A7C] text-xs mt-0.5">
@@ -130,7 +130,7 @@ export default function NotificationBell() {
             )}
           </div>
 
-          <div className="max-h-[26rem] overflow-y-auto divide-y divide-[#EAE4D8]">
+          <div className="max-h-[26rem] overflow-y-auto divide-y divide-[#E4E7EC]">
             {items.length === 0 ? (
               <div className="px-4 py-8 text-center text-[#918A7C] text-xs">
                 Aucune notification pour le moment.
@@ -142,7 +142,7 @@ export default function NotificationBell() {
               const wrapProps = link ? { href: link, onClick: () => setOpen(false) } : {};
               return (
                 <Wrap key={n.id} {...wrapProps}
-                  className={`block px-4 py-3 hover:bg-[#F7F5F1] transition-colors ${!n.read_at ? "bg-[#BC5A34]/5" : ""}`}>
+                  className={`block px-4 py-3 hover:bg-white transition-colors ${!n.read_at ? "bg-[#BC5A34]/5" : ""}`}>
                   <div className="flex items-start gap-2.5">
                     <span className={`flex-shrink-0 w-1.5 h-1.5 rounded-full mt-1.5 ${n.read_at ? "bg-[#D8D0C4]" : accent.dot}`}/>
                     <div className="flex-1 min-w-0">
@@ -160,7 +160,7 @@ export default function NotificationBell() {
             })}
           </div>
 
-          <div className="border-t border-[#EAE4D8] px-4 py-2.5 text-center">
+          <div className="border-t border-[#E4E7EC] px-4 py-2.5 text-center">
             <Link href="/dashboard/notifications" onClick={() => setOpen(false)}
               className="text-[#575249] hover:text-[#22201B] text-xs font-medium transition-colors">
               Voir toutes les notifications →

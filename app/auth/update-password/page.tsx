@@ -9,13 +9,13 @@ import { friendlyError } from "@/lib/friendlyError";
 function PasswordStrength({ password }: { password: string }) {
   const len = password.length;
   const strength = len === 0 ? 0 : len < 6 ? 1 : len < 8 ? 2 : len < 12 ? 3 : 4;
-  const colors = ["bg-[#EAE4D8]","bg-red-400","bg-yellow-400","bg-[#BC5A34]","bg-green-400"];
+  const colors = ["bg-[#E4E7EC]","bg-red-400","bg-yellow-400","bg-[#BC5A34]","bg-green-400"];
   const labels = ["","Trop court","Faible","Bon","Fort"];
   return (
     <div className="mt-2">
       <div className="flex gap-1 mb-1">
         {[1,2,3,4].map(i => (
-          <div key={i} className={`h-1 flex-1 rounded-full transition-all duration-300 ${i <= strength ? colors[strength] : "bg-[#EAE4D8]"}`}/>
+          <div key={i} className={`h-1 flex-1 rounded-full transition-all duration-300 ${i <= strength ? colors[strength] : "bg-[#E4E7EC]"}`}/>
         ))}
       </div>
       {len > 0 && <p className={`text-xs ${strength < 2 ? "text-red-600" : strength < 3 ? "text-yellow-600" : "text-[#918A7C]"}`}>{labels[strength]}</p>}
@@ -62,14 +62,14 @@ export default function UpdatePasswordPage() {
 
   if (checking) {
     return (
-      <div className="min-h-screen ed bg-[#F7F5F1] flex items-center justify-center">
+      <div className="min-h-screen ed bg-white flex items-center justify-center">
         <div className="w-6 h-6 border-2 border-[#BC5A34]/30 border-t-[#BC5A34] rounded-full animate-spin"/>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen ed bg-[#F7F5F1] flex items-center justify-center px-4 py-16">
+    <div className="min-h-screen ed bg-white flex items-center justify-center px-4 py-16">
       <div className="w-full max-w-md">
         <Link href="/" className="flex flex-col items-center gap-3 mb-10">
           <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-9 w-auto"/>
@@ -79,7 +79,7 @@ export default function UpdatePasswordPage() {
           </div>
         </Link>
 
-        <div className="bg-white rounded-2xl p-8 border border-[#EAE4D8]">
+        <div className="bg-white rounded-2xl p-8 border border-[#E4E7EC]">
           <h1 className="font-display text-2xl font-bold text-[#22201B] mb-1.5">Nouveau mot de passe</h1>
           <p className="text-[#918A7C] text-sm mb-7">Choisissez un mot de passe fort pour sécuriser votre compte.</p>
 

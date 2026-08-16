@@ -64,6 +64,7 @@ export default function EligibilitePage() {
   const [sector, setSector] = useState("");
   const [country, setCountry] = useState("");
   const [stage, setStage] = useState("");
+  const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
@@ -88,6 +89,7 @@ export default function EligibilitePage() {
       sector,
       country,
       stage,
+      description: description || null,
       source: "eligibilite",
     };
     try {
@@ -130,15 +132,22 @@ export default function EligibilitePage() {
               <div className="result-badge"><Check /></div>
               <h1>Bonne nouvelle — votre projet correspond à nos secteurs actifs.</h1>
               <p className="rp">
-                Créez votre compte pour finaliser votre dossier. Notre équipe procède à une première qualification sous
-                72&nbsp;h, puis confronte votre projet aux mandats actifs du réseau — en toute confidentialité.
+                Vos paramètres correspondent à nos critères. Créez votre compte pour finaliser votre dossier : notre
+                équipe procède à une première qualification sous 72&nbsp;h, puis confronte votre projet aux mandats
+                actifs du réseau — en toute confidentialité.
               </p>
+              <ul className="result-checks">
+                <li><Check /><span>Votre <strong>ticket</strong> ({curSymbol} {fmt(amount)}) entre dans notre fourchette 25k – 50M&nbsp;$.</span></li>
+                <li><Check /><span>Le secteur <strong>{labelOf(SECTORS, sector)}</strong> fait partie de nos 8 secteurs actifs.</span></li>
+                <li><Check /><span>Nous couvrons <strong>{country}</strong> et l&apos;ensemble de l&apos;Océan Indien &amp; Afrique.</span></li>
+              </ul>
               <div className="summary">
                 <div className="summary-row"><span className="k">Montant recherché</span><span className="v">{curSymbol} {fmt(amount)}</span></div>
                 <div className="summary-row"><span className="k">Instrument</span><span className="v">{labelOf(FUNDING, fundingType)}</span></div>
                 <div className="summary-row"><span className="k">Secteur</span><span className="v">{labelOf(SECTORS, sector)}</span></div>
                 <div className="summary-row"><span className="k">Pays</span><span className="v">{country}</span></div>
                 <div className="summary-row"><span className="k">Stade</span><span className="v">{labelOf(STAGES, stage)}</span></div>
+                {description && <div className="summary-row"><span className="k">Description</span><span className="v" style={{ fontWeight: 400, maxWidth: "60%" }}>{description}</span></div>}
               </div>
               <div className="elig-nav" style={{ marginTop: 0 }}>
                 <Link href="/auth/signup?from=eligibilite" className="btn btn-forest">Créer mon compte et finaliser <Arrow /></Link>
@@ -229,6 +238,14 @@ export default function EligibilitePage() {
                         <button key={o.v} type="button" className={`opt${stage === o.v ? " sel" : ""}`} onClick={() => setStage(o.v)}>{o.l}</button>
                       ))}
                     </div>
+                  </div>
+
+                  <div className="eq">
+                    <div className="eq-q">Décrivez votre projet en une phrase</div>
+                    <textarea className="field-input" rows={2} maxLength={180}
+                      placeholder="Ex : Mini-réseaux solaires pour électrifier 40 communes rurales…"
+                      value={description} onChange={(e) => setDescription(e.target.value)} />
+                    <div className="field-hint"><Line /> Facultatif — vous la retrouverez pré-remplie dans votre dossier. {description.length}/180</div>
                   </div>
                 </>
               )}

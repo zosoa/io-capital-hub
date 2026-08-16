@@ -11,13 +11,13 @@ import { deleteAccount, exportAccountData } from "@/app/actions/account";
 function PasswordStrength({ password }: { password: string }) {
   const len = password.length;
   const strength = len === 0 ? 0 : len < 6 ? 1 : len < 8 ? 2 : len < 12 ? 3 : 4;
-  const colors = ["bg-[#F7F5F1]", "bg-red-400", "bg-yellow-400", "bg-[#BC5A34]", "bg-green-400"];
+  const colors = ["bg-white", "bg-red-400", "bg-yellow-400", "bg-[#BC5A34]", "bg-green-400"];
   const labels = ["", "Trop court", "Faible", "Bon", "Fort"];
   return (
     <div className="mt-2">
       <div className="flex gap-1 mb-1">
         {[1, 2, 3, 4].map(i => (
-          <div key={i} className={`h-1 flex-1 rounded-full transition-all duration-300 ${i <= strength ? colors[strength] : "bg-[#F7F5F1]"}`}/>
+          <div key={i} className={`h-1 flex-1 rounded-full transition-all duration-300 ${i <= strength ? colors[strength] : "bg-white"}`}/>
         ))}
       </div>
       {len > 0 && (
@@ -36,8 +36,8 @@ function Section({ title, icon, children }: {
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-xl border border-[#EAE4D8] bg-white overflow-hidden">
-      <div className="px-6 py-4 border-b border-[#EAE4D8] flex items-center gap-2.5">
+    <div className="rounded-xl border border-[#E4E7EC] bg-white overflow-hidden">
+      <div className="px-6 py-4 border-b border-[#E4E7EC] flex items-center gap-2.5">
         <div className="w-7 h-7 rounded-lg bg-[#BC5A34]/10 text-[#BC5A34] flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
@@ -275,7 +275,7 @@ export default function AccountPage() {
             type="button"
             onClick={handleExport}
             disabled={exportLoading}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[#E2DACB] text-[#575249] text-sm hover:border-white/20 hover:text-[#22201B]/80 transition-all disabled:opacity-50">
+            className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[#DADEE4] text-[#575249] text-sm hover:border-white/20 hover:text-[#22201B]/80 transition-all disabled:opacity-50">
             {exportLoading ? (
               <>
                 <span className="w-3.5 h-3.5 border-2 border-white/20 border-t-white/60 rounded-full animate-spin"/>
@@ -349,7 +349,7 @@ export default function AccountPage() {
                   type="button"
                   onClick={() => { setDeleteConfirm(false); setDeleteInput(""); }}
                   disabled={isPendingDelete}
-                  className="px-4 py-2 rounded-lg border border-[#EAE4D8] text-[#918A7C] text-sm hover:text-[#6B655B] hover:border-white/15 transition-all">
+                  className="px-4 py-2 rounded-lg border border-[#E4E7EC] text-[#918A7C] text-sm hover:text-[#6B655B] hover:border-white/15 transition-all">
                   Annuler
                 </button>
               </div>

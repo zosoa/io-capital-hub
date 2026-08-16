@@ -12,13 +12,13 @@ import { friendlyError } from "@/lib/friendlyError";
 function PasswordStrength({ password }: { password: string }) {
   const len = password.length;
   const strength = len === 0 ? 0 : len < 6 ? 1 : len < 8 ? 2 : len < 12 ? 3 : 4;
-  const colors = ["bg-[#EAE4D8]","bg-red-500","bg-yellow-500","bg-[#BC5A34]","bg-green-500"];
+  const colors = ["bg-[#E4E7EC]","bg-red-500","bg-yellow-500","bg-[#BC5A34]","bg-green-500"];
   const labels = ["","Trop court","Faible","Bon","Fort"];
   return (
     <div className="mt-2">
       <div className="flex gap-1 mb-1">
         {[1,2,3,4].map(i=>(
-          <div key={i} className={`h-1 flex-1 rounded-full transition-all duration-300 ${i <= strength ? colors[strength] : "bg-[#EAE4D8]"}`}/>
+          <div key={i} className={`h-1 flex-1 rounded-full transition-all duration-300 ${i <= strength ? colors[strength] : "bg-[#E4E7EC]"}`}/>
         ))}
       </div>
       {len > 0 && <p className={`text-xs ${strength < 2 ? "text-red-600" : strength < 3 ? "text-yellow-600" : "text-[#918A7C]"}`}>{labels[strength]}</p>}
@@ -142,7 +142,7 @@ function SignupForm() {
   // ── Email confirmation screen ──────────────────────────────
   if (confirmed) {
     return (
-      <div className="min-h-screen ed bg-[#F7F5F1] flex items-center justify-center px-4 py-16">
+      <div className="min-h-screen ed bg-white flex items-center justify-center px-4 py-16">
         <div className="relative z-10 w-full max-w-md text-center">
           <Link href="/" className="flex flex-col items-center gap-3 mb-10">
             <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-9 w-auto"/>
@@ -152,7 +152,7 @@ function SignupForm() {
             </div>
           </Link>
 
-          <div className="bg-white rounded-2xl p-10 border border-[#EAE4D8] shadow-[0_30px_60px_-40px_rgba(34,32,27,0.28)]">
+          <div className="bg-white rounded-2xl p-10 border border-[#E4E7EC] shadow-[0_30px_60px_-40px_rgba(34,32,27,0.28)]">
             {/* Envelope icon */}
             <div className="w-16 h-16 bg-[#BC5A34]/10 border border-[#BC5A34]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
               <svg className="w-8 h-8 text-[#BC5A34]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -186,7 +186,7 @@ function SignupForm() {
   }
 
   return (
-    <div className="min-h-screen ed bg-[#F7F5F1] flex items-center justify-center px-4 py-16">
+    <div className="min-h-screen ed bg-white flex items-center justify-center px-4 py-16">
 
       <div className="relative z-10 w-full max-w-lg">
         {/* Logo */}
@@ -199,9 +199,9 @@ function SignupForm() {
         </Link>
         {isInvestor && (
           <div className="flex items-center justify-center gap-2 mb-6">
-            <div className="h-px flex-1 bg-[#EAE4D8]"/>
+            <div className="h-px flex-1 bg-[#E4E7EC]"/>
             <span className="text-[#BC5A34]/70 text-xs font-medium tracking-wide px-3">Réseau investisseur</span>
-            <div className="h-px flex-1 bg-[#EAE4D8]"/>
+            <div className="h-px flex-1 bg-[#E4E7EC]"/>
           </div>
         )}
 
@@ -214,7 +214,7 @@ function SignupForm() {
             <div key={s.n} className="flex items-center gap-2">
               <div className="flex items-center gap-2">
                 <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold transition-all duration-300 ${
-                  step > s.n ? "bg-[#BC5A34] text-white" : step === s.n ? "bg-[#BC5A34]/15 border border-[#BC5A34]/40 text-[#BC5A34]" : "bg-[#F7F5F1] text-[#8A8275] border border-[#E2DACB]"
+                  step > s.n ? "bg-[#BC5A34] text-white" : step === s.n ? "bg-[#BC5A34]/15 border border-[#BC5A34]/40 text-[#BC5A34]" : "bg-white text-[#8A8275] border border-[#DADEE4]"
                 }`}>
                   {step > s.n ? (
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -224,12 +224,12 @@ function SignupForm() {
                 </div>
                 <span className={`text-xs hidden sm:block transition-colors ${step === s.n ? "text-[#575249]" : "text-[#B3AA9C]"}`}>{s.label}</span>
               </div>
-              {i < 1 && <div className={`w-12 h-px transition-all duration-300 ${step > 1 ? "bg-[#BC5A34]/50" : "bg-[#EAE4D8]"}`}/>}
+              {i < 1 && <div className={`w-12 h-px transition-all duration-300 ${step > 1 ? "bg-[#BC5A34]/50" : "bg-[#E4E7EC]"}`}/>}
             </div>
           ))}
         </div>
 
-        <div className="bg-white rounded-2xl p-8 border border-[#EAE4D8] shadow-[0_30px_60px_-40px_rgba(34,32,27,0.28)]">
+        <div className="bg-white rounded-2xl p-8 border border-[#E4E7EC] shadow-[0_30px_60px_-40px_rgba(34,32,27,0.28)]">
           <h1 className="font-display text-2xl font-bold text-[#22201B] mb-1.5">
             {step === 1
               ? (isInvestor ? "Rejoindre le réseau investisseur" : "Créer votre compte")
@@ -338,7 +338,7 @@ function SignupForm() {
             </form>
           )}
 
-          <div className="mt-6 pt-5 border-t border-[#EAE4D8] text-center text-sm text-[#918A7C]">
+          <div className="mt-6 pt-5 border-t border-[#E4E7EC] text-center text-sm text-[#918A7C]">
             {isInvestor ? "Déjà membre du réseau ?" : "Déjà inscrit ?"}{" "}
             <Link href="/auth/login" className="text-[#BC5A34] hover:text-[#A44B29] font-medium transition-colors">
               Se connecter
@@ -364,7 +364,7 @@ function SignupForm() {
 // useSearchParams() requires a Suspense boundary for Next 15 prerendering.
 export default function SignupPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen ed bg-[#F7F5F1]"/>}>
+    <Suspense fallback={<div className="min-h-screen ed bg-white"/>}>
       <SignupForm/>
     </Suspense>
   );

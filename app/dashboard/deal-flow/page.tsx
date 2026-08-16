@@ -80,7 +80,7 @@ export default async function DealFlowPage({
         className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors border ${
           isActive
             ? "bg-[#BC5A34]/15 border-[#BC5A34]/40 text-[#BC5A34]"
-            : "border-[#EAE4D8] text-[#918A7C] hover:text-[#575249] hover:border-white/20"
+            : "border-[#E4E7EC] text-[#918A7C] hover:text-[#575249] hover:border-white/20"
         }`}>
         {label}
       </Link>
@@ -116,7 +116,7 @@ export default async function DealFlowPage({
           {tabLink("amount_desc",  "Montant ↓ (USD)")}
           {tabLink("amount_asc",   "Montant ↑ (USD)")}
           {tabLink("newest",       "Plus récents")}
-          <span className="mx-2 h-4 w-px bg-[#EFEBE3]"/>
+          <span className="mx-2 h-4 w-px bg-[#EDEFF2]"/>
           {tabLink("saved",        `Sauvegardés${savedCount ? ` (${savedCount})` : ""}`)}
         </div>
       )}
@@ -168,7 +168,7 @@ export default async function DealFlowPage({
               className={`rounded-xl border p-5 hover:border-[#BC5A34]/30 hover:bg-[#BC5A34]/5 transition-all flex flex-col relative ${
                 project._match > 0
                   ? "border-[#BC5A34]/30 bg-[#BC5A34]/5"
-                  : "border-[#EAE4D8] bg-white"
+                  : "border-[#E4E7EC] bg-white"
               }`}>
 
               {/* Top-right: save toggle + match indicator stacked */}
@@ -192,7 +192,7 @@ export default async function DealFlowPage({
                 </span>
                 {project.boost_score > 0 && (
                   <div className="flex items-center gap-1.5 flex-shrink-0">
-                    <div className="w-14 h-1 rounded-full bg-[#EFEBE3] overflow-hidden">
+                    <div className="w-14 h-1 rounded-full bg-[#EDEFF2] overflow-hidden">
                       <div className="h-full rounded-full bg-[#BC5A34]"
                         style={{ width: `${Math.min(project.boost_score, 100)}%` }}/>
                     </div>
@@ -209,14 +209,14 @@ export default async function DealFlowPage({
               {!project.tagline && <div className="flex-1"/>}
 
               {/* Meta row */}
-              <div className="border-t border-[#EAE4D8] pt-3 mt-3 flex flex-wrap items-center gap-2">
+              <div className="border-t border-[#E4E7EC] pt-3 mt-3 flex flex-wrap items-center gap-2">
                 {project.stage && (
-                  <span className="text-[10px] text-[#918A7C] bg-[#F7F5F1] border border-[#EAE4D8] px-2 py-0.5 rounded-full">
+                  <span className="text-[10px] text-[#918A7C] bg-white border border-[#E4E7EC] px-2 py-0.5 rounded-full">
                     {STAGE_LABELS[project.stage] || project.stage}
                   </span>
                 )}
                 {project.funding_type && (
-                  <span className="text-[10px] text-[#918A7C] bg-[#F7F5F1] border border-[#EAE4D8] px-2 py-0.5 rounded-full">
+                  <span className="text-[10px] text-[#918A7C] bg-white border border-[#E4E7EC] px-2 py-0.5 rounded-full">
                     {FUNDING_TYPE_LABELS[project.funding_type] || project.funding_type}
                   </span>
                 )}
@@ -242,7 +242,7 @@ export default async function DealFlowPage({
           ))}
         </div>
       ) : (
-        <div className="rounded-xl border border-[#EAE4D8] bg-white p-12 text-center max-w-md mx-auto">
+        <div className="rounded-xl border border-[#E4E7EC] bg-white p-12 text-center max-w-md mx-auto">
           <div className="w-12 h-12 rounded-xl bg-[#BC5A34]/10 border border-[#BC5A34]/20 flex items-center justify-center mx-auto mb-4 text-[#BC5A34]">
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"/>
@@ -272,7 +272,7 @@ export default async function DealFlowPage({
                   Compléter mon profil investisseur
                 </Link>
                 <a href="mailto:contact@ceosummit.io"
-                  className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-[#EAE4D8] text-[#918A7C] text-sm hover:text-[#575249] hover:border-white/15 transition-all">
+                  className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-[#E4E7EC] text-[#918A7C] text-sm hover:text-[#575249] hover:border-white/15 transition-all">
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
                   </svg>

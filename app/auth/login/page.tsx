@@ -52,7 +52,7 @@ function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen ed bg-[#F7F5F1] flex items-center justify-center px-4 py-16">
+    <div className="min-h-screen ed bg-white flex items-center justify-center px-4 py-16">
 
       <div className="w-full max-w-md">
 
@@ -68,7 +68,7 @@ function LoginForm() {
         </div>
 
         {/* Card */}
-        <div className="bg-white border border-[#EAE4D8] rounded-2xl p-8 shadow-[0_30px_60px_-40px_rgba(34,32,27,0.28)]">
+        <div className="bg-white border border-[#E4E7EC] rounded-2xl p-8 shadow-[0_30px_60px_-40px_rgba(34,32,27,0.28)]">
           <h1 className="font-display text-2xl font-semibold text-[#22201B] mb-1">Connexion</h1>
           <p className="text-[#918A7C] text-sm mb-7">Accédez à votre espace porteur de projet</p>
 
@@ -82,7 +82,7 @@ function LoginForm() {
           )}
 
           {accountDeleted && (
-            <div role="status" aria-live="polite" className="mb-5 p-3 bg-[#F7F5F1] border border-[#EAE4D8] rounded-lg text-[#575249] text-sm flex items-center gap-2">
+            <div role="status" aria-live="polite" className="mb-5 p-3 bg-white border border-[#E4E7EC] rounded-lg text-[#575249] text-sm flex items-center gap-2">
               <svg aria-hidden="true" className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
@@ -144,7 +144,7 @@ function LoginForm() {
             </button>
           </form>
 
-          <div className="mt-7 pt-6 border-t border-[#EAE4D8] text-center text-sm text-[#918A7C]">
+          <div className="mt-7 pt-6 border-t border-[#E4E7EC] text-center text-sm text-[#918A7C]">
             Pas encore de compte ?{" "}
             <Link href="/auth/signup" className="text-[#BC5A34] hover:text-[#A44B29] font-semibold transition-colors">
               Créer un compte gratuit

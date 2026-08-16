@@ -15,17 +15,17 @@
   --brand-red:         #C0392B; /* retained for logo only */
 
   /* ── Editorial theme (light) — used by the `.ed` scope on user-facing pages ── */
-  --forest:    #1C3A30;
-  --forest-2:  #2A5346;
+  --forest:    #1A5FB4;
+  --forest-2:  #154C90;
   --terra:     #BC5A34;
   --terra-2:   #A44B29;
   --paper:     #FFFFFF;
-  --paper-2:   #F7F5F1;
+  --paper-2:   #F4F5F7;
   --ink:       #22201B;
   --ink-soft:  #575249;
   --ink-faint: #918A7C;
-  --e-line:    #EAE4D8;
-  --e-line-2:  #E2DACB;
+  --e-line:    #E4E7EC;
+  --e-line-2:  #DADEE4;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -71,7 +71,7 @@ body {
 
 /* ── Display font ── */
 .font-display {
-  font-family: 'Fraunces', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-family: 'Inter', system-ui, sans-serif;
   font-optical-sizing: auto;
 }
 
@@ -281,7 +281,7 @@ body {
 .ed .form-input:focus {
   outline: none;
   border-color: var(--forest);
-  box-shadow: 0 0 0 3px rgba(28,58,48,0.10);
+  box-shadow: 0 0 0 3px rgba(26,95,180,0.10);
 }
 .ed .form-label { color: var(--ink-soft); font-weight: 600; }
 
@@ -289,7 +289,7 @@ body {
   background-color: var(--forest);
   color: #fff;
   border-radius: 0.6rem;
-  box-shadow: 0 10px 24px -12px rgba(28,58,48,0.5);
+  box-shadow: 0 10px 24px -12px rgba(26,95,180,0.5);
 }
 .ed .btn-primary:hover { background-color: var(--forest-2); }
 
@@ -299,7 +299,7 @@ body {
   border: 1px solid var(--e-line-2);
   border-radius: 0.6rem;
 }
-.ed .btn-secondary:hover { background-color: #EFEBE3; color: var(--ink); }
+.ed .btn-secondary:hover { background-color: #EDEFF2; color: var(--ink); }
 
 /* Terracotta accent for editorial links/buttons */
 .ed .btn-accent {

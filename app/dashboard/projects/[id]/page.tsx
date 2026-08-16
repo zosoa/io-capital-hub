@@ -275,7 +275,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
               <div className={`font-semibold mb-0.5 ${banner.title}`}>{sm.title}</div>
               <p className={`text-sm ${banner.desc}`}>{sm.desc}</p>
               {(project.admin_notes_public || project.admin_notes) && (
-                <div className="mt-3 p-3 bg-[#F7F5F1]0 rounded-lg border border-[#E8E2D9]">
+                <div className="mt-3 p-3 bg-white0 rounded-lg border border-[#E8E2D9]">
                   <div className="text-xs text-[#8A8FA8] mb-1 font-semibold uppercase tracking-wider">Note de l&apos;équipe</div>
                   <p className="text-[#0F1320] text-sm">{project.admin_notes_public || project.admin_notes}</p>
                 </div>
@@ -341,7 +341,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           )}
           {project.status !== "approved" && project.status !== "funded" && (
             <Link href={`/dashboard/projects/${project.id}/edit`}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#E2DACB] text-[#6B655B] hover:text-[#22201B]/80 hover:border-white/20 text-sm transition-all">
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#DADEE4] text-[#6B655B] hover:text-[#22201B]/80 hover:border-white/20 text-sm transition-all">
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"/>
               </svg>

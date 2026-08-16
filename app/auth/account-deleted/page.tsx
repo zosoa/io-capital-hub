@@ -26,7 +26,7 @@ export default async function AccountDeletedPage() {
   }
 
   return (
-    <div className="min-h-screen ed bg-[#F7F5F1] flex items-center justify-center px-4 py-16">
+    <div className="min-h-screen ed bg-white flex items-center justify-center px-4 py-16">
       <div className="w-full max-w-md text-center">
         <Link href="/" className="flex flex-col items-center gap-3 mb-10">
           <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-9 w-auto"/>
@@ -38,8 +38,8 @@ export default async function AccountDeletedPage() {
           </div>
         </Link>
 
-        <div className="bg-white rounded-2xl p-10 border border-[#EAE4D8]">
-          <div className="w-16 h-16 bg-[#F7F5F1] border border-[#E2DACB] rounded-2xl flex items-center justify-center mx-auto mb-6">
+        <div className="bg-white rounded-2xl p-10 border border-[#E4E7EC]">
+          <div className="w-16 h-16 bg-white border border-[#DADEE4] rounded-2xl flex items-center justify-center mx-auto mb-6">
             <svg className="w-8 h-8 text-[#575249]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>

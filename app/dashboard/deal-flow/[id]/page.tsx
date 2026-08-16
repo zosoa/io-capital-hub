@@ -15,7 +15,7 @@ function Badge({ label, gold = false }: { label: string; gold?: boolean }) {
     <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
       gold
         ? "bg-[#BC5A34]/15 text-[#BC5A34] border border-[#BC5A34]/25"
-        : "bg-[#F7F5F1] text-[#918A7C] border border-[#E2DACB]"
+        : "bg-white text-[#918A7C] border border-[#DADEE4]"
     }`}>
       {label}
     </span>
@@ -25,7 +25,7 @@ function Badge({ label, gold = false }: { label: string; gold?: boolean }) {
 function InfoRow({ label, value }: { label: string; value: React.ReactNode }) {
   if (!value) return null;
   return (
-    <div className="flex justify-between items-start py-3 border-b border-[#EAE4D8] last:border-0">
+    <div className="flex justify-between items-start py-3 border-b border-[#E4E7EC] last:border-0">
       <span className="text-[#918A7C] text-sm">{label}</span>
       <span className="text-[#22201B] text-sm font-medium text-right max-w-[60%]">{value}</span>
     </div>
@@ -219,14 +219,14 @@ export default function DealFlowDetailPage() {
         <div className="lg:col-span-2 space-y-6">
 
           {/* Header card */}
-          <div className="rounded-2xl border border-[#EAE4D8] bg-white p-6">
+          <div className="rounded-2xl border border-[#E4E7EC] bg-white p-6">
             <div className="flex flex-wrap items-center gap-2 mb-4">
               <Badge label={SECTOR_LABELS[project.sector || ""] || project.sector || "—"} gold/>
               {project.stage && <Badge label={STAGE_LABELS[project.stage] || project.stage}/>}
               {project.funding_type && <Badge label={FUNDING_TYPE_LABELS[project.funding_type] || project.funding_type}/>}
               {project.boost_score > 0 && (
                 <div className="ml-auto flex items-center gap-1.5">
-                  <div className="w-16 h-1 rounded-full bg-[#EFEBE3] overflow-hidden">
+                  <div className="w-16 h-1 rounded-full bg-[#EDEFF2] overflow-hidden">
                     <div className="h-full rounded-full bg-[#BC5A34]"
                       style={{ width: `${Math.min(project.boost_score, 100)}%` }}/>
                   </div>
@@ -245,7 +245,7 @@ export default function DealFlowDetailPage() {
 
           {/* Description */}
           {project.description && (
-            <div className="rounded-xl border border-[#EAE4D8] bg-white p-6">
+            <div className="rounded-xl border border-[#E4E7EC] bg-white p-6">
               <h2 className="text-xs font-bold text-[#918A7C] uppercase tracking-widest mb-3">Description du projet</h2>
               <p className="text-[#575249] text-sm leading-relaxed whitespace-pre-line">{project.description}</p>
             </div>
@@ -253,7 +253,7 @@ export default function DealFlowDetailPage() {
 
           {/* Use of funds */}
           {project.use_of_funds && (
-            <div className="rounded-xl border border-[#EAE4D8] bg-white p-6">
+            <div className="rounded-xl border border-[#E4E7EC] bg-white p-6">
               <h2 className="text-xs font-bold text-[#918A7C] uppercase tracking-widest mb-3">Utilisation des fonds</h2>
               <p className="text-[#575249] text-sm leading-relaxed whitespace-pre-line">{project.use_of_funds}</p>
             </div>
@@ -261,7 +261,7 @@ export default function DealFlowDetailPage() {
 
           {/* Impact */}
           {project.impact_description && (
-            <div className="rounded-xl border border-[#EAE4D8] bg-white p-6">
+            <div className="rounded-xl border border-[#E4E7EC] bg-white p-6">
               <h2 className="text-xs font-bold text-[#BC5A34]/50 uppercase tracking-widest mb-3">Impact</h2>
               <p className="text-[#575249] text-sm leading-relaxed">{project.impact_description}</p>
               {project.job_creation_expected && (
@@ -280,7 +280,7 @@ export default function DealFlowDetailPage() {
         <div className="space-y-5">
 
           {/* Key figures */}
-          <div className="rounded-xl border border-[#EAE4D8] bg-white p-5">
+          <div className="rounded-xl border border-[#E4E7EC] bg-white p-5">
             <h2 className="text-xs font-bold text-[#918A7C] uppercase tracking-widest mb-3">Fiche synthèse</h2>
             <div className="divide-y divide-white/6">
               <InfoRow label="Montant recherché"
@@ -308,7 +308,7 @@ export default function DealFlowDetailPage() {
 
           {/* Investor types sought */}
           {project.investor_type_sought && project.investor_type_sought.length > 0 && (
-            <div className="rounded-xl border border-[#EAE4D8] bg-white p-5">
+            <div className="rounded-xl border border-[#E4E7EC] bg-white p-5">
               <h2 className="text-xs font-bold text-[#918A7C] uppercase tracking-widest mb-3">Profils recherchés</h2>
               <div className="flex flex-wrap gap-1.5">
                 {project.investor_type_sought.map((t: string) => (
@@ -331,7 +331,7 @@ export default function DealFlowDetailPage() {
           </div>
 
           {/* Confidentiality note */}
-          <div className="rounded-xl border border-[#EAE4D8] bg-white p-4 flex items-start gap-3">
+          <div className="rounded-xl border border-[#E4E7EC] bg-white p-4 flex items-start gap-3">
             <svg className="w-4 h-4 text-[#918A7C] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
             </svg>

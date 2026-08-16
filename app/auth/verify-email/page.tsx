@@ -19,7 +19,7 @@ export default function VerifyEmailPage() {
   }
 
   return (
-    <div className="min-h-screen ed bg-[#F7F5F1] flex items-center justify-center px-4 py-16">
+    <div className="min-h-screen ed bg-white flex items-center justify-center px-4 py-16">
       <div className="w-full max-w-md text-center">
         <Link href="/" className="flex flex-col items-center gap-3 mb-10">
           <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-9 w-auto"/>
@@ -29,7 +29,7 @@ export default function VerifyEmailPage() {
           </div>
         </Link>
 
-        <div className="bg-white rounded-2xl p-8 border border-[#EAE4D8] text-left">
+        <div className="bg-white rounded-2xl p-8 border border-[#E4E7EC] text-left">
           <div className="w-12 h-12 bg-[#BC5A34]/10 border border-[#BC5A34]/20 rounded-xl flex items-center justify-center mx-auto mb-5">
             <svg className="w-6 h-6 text-[#BC5A34]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
@@ -72,7 +72,7 @@ export default function VerifyEmailPage() {
             </div>
           )}
 
-          <div className="mt-5 pt-4 border-t border-[#EAE4D8] text-center">
+          <div className="mt-5 pt-4 border-t border-[#E4E7EC] text-center">
             <Link href="/auth/login" className="text-[#918A7C] hover:text-[#575249] text-xs transition-colors">
               ← Retour à la connexion
             </Link>

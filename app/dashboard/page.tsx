@@ -100,7 +100,7 @@ async function InvestorDashboard({ userId, firstName }: { userId: string; firstN
 
       {/* Investor profile card */}
       {investorProfile && (
-        <div className="mb-6 rounded-2xl border border-[#EAE4D8] bg-white p-5">
+        <div className="mb-6 rounded-2xl border border-[#E4E7EC] bg-white p-5">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-[#575249] text-xs uppercase tracking-wider font-bold">Mon profil investisseur</h2>
             <Link href="/dashboard/investor-profile" className="text-[#BC5A34] text-xs hover:text-[#A44B29] transition-colors">
@@ -153,7 +153,7 @@ async function InvestorDashboard({ userId, firstName }: { userId: string; firstN
       {approvedProjects && approvedProjects.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
           {approvedProjects.map(project => (
-            <div key={project.id} className="rounded-xl border border-[#EAE4D8] bg-white p-4 hover:border-[#BC5A34]/30 transition-colors">
+            <div key={project.id} className="rounded-xl border border-[#E4E7EC] bg-white p-4 hover:border-[#BC5A34]/30 transition-colors">
               <div className="flex items-start justify-between gap-2 mb-2">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-[#BC5A34] bg-[#BC5A34]/10 px-2 py-0.5 rounded-full">
                   {SECTOR_LABELS[project.sector || ""] || project.sector || "—"}
@@ -176,7 +176,7 @@ async function InvestorDashboard({ userId, firstName }: { userId: string; firstN
           ))}
         </div>
       ) : (
-        <div className="rounded-xl border border-[#EAE4D8] bg-white p-8 text-center mb-6">
+        <div className="rounded-xl border border-[#E4E7EC] bg-white p-8 text-center mb-6">
           <p className="text-[#918A7C] text-sm">Aucune opportunité disponible pour le moment.</p>
         </div>
       )}
@@ -184,7 +184,7 @@ async function InvestorDashboard({ userId, firstName }: { userId: string; firstN
       {/* Quick actions */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <Link href="/dashboard/deal-flow"
-          className="flex items-center gap-3 p-4 rounded-xl border border-[#EAE4D8] bg-white hover:border-[#BC5A34]/30 hover:bg-[#BC5A34]/5 transition-all group">
+          className="flex items-center gap-3 p-4 rounded-xl border border-[#E4E7EC] bg-white hover:border-[#BC5A34]/30 hover:bg-[#BC5A34]/5 transition-all group">
           <div className="w-9 h-9 rounded-lg bg-[#BC5A34]/10 border border-[#BC5A34]/20 flex items-center justify-center text-[#BC5A34] flex-shrink-0">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"/>
@@ -196,7 +196,7 @@ async function InvestorDashboard({ userId, firstName }: { userId: string; firstN
           </div>
         </Link>
         <Link href="/dashboard/investor-profile"
-          className="flex items-center gap-3 p-4 rounded-xl border border-[#EAE4D8] bg-white hover:border-[#BC5A34]/30 hover:bg-[#BC5A34]/5 transition-all group">
+          className="flex items-center gap-3 p-4 rounded-xl border border-[#E4E7EC] bg-white hover:border-[#BC5A34]/30 hover:bg-[#BC5A34]/5 transition-all group">
           <div className="w-9 h-9 rounded-lg bg-[#BC5A34]/10 border border-[#BC5A34]/20 flex items-center justify-center text-[#BC5A34] flex-shrink-0">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
