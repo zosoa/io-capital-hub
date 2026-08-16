@@ -40,7 +40,7 @@ export default async function AperuPage({ params }: { params: Promise<{ id: stri
   const location = [project.city, project.country].filter(Boolean).join(", ") || project.country;
 
   return (
-    <div className="min-h-screen bg-[#F6F4EF] print:bg-white">
+    <div className="min-h-screen bg-[#FFFFFF] print:bg-white">
       {/* Top navigation (hidden on print) */}
       <div className="print:hidden bg-white border-b border-[#E8E2D9] px-6 py-3 flex items-center justify-between">
         <Link href={`/dashboard/projects/${project.id}`}
@@ -156,7 +156,7 @@ export default async function AperuPage({ params }: { params: Promise<{ id: stri
               <SectionLabel>Instrument de financement proposé</SectionLabel>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 {project.funding_type && (
-                  <div className="p-3 bg-[#F6F4EF] rounded-lg">
+                  <div className="p-3 bg-[#FFFFFF] rounded-lg">
                     <div className="text-[#5A6280] text-xs uppercase tracking-wider mb-1">Type</div>
                     <div className="text-[#0F1320] font-semibold text-sm">
                       {FUNDING_TYPE_LABELS[project.funding_type] || project.funding_type}
@@ -164,7 +164,7 @@ export default async function AperuPage({ params }: { params: Promise<{ id: stri
                   </div>
                 )}
                 {project.amount_requested && (
-                  <div className="p-3 bg-[#F6F4EF] rounded-lg">
+                  <div className="p-3 bg-[#FFFFFF] rounded-lg">
                     <div className="text-[#5A6280] text-xs uppercase tracking-wider mb-1">Montant</div>
                     <div className="text-[#BC5A34] font-bold text-sm">
                       {formatCurrency(project.amount_requested, project.currency)}
@@ -172,7 +172,7 @@ export default async function AperuPage({ params }: { params: Promise<{ id: stri
                   </div>
                 )}
                 {project.funding_term_months && (
-                  <div className="p-3 bg-[#F6F4EF] rounded-lg">
+                  <div className="p-3 bg-[#FFFFFF] rounded-lg">
                     <div className="text-[#5A6280] text-xs uppercase tracking-wider mb-1">Durée</div>
                     <div className="text-[#0F1320] font-semibold text-sm">{project.funding_term_months} mois</div>
                   </div>

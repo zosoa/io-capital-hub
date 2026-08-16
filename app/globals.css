@@ -8,7 +8,7 @@
   --brand-navy:        #07090F;
   --brand-navy-mid:    #0A0D18;
   --brand-navy-card:   #0E1020;
-  --brand-cream:       #F6F4EF;
+  --brand-cream:       #FFFFFF;
   --brand-ink:         #0F1320;
   --brand-muted:       #5A6280;
   --brand-border:      #E8E2D9;
@@ -124,7 +124,7 @@ body {
 /* ── Light card — white, for cream-bg dashboard ── */
 .card {
   background: #FFFFFF;
-  border: 1px solid #E5DDD4;
+  border: 1px solid #E4E7EC;
   border-radius: 0.75rem;
 }
 
@@ -284,6 +284,9 @@ body {
   box-shadow: 0 0 0 3px rgba(26,95,180,0.10);
 }
 .ed .form-label { color: var(--ink-soft); font-weight: 600; }
+
+/* Dark "glass" cards become white inside the editorial dashboard (admin keeps dark) */
+.ed .glass-card { background: #FFFFFF; border: 1px solid var(--e-line); }
 
 .ed .btn-primary {
   background-color: var(--forest);

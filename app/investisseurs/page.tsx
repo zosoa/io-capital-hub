@@ -218,7 +218,7 @@ export default function InvestisseursPage() {
       </section>
 
       {/* ══ WHO IS THIS FOR ════════════════════════════════════ */}
-      <section className="py-24 bg-[#F6F4EF]">
+      <section className="py-24 bg-[#FFFFFF]">
         <div className="max-w-6xl mx-auto px-6 lg:px-10">
           <div className="text-center mb-14">
             <span className="text-[#B8913A] text-xs font-semibold uppercase tracking-widest">Profils du réseau</span>

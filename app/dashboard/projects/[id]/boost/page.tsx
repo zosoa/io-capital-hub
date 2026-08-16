@@ -117,7 +117,7 @@ function SectionCard({ title, icon, score, maxScore, children, saving, lastSaved
             <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
             Sauvegardé
           </span>}
-          <div className={`text-xs font-semibold px-2 py-0.5 rounded-full ${done ? "bg-green-100 text-green-700" : pct > 0 ? "bg-[#BC5A34]/10 text-[#BC5A34]" : "bg-[#F0EEE9] text-[#B0A898]"}`}>
+          <div className={`text-xs font-semibold px-2 py-0.5 rounded-full ${done ? "bg-green-100 text-green-700" : pct > 0 ? "bg-[#BC5A34]/10 text-[#BC5A34]" : "bg-[#F4F5F7] text-[#B0A898]"}`}>
             {pct}%
           </div>
         </div>

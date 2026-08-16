@@ -56,7 +56,7 @@ function ImageUpload({ label, hint, currentUrl, fallbackInitial, shape = "circle
     <div>
       <div className="label">{label}</div>
       <div className="flex items-center gap-4">
-        <div className={`w-14 h-14 flex-shrink-0 overflow-hidden border-2 border-[#E5DDD4] ${r} bg-[#F6F3EE] flex items-center justify-center cursor-pointer hover:border-[#BC5A34]/40 transition-colors`}
+        <div className={`w-14 h-14 flex-shrink-0 overflow-hidden border-2 border-[#E4E7EC] ${r} bg-[#F6F3EE] flex items-center justify-center cursor-pointer hover:border-[#BC5A34]/40 transition-colors`}
              onClick={() => ref.current?.click()}>
           {preview
             ? <img src={preview} alt={label} className={`w-full h-full object-cover ${r}`}/>
@@ -342,7 +342,7 @@ export default function ProfilePage() {
             className={`w-full flex items-start gap-4 p-4 rounded-xl border-2 transition-all duration-200 text-left ${
               profile.is_authorized_rep
                 ? "border-[#BC5A34] bg-[#BC5A34]/5"
-                : "border-[#E5DDD4] bg-[#FAFAF8] hover:border-[#D8D0C5]"
+                : "border-[#E4E7EC] bg-[#FAFAF8] hover:border-[#D8D0C5]"
             }`}>
             <div className={`w-5 h-5 flex-shrink-0 mt-0.5 rounded border-2 flex items-center justify-center transition-all ${
               profile.is_authorized_rep ? "bg-[#BC5A34] border-[#BC5A34]" : "border-[#C8C0B5] bg-white"
@@ -404,7 +404,7 @@ export default function ProfilePage() {
       </form>
 
       {/* ── Confidentiality note ── */}
-      <div className="mt-6 p-4 rounded-xl border border-[#E5DDD4] bg-[#FAFAF8] flex items-start gap-3">
+      <div className="mt-6 p-4 rounded-xl border border-[#E4E7EC] bg-[#FAFAF8] flex items-start gap-3">
         <svg className="w-4 h-4 text-[#C8C0B5] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
         </svg>

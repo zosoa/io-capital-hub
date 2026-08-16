@@ -231,7 +231,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
   const interestsCount = interestsRes.count ?? 0;
   const history        = (historyRes.data ?? []) as ActivityEvent[];
 
-  const cfg     = STATUS_CONFIG[project.status] || { label: project.status, color: "text-[#8A8FA8]", bg: "bg-[#F0EEE9]" };
+  const cfg     = STATUS_CONFIG[project.status] || { label: project.status, color: "text-[#8A8FA8]", bg: "bg-[#F4F5F7]" };
   const banner  = getBannerStyle(project.status);
   const dealRef = getDealRef(project.id);
 
