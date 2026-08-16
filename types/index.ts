@@ -61,6 +61,7 @@ export interface Project {
 
   // Logo projet
   project_logo_url: string | null;
+  project_images: string[] | null;
 
   // Boost — équipe
   founder_linkedin: string | null;

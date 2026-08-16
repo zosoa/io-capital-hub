@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import CardSelectWithOther from "@/components/ui/CardSelectWithOther";
+import ProjectPhotos from "@/components/ui/ProjectPhotos";
 import type { ProjectFormData } from "@/types";
 import { COUNTRIES } from "@/lib/countries";
 import { friendlyError } from "@/lib/friendlyError";
@@ -337,6 +338,9 @@ export default function NewProjectPage() {
   // Step 4
   const [selectedCollateralTypes, setSelectedCollateralTypes] = useState<string[]>([]);
 
+  // Step 5 — project photos (uploaded to the project-media bucket)
+  const [projectImages, setProjectImages] = useState<string[]>([]);
+
   // F1 — Pre-fill country from user profile on mount
   useEffect(() => {
     const supabase = createClient();
@@ -511,6 +515,7 @@ export default function NewProjectPage() {
       collateral_value:    (hasValuedCollateral && form.collateral_value) ? parseFloat(form.collateral_value) : null,
       job_creation_expected: form.job_creation_expected ? parseInt(form.job_creation_expected) : null,
       impact_description:  form.impact_description,
+      project_images:      projectImages,
       status,
       submitted_at: status === "submitted" ? new Date().toISOString() : null,
     };
@@ -1015,6 +1020,20 @@ export default function NewProjectPage() {
                 <textarea value={form.impact_description} onChange={e => update("impact_description", e.target.value)}
                   className="form-input resize-y min-h-[100px]" rows={3}
                   placeholder="Comment votre projet contribue-t-il au développement de la région ?"/>
+              </FormField>
+
+              {/* Project photos */}
+              <FormField label="Photos du projet">
+                <div className="rounded-xl bg-[#1A5FB4]/[0.05] border border-[#1A5FB4]/15 p-3 mb-3 flex items-start gap-2.5">
+                  <svg className="w-4 h-4 text-[#1A5FB4] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M18 6h.008v.008H18V6zm2.25 12H3.75A2.25 2.25 0 011.5 15.75V5.25A2.25 2.25 0 013.75 3h16.5A2.25 2.25 0 0122.5 5.25v10.5A2.25 2.25 0 0120.25 18z"/>
+                  </svg>
+                  <p className="text-[#575249] text-xs leading-relaxed">
+                    <strong className="text-[#22201B]">Les dossiers avec photos retiennent 3× plus l&apos;attention des investisseurs.</strong>{" "}
+                    Ajoutez des visuels de votre site, produit, équipe ou maquettes — jusqu&apos;à 6 images.
+                  </p>
+                </div>
+                <ProjectPhotos value={projectImages} onChange={setProjectImages} max={6} />
               </FormField>
 
               {/* Summary */}

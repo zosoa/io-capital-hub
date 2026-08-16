@@ -32,3 +32,11 @@
 .lp .pill-solid{background:var(--forest);color:#fff}.lp .pill-solid:hover{background:var(--forest-2)}
 .lp .pill-outline{background:#fff;color:var(--forest);box-shadow:inset 0 0 0 1.5px var(--forest)}.lp .pill-outline:hover{background:rgba(26,95,180,.06)}
 .lp .pill-soft{background:rgba(26,95,180,.08);color:var(--forest)}
+
+/* Browser-window device frame (investor demo) */
+.lp .device{border-radius:16px;overflow:hidden;background:#fff;border:1px solid var(--line-2);box-shadow:0 44px 80px -44px rgba(20,55,110,.4),0 12px 30px -14px rgba(20,55,110,.16);margin:14px 0 62px}
+.lp .device-bar{display:flex;align-items:center;gap:7px;padding:11px 16px;background:#F4F5F7;border-bottom:1px solid var(--line)}
+.lp .device-bar>span{width:11px;height:11px;border-radius:50%;background:#DADEE4;flex-shrink:0}
+.lp .device-bar>span:nth-child(1){background:#FF5F57}.lp .device-bar>span:nth-child(2){background:#FEBC2E}.lp .device-bar>span:nth-child(3){background:#28C840}
+.lp .device-url{margin-left:12px;background:#fff;border:1px solid var(--line-2);border-radius:100px;padding:5px 16px;font-size:11.5px;color:var(--ink-faint);max-width:320px;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lp .device .mandate-demo{margin:0;border:none;border-radius:0;box-shadow:none}

@@ -152,7 +152,9 @@ export default function LandingPage() {
             <p>Capital Hub donne aux investisseurs un accès privé à un flux d&apos;opportunités qualifiées à travers l&apos;Océan Indien et l&apos;Afrique — filtrées selon votre secteur, votre géographie, votre ticket et votre mandat d&apos;investissement.</p>
           </div>
 
-          <div className="mandate-demo rv">
+          <div className="device rv">
+            <div className="device-bar"><span /><span /><span /><div className="device-url">capital-hub.io · deal-flow</div></div>
+            <div className="mandate-demo">
             <div className="mandate-panel">
               <div className="mp-head"><span className="dot" /> Votre mandat</div>
               <div className="mp-field"><span className="mp-lbl">Géographie</span><div className="chips"><span className="chip on">Océan Indien</span><span className="chip on">Afrique de l&apos;Est</span><span className="chip">Afrique australe</span></div></div>
@@ -166,6 +168,7 @@ export default function LandingPage() {
               <div className="deal"><span className="d-no">02</span><div className="d-body"><div className="d-title">Expansion hôtelière côtière</div><div className="d-meta">Maurice · 12&nbsp;M$ · Dette structurée</div></div><span className="d-match">91&nbsp;%</span></div>
               <div className="deal"><span className="d-no">03</span><div className="d-body"><div className="d-title">Infrastructure logistique portuaire</div><div className="d-meta">Madagascar · 25&nbsp;M$ · Project finance</div></div><span className="d-match">88&nbsp;%</span></div>
               <div className="fp-foot">Exemple illustratif — ni offre ni sollicitation d&apos;investissement.</div>
+            </div>
             </div>
           </div>
 
