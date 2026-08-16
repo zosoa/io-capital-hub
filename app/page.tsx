@@ -126,7 +126,7 @@ export default function LandingPage() {
       <section className="block" id="secteurs">
         <div className="wrap">
           <div className="head rv">
-            <span className="idx">01 — Secteurs</span>
+            <span className="idx">Secteurs</span>
             <h2 className="serif">Nous ne listons aucun dossier.<br />Voici où notre réseau investit.</h2>
             <p>Vos données restent privées. Ces catégories montrent les secteurs porteurs de la région — et les tickets que nos investisseurs y engagent.</p>
           </div>
@@ -147,7 +147,7 @@ export default function LandingPage() {
       <section className="block investor-block" id="investisseurs">
         <div className="wrap">
           <div className="head rv">
-            <span className="idx">02 — Espace investisseurs</span>
+            <span className="idx">Espace investisseurs</span>
             <h2 className="serif">Ne cherchez pas les deals.<br />Laissez les bons deals vous trouver.</h2>
             <p>Capital Hub donne aux investisseurs un accès privé à un flux d&apos;opportunités qualifiées à travers l&apos;Océan Indien et l&apos;Afrique — filtrées selon votre secteur, votre géographie, votre ticket et votre mandat d&apos;investissement.</p>
           </div>
@@ -204,7 +204,7 @@ export default function LandingPage() {
       <section className="block" id="methode" style={{ paddingTop: 0 }}>
         <div className="wrap">
           <div className="founder rv">
-            <span className="idx">03 — La méthode</span>
+            <span className="idx">La méthode</span>
             <blockquote className="serif" style={{ marginTop: 14 }}>
               « Des banques, des fonds, des family offices — et des investisseurs actifs, assis parmi les participants,{" "}
               <span>que personne n&apos;avait identifiés</span>. Cette plateforme est née ce jour-là. »
