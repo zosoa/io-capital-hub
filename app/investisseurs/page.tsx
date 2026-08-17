@@ -123,7 +123,7 @@ function Navbar() {
             <LogoBadge height={28}/>
             <div>
               <div className="text-white font-bold text-sm leading-tight">KAPEX</div>
-              <div className="text-[#B8913A] text-[10px] tracking-widest uppercase leading-tight mt-0.5">Kapital Exchange Portal</div>
+              <div className="text-[#0C1F36] text-[10px] tracking-widest uppercase leading-tight mt-0.5">Kapital Exchange Portal</div>
             </div>
           </Link>
           <div className="flex items-center gap-3">
@@ -134,7 +134,7 @@ function Navbar() {
               Connexion
             </Link>
             <Link href="/auth/signup?intent=investor"
-              className="bg-[#B8913A] hover:bg-[#9A7B3A] text-white font-semibold text-sm px-5 py-2.5 rounded transition-all duration-200">
+              className="bg-[#0C1F36] hover:bg-[#163C5E] text-white font-semibold text-sm px-5 py-2.5 rounded transition-all duration-200">
               Rejoindre le réseau
             </Link>
           </div>
@@ -155,7 +155,7 @@ export default function InvestisseursPage() {
         {/* Background glow — warmer, deeper gold */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute inset-0"
-            style={{ background: "radial-gradient(ellipse 60% 45% at 50% 40%, rgba(184,145,58,0.09) 0%, transparent 65%)" }}/>
+            style={{ background: "radial-gradient(ellipse 60% 45% at 50% 40%, rgba(12,31,54,0.09) 0%, transparent 65%)" }}/>
           <div className="absolute inset-0"
             style={{ background: "radial-gradient(ellipse 120% 120% at 50% 50%, transparent 55%, rgba(7,9,15,0.8) 100%)" }}/>
         </div>
@@ -170,7 +170,7 @@ export default function InvestisseursPage() {
 
           <h1 className="font-display text-4xl md:text-5xl lg:text-[3.4rem] font-bold text-white leading-[1.1] tracking-tight">
             Accédez au deal flow qualifié<br/>
-            <span className="text-[#C8992A]">de l&apos;Océan Indien.</span>
+            <span className="text-[#1F4E79]">de l&apos;Océan Indien.</span>
           </h1>
 
           <p className="text-white/50 text-lg mt-8 max-w-2xl mx-auto leading-relaxed font-light">
@@ -181,7 +181,7 @@ export default function InvestisseursPage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
             <Link href="/auth/signup?intent=investor"
-              className="bg-[#B8913A] hover:bg-[#9A7B3A] text-white font-semibold text-base px-8 py-4 rounded transition-all duration-200 inline-flex items-center justify-center gap-2 shadow-sm">
+              className="bg-[#0C1F36] hover:bg-[#163C5E] text-white font-semibold text-base px-8 py-4 rounded transition-all duration-200 inline-flex items-center justify-center gap-2 shadow-sm">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>
               </svg>
@@ -203,7 +203,7 @@ export default function InvestisseursPage() {
               "Inscription gratuite",
             ].map(item => (
               <div key={item} className="flex items-center gap-2 text-white/35 text-sm">
-                <span className="text-[#B8913A]/70">
+                <span className="text-[#0C1F36]/70">
                   <IconCheck/>
                 </span>
                 {item}
@@ -221,7 +221,7 @@ export default function InvestisseursPage() {
       <section className="py-24 bg-[#FFFFFF]">
         <div className="max-w-6xl mx-auto px-6 lg:px-10">
           <div className="text-center mb-14">
-            <span className="text-[#B8913A] text-xs font-semibold uppercase tracking-widest">Profils du réseau</span>
+            <span className="text-[#0C1F36] text-xs font-semibold uppercase tracking-widest">Profils du réseau</span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0F1320] mt-4">
               Un réseau pour tous les acteurs du capital
             </h2>
@@ -234,8 +234,8 @@ export default function InvestisseursPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {INVESTOR_PROFILES.map(p => (
               <div key={p.label}
-                className="bg-white border border-[#E8E2D9] rounded-xl p-6 hover:border-[#B8913A]/35 hover:shadow-sm transition-all duration-300 group">
-                <div className="w-10 h-10 border border-[#E8E2D9] rounded-lg flex items-center justify-center text-[#B8913A] mb-5 group-hover:border-[#B8913A]/30 transition-colors">
+                className="bg-white border border-[#E8E2D9] rounded-xl p-6 hover:border-[#0C1F36]/35 hover:shadow-sm transition-all duration-300 group">
+                <div className="w-10 h-10 border border-[#E8E2D9] rounded-lg flex items-center justify-center text-[#0C1F36] mb-5 group-hover:border-[#0C1F36]/30 transition-colors">
                   {p.icon}
                 </div>
                 <h3 className="font-display text-[#0F1320] font-semibold text-base mb-2">{p.label}</h3>
@@ -243,16 +243,16 @@ export default function InvestisseursPage() {
               </div>
             ))}
             {/* Also for advisors — 6th card fills the grid */}
-            <div className="bg-[#B8913A]/5 border border-[#B8913A]/20 rounded-xl p-6 flex flex-col justify-between">
+            <div className="bg-[#0C1F36]/5 border border-[#0C1F36]/20 rounded-xl p-6 flex flex-col justify-between">
               <div>
-                <div className="text-[#B8913A] text-xs font-semibold uppercase tracking-widest mb-4">Pas dans cette liste ?</div>
+                <div className="text-[#0C1F36] text-xs font-semibold uppercase tracking-widest mb-4">Pas dans cette liste ?</div>
                 <p className="text-[#5A6280] text-sm leading-relaxed mb-4">
                   Si vous êtes impliqué dans l&apos;écosystème capital, financement ou structuration
                   de deals dans la région — vous avez votre place ici.
                 </p>
               </div>
               <Link href="/auth/signup?intent=investor"
-                className="inline-flex items-center gap-2 text-[#B8913A] font-semibold text-sm hover:text-[#9A7B3A] transition-colors">
+                className="inline-flex items-center gap-2 text-[#0C1F36] font-semibold text-sm hover:text-[#163C5E] transition-colors">
                 Rejoindre quand même <IconArrow/>
               </Link>
             </div>
@@ -264,7 +264,7 @@ export default function InvestisseursPage() {
       <section id="comment-ca-marche" className="py-24 bg-[#07090F]">
         <div className="max-w-5xl mx-auto px-6 lg:px-10">
           <div className="text-center mb-16">
-            <span className="text-[#B8913A] text-xs font-semibold uppercase tracking-widest">Processus</span>
+            <span className="text-[#0C1F36] text-xs font-semibold uppercase tracking-widest">Processus</span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-white mt-4">
               Simple, ciblé, confidentiel
             </h2>
@@ -278,11 +278,11 @@ export default function InvestisseursPage() {
             {HOW_STEPS.map(s => (
               <div key={s.n} className="relative">
                 {/* Step number */}
-                <div className="text-[#B8913A]/15 font-display font-black text-7xl leading-none select-none mb-4">
+                <div className="text-[#0C1F36]/15 font-display font-black text-7xl leading-none select-none mb-4">
                   {s.n}
                 </div>
                 <div className="flex items-center gap-3 mb-4 -mt-3">
-                  <div className="w-9 h-9 bg-[#B8913A]/10 border border-[#B8913A]/20 rounded-lg flex items-center justify-center text-[#B8913A] flex-shrink-0">
+                  <div className="w-9 h-9 bg-[#0C1F36]/10 border border-[#0C1F36]/20 rounded-lg flex items-center justify-center text-[#0C1F36] flex-shrink-0">
                     {s.icon}
                   </div>
                 </div>
@@ -299,7 +299,7 @@ export default function InvestisseursPage() {
         <div className="max-w-5xl mx-auto px-6 lg:px-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <span className="text-[#B8913A] text-xs font-semibold uppercase tracking-widest">Ce que vous recevez</span>
+              <span className="text-[#0C1F36] text-xs font-semibold uppercase tracking-widest">Ce que vous recevez</span>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-white mt-4 leading-snug">
                 Un accès privilégié aux<br/>meilleures opportunités de la région
               </h2>
@@ -317,7 +317,7 @@ export default function InvestisseursPage() {
                   { title: "Réseau CEO Summit",           desc: "Les porteurs de projets sont les mêmes que vous croisez dans les panels et clusters du sommet." },
                 ].map(item => (
                   <div key={item.title} className="flex items-start gap-3">
-                    <span className="text-[#B8913A] mt-0.5 flex-shrink-0"><IconCheck/></span>
+                    <span className="text-[#0C1F36] mt-0.5 flex-shrink-0"><IconCheck/></span>
                     <div>
                       <div className="text-white font-medium text-sm">{item.title}</div>
                       <div className="text-white/38 text-xs leading-relaxed mt-0.5 font-light">{item.desc}</div>
@@ -337,7 +337,7 @@ export default function InvestisseursPage() {
                 {/* Role */}
                 <div>
                   <div className="text-white/25 text-[10px] uppercase tracking-wider mb-2.5 font-semibold">Rôle</div>
-                  <span className="text-xs bg-[#B8913A]/12 border border-[#B8913A]/25 text-[#B8913A] px-3 py-1.5 rounded-full font-medium">
+                  <span className="text-xs bg-[#0C1F36]/12 border border-[#0C1F36]/25 text-[#0C1F36] px-3 py-1.5 rounded-full font-medium">
                     Fonds PE / Capital-risque
                   </span>
                 </div>
@@ -390,14 +390,14 @@ export default function InvestisseursPage() {
           </div>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-white leading-tight">
             Rejoignez le registre.<br/>
-            <span className="text-[#C8992A]">Accédez aux meilleures opportunités de la région.</span>
+            <span className="text-[#1F4E79]">Accédez aux meilleures opportunités de la région.</span>
           </h2>
           <p className="text-white/40 text-base mt-6 max-w-xl mx-auto leading-relaxed font-light">
             Inscription gratuite · 3 minutes · Profil modifiable à tout moment
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
             <Link href="/auth/signup?intent=investor"
-              className="bg-[#B8913A] hover:bg-[#9A7B3A] text-white font-semibold text-base px-10 py-4 rounded transition-all duration-200 inline-flex items-center justify-center gap-2">
+              className="bg-[#0C1F36] hover:bg-[#163C5E] text-white font-semibold text-base px-10 py-4 rounded transition-all duration-200 inline-flex items-center justify-center gap-2">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>
               </svg>
@@ -410,7 +410,7 @@ export default function InvestisseursPage() {
           </div>
           <p className="text-white/20 text-xs mt-6">
             Vous cherchez un financement ?{" "}
-            <Link href="/" className="text-[#B8913A]/60 hover:text-[#B8913A] transition-colors">
+            <Link href="/" className="text-[#0C1F36]/60 hover:text-[#0C1F36] transition-colors">
               Déposer un dossier →
             </Link>
           </p>

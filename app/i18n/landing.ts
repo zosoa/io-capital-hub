@@ -40,8 +40,8 @@ export const fr = {
   trust: { label: "Soutenu par l'écosystème du CEO Summit Indian Ocean" },
   sectors: {
     idx: "Secteurs",
-    title: "Secteurs d'intervention & tickets moyens",
-    desc: "Pour protéger la confidentialité des porteurs, aucun projet n'est publié en libre accès. Voici les secteurs ciblés par nos investisseurs partenaires et les ordres de grandeur financés.",
+    title: "Secteurs financés & tickets moyens",
+    desc: "Aucun dossier n'est publié. Voici les secteurs ciblés par nos investisseurs et les ordres de grandeur financés — de 25 k$ à 50 M$.",
     cards: [
       { title: "Énergie & Transition", desc: "Solaire, hydro, transition énergétique et réseaux." },
       { title: "Agro et Industriel", desc: "Production, transformation et chaînes de valeur." },
@@ -56,7 +56,7 @@ export const fr = {
   investors: {
     idx: "Espace investisseurs",
     title: "Un deal-flow qualifié, filtré selon vos critères.",
-    desc: "Accédez à des dossiers structurés à travers l'Océan Indien et l'Afrique. Recevez uniquement les opportunités qui correspondent à votre thèse d'investissement (secteur, géographie, ticket, instrument).",
+    desc: "Des dossiers structurés à travers l'Océan Indien et l'Afrique — uniquement les opportunités alignées sur votre thèse : secteur, géographie, ticket, instrument.",
     mandateTitle: "Votre mandat",
     fGeo: "Géographie",
     geoChips: ["Océan Indien", "Afrique de l'Est", "Afrique australe"],
@@ -178,8 +178,8 @@ export const en: Dict = {
   trust: { label: "Backed by the CEO Summit Indian Ocean ecosystem" },
   sectors: {
     idx: "Sectors",
-    title: "Sectors of focus & typical ticket sizes",
-    desc: "To protect the confidentiality of project owners, no project is publicly listed. These are the sectors our partner investors target, and the typical amounts financed.",
+    title: "Sectors funded & typical ticket sizes",
+    desc: "No project is publicly listed. These are the sectors our investors target and the amounts financed — from $25k to $50M.",
     cards: [
       { title: "Energy & Transition", desc: "Solar, hydro, energy transition and grids." },
       { title: "Agri & Industrial", desc: "Production, processing and value chains." },
@@ -194,7 +194,7 @@ export const en: Dict = {
   investors: {
     idx: "For investors",
     title: "Qualified deal-flow, filtered to your criteria.",
-    desc: "Access structured opportunities across the Indian Ocean and Africa. Receive only those that fit your investment thesis — sector, geography, ticket, instrument.",
+    desc: "Structured opportunities across the Indian Ocean and Africa — only those aligned with your thesis: sector, geography, ticket, instrument.",
     mandateTitle: "Your mandate",
     fGeo: "Geography",
     geoChips: ["Indian Ocean", "East Africa", "Southern Africa"],
