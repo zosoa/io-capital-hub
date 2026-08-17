@@ -54,21 +54,28 @@ export default function NotificationBell() {
       setUnread(rows.filter(r => !r.read_at).length);
 
       // Live updates — append new rows, bump unread counter.
-      channel = supabase
-        .channel(`notifications:${user.id}`)
-        .on(
-          "postgres_changes",
-          { event: "INSERT", schema: "public", table: "notifications", filter: `recipient=eq.${user.id}` },
-          payload => {
-            const row = payload.new as NotificationRow;
-            setItems(prev => [row, ...prev].slice(0, 8));
-            setUnread(n => n + 1);
-          },
-        )
-        .subscribe();
-    })();
+      // Guarded: a reused channel or a stale token must never throw an
+      // unhandled rejection (which can stall the page's streaming render).
+      try {
+        const name = `notifications:${user.id}:${Math.random().toString(36).slice(2)}`;
+        channel = supabase
+          .channel(name)
+          .on(
+            "postgres_changes",
+            { event: "INSERT", schema: "public", table: "notifications", filter: `recipient=eq.${user.id}` },
+            payload => {
+              const row = payload.new as NotificationRow;
+              setItems(prev => [row, ...prev].slice(0, 8));
+              setUnread(n => n + 1);
+            },
+          )
+          .subscribe();
+      } catch {
+        /* realtime is best-effort; the bell still works without live updates */
+      }
+    })().catch(() => { /* never let this effect reject */ });
 
-    return () => { if (channel) void channel.unsubscribe(); };
+    return () => { if (channel) { try { void supabase.removeChannel(channel); } catch { /* ignore */ } } };
   }, []);
 
   // Click-outside to close
