@@ -124,10 +124,18 @@ export default function LandingContent({ t, locale }: { t: Dict; locale: "fr" | 
             <div className="figure">
               <img src="/landing/entrepreneur.png" alt={t.hero.figureAlt} />
             </div>
-            <span className="hero-tag">{t.hero.tag}</span>
+            <a href="#secteurs" className="hero-tag">{t.hero.tag}</a>
           </div>
         </div>
       </header>
+
+      {/* RESOLUTION — parent endorsement */}
+      <section className="resolution rv">
+        <div className="wrap res-in">
+          <span className="res-label">{t.resolution.label}</span>
+          <img className="res-logo" src="/landing/ceo-logo.png" alt="CEO Summit Indian Ocean" />
+        </div>
+      </section>
 
       {/* TRUST */}
       <section className="trust" id="reseau">
@@ -157,7 +165,6 @@ export default function LandingContent({ t, locale }: { t: Dict; locale: "fr" | 
                 <span className="icochip"><img src={`/landing/${s.img}.png`} alt="" /></span>
                 <h3>{t.sectors.cards[i].title}</h3>
                 <p>{t.sectors.cards[i].desc}</p>
-                <div className="tk">{s.tk}</div>
               </div>
             ))}
           </div>
@@ -263,18 +270,20 @@ export default function LandingContent({ t, locale }: { t: Dict; locale: "fr" | 
         </div>
       </section>
 
-      {/* CONFIDENTIAL */}
+      {/* CONFIDENTIAL — navy card textured with the rig blueprint */}
       <div className="wrap">
         <section className="confid rv">
+          <img className="confid-bg" src="/landing/auth-rig.jpg" alt="" aria-hidden="true" />
           <span className="eb">{t.confid.eb}</span>
           <h2 className="serif">{t.confid.title}</h2>
           <p>{t.confid.text}</p>
         </section>
       </div>
 
-      {/* FINAL */}
+      {/* FINAL — entrepreneur backdrop */}
       <section className="final">
-        <div className="wrap">
+        <img className="final-bg" src="/landing/auth-hero.jpg" alt="" aria-hidden="true" />
+        <div className="wrap final-inner">
           <h2 className="serif rv">{t.final.titlePre}<span>{t.final.titleHi}</span>{t.final.titlePost}</h2>
           <p className="rv">{t.final.text}</p>
           <div className="duo rv">

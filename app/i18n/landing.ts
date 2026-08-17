@@ -37,6 +37,7 @@ export const fr = {
     "Énergie & Transition", "Agro et Industriel", "Tech & Fintech", "Tourisme & Hôtellerie",
     "Infrastructure & Logistique", "Économie bleue", "Mines & Ressources", "Savoir & Éducation",
   ],
+  resolution: { label: "Une résolution du" },
   trust: { label: "Soutenu par l'écosystème du CEO Summit Indian Ocean" },
   sectors: {
     idx: "Secteurs",
@@ -175,6 +176,7 @@ export const en: Dict = {
     "Energy & Transition", "Agri & Industrial", "Tech & Fintech", "Tourism & Hospitality",
     "Infrastructure & Logistics", "Blue Economy", "Mining & Resources", "Knowledge & Education",
   ],
+  resolution: { label: "A resolution of the" },
   trust: { label: "Backed by the CEO Summit Indian Ocean ecosystem" },
   sectors: {
     idx: "Sectors",
