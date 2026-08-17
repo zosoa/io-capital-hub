@@ -88,3 +88,10 @@
   .lp .ifs{height:200px;border:none}
   .lp .step+.step{border-left:none;border-top:1px solid var(--line)}
 }
+
+/* ── Language switch (FR / EN) ── */
+.lp .lang-switch{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:100px;overflow:hidden;margin-right:4px}
+.lp .lang-switch a{font-size:12px;font-weight:700;letter-spacing:.02em;color:var(--ink-soft);padding:6px 11px;line-height:1;text-decoration:none;transition:background .2s,color .2s}
+.lp .lang-switch a.on{background:var(--forest);color:#fff}
+.lp .lang-switch a:not(.on):hover{background:var(--paper-2);color:var(--ink)}
+@media(max-width:560px){.lp .lang-switch{margin-right:2px}.lp .lang-switch a{padding:5px 9px;font-size:11px}}
