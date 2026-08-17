@@ -53,7 +53,7 @@ export default function LandingPage() {
         <div className="hero-sdg" />
         <div className="wrap hero-grid">
           <div>
-            <span className="kicker rv">1ʳᵉ plateforme de financement — Océan Indien</span>
+            <span className="kicker rv">1ᵉʳ portail de financement — Océan Indien</span>
             <h1 className="serif rv">
               Mise en relation directe entre projets bancables et investisseurs de l&apos;<span>Océan Indien</span>.
             </h1>
@@ -173,11 +173,11 @@ export default function LandingPage() {
           </div>
 
           <div className="inv-flow rv">
-            <div className="ifs"><div className="ifn">01</div><h4>Enregistrez</h4><p>Créez votre profil et définissez votre mandat d&apos;investissement.</p></div>
-            <div className="ifs"><div className="ifn">02</div><h4>Matching</h4><p>Notre équipe identifie les opportunités qui correspondent à vos critères.</p></div>
-            <div className="ifs"><div className="ifn">03</div><h4>Revue</h4><p>Recevez l&apos;essentiel pour juger si une opportunité mérite un examen approfondi.</p></div>
-            <div className="ifs"><div className="ifn">04</div><h4>Accès</h4><p>Choisissez les dossiers à explorer. Data room sous NDA géré numériquement.</p></div>
-            <div className="ifs"><div className="ifn">05</div><h4>Engagement</h4><p>Nous facilitons la mise en relation avec le porteur et les parties professionnelles.</p></div>
+            <div className="ifs sc1"><div className="ifs-inner"><div className="ifs-face ifs-front"><span className="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="10" cy="8" r="3.2"/><path d="M4 20a6 6 0 0112 0M18 8v5M20.5 10.5h-5"/></svg></span><h4>Enregistrez</h4><span className="flip-hint">Survolez pour en savoir plus</span></div><div className="ifs-face ifs-back"><p>Créez votre profil et définissez votre mandat d&apos;investissement.</p></div></div></div>
+            <div className="ifs sc2"><div className="ifs-inner"><div className="ifs-face ifs-front"><span className="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="8.2"/><circle cx="12" cy="12" r="3"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"/></svg></span><h4>Matching</h4><span className="flip-hint">Survolez pour en savoir plus</span></div><div className="ifs-face ifs-back"><p>Notre équipe identifie les opportunités qui correspondent à vos critères.</p></div></div></div>
+            <div className="ifs sc3"><div className="ifs-inner"><div className="ifs-face ifs-front"><span className="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 14.5l2 2 3.5-4"/></svg></span><h4>Revue</h4><span className="flip-hint">Survolez pour en savoir plus</span></div><div className="ifs-face ifs-back"><p>Recevez l&apos;essentiel pour juger si une opportunité mérite un examen approfondi.</p></div></div></div>
+            <div className="ifs sc4"><div className="ifs-inner"><div className="ifs-face ifs-front"><span className="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="8" cy="15" r="3.6"/><path d="M10.6 12.4L20 3M16.5 6.5l2 2M14.5 8.5l1.6 1.6"/></svg></span><h4>Accès</h4><span className="flip-hint">Survolez pour en savoir plus</span></div><div className="ifs-face ifs-back"><p>Choisissez les dossiers à explorer. Data room sous NDA géré numériquement.</p></div></div></div>
+            <div className="ifs sc5"><div className="ifs-inner"><div className="ifs-face ifs-front"><span className="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="8.5" cy="8" r="2.6"/><circle cx="15.5" cy="8" r="2.6"/><path d="M4 19a4.5 4.5 0 019 0M11 19a4.5 4.5 0 019 0"/></svg></span><h4>Engagement</h4><span className="flip-hint">Survolez pour en savoir plus</span></div><div className="ifs-face ifs-back"><p>Nous facilitons la mise en relation avec le porteur et les parties professionnelles.</p></div></div></div>
           </div>
 
           <div className="inv-why rv">
@@ -260,7 +260,7 @@ export default function LandingPage() {
                 <img src="/landing/ceo-logo.png" alt="CEO Summit" />
                 <span className="txt"><b>CEO Summit IO</b><span>Investment Hub</span></span>
               </Link>
-              <p>La plateforme de financement privée du CEO Summit Indian Ocean. Nous connectons les porteurs de projets aux investisseurs actifs de la région, en toute confidentialité.</p>
+              <p>Le portail de financement privé du CEO Summit Indian Ocean. Nous connectons les porteurs de projets aux investisseurs actifs de la région, en toute confidentialité.</p>
               <a href="mailto:capital@ceo-summit.mg" className="foot-mail">capital@ceo-summit.mg</a>
             </div>
             <div className="foot-col">

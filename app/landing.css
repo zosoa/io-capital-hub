@@ -59,3 +59,32 @@
   .lp .nav-cta .login{font-size:13px}
   .lp .nav-cta .btn{padding:9px 15px;font-size:13px}
 }
+
+/* ── Investor flow: SDG-coloured flip cards ── */
+.lp .inv-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;border:none;background:none;overflow:visible;margin-bottom:56px;perspective:1500px}
+.lp .ifs{position:relative;height:216px;border:none;padding:0;cursor:pointer}
+.lp .ifs-inner{position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.lp .ifs:hover .ifs-inner,.lp .ifs.flip .ifs-inner{transform:rotateY(180deg)}
+.lp .ifs-face{position:absolute;inset:0;border-radius:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px 18px;color:#fff;box-shadow:0 16px 32px -18px rgba(0,0,0,.45)}
+.lp .ifs-front .fico{width:44px;height:44px;margin-bottom:14px}
+.lp .ifs-front .fico svg{width:100%;height:100%}
+.lp .ifs-front h4{font-family:'Inter',system-ui,sans-serif;font-weight:700;font-size:17px;color:#fff}
+.lp .ifs-front .flip-hint{font-size:11px;opacity:.78;margin-top:12px;font-weight:500}
+.lp .ifs-back{transform:rotateY(180deg);box-shadow:0 16px 32px -18px rgba(0,0,0,.45),inset 0 0 0 100vmax rgba(0,0,0,.14)}
+.lp .ifs-back p{font-size:13.5px;line-height:1.5;color:#fff;font-weight:500}
+.lp .sc1 .ifs-face{background:#C5192D}.lp .sc2 .ifs-face{background:#A21942}.lp .sc3 .ifs-face{background:#00689D}.lp .sc4 .ifs-face{background:#19486A}.lp .sc5 .ifs-face{background:#2F6E38}
+
+/* ── Investor types: no pills, centered ── */
+.lp .investor-types-bar{justify-content:center;gap:12px 30px;padding:0;background:none}
+.lp .inv-type{padding:0;background:none;box-shadow:none;border-radius:0;color:var(--ink-soft);font-weight:600}
+
+/* ── Method: centered ── */
+.lp .steps{text-align:center}
+.lp .step{padding:0 28px}
+.lp .step+.step{border-left:1px solid var(--line)}
+.lp .step .no{margin-left:auto;margin-right:auto}
+
+@media(max-width:900px){
+  .lp .ifs{height:200px;border:none}
+  .lp .step+.step{border-left:none;border-top:1px solid var(--line)}
+}

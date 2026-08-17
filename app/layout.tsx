@@ -4,12 +4,12 @@ import { Toaster } from "sonner";
 import CookieBanner from "@/components/legal/CookieBanner";
 
 export const metadata: Metadata = {
-  title: "CEO Summit Investment Hub — Plateforme de Financement Privée",
+  title: "CEO Summit Investment Hub — Portail de Financement Privé",
   description: "Soumettez votre dossier de financement. Notre équipe du Cluster Capital & Finance du CEO Summit Indian Ocean vous met en relation avec les bons investisseurs — en toute confidentialité.",
   keywords: "financement, investissement, CEO Summit, Océan Indien, Madagascar, PME, capital, equity, private equity, impact",
   openGraph: {
     title: "CEO Summit Investment Hub",
-    description: "La plateforme de financement privée du CEO Summit Indian Ocean",
+    description: "Le portail de financement privé du CEO Summit Indian Ocean",
     type: "website",
   },
 };

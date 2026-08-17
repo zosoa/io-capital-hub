@@ -33,6 +33,15 @@ export default function LandingFx() {
       reveal.observe(el);
     });
 
+    // Flip cards on tap (hover handles desktop; touch devices toggle .flip)
+    const onCardTap = (ev: Event) => {
+      const card = (ev.target as HTMLElement).closest<HTMLElement>(".lp .ifs");
+      if (card) card.classList.toggle("flip");
+    };
+    document.querySelectorAll<HTMLElement>(".lp .ifs").forEach((c) =>
+      c.addEventListener("click", onCardTap)
+    );
+
     const nav = document.getElementById("lpnav");
     const onScroll = () => nav?.classList.toggle("scrolled", window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -66,6 +75,9 @@ export default function LandingFx() {
       reveal.disconnect();
       counters.disconnect();
       window.removeEventListener("scroll", onScroll);
+      document.querySelectorAll<HTMLElement>(".lp .ifs").forEach((c) =>
+        c.removeEventListener("click", onCardTap)
+      );
     };
   }, []);
 
