@@ -112,3 +112,9 @@
 @media(max-width:380px){
   .lp .hero h1{font-size:29px}
 }
+
+/* ── Founder signature: co-brand CEO Summit mark ── */
+.lp .sig{display:flex;align-items:center;gap:14px}
+.lp .sig-txt{min-width:0}
+.lp .sig-ceo{height:42px;width:auto;margin-left:auto;padding-left:16px;border-left:1px solid var(--line);opacity:.95;flex-shrink:0}
+@media(max-width:560px){.lp .sig-ceo{height:34px;padding-left:12px}}

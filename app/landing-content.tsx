@@ -244,10 +244,11 @@ export default function LandingContent({ t, locale }: { t: Dict; locale: "fr" | 
             </blockquote>
             <div className="sig">
               <img className="sig-av" src="/landing/founder-avatar.jpg" alt={t.method.sigName} />
-              <div>
+              <div className="sig-txt">
                 <div className="nm serif">{t.method.sigName}</div>
                 <div className="rl">{t.method.sigRole}</div>
               </div>
+              <img className="sig-ceo" src="/landing/ceo-logo.png" alt="CEO Summit IO" />
             </div>
           </div>
           <div className="steps">

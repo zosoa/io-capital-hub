@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import Turnstile from "@/components/auth/Turnstile";
 import { KapexLogo } from "@/components/ui/logo";
+import AuthHero from "@/components/auth/AuthHero";
 import { COUNTRIES } from "@/lib/countries";
 import { friendlyError } from "@/lib/friendlyError";
 
@@ -186,7 +187,7 @@ function SignupForm() {
     <div className="ed min-h-screen w-full flex bg-white">
       {/* ── Left: image panel ── */}
       <div className="hidden lg:block lg:w-[52%] relative overflow-hidden">
-        <img src="/landing/auth-hero.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <AuthHero />
         <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(20,55,110,0.05) 30%, rgba(15,40,85,0.72) 100%)" }} />
         <div className="absolute top-8 left-9">
           <KapexLogo height={30} variant="light" showDescriptor={false} />
