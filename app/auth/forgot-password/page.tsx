@@ -47,12 +47,12 @@ function ForgotPasswordForm() {
             <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-9 w-auto"/>
             <div>
               <div className="font-bold text-[#22201B] text-sm tracking-wide">CEO Summit IO</div>
-              <div className="text-[#BC5A34] text-xs tracking-[0.15em] uppercase mt-0.5">Investment Hub · Cluster Capital &amp; Finance</div>
+              <div className="text-[#1F4E79] text-xs tracking-[0.15em] uppercase mt-0.5">Investment Hub · Cluster Capital &amp; Finance</div>
             </div>
           </Link>
           <div className="bg-white rounded-2xl p-10 border border-[#E4E7EC]">
-            <div className="w-16 h-16 bg-[#BC5A34]/10 border border-[#BC5A34]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <svg className="w-8 h-8 text-[#BC5A34]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <div className="w-16 h-16 bg-[#1F4E79]/10 border border-[#1F4E79]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <svg className="w-8 h-8 text-[#1F4E79]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
               </svg>
             </div>
@@ -60,7 +60,7 @@ function ForgotPasswordForm() {
             <p className="text-[#918A7C] text-sm leading-relaxed mb-2">
               Un lien de réinitialisation a été envoyé à
             </p>
-            <p className="text-[#BC5A34] font-medium mb-6">{email}</p>
+            <p className="text-[#1F4E79] font-medium mb-6">{email}</p>
             <p className="text-[#918A7C] text-xs leading-relaxed mb-8">
               Cliquez sur le lien dans l&apos;email pour définir votre nouveau mot de passe.
               Le lien est valable 1 heure.
@@ -88,7 +88,7 @@ function ForgotPasswordForm() {
           <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-9 w-auto"/>
           <div className="text-center">
             <div className="font-bold text-[#22201B] text-sm tracking-wide">CEO Summit IO</div>
-            <div className="text-[#BC5A34] text-xs tracking-[0.15em] uppercase mt-0.5">Investment Hub · Cluster Capital &amp; Finance</div>
+            <div className="text-[#1F4E79] text-xs tracking-[0.15em] uppercase mt-0.5">Investment Hub · Cluster Capital &amp; Finance</div>
           </div>
         </Link>
 
@@ -126,7 +126,7 @@ function ForgotPasswordForm() {
           </form>
 
           <div className="mt-6 pt-5 border-t border-[#E4E7EC] text-center text-sm text-[#918A7C]">
-            <Link href="/auth/login" className="text-[#BC5A34] hover:text-[#A44B29] font-medium transition-colors">
+            <Link href="/auth/login" className="text-[#1F4E79] hover:text-[#163C5E] font-medium transition-colors">
               ← Retour à la connexion
             </Link>
           </div>

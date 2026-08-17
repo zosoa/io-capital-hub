@@ -194,7 +194,7 @@ function Toggle({ checked, onChange, labelOn, labelOff }: {
   return (
     <div className="flex items-center gap-3 p-4 bg-[#F6F7F9] rounded-xl border border-[#E4E7EC] cursor-pointer"
       onClick={() => onChange(!checked)}>
-      <div className={`w-11 h-6 rounded-full transition-all duration-300 flex items-center px-0.5 flex-shrink-0 ${checked ? "bg-[#BC5A34]" : "bg-[#EDEFF2]"}`}>
+      <div className={`w-11 h-6 rounded-full transition-all duration-300 flex items-center px-0.5 flex-shrink-0 ${checked ? "bg-[#1F4E79]" : "bg-[#EDEFF2]"}`}>
         <div className={`w-5 h-5 bg-white rounded-full shadow transition-transform duration-300 ${checked ? "translate-x-5" : "translate-x-0"}`}/>
       </div>
       <span className="text-[#575249] text-sm select-none">{checked ? labelOn : labelOff}</span>
@@ -208,11 +208,11 @@ function FundingTypeCard({ type, selected, expanded, onSelect, onToggleExpand }:
 }) {
   return (
     <div className={`rounded-xl border-2 transition-all duration-200 overflow-hidden ${
-      selected ? "border-[#BC5A34] bg-[#BC5A34]/8" : "border-[#E4E7EC] bg-[#F6F7F9] hover:border-[#BC5A34]/30"
+      selected ? "border-[#1F4E79] bg-[#1F4E79]/8" : "border-[#E4E7EC] bg-[#F6F7F9] hover:border-[#1F4E79]/30"
     }`}>
       <button type="button" onClick={onSelect} className="text-left w-full p-4">
         <div className="flex items-start gap-3">
-          <div className={`w-4 h-4 rounded-full border-2 flex-shrink-0 mt-0.5 transition-all ${selected ? "border-[#BC5A34] bg-[#BC5A34]" : "border-white/20"}`}>
+          <div className={`w-4 h-4 rounded-full border-2 flex-shrink-0 mt-0.5 transition-all ${selected ? "border-[#1F4E79] bg-[#1F4E79]" : "border-white/20"}`}>
             {selected && (
               <svg className="w-full h-full text-[#22201B] p-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
@@ -226,7 +226,7 @@ function FundingTypeCard({ type, selected, expanded, onSelect, onToggleExpand }:
         </div>
       </button>
       <button type="button" onClick={onToggleExpand}
-        className={`w-full flex items-center gap-1.5 px-4 pb-3 text-[11px] transition-colors ${selected ? "text-[#BC5A34]/70 hover:text-[#BC5A34]" : "text-[#8A8275] hover:text-[#6B655B]"}`}>
+        className={`w-full flex items-center gap-1.5 px-4 pb-3 text-[11px] transition-colors ${selected ? "text-[#1F4E79]/70 hover:text-[#1F4E79]" : "text-[#8A8275] hover:text-[#6B655B]"}`}>
         <svg className={`w-3 h-3 transition-transform ${expanded ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
         </svg>
@@ -235,11 +235,11 @@ function FundingTypeCard({ type, selected, expanded, onSelect, onToggleExpand }:
       {expanded && (
         <div className="px-4 pb-4 border-t border-[#E4E7EC] pt-3 space-y-3">
           <div>
-            <div className="text-[10px] uppercase tracking-wider font-bold text-[#BC5A34]/60 mb-2">Avantages</div>
+            <div className="text-[10px] uppercase tracking-wider font-bold text-[#1F4E79]/60 mb-2">Avantages</div>
             <ul className="space-y-1">
               {type.pros.map((p, i) => (
                 <li key={i} className="flex items-start gap-2 text-xs text-[#6B655B]">
-                  <svg className="w-3 h-3 text-[#BC5A34]/60 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <svg className="w-3 h-3 text-[#1F4E79]/60 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
                   </svg>
                   {p}
@@ -260,7 +260,7 @@ function FundingTypeCard({ type, selected, expanded, onSelect, onToggleExpand }:
               ))}
             </ul>
           </div>
-          {type.note && <div className="pt-2 border-t border-[#E4E7EC] text-xs text-[#BC5A34]/70 leading-relaxed italic">{type.note}</div>}
+          {type.note && <div className="pt-2 border-t border-[#E4E7EC] text-xs text-[#1F4E79]/70 leading-relaxed italic">{type.note}</div>}
         </div>
       )}
     </div>
@@ -500,7 +500,7 @@ export default function EditProjectForm({ project }: { project: Project }) {
 
       {/* Progress bar */}
       <div className="h-0.5 bg-white">
-        <div className="h-full bg-[#BC5A34] transition-all duration-500 ease-out" style={{ width: `${progress}%` }}/>
+        <div className="h-full bg-[#1F4E79] transition-all duration-500 ease-out" style={{ width: `${progress}%` }}/>
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10">
@@ -535,8 +535,8 @@ export default function EditProjectForm({ project }: { project: Project }) {
                 step === s.n ? "opacity-100" : step > s.n ? "opacity-60" : "opacity-25"
               }`}>
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0 transition-all duration-300 ${
-                  step > s.n  ? "bg-[#BC5A34]/20 text-[#BC5A34] border border-[#BC5A34]/30" :
-                  step === s.n ? "bg-[#BC5A34] text-white" :
+                  step > s.n  ? "bg-[#1F4E79]/20 text-[#1F4E79] border border-[#1F4E79]/30" :
+                  step === s.n ? "bg-[#1F4E79] text-white" :
                                  "bg-white text-[#918A7C] border border-[#DADEE4]"
                 }`}>
                   {step > s.n ? (
@@ -551,7 +551,7 @@ export default function EditProjectForm({ project }: { project: Project }) {
                 </div>
               </div>
               {i < STEPS.length - 1 && (
-                <div className={`w-8 sm:w-12 h-px mx-2 flex-shrink-0 transition-all duration-300 ${step > s.n ? "bg-[#BC5A34]/40" : "bg-white"}`}/>
+                <div className={`w-8 sm:w-12 h-px mx-2 flex-shrink-0 transition-all duration-300 ${step > s.n ? "bg-[#1F4E79]/40" : "bg-white"}`}/>
               )}
             </div>
           ))}
@@ -561,7 +561,7 @@ export default function EditProjectForm({ project }: { project: Project }) {
         <div className="glass-card rounded-2xl p-6 sm:p-8 border border-[#E4E7EC]">
           {/* Step header */}
           <div className="flex items-center gap-3 mb-7 pb-6 border-b border-[#E4E7EC]">
-            <div className="w-10 h-10 bg-[#BC5A34]/10 border border-[#BC5A34]/20 rounded-xl flex items-center justify-center text-[#BC5A34]">
+            <div className="w-10 h-10 bg-[#1F4E79]/10 border border-[#1F4E79]/20 rounded-xl flex items-center justify-center text-[#1F4E79]">
               {StepIcons[step - 1]}
             </div>
             <div>
@@ -605,12 +605,12 @@ export default function EditProjectForm({ project }: { project: Project }) {
                     <button key={s.v} type="button" onClick={() => toggleSector(s.v)}
                       className={`text-left p-4 rounded-xl border-2 transition-all duration-200 w-full relative ${
                         selectedSectors.includes(s.v)
-                          ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#22201B]"
-                          : "border-[#E4E7EC] bg-[#F6F7F9] text-[#6B655B] hover:border-[#BC5A34]/30 hover:text-[#575249]"
+                          ? "border-[#1F4E79] bg-[#1F4E79]/8 text-[#22201B]"
+                          : "border-[#E4E7EC] bg-[#F6F7F9] text-[#6B655B] hover:border-[#1F4E79]/30 hover:text-[#575249]"
                       }`}>
                       <div className="font-medium text-sm">{s.l}</div>
                       {selectedSectors.includes(s.v) && (
-                        <div className="absolute top-2 right-2 w-4 h-4 bg-[#BC5A34] rounded-full flex items-center justify-center">
+                        <div className="absolute top-2 right-2 w-4 h-4 bg-[#1F4E79] rounded-full flex items-center justify-center">
                           <svg className="w-2.5 h-2.5 text-[#22201B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
                           </svg>
@@ -630,7 +630,7 @@ export default function EditProjectForm({ project }: { project: Project }) {
                     {selectedSectors.map(v => {
                       const label = SECTORS.find(s => s.v === v)?.l || v;
                       return (
-                        <span key={v} className="flex items-center gap-1 bg-[#BC5A34]/10 border border-[#BC5A34]/20 text-[#BC5A34] text-xs px-2.5 py-1 rounded-full">
+                        <span key={v} className="flex items-center gap-1 bg-[#1F4E79]/10 border border-[#1F4E79]/20 text-[#1F4E79] text-xs px-2.5 py-1 rounded-full">
                           {v === "other" && sectorOtherDesc ? sectorOtherDesc : label}
                           <button type="button" onClick={() => toggleSector(v)} className="hover:text-[#22201B] transition-colors">
                             <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -650,8 +650,8 @@ export default function EditProjectForm({ project }: { project: Project }) {
                     <button key={s.v} type="button" onClick={() => update("stage", s.v)}
                       className={`text-left p-4 rounded-xl border-2 transition-all duration-200 w-full ${
                         form.stage === s.v
-                          ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#22201B]"
-                          : "border-[#E4E7EC] bg-[#F6F7F9] text-[#6B655B] hover:border-[#BC5A34]/30 hover:text-[#575249]"
+                          ? "border-[#1F4E79] bg-[#1F4E79]/8 text-[#22201B]"
+                          : "border-[#E4E7EC] bg-[#F6F7F9] text-[#6B655B] hover:border-[#1F4E79]/30 hover:text-[#575249]"
                       }`}>
                       <div className={`font-semibold text-sm mb-1 ${form.stage === s.v ? "text-[#22201B]" : ""}`}>{s.l}</div>
                       <div className="text-xs opacity-60 leading-snug">{s.desc}</div>
@@ -713,8 +713,8 @@ export default function EditProjectForm({ project }: { project: Project }) {
                     <button key={d.v} type="button" onClick={() => update("funding_duration_range", d.v)}
                       className={`text-left p-3 rounded-xl border-2 transition-all duration-200 ${
                         form.funding_duration_range === d.v
-                          ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#22201B]"
-                          : "border-[#E4E7EC] bg-[#F6F7F9] text-[#6B655B] hover:border-[#BC5A34]/30"
+                          ? "border-[#1F4E79] bg-[#1F4E79]/8 text-[#22201B]"
+                          : "border-[#E4E7EC] bg-[#F6F7F9] text-[#6B655B] hover:border-[#1F4E79]/30"
                       }`}>
                       <div className={`text-xs font-semibold leading-snug ${form.funding_duration_range === d.v ? "text-[#22201B]" : ""}`}>{d.l}</div>
                     </button>
@@ -736,8 +736,8 @@ export default function EditProjectForm({ project }: { project: Project }) {
                     return (
                       <button key={t.v} type="button" onClick={() => toggleInvestorType(t.v)}
                         className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 border ${
-                          sel ? "bg-[#BC5A34]/15 border-[#BC5A34]/40 text-[#BC5A34]"
-                              : "bg-[#F6F7F9] border-[#DADEE4] text-[#918A7C] hover:border-[#BC5A34]/30 hover:text-[#575249]"
+                          sel ? "bg-[#1F4E79]/15 border-[#1F4E79]/40 text-[#1F4E79]"
+                              : "bg-[#F6F7F9] border-[#DADEE4] text-[#918A7C] hover:border-[#1F4E79]/30 hover:text-[#575249]"
                         }`}>
                         {t.l}
                       </button>
@@ -747,9 +747,9 @@ export default function EditProjectForm({ project }: { project: Project }) {
               </div>
 
               {form.funding_type === "equity" && (
-                <div className="p-5 bg-[#F6F7F9] rounded-xl border border-[#BC5A34]/20 space-y-4">
+                <div className="p-5 bg-[#F6F7F9] rounded-xl border border-[#1F4E79]/20 space-y-4">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-[#BC5A34]/70 text-xs font-semibold uppercase tracking-wider">Termes du partenariat (optionnel)</span>
+                    <span className="text-[#1F4E79]/70 text-xs font-semibold uppercase tracking-wider">Termes du partenariat (optionnel)</span>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <FormField label="Capital proposé (%)" hint="Part du capital offerte à l'investisseur">
@@ -772,8 +772,8 @@ export default function EditProjectForm({ project }: { project: Project }) {
                         <button key={h.v} type="button" onClick={() => update("exit_horizon", h.v)}
                           className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
                             form.exit_horizon === h.v
-                              ? "bg-[#BC5A34]/15 border-[#BC5A34]/40 text-[#BC5A34]"
-                              : "bg-white border-[#DADEE4] text-[#918A7C] hover:border-[#BC5A34]/30 hover:text-[#575249]"
+                              ? "bg-[#1F4E79]/15 border-[#1F4E79]/40 text-[#1F4E79]"
+                              : "bg-white border-[#DADEE4] text-[#918A7C] hover:border-[#1F4E79]/30 hover:text-[#575249]"
                           }`}>
                           {h.l}
                         </button>
@@ -798,7 +798,7 @@ export default function EditProjectForm({ project }: { project: Project }) {
                 <label className="form-label">Structure juridique</label>
                 {LEGAL_NOTES[form.country] && (
                   <p className="text-[#918A7C] text-xs mb-3 leading-relaxed">
-                    <svg className="w-3 h-3 inline mr-1 text-[#BC5A34]/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg className="w-3 h-3 inline mr-1 text-[#1F4E79]/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/>
                     </svg>
                     {LEGAL_NOTES[form.country]}
@@ -854,7 +854,7 @@ export default function EditProjectForm({ project }: { project: Project }) {
             <div className="space-y-6">
               <div className="p-5 bg-[#F6F7F9] rounded-xl border border-[#E4E7EC]">
                 <div className="flex items-start gap-3">
-                  <svg className="w-5 h-5 text-[#BC5A34]/70 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <svg className="w-5 h-5 text-[#1F4E79]/70 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.562.562 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/>
                   </svg>
                   <div>
@@ -874,13 +874,13 @@ export default function EditProjectForm({ project }: { project: Project }) {
                     return (
                       <button key={c.v} type="button" onClick={() => toggleCollateral(c.v)}
                         className={`text-left p-4 rounded-xl border-2 transition-all duration-200 w-full relative ${
-                          active ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#22201B]"
-                                 : "border-[#E4E7EC] bg-[#F6F7F9] text-[#6B655B] hover:border-[#BC5A34]/30 hover:text-[#575249]"
+                          active ? "border-[#1F4E79] bg-[#1F4E79]/8 text-[#22201B]"
+                                 : "border-[#E4E7EC] bg-[#F6F7F9] text-[#6B655B] hover:border-[#1F4E79]/30 hover:text-[#575249]"
                         }`}>
                         <div className={`font-semibold text-sm mb-0.5 ${active ? "text-[#22201B]" : ""}`}>{c.l}</div>
                         <div className="text-xs opacity-55 leading-snug">{c.desc}</div>
                         {active && (
-                          <div className="absolute top-2 right-2 w-4 h-4 bg-[#BC5A34] rounded-full flex items-center justify-center">
+                          <div className="absolute top-2 right-2 w-4 h-4 bg-[#1F4E79] rounded-full flex items-center justify-center">
                             <svg className="w-2.5 h-2.5 text-[#22201B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
                             </svg>
@@ -933,7 +933,7 @@ export default function EditProjectForm({ project }: { project: Project }) {
               {/* Summary */}
               <div className="border-t border-[#E4E7EC] pt-6">
                 <h3 className="text-[#22201B] font-semibold text-base mb-4 flex items-center gap-2">
-                  <svg className="w-4 h-4 text-[#BC5A34]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <svg className="w-4 h-4 text-[#1F4E79]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"/>
                   </svg>
                   Récapitulatif des modifications

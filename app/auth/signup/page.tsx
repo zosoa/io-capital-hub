@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import Turnstile from "@/components/auth/Turnstile";
+import { KapexLogo } from "@/components/ui/logo";
 import { COUNTRIES } from "@/lib/countries";
 import { friendlyError } from "@/lib/friendlyError";
 
@@ -40,7 +41,7 @@ const SOCIAL = "w-full flex items-center justify-center gap-3 py-3.5 rounded-xl 
 function PasswordStrength({ password }: { password: string }) {
   const len = password.length;
   const strength = len === 0 ? 0 : len < 6 ? 1 : len < 8 ? 2 : len < 12 ? 3 : 4;
-  const colors = ["bg-[#E4E7EC]", "bg-red-500", "bg-yellow-500", "bg-[#1A5FB4]", "bg-green-500"];
+  const colors = ["bg-[#E4E7EC]", "bg-red-500", "bg-yellow-500", "bg-[#0C1F36]", "bg-green-500"];
   const labels = ["", "Trop court", "Faible", "Bon", "Fort"];
   return (
     <div className="mt-2">
@@ -161,14 +162,14 @@ function SignupForm() {
     return (
       <div className="ed min-h-screen flex items-center justify-center bg-white px-4 py-16">
         <div className="w-full max-w-md text-center">
-          <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-10 w-auto mx-auto mb-6" />
+          <div className="flex justify-center mb-6"><KapexLogo height={32} variant="dark" /></div>
           <div className="bg-white rounded-2xl p-10 border border-[#E4E7EC] shadow-[0_30px_60px_-40px_rgba(20,55,110,0.28)]">
-            <div className="w-16 h-16 bg-[#1A5FB4]/10 border border-[#1A5FB4]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 text-[#1A5FB4]">
+            <div className="w-16 h-16 bg-[#0C1F36]/10 border border-[#0C1F36]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 text-[#0C1F36]">
               <MailIcon />
             </div>
             <h1 className="font-display text-2xl font-bold text-[#22201B] mb-2">Vérifiez vos emails</h1>
             <p className="text-[#918A7C] text-sm mb-2">Un lien de confirmation a été envoyé à</p>
-            <p className="text-[#1A5FB4] font-semibold mb-6">{confirmedEmail}</p>
+            <p className="text-[#0C1F36] font-semibold mb-6">{confirmedEmail}</p>
             <p className="text-[#918A7C] text-xs leading-relaxed mb-8">Cliquez sur le lien pour activer votre compte, puis revenez vous connecter.</p>
             <Link href="/auth/login" className="btn-primary w-full justify-center py-3.5">Aller à la connexion</Link>
           </div>
@@ -187,9 +188,8 @@ function SignupForm() {
       <div className="hidden lg:block lg:w-[52%] relative overflow-hidden">
         <img src="/landing/auth-hero.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(20,55,110,0.05) 30%, rgba(15,40,85,0.72) 100%)" }} />
-        <div className="absolute top-8 left-9 flex items-center gap-2.5">
-          <span className="text-white font-bold text-lg tracking-tight">CEO&nbsp;Summit&nbsp;IO</span>
-          <span className="text-white/70 text-[11px] tracking-[0.18em] uppercase pt-0.5">Capital&nbsp;Hub</span>
+        <div className="absolute top-8 left-9">
+          <KapexLogo height={30} variant="light" showDescriptor={false} />
         </div>
         <div className="absolute bottom-0 left-0 p-10 pr-14">
           <h2 className="text-white font-bold text-[30px] leading-[1.15] max-w-md">
@@ -197,7 +197,7 @@ function SignupForm() {
               ? "Un deal-flow qualifié, filtré selon vos critères."
               : "Présentez votre projet aux investisseurs du réseau."}
           </h2>
-          <p className="text-white/75 text-sm mt-3">Réseau de financement privé · CEO Summit Indian Ocean</p>
+          <p className="text-white/75 text-sm mt-3">Une initiative du CEO Summit Indian Ocean</p>
         </div>
       </div>
 
@@ -205,9 +205,9 @@ function SignupForm() {
       <div className="w-full lg:w-[48%] flex items-center justify-center px-6 py-12 overflow-y-auto">
         <div className="w-full max-w-[400px]">
           <div className="flex flex-col items-center text-center mb-7">
-            <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-10 w-auto mb-5" />
+            <KapexLogo height={32} variant="dark" className="mb-5" />
             {isInvestor && (
-              <span className="mb-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1A5FB4]/8 text-[#1A5FB4] text-xs font-semibold">
+              <span className="mb-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0C1F36]/8 text-[#0C1F36] text-xs font-semibold">
                 Réseau investisseur
               </span>
             )}
@@ -229,7 +229,7 @@ function SignupForm() {
               <button type="button" onClick={() => oauth("apple")} disabled={!!oauthLoading} className={SOCIAL}><AppleIcon /> S&apos;inscrire avec Apple</button>
               <button type="button" onClick={() => oauth("azure")} disabled={!!oauthLoading} className={SOCIAL}><MicrosoftIcon /> S&apos;inscrire avec Microsoft</button>
               <button type="button" onClick={() => { setError(""); setEmailMode(true); }}
-                className="w-full flex items-center justify-center gap-3 py-3.5 rounded-xl bg-[#1A5FB4] text-white font-semibold text-[15px] hover:bg-[#154C90] transition-colors">
+                className="w-full flex items-center justify-center gap-3 py-3.5 rounded-xl bg-[#0C1F36] text-white font-semibold text-[15px] hover:bg-[#1B3E63] transition-colors">
                 <MailIcon /> S&apos;inscrire avec email
               </button>
             </div>
@@ -240,11 +240,11 @@ function SignupForm() {
                 {[{ n: 1, label: "Identifiants" }, { n: 2, label: "Profil" }].map((sIdx, i) => (
                   <div key={sIdx.n} className="flex items-center gap-2">
                     <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold transition-all ${
-                      step > sIdx.n ? "bg-[#1A5FB4] text-white" : step === sIdx.n ? "bg-[#1A5FB4]/12 border border-[#1A5FB4]/40 text-[#1A5FB4]" : "bg-[#F4F5F7] text-[#8A8275] border border-[#DADEE4]"}`}>
+                      step > sIdx.n ? "bg-[#0C1F36] text-white" : step === sIdx.n ? "bg-[#0C1F36]/12 border border-[#0C1F36]/40 text-[#0C1F36]" : "bg-[#F4F5F7] text-[#8A8275] border border-[#DADEE4]"}`}>
                       {step > sIdx.n ? "✓" : sIdx.n}
                     </div>
                     <span className={`text-xs hidden sm:block ${step === sIdx.n ? "text-[#575249]" : "text-[#918A7C]"}`}>{sIdx.label}</span>
-                    {i < 1 && <div className={`w-10 h-px ${step > 1 ? "bg-[#1A5FB4]/50" : "bg-[#E4E7EC]"}`} />}
+                    {i < 1 && <div className={`w-10 h-px ${step > 1 ? "bg-[#0C1F36]/50" : "bg-[#E4E7EC]"}`} />}
                   </div>
                 ))}
               </div>
@@ -311,13 +311,13 @@ function SignupForm() {
 
           <p className="text-[#918A7C] text-xs text-center mt-5 leading-relaxed">
             En créant un compte, vous acceptez nos{" "}
-            <Link href="/legal/cgu" className="text-[#1A5FB4] hover:underline">CGU</Link>{" "}et notre{" "}
-            <Link href="/legal/privacy" className="text-[#1A5FB4] hover:underline">politique de confidentialité</Link>.
+            <Link href="/legal/cgu" className="text-[#0C1F36] hover:underline">CGU</Link>{" "}et notre{" "}
+            <Link href="/legal/privacy" className="text-[#0C1F36] hover:underline">politique de confidentialité</Link>.
           </p>
 
           <div className="mt-5 pt-5 border-t border-[#E4E7EC] text-center text-sm text-[#575249]">
             {isInvestor ? "Déjà membre ?" : "Déjà inscrit ?"}{" "}
-            <Link href="/auth/login" className="text-[#1A5FB4] hover:text-[#154C90] font-semibold transition-colors">Se connecter</Link>
+            <Link href="/auth/login" className="text-[#0C1F36] hover:text-[#1B3E63] font-semibold transition-colors">Se connecter</Link>
           </div>
         </div>
       </div>

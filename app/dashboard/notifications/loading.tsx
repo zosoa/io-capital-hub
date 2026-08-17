@@ -6,7 +6,7 @@ export default function NotificationsLoading() {
           <div className="h-7 w-40 bg-white rounded mb-2"/>
           <div className="h-4 w-56 bg-white rounded"/>
         </div>
-        <div className="h-7 w-28 border border-[#BC5A34]/20 rounded-lg"/>
+        <div className="h-7 w-28 border border-[#1F4E79]/20 rounded-lg"/>
       </div>
       <div className="space-y-2">
         {[1,2,3,4,5].map(i => (

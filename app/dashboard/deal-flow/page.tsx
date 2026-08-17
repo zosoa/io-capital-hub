@@ -79,7 +79,7 @@ export default async function DealFlowPage({
       <Link key={key} href={`?${params.toString()}`}
         className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors border ${
           isActive
-            ? "bg-[#BC5A34]/15 border-[#BC5A34]/40 text-[#BC5A34]"
+            ? "bg-[#1F4E79]/15 border-[#1F4E79]/40 text-[#1F4E79]"
             : "border-[#E4E7EC] text-[#918A7C] hover:text-[#575249] hover:border-white/20"
         }`}>
         {label}
@@ -99,7 +99,7 @@ export default async function DealFlowPage({
             ? <>
                 {projects.length} opportunité{projects.length > 1 ? "s" : ""} disponible{projects.length > 1 ? "s" : ""}
                 {hasProfile && matchCount > 0 && (
-                  <span className="ml-2 text-[#BC5A34]">
+                  <span className="ml-2 text-[#1F4E79]">
                     · {matchCount} correspond{matchCount > 1 ? "ent" : ""} à votre profil
                   </span>
                 )}
@@ -127,8 +127,8 @@ export default async function DealFlowPage({
           saved deals. */}
       {user && (!investorProfile || !investorProfile.priority_sectors?.length)
         && projects.length > 0 && sort === "match" && !savedOnly && (
-        <div className="mb-6 p-4 rounded-xl bg-[#BC5A34]/6 border border-[#BC5A34]/25 flex items-start gap-3 text-sm">
-          <svg className="w-5 h-5 text-[#BC5A34] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <div className="mb-6 p-4 rounded-xl bg-[#1F4E79]/6 border border-[#1F4E79]/25 flex items-start gap-3 text-sm">
+          <svg className="w-5 h-5 text-[#1F4E79] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
           <div className="flex-1 min-w-0">
@@ -138,7 +138,7 @@ export default async function DealFlowPage({
               Renseignez vos secteurs, ticket et zones pour voir en priorité les dossiers alignés à votre mandat.
             </p>
             <Link href="/dashboard/investor-profile?onboarding=1"
-              className="inline-flex items-center gap-1.5 mt-2 text-[#BC5A34] hover:text-[#A44B29] text-xs font-medium transition-colors">
+              className="inline-flex items-center gap-1.5 mt-2 text-[#1F4E79] hover:text-[#163C5E] text-xs font-medium transition-colors">
               Compléter mon profil
               <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
@@ -150,12 +150,12 @@ export default async function DealFlowPage({
 
       {/* Match notice */}
       {hasProfile && matchCount > 0 && projects.length > 0 && sort === "match" && !savedOnly && (
-        <div className="mb-6 p-3.5 rounded-xl bg-[#BC5A34]/8 border border-[#BC5A34]/20 flex items-center gap-3 text-sm">
-          <svg className="w-4 h-4 text-[#BC5A34] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <div className="mb-6 p-3.5 rounded-xl bg-[#1F4E79]/8 border border-[#1F4E79]/20 flex items-center gap-3 text-sm">
+          <svg className="w-4 h-4 text-[#1F4E79] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
           </svg>
           <span className="text-[#575249]">
-            Les projets <span className="text-[#BC5A34] font-medium">étoilés</span> correspondent à vos critères d&apos;investissement (secteur, ticket, zone géographique, durée).
+            Les projets <span className="text-[#1F4E79] font-medium">étoilés</span> correspondent à vos critères d&apos;investissement (secteur, ticket, zone géographique, durée).
           </span>
         </div>
       )}
@@ -165,9 +165,9 @@ export default async function DealFlowPage({
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
           {sorted.map(project => (
             <div key={project.id}
-              className={`rounded-xl border p-5 hover:border-[#BC5A34]/30 hover:bg-[#BC5A34]/5 transition-all flex flex-col relative ${
+              className={`rounded-xl border p-5 hover:border-[#1F4E79]/30 hover:bg-[#1F4E79]/5 transition-all flex flex-col relative ${
                 project._match > 0
-                  ? "border-[#BC5A34]/30 bg-[#BC5A34]/5"
+                  ? "border-[#1F4E79]/30 bg-[#1F4E79]/5"
                   : "border-[#E4E7EC] bg-white"
               }`}>
 
@@ -176,7 +176,7 @@ export default async function DealFlowPage({
                 {project._match > 0 && (
                   <div className="flex items-center gap-0.5">
                     {Array.from({ length: 4 }).map((_, i) => (
-                      <svg key={i} className={`w-2.5 h-2.5 ${i < project._match ? "text-[#BC5A34]" : "text-[#22201B]/10"}`} fill="currentColor" viewBox="0 0 20 20">
+                      <svg key={i} className={`w-2.5 h-2.5 ${i < project._match ? "text-[#1F4E79]" : "text-[#22201B]/10"}`} fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                       </svg>
                     ))}
@@ -187,13 +187,13 @@ export default async function DealFlowPage({
 
               {/* Top row: sector badge */}
               <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-1.5 mb-3 pr-20">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#BC5A34] bg-[#BC5A34]/10 px-2.5 py-1 rounded-full truncate max-w-[160px]">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#1F4E79] bg-[#1F4E79]/10 px-2.5 py-1 rounded-full truncate max-w-[160px]">
                   {SECTOR_LABELS[project.sector || ""] || project.sector || "—"}
                 </span>
                 {project.boost_score > 0 && (
                   <div className="flex items-center gap-1.5 flex-shrink-0">
                     <div className="w-14 h-1 rounded-full bg-[#EDEFF2] overflow-hidden">
-                      <div className="h-full rounded-full bg-[#BC5A34]"
+                      <div className="h-full rounded-full bg-[#1F4E79]"
                         style={{ width: `${Math.min(project.boost_score, 100)}%` }}/>
                     </div>
                     <span className="text-[10px] text-[#918A7C] font-mono whitespace-nowrap">{project.boost_score}pt</span>
@@ -230,7 +230,7 @@ export default async function DealFlowPage({
               {/* CTA */}
               <div className="mt-4">
                 <Link href={`/dashboard/deal-flow/${project.id}`}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-[#BC5A34]/30 text-[#BC5A34] text-xs font-medium hover:bg-[#BC5A34]/10 hover:border-[#BC5A34]/50 transition-all">
+                  className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-[#1F4E79]/30 text-[#1F4E79] text-xs font-medium hover:bg-[#1F4E79]/10 hover:border-[#1F4E79]/50 transition-all">
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -243,7 +243,7 @@ export default async function DealFlowPage({
         </div>
       ) : (
         <div className="rounded-xl border border-[#E4E7EC] bg-white p-12 text-center max-w-md mx-auto">
-          <div className="w-12 h-12 rounded-xl bg-[#BC5A34]/10 border border-[#BC5A34]/20 flex items-center justify-center mx-auto mb-4 text-[#BC5A34]">
+          <div className="w-12 h-12 rounded-xl bg-[#1F4E79]/10 border border-[#1F4E79]/20 flex items-center justify-center mx-auto mb-4 text-[#1F4E79]">
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"/>
             </svg>
@@ -259,13 +259,13 @@ export default async function DealFlowPage({
           <div className="flex flex-col gap-3">
             {savedOnly ? (
               <Link href="/dashboard/deal-flow"
-                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#BC5A34]/10 border border-[#BC5A34]/25 text-[#BC5A34] text-sm font-medium hover:bg-[#BC5A34]/20 transition-all">
+                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#1F4E79]/10 border border-[#1F4E79]/25 text-[#1F4E79] text-sm font-medium hover:bg-[#1F4E79]/20 transition-all">
                 Voir tous les projets
               </Link>
             ) : (
               <>
                 <Link href="/dashboard/investor-profile"
-                  className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#BC5A34]/10 border border-[#BC5A34]/25 text-[#BC5A34] text-sm font-medium hover:bg-[#BC5A34]/20 transition-all">
+                  className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#1F4E79]/10 border border-[#1F4E79]/25 text-[#1F4E79] text-sm font-medium hover:bg-[#1F4E79]/20 transition-all">
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
                   </svg>

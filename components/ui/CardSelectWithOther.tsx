@@ -62,8 +62,8 @@ export default function CardSelectWithOther({
               onClick={() => onChange(opt.v)}
               className={`text-left p-4 rounded-xl border-2 transition-all duration-200 w-full ${
                 selected
-                  ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#22201B]"
-                  : "border-[#DADEE4] bg-white text-[#575249] hover:border-[#BC5A34]/40 hover:text-[#22201B]"
+                  ? "border-[#1F4E79] bg-[#1F4E79]/8 text-[#22201B]"
+                  : "border-[#DADEE4] bg-white text-[#575249] hover:border-[#1F4E79]/40 hover:text-[#22201B]"
               }`}
             >
               <div className={`font-semibold text-sm mb-0.5 ${selected ? "text-[#22201B]" : ""}`}>

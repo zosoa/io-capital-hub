@@ -114,8 +114,8 @@ function Chips({ items, selected, onToggle, multi = true }: {
           <button key={item.v} type="button" onClick={() => onToggle(item.v)}
             className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
               active
-                ? "bg-[#BC5A34]/15 border-[#BC5A34]/40 text-[#BC5A34]"
-                : "bg-[#F6F7F9] border-[#DADEE4] text-[#918A7C] hover:border-[#BC5A34]/30 hover:text-[#575249]"
+                ? "bg-[#1F4E79]/15 border-[#1F4E79]/40 text-[#1F4E79]"
+                : "bg-[#F6F7F9] border-[#DADEE4] text-[#918A7C] hover:border-[#1F4E79]/30 hover:text-[#575249]"
             }`}>
             {item.l}
           </button>
@@ -433,7 +433,7 @@ export default function InvestorProfilePage() {
   if (pageLoading) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="w-6 h-6 border-2 border-[#BC5A34]/30 border-t-[#BC5A34] rounded-full animate-spin"/>
+        <div className="w-6 h-6 border-2 border-[#1F4E79]/30 border-t-[#1F4E79] rounded-full animate-spin"/>
       </div>
     );
   }
@@ -442,8 +442,8 @@ export default function InvestorProfilePage() {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 bg-[#BC5A34]/15 border border-[#BC5A34]/30 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg className="w-8 h-8 text-[#BC5A34]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <div className="w-16 h-16 bg-[#1F4E79]/15 border border-[#1F4E79]/30 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg className="w-8 h-8 text-[#1F4E79]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
             </svg>
           </div>
@@ -480,14 +480,14 @@ export default function InvestorProfilePage() {
 
       {/* Progress */}
       <div className="h-0.5 bg-white">
-        <div className="h-full bg-[#BC5A34] transition-all duration-500 ease-out" style={{ width: `${progress}%` }}/>
+        <div className="h-full bg-[#1F4E79] transition-all duration-500 ease-out" style={{ width: `${progress}%` }}/>
       </div>
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
         {/* Onboarding banner — shown when redirected from dashboard without a profile */}
         {isOnboarding && !existingId && (
-          <div className="mb-8 p-4 rounded-xl bg-[#BC5A34]/8 border border-[#BC5A34]/20 flex items-start gap-3">
-            <svg className="w-5 h-5 text-[#BC5A34] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <div className="mb-8 p-4 rounded-xl bg-[#1F4E79]/8 border border-[#1F4E79]/20 flex items-start gap-3">
+            <svg className="w-5 h-5 text-[#1F4E79] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
             </svg>
             <div className="flex-1 min-w-0">
@@ -514,8 +514,8 @@ export default function InvestorProfilePage() {
                 step === s.n ? "opacity-100" : step > s.n ? "opacity-60" : "opacity-25"
               }`}>
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0 transition-all ${
-                  step > s.n  ? "bg-[#BC5A34]/20 text-[#BC5A34] border border-[#BC5A34]/30" :
-                  step === s.n ? "bg-[#BC5A34] text-white" :
+                  step > s.n  ? "bg-[#1F4E79]/20 text-[#1F4E79] border border-[#1F4E79]/30" :
+                  step === s.n ? "bg-[#1F4E79] text-white" :
                                  "bg-white text-[#918A7C] border border-[#DADEE4]"
                 }`}>
                   {step > s.n ? (
@@ -530,7 +530,7 @@ export default function InvestorProfilePage() {
                 </div>
               </div>
               {i < STEPS.length - 1 && (
-                <div className={`w-10 sm:w-16 h-px mx-3 flex-shrink-0 transition-all ${step > s.n ? "bg-[#BC5A34]/40" : "bg-white"}`}/>
+                <div className={`w-10 sm:w-16 h-px mx-3 flex-shrink-0 transition-all ${step > s.n ? "bg-[#1F4E79]/40" : "bg-white"}`}/>
               )}
             </div>
           ))}
@@ -540,7 +540,7 @@ export default function InvestorProfilePage() {
         <div className="glass-card rounded-2xl p-6 sm:p-8 border border-[#E4E7EC]">
           {/* Header */}
           <div className="flex items-center gap-3 mb-7 pb-6 border-b border-[#E4E7EC]">
-            <div className="w-10 h-10 bg-[#BC5A34]/10 border border-[#BC5A34]/20 rounded-xl flex items-center justify-center text-[#BC5A34]">
+            <div className="w-10 h-10 bg-[#1F4E79]/10 border border-[#1F4E79]/20 rounded-xl flex items-center justify-center text-[#1F4E79]">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 {step === 1 && <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>}
                 {step === 2 && <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M7.5 8.25h9M7.5 12H12"/>}
@@ -645,8 +645,8 @@ export default function InvestorProfilePage() {
                       <button key={v} type="button" onClick={() => toggleChip(setSectors, v)}
                         className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
                           active
-                            ? "bg-[#BC5A34]/15 border-[#BC5A34]/40 text-[#BC5A34]"
-                            : "bg-[#F6F7F9] border-[#DADEE4] text-[#918A7C] hover:border-[#BC5A34]/30 hover:text-[#575249]"
+                            ? "bg-[#1F4E79]/15 border-[#1F4E79]/40 text-[#1F4E79]"
+                            : "bg-[#F6F7F9] border-[#DADEE4] text-[#918A7C] hover:border-[#1F4E79]/30 hover:text-[#575249]"
                         }`}>
                         {l}
                       </button>
@@ -711,8 +711,8 @@ export default function InvestorProfilePage() {
                       <button key={z} type="button" onClick={() => toggleChip(setGeoZones, z)}
                         className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
                           active
-                            ? "bg-[#BC5A34]/15 border-[#BC5A34]/40 text-[#BC5A34]"
-                            : "bg-[#F6F7F9] border-[#DADEE4] text-[#918A7C] hover:border-[#BC5A34]/30 hover:text-[#575249]"
+                            ? "bg-[#1F4E79]/15 border-[#1F4E79]/40 text-[#1F4E79]"
+                            : "bg-[#F6F7F9] border-[#DADEE4] text-[#918A7C] hover:border-[#1F4E79]/30 hover:text-[#575249]"
                         }`}>
                         {z}
                       </button>
@@ -766,8 +766,8 @@ export default function InvestorProfilePage() {
                     <button key={String(opt.v)} type="button" onClick={() => setOpenToFlow(opt.v)}
                       className={`flex-1 text-left p-4 rounded-xl border-2 transition-all ${
                         openToFlow === opt.v
-                          ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#22201B]"
-                          : "border-[#E4E7EC] bg-[#F6F7F9] text-[#918A7C] hover:border-[#BC5A34]/30"
+                          ? "border-[#1F4E79] bg-[#1F4E79]/8 text-[#22201B]"
+                          : "border-[#E4E7EC] bg-[#F6F7F9] text-[#918A7C] hover:border-[#1F4E79]/30"
                       }`}>
                       <div className={`text-xs font-medium leading-snug ${openToFlow === opt.v ? "text-[#22201B]" : ""}`}>{opt.l}</div>
                     </button>
@@ -790,7 +790,7 @@ export default function InvestorProfilePage() {
                   className="form-input resize-y" rows={4}
                   placeholder="Décrivez votre expérience, vos domaines d'expertise et ce que vous apportez aux projets que vous accompagnez..."/>
                 <div className={`text-right text-[10px] mt-1 tabular-nums ${
-                  bio.length > 1800 ? "text-[#BC5A34]" : "text-[#8A8275]"
+                  bio.length > 1800 ? "text-[#1F4E79]" : "text-[#8A8275]"
                 }`}>
                   {bio.length} / 2000
                 </div>
@@ -807,8 +807,8 @@ export default function InvestorProfilePage() {
                     <button key={pc.v} type="button" onClick={() => setPhotoConsent(pc.v)}
                       className={`text-left p-4 rounded-xl border-2 transition-all ${
                         photoConsent === pc.v
-                          ? "border-[#BC5A34] bg-[#BC5A34]/8 text-[#22201B]"
-                          : "border-[#E4E7EC] bg-[#F6F7F9] text-[#6B655B] hover:border-[#BC5A34]/30"
+                          ? "border-[#1F4E79] bg-[#1F4E79]/8 text-[#22201B]"
+                          : "border-[#E4E7EC] bg-[#F6F7F9] text-[#6B655B] hover:border-[#1F4E79]/30"
                       }`}>
                       <div className={`font-semibold text-sm mb-0.5 ${photoConsent === pc.v ? "text-[#22201B]" : ""}`}>{pc.l}</div>
                       <div className="text-xs opacity-55 leading-snug">{pc.desc}</div>

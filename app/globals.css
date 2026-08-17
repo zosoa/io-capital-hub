@@ -15,10 +15,10 @@
   --brand-red:         #C0392B; /* retained for logo only */
 
   /* ── Editorial theme (light) — used by the `.ed` scope on user-facing pages ── */
-  --forest:    #1A5FB4;
-  --forest-2:  #154C90;
-  --terra:     #BC5A34;
-  --terra-2:   #A44B29;
+  --forest:    #0C1F36;
+  --forest-2:  #1B3E63;
+  --terra:     #1F4E79;
+  --terra-2:   #163C5E;
   --paper:     #FFFFFF;
   --paper-2:   #F4F5F7;
   --ink:       #22201B;
@@ -268,7 +268,7 @@ body {
    admin panel, which never carries `.ed`. Backgrounds + text still set per
    page via Tailwind; this covers the reusable component classes. */
 .ed { color: var(--ink); }
-.ed ::selection { background: rgba(188,90,52,0.18); }
+.ed ::selection { background: rgba(31,78,121,0.18); }
 
 .ed .form-input {
   background-color: #FFFFFF;
@@ -281,7 +281,7 @@ body {
 .ed .form-input:focus {
   outline: none;
   border-color: var(--forest);
-  box-shadow: 0 0 0 3px rgba(26,95,180,0.10);
+  box-shadow: 0 0 0 3px rgba(12,31,54,0.10);
 }
 .ed .form-label { color: var(--ink-soft); font-weight: 600; }
 
@@ -292,7 +292,7 @@ body {
   background-color: var(--forest);
   color: #fff;
   border-radius: 0.6rem;
-  box-shadow: 0 10px 24px -12px rgba(26,95,180,0.5);
+  box-shadow: 0 10px 24px -12px rgba(12,31,54,0.5);
 }
 .ed .btn-primary:hover { background-color: var(--forest-2); }
 
@@ -318,7 +318,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
-  box-shadow: 0 10px 24px -8px rgba(188,90,52,0.45);
+  box-shadow: 0 10px 24px -8px rgba(31,78,121,0.45);
 }
 .ed .btn-accent:hover { background-color: var(--terra-2); }
 
@@ -328,5 +328,5 @@ body {
 .ed input:focus-visible,
 .ed select:focus-visible,
 .ed textarea:focus-visible {
-  outline-color: rgba(188,90,52,0.6);
+  outline-color: rgba(31,78,121,0.6);
 }

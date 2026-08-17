@@ -9,7 +9,7 @@ export function Breadcrumb({ crumbs }: { crumbs: Crumb[] }) {
         <span key={i} className="flex items-center gap-1.5">
           {i > 0 && <span className="text-[#B3AA9C]">/</span>}
           {c.href ? (
-            <Link href={c.href} className="text-[#918A7C] hover:text-[#BC5A34] transition-colors">
+            <Link href={c.href} className="text-[#918A7C] hover:text-[#1F4E79] transition-colors">
               {c.label}
             </Link>
           ) : (

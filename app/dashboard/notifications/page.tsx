@@ -17,7 +17,7 @@ function accent(type: string): { bg: string; dot: string; label: string } {
   if (type === "project.rejected")
     return { bg: "bg-red-500/5 border-red-500/20", dot: "bg-red-400", label: "À revoir" };
   if (type === "project.interest_received" || type === "interest.submitted" || type === "digest.weekly")
-    return { bg: "bg-[#BC5A34]/5 border-[#BC5A34]/20", dot: "bg-[#BC5A34]", label: "Deal flow" };
+    return { bg: "bg-[#1F4E79]/5 border-[#1F4E79]/20", dot: "bg-[#1F4E79]", label: "Deal flow" };
   return { bg: "bg-white border-[#E4E7EC]", dot: "bg-white0", label: "Info" };
 }
 
@@ -69,7 +69,7 @@ export default async function NotificationsPage() {
             const a = accent(n.type);
             const link = (n.data as { link?: string })?.link;
             const content = (
-              <div className={`rounded-xl border p-4 transition-colors ${a.bg} ${!n.read_at ? "ring-1 ring-[#BC5A34]/30" : ""} hover:border-white/20`}>
+              <div className={`rounded-xl border p-4 transition-colors ${a.bg} ${!n.read_at ? "ring-1 ring-[#1F4E79]/30" : ""} hover:border-white/20`}>
                 <div className="flex items-start gap-3">
                   <span className={`flex-shrink-0 w-2 h-2 rounded-full mt-1.5 ${n.read_at ? "bg-[#EDEFF2]" : a.dot}`}/>
                   <div className="flex-1 min-w-0">
@@ -77,7 +77,7 @@ export default async function NotificationsPage() {
                       <span className="text-[10px] font-bold uppercase tracking-widest text-[#6B655B]">{a.label}</span>
                       <span className="text-[10px] text-[#8A8275]">{formatDateTime(n.created_at)}</span>
                       {!n.read_at && (
-                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#BC5A34]">Non lu</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#1F4E79]">Non lu</span>
                       )}
                     </div>
                     <h2 className="text-[#22201B] font-medium text-sm leading-snug mt-1">{n.title}</h2>

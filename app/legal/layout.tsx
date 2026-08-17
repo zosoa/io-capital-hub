@@ -9,7 +9,7 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
           <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-8 w-auto"/>
           <div>
             <div className="font-display text-[#22201B] font-semibold text-base leading-tight tracking-wide">CEO Summit IO</div>
-            <div className="text-[#BC5A34] font-semibold text-[10px] tracking-widest uppercase leading-tight mt-0.5">
+            <div className="text-[#1F4E79] font-semibold text-[10px] tracking-widest uppercase leading-tight mt-0.5">
               Investment Hub · Cluster Capital &amp; Finance
             </div>
           </div>

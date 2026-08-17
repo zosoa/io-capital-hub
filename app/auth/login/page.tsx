@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { friendlyError } from "@/lib/friendlyError";
 import Turnstile from "@/components/auth/Turnstile";
+import { KapexLogo } from "@/components/ui/logo";
 
 type OAuthProvider = "google" | "apple" | "azure";
 
@@ -104,15 +105,14 @@ function LoginForm() {
       <div className="hidden lg:block lg:w-[52%] relative overflow-hidden">
         <img src="/landing/auth-hero.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(20,55,110,0.05) 30%, rgba(15,40,85,0.72) 100%)" }} />
-        <div className="absolute top-8 left-9 flex items-center gap-2.5">
-          <span className="text-white font-bold text-lg tracking-tight">CEO&nbsp;Summit&nbsp;IO</span>
-          <span className="text-white/70 text-[11px] tracking-[0.18em] uppercase pt-0.5">Capital&nbsp;Hub</span>
+        <div className="absolute top-8 left-9">
+          <KapexLogo height={30} variant="light" showDescriptor={false} />
         </div>
         <div className="absolute bottom-0 left-0 p-10 pr-14">
           <h2 className="text-white font-bold text-[30px] leading-[1.15] max-w-md">
-            Là où le capital rencontre les projets de l&apos;Océan Indien.
+            Le portail de capital privé de l&apos;Océan Indien.
           </h2>
-          <p className="text-white/75 text-sm mt-3">Réseau de financement privé · CEO Summit Indian Ocean</p>
+          <p className="text-white/75 text-sm mt-3">Une initiative du CEO Summit Indian Ocean</p>
         </div>
       </div>
 
@@ -120,9 +120,9 @@ function LoginForm() {
       <div className="w-full lg:w-[48%] flex items-center justify-center px-6 py-14">
         <div className="w-full max-w-[380px]">
           <div className="flex flex-col items-center text-center mb-8">
-            <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-10 w-auto mb-5" />
+            <KapexLogo height={32} variant="dark" className="mb-5" />
             <h1 className="font-display text-[26px] font-bold text-[#22201B] leading-tight">Se connecter ou s&apos;inscrire</h1>
-            <p className="text-[#575249] text-[15px] mt-2">Accédez à votre espace Capital Hub en quelques secondes.</p>
+            <p className="text-[#575249] text-[15px] mt-2">Accédez à votre espace KAPEX en quelques secondes.</p>
           </div>
 
           {resetSuccess && (
@@ -153,7 +153,7 @@ function LoginForm() {
                 <MicrosoftIcon /> Continuer avec Microsoft
               </button>
               <button type="button" onClick={() => { setError(""); setEmailMode(true); }}
-                className="w-full flex items-center justify-center gap-3 py-3.5 rounded-xl bg-[#1A5FB4] text-white font-semibold text-[15px] hover:bg-[#154C90] transition-colors">
+                className="w-full flex items-center justify-center gap-3 py-3.5 rounded-xl bg-[#0C1F36] text-white font-semibold text-[15px] hover:bg-[#1B3E63] transition-colors">
                 <MailIcon /> Continuer avec email
               </button>
             </div>
@@ -167,7 +167,7 @@ function LoginForm() {
               <div>
                 <div className="flex items-center justify-between mb-1.5">
                   <label htmlFor="password" className="form-label mb-0">Mot de passe</label>
-                  <Link href="/auth/forgot-password" className="text-[#1A5FB4] hover:text-[#154C90] text-xs font-medium transition-colors">Mot de passe oublié ?</Link>
+                  <Link href="/auth/forgot-password" className="text-[#0C1F36] hover:text-[#1B3E63] text-xs font-medium transition-colors">Mot de passe oublié ?</Link>
                 </div>
                 <div className="relative">
                   <input id="password" name="password" type={showPassword ? "text" : "password"} required value={password} onChange={e => setPassword(e.target.value)}
@@ -199,13 +199,13 @@ function LoginForm() {
 
           <p className="text-[#918A7C] text-xs text-center mt-4 leading-relaxed">
             En continuant, vous acceptez nos{" "}
-            <Link href="/legal/cgu" className="text-[#1A5FB4] hover:underline">Conditions d&apos;utilisation</Link>{" "}et notre{" "}
-            <Link href="/legal/privacy" className="text-[#1A5FB4] hover:underline">Politique de confidentialité</Link>.
+            <Link href="/legal/cgu" className="text-[#0C1F36] hover:underline">Conditions d&apos;utilisation</Link>{" "}et notre{" "}
+            <Link href="/legal/privacy" className="text-[#0C1F36] hover:underline">Politique de confidentialité</Link>.
           </p>
 
           <div className="mt-6 pt-5 border-t border-[#E4E7EC] text-center text-sm text-[#575249]">
             Pas encore de compte ?{" "}
-            <Link href="/auth/signup" className="text-[#1A5FB4] hover:text-[#154C90] font-semibold transition-colors">Créer un compte gratuit</Link>
+            <Link href="/auth/signup" className="text-[#0C1F36] hover:text-[#1B3E63] font-semibold transition-colors">Créer un compte gratuit</Link>
           </div>
           <div className="text-center mt-5">
             <Link href="/" className="text-[#918A7C] hover:text-[#575249] text-sm transition-colors">← Retour à l&apos;accueil</Link>

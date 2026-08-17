@@ -1,5 +1,6 @@
 import Link from "next/link";
 import LandingFx from "./LandingFx";
+import { KapexLogo } from "@/components/ui/logo";
 import type { Dict } from "./i18n/landing";
 
 const Arrow = () => (
@@ -66,12 +67,8 @@ export default function LandingContent({ t, locale }: { t: Dict; locale: "fr" | 
       {/* NAV */}
       <nav id="lpnav">
         <div className="wrap nav-in">
-          <Link href={home} className="brand">
-            <img src="/landing/ceo-logo.png" alt="CEO Summit" />
-            <span className="txt">
-              <b>CEO Summit IO</b>
-              <span>Investment Hub</span>
-            </span>
+          <Link href={home} className="brand" aria-label="KAPEX">
+            <KapexLogo height={30} variant="dark" />
           </Link>
           <div className="nav-links">
             <a href="#secteurs">{t.nav.raise}</a>
@@ -177,7 +174,7 @@ export default function LandingContent({ t, locale }: { t: Dict; locale: "fr" | 
           </div>
 
           <div className="device rv">
-            <div className="device-bar"><span /><span /><span /><div className="device-url">capital-hub.io · deal-flow</div></div>
+            <div className="device-bar"><span /><span /><span /><div className="device-url">kapex.io · deal-flow</div></div>
             <div className="mandate-demo">
               <div className="mandate-panel">
                 <div className="mp-head"><span className="dot" /> {t.investors.mandateTitle}</div>
@@ -291,11 +288,11 @@ export default function LandingContent({ t, locale }: { t: Dict; locale: "fr" | 
         <div className="wrap">
           <div className="foot-grid">
             <div className="about">
-              <Link href={home} className="brand">
-                <img src="/landing/ceo-logo.png" alt="CEO Summit" />
-                <span className="txt"><b>CEO Summit IO</b><span>Investment Hub</span></span>
+              <Link href={home} className="brand" aria-label="KAPEX">
+                <KapexLogo height={32} variant="light" />
               </Link>
               <p>{t.footer.about}</p>
+              <p className="foot-initiative">{t.footer.initiative}</p>
               <a href="mailto:capital@ceo-summit.mg" className="foot-mail">capital@ceo-summit.mg</a>
             </div>
             <div className="foot-col">

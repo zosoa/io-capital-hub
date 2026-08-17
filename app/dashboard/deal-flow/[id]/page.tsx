@@ -14,7 +14,7 @@ function Badge({ label, gold = false }: { label: string; gold?: boolean }) {
   return (
     <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
       gold
-        ? "bg-[#BC5A34]/15 text-[#BC5A34] border border-[#BC5A34]/25"
+        ? "bg-[#1F4E79]/15 text-[#1F4E79] border border-[#1F4E79]/25"
         : "bg-white text-[#918A7C] border border-[#DADEE4]"
     }`}>
       {label}
@@ -74,7 +74,7 @@ function InterestButton({ projectId }: { projectId: string }) {
 
   if (status === "already" || status === "done") {
     return (
-      <div className="w-full flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl bg-[#BC5A34]/10 border border-[#BC5A34]/30 text-[#BC5A34] text-sm font-medium">
+      <div className="w-full flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl bg-[#1F4E79]/10 border border-[#1F4E79]/30 text-[#1F4E79] text-sm font-medium">
         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
         </svg>
@@ -87,7 +87,7 @@ function InterestButton({ projectId }: { projectId: string }) {
     return (
       <button
         onClick={() => setShowForm(true)}
-        className="w-full flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl bg-[#BC5A34] hover:bg-[#A44B29] text-white text-sm font-semibold transition-all duration-200">
+        className="w-full flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl bg-[#1F4E79] hover:bg-[#163C5E] text-white text-sm font-semibold transition-all duration-200">
         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.25"/>
         </svg>
@@ -184,7 +184,7 @@ export default function DealFlowDetailPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="w-6 h-6 border-2 border-[#BC5A34]/30 border-t-[#BC5A34] rounded-full animate-spin"/>
+        <div className="w-6 h-6 border-2 border-[#1F4E79]/30 border-t-[#1F4E79] rounded-full animate-spin"/>
       </div>
     );
   }
@@ -227,7 +227,7 @@ export default function DealFlowDetailPage() {
               {project.boost_score > 0 && (
                 <div className="ml-auto flex items-center gap-1.5">
                   <div className="w-16 h-1 rounded-full bg-[#EDEFF2] overflow-hidden">
-                    <div className="h-full rounded-full bg-[#BC5A34]"
+                    <div className="h-full rounded-full bg-[#1F4E79]"
                       style={{ width: `${Math.min(project.boost_score, 100)}%` }}/>
                   </div>
                   <span className="text-[10px] text-[#918A7C] font-mono">{project.boost_score}pts</span>
@@ -262,10 +262,10 @@ export default function DealFlowDetailPage() {
           {/* Impact */}
           {project.impact_description && (
             <div className="rounded-xl border border-[#E4E7EC] bg-white p-6">
-              <h2 className="text-xs font-bold text-[#BC5A34]/50 uppercase tracking-widest mb-3">Impact</h2>
+              <h2 className="text-xs font-bold text-[#1F4E79]/50 uppercase tracking-widest mb-3">Impact</h2>
               <p className="text-[#575249] text-sm leading-relaxed">{project.impact_description}</p>
               {project.job_creation_expected && (
-                <div className="mt-3 inline-flex items-center gap-2 bg-[#BC5A34]/8 border border-[#BC5A34]/15 rounded-lg px-3 py-1.5 text-xs text-[#BC5A34]/70">
+                <div className="mt-3 inline-flex items-center gap-2 bg-[#1F4E79]/8 border border-[#1F4E79]/15 rounded-lg px-3 py-1.5 text-xs text-[#1F4E79]/70">
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
                   </svg>
@@ -285,7 +285,7 @@ export default function DealFlowDetailPage() {
             <div className="divide-y divide-white/6">
               <InfoRow label="Montant recherché"
                 value={project.amount_requested
-                  ? <span className="text-[#A44B29] font-semibold">{formatCurrency(project.amount_requested, project.currency)}</span>
+                  ? <span className="text-[#163C5E] font-semibold">{formatCurrency(project.amount_requested, project.currency)}</span>
                   : null}/>
               <InfoRow label="Localisation"
                 value={[project.city, project.country].filter(Boolean).join(", ")}/>
@@ -319,8 +319,8 @@ export default function DealFlowDetailPage() {
           )}
 
           {/* Interest CTA */}
-          <div className="rounded-xl border border-[#BC5A34]/20 bg-[#BC5A34]/4 p-5">
-            <h2 className="text-xs font-bold text-[#BC5A34]/60 uppercase tracking-widest mb-1">Intéressé par ce projet ?</h2>
+          <div className="rounded-xl border border-[#1F4E79]/20 bg-[#1F4E79]/4 p-5">
+            <h2 className="text-xs font-bold text-[#1F4E79]/60 uppercase tracking-widest mb-1">Intéressé par ce projet ?</h2>
             <p className="text-[#918A7C] text-xs leading-relaxed mb-4">
               Signalez votre intérêt à notre équipe. Nous faciliterons une introduction confidentielle.
             </p>

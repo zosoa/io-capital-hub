@@ -71,7 +71,7 @@ export default function SaveToggle({
         aria-pressed={saved}
         className={`w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
           saved
-            ? "bg-[#BC5A34]/15 border border-[#BC5A34]/40 text-[#BC5A34]"
+            ? "bg-[#1F4E79]/15 border border-[#1F4E79]/40 text-[#1F4E79]"
             : "border border-[#DADEE4] text-[#575249] hover:text-[#22201B]/90 hover:border-white/25"
         }`}>
         <BookmarkIcon filled={saved} className="w-4 h-4"/>
@@ -89,7 +89,7 @@ export default function SaveToggle({
       title={saved ? "Retirer des sauvegardés" : "Sauvegarder"}
       className={`flex-shrink-0 p-1.5 rounded-lg transition-all ${
         saved
-          ? "text-[#BC5A34] bg-[#BC5A34]/15 hover:bg-[#BC5A34]/25"
+          ? "text-[#1F4E79] bg-[#1F4E79]/15 hover:bg-[#1F4E79]/25"
           : "text-[#918A7C] hover:text-[#575249] hover:bg-[#F1F3F5]"
       }`}>
       <BookmarkIcon filled={saved} className="w-4 h-4"/>

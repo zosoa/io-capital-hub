@@ -22,8 +22,8 @@ function typeAccent(type: string): { dot: string; label: string } {
                                             return { dot: "bg-emerald-400", label: "Bonne nouvelle" };
   if (type === "project.rejected")          return { dot: "bg-red-400",     label: "À revoir" };
   if (type === "project.interest_received" || type === "interest.submitted")
-                                            return { dot: "bg-[#BC5A34]",   label: "Deal flow" };
-  if (type === "digest.weekly")             return { dot: "bg-[#BC5A34]",   label: "Deal flow" };
+                                            return { dot: "bg-[#1F4E79]",   label: "Deal flow" };
+  if (type === "digest.weekly")             return { dot: "bg-[#1F4E79]",   label: "Deal flow" };
   return { dot: "bg-[#B3AA9C]", label: "Info" };
 }
 
@@ -106,7 +106,7 @@ export default function NotificationBell() {
           <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/>
         </svg>
         {unread > 0 && (
-          <span className="absolute top-1 right-1 min-w-[16px] h-4 px-1 rounded-full bg-[#BC5A34] text-[10px] font-bold text-white flex items-center justify-center ring-2 ring-[#1A5FB4]">
+          <span className="absolute top-1 right-1 min-w-[16px] h-4 px-1 rounded-full bg-[#1F4E79] text-[10px] font-bold text-white flex items-center justify-center ring-2 ring-[#0C1F36]">
             {unread > 9 ? "9+" : unread}
           </span>
         )}
@@ -124,7 +124,7 @@ export default function NotificationBell() {
             {unread > 0 && (
               <button
                 onClick={markAllRead}
-                className="text-[#BC5A34] hover:text-[#A44B29] text-xs font-medium transition-colors">
+                className="text-[#1F4E79] hover:text-[#163C5E] text-xs font-medium transition-colors">
                 Tout marquer lu
               </button>
             )}
@@ -142,7 +142,7 @@ export default function NotificationBell() {
               const wrapProps = link ? { href: link, onClick: () => setOpen(false) } : {};
               return (
                 <Wrap key={n.id} {...wrapProps}
-                  className={`block px-4 py-3 hover:bg-white transition-colors ${!n.read_at ? "bg-[#BC5A34]/5" : ""}`}>
+                  className={`block px-4 py-3 hover:bg-white transition-colors ${!n.read_at ? "bg-[#1F4E79]/5" : ""}`}>
                   <div className="flex items-start gap-2.5">
                     <span className={`flex-shrink-0 w-1.5 h-1.5 rounded-full mt-1.5 ${n.read_at ? "bg-[#D8D0C4]" : accent.dot}`}/>
                     <div className="flex-1 min-w-0">

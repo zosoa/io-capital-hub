@@ -56,11 +56,11 @@ function ImageUpload({ label, hint, currentUrl, fallbackInitial, shape = "circle
     <div>
       <div className="label">{label}</div>
       <div className="flex items-center gap-4">
-        <div className={`w-14 h-14 flex-shrink-0 overflow-hidden border-2 border-[#E4E7EC] ${r} bg-[#F6F3EE] flex items-center justify-center cursor-pointer hover:border-[#BC5A34]/40 transition-colors`}
+        <div className={`w-14 h-14 flex-shrink-0 overflow-hidden border-2 border-[#E4E7EC] ${r} bg-[#F6F3EE] flex items-center justify-center cursor-pointer hover:border-[#1F4E79]/40 transition-colors`}
              onClick={() => ref.current?.click()}>
           {preview
             ? <img src={preview} alt={label} className={`w-full h-full object-cover ${r}`}/>
-            : <span className="text-[#BC5A34] font-bold text-lg">{fallbackInitial || "?"}</span>}
+            : <span className="text-[#1F4E79] font-bold text-lg">{fallbackInitial || "?"}</span>}
         </div>
         <div>
           <button type="button" onClick={() => ref.current?.click()}
@@ -82,7 +82,7 @@ function ImageUpload({ label, hint, currentUrl, fallbackInitial, shape = "circle
 function SectionHeader({ children }: { children: React.ReactNode }) {
   return (
     <div className="text-[10px] font-bold text-[#9A9FAF] uppercase tracking-[0.12em] mb-4 flex items-center gap-2">
-      <div className="w-4 h-px bg-[#BC5A34]/40"/>
+      <div className="w-4 h-px bg-[#1F4E79]/40"/>
       {children}
       <div className="flex-1 h-px bg-[#EDE7DE]"/>
     </div>
@@ -155,7 +155,7 @@ export default function ProfilePage() {
 
   if (loading) return (
     <div className="p-8 pt-[68px] md:pt-8 flex items-center gap-3 text-[#9A9FAF]">
-      <span className="w-4 h-4 border-2 border-[#D8D2CA] border-t-[#BC5A34] rounded-full animate-spin"/>
+      <span className="w-4 h-4 border-2 border-[#D8D2CA] border-t-[#1F4E79] rounded-full animate-spin"/>
       Chargement...
     </div>
   );
@@ -193,9 +193,9 @@ export default function ProfilePage() {
         <div className="card overflow-hidden">
 
           {/* Impact banner */}
-          <div className="bg-[#BC5A34]/8 border-b border-[#BC5A34]/15 px-6 py-4 flex items-start gap-3">
-            <div className="w-8 h-8 rounded-lg bg-[#BC5A34]/15 border border-[#BC5A34]/25 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <svg className="w-4 h-4 text-[#BC5A34]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <div className="bg-[#1F4E79]/8 border-b border-[#1F4E79]/15 px-6 py-4 flex items-start gap-3">
+            <div className="w-8 h-8 rounded-lg bg-[#1F4E79]/15 border border-[#1F4E79]/25 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg className="w-4 h-4 text-[#1F4E79]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/>
               </svg>
             </div>
@@ -341,11 +341,11 @@ export default function ProfilePage() {
             onClick={() => update("is_authorized_rep", !profile.is_authorized_rep)}
             className={`w-full flex items-start gap-4 p-4 rounded-xl border-2 transition-all duration-200 text-left ${
               profile.is_authorized_rep
-                ? "border-[#BC5A34] bg-[#BC5A34]/5"
+                ? "border-[#1F4E79] bg-[#1F4E79]/5"
                 : "border-[#E4E7EC] bg-[#FAFAF8] hover:border-[#D8D0C5]"
             }`}>
             <div className={`w-5 h-5 flex-shrink-0 mt-0.5 rounded border-2 flex items-center justify-center transition-all ${
-              profile.is_authorized_rep ? "bg-[#BC5A34] border-[#BC5A34]" : "border-[#C8C0B5] bg-white"
+              profile.is_authorized_rep ? "bg-[#1F4E79] border-[#1F4E79]" : "border-[#C8C0B5] bg-white"
             }`}>
               {profile.is_authorized_rep && (
                 <svg className="w-3 h-3 text-[#22201B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
@@ -393,7 +393,7 @@ export default function ProfilePage() {
             )}
           </button>
           {(avatarFile || logoFile) && (
-            <span className="text-[#BC5A34] text-xs flex items-center gap-1.5">
+            <span className="text-[#1F4E79] text-xs flex items-center gap-1.5">
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
               </svg>

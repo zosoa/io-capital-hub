@@ -86,11 +86,11 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
       <div className="px-5 pt-6 pb-5 border-b border-white/10">
         <div className="flex items-start justify-between gap-2">
           <Link href="/" className="block group flex-1 min-w-0">
-            <LogoBadge height={30} className="mb-3"/>
+            <LogoBadge height={30} showDescriptor={false} className="mb-3"/>
             <div className="mt-2">
-              <div className="text-white font-semibold text-xs tracking-wide leading-none">Investment Hub</div>
-              <div className="text-[#A9C7EE]/70 text-[10px] tracking-widest uppercase mt-1 leading-none font-medium">
-                Cluster Capital &amp; Finance
+              <div className="text-white/85 font-semibold text-[11px] tracking-wide leading-none">Kapital Exchange Portal</div>
+              <div className="text-[#AEC2DA]/70 text-[10px] tracking-widest uppercase mt-1 leading-none font-medium">
+                CEO Summit Indian Ocean
               </div>
             </div>
           </Link>
@@ -110,7 +110,7 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
               alt={profile.full_name || ""}
             />
           ) : (
-            <div className="w-8 h-8 rounded-full bg-[#A9C7EE]/15 border border-[#A9C7EE]/25 flex items-center justify-center text-[#A9C7EE] font-semibold text-xs flex-shrink-0">
+            <div className="w-8 h-8 rounded-full bg-[#AEC2DA]/15 border border-[#AEC2DA]/25 flex items-center justify-center text-[#AEC2DA] font-semibold text-xs flex-shrink-0">
               {profile?.full_name?.[0]?.toUpperCase() || "U"}
             </div>
           )}
@@ -134,8 +134,8 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
                 alt={profile.organization || ""}
               />
             ) : (
-              <div className="w-5 h-5 rounded bg-[#A9C7EE]/10 border border-[#A9C7EE]/20 flex items-center justify-center flex-shrink-0">
-                <span className="text-[#A9C7EE] text-[8px] font-bold leading-none">
+              <div className="w-5 h-5 rounded bg-[#AEC2DA]/10 border border-[#AEC2DA]/20 flex items-center justify-center flex-shrink-0">
+                <span className="text-[#AEC2DA] text-[8px] font-bold leading-none">
                   {profile.organization?.[0]?.toUpperCase()}
                 </span>
               </div>
@@ -165,7 +165,7 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
                   ? "bg-white/12 text-white"
                   : "text-white/55 hover:text-white hover:bg-white/8"
               }`}>
-              <span className={`flex-shrink-0 ${active ? "text-[#A9C7EE]" : ""}`}>{item.icon}</span>
+              <span className={`flex-shrink-0 ${active ? "text-[#AEC2DA]" : ""}`}>{item.icon}</span>
               {item.label}
             </Link>
           );
@@ -203,18 +203,18 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden md:flex flex-col w-52 bg-[#1A5FB4] border-r border-white/10 flex-shrink-0">
+      <aside className="hidden md:flex flex-col w-52 bg-[#0C1F36] border-r border-white/10 flex-shrink-0">
         <SidebarContent/>
       </aside>
 
       {/* Mobile top bar */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-[#1A5FB4] border-b border-white/10 h-13 flex items-center justify-between px-4"
+      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-[#0C1F36] border-b border-white/10 h-13 flex items-center justify-between px-4"
            style={{ height: 52 }}>
         <div className="flex items-center gap-2.5">
           <LogoMark size={26} variant="light"/>
           <div>
-            <div className="text-white font-semibold text-sm leading-none">CEO Summit IO</div>
-            <div className="text-[#A9C7EE]/60 text-[9px] tracking-widest uppercase leading-none mt-0.5">Investment Hub</div>
+            <div className="text-white font-bold text-sm leading-none tracking-tight">KAPEX</div>
+            <div className="text-[#AEC2DA]/60 text-[9px] tracking-widest uppercase leading-none mt-0.5">Kapital Exchange Portal</div>
           </div>
         </div>
         <div className="flex items-center gap-1">
@@ -232,7 +232,7 @@ export default function DashboardSidebar({ profile, isInvestor = false }: { prof
       {/* Mobile drawer */}
       {mobileOpen && (
         <div className="md:hidden fixed inset-0 z-40 flex">
-          <div className="w-56 bg-[#1A5FB4] border-r border-white/10 h-full overflow-y-auto" style={{ paddingTop: 52 }}>
+          <div className="w-56 bg-[#0C1F36] border-r border-white/10 h-full overflow-y-auto" style={{ paddingTop: 52 }}>
             <SidebarContent/>
           </div>
           <div className="flex-1 bg-black/50 backdrop-blur-sm" onClick={() => setMobileOpen(false)}/>

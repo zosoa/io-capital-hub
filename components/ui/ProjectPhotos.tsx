@@ -60,7 +60,7 @@ export default function ProjectPhotos({
         ))}
         {value.length < max && (
           <button type="button" onClick={() => ref.current?.click()} disabled={busy}
-            className="aspect-square rounded-xl border-2 border-dashed border-[#DADEE4] text-[#918A7C] hover:border-[#1A5FB4] hover:text-[#1A5FB4] flex flex-col items-center justify-center gap-1 transition disabled:opacity-60">
+            className="aspect-square rounded-xl border-2 border-dashed border-[#DADEE4] text-[#918A7C] hover:border-[#0C1F36] hover:text-[#0C1F36] flex flex-col items-center justify-center gap-1 transition disabled:opacity-60">
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
             </svg>

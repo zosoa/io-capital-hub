@@ -4,9 +4,9 @@
 
 export const fr = {
   meta: {
-    title: "Capital Hub — CEO Summit IO · Financement privé de l'Océan Indien",
+    title: "KAPEX — Kapital Exchange Portal · Financement privé de l'Océan Indien",
     description:
-      "Mise en relation directe entre projets bancables et investisseurs de l'Océan Indien. Capital Hub centralise les opportunités qualifiées pour les fonds, family offices et banques de la région, en toute confidentialité.",
+      "KAPEX relie les projets bancables de l'Océan Indien aux fonds, family offices et banques qualifiés — en toute confidentialité. Une initiative du CEO Summit Indian Ocean.",
   },
   nav: {
     raise: "Lever des fonds",
@@ -16,11 +16,11 @@ export const fr = {
     deposit: "Déposer un projet",
   },
   hero: {
-    kicker: "1ᵉʳ portail de financement — Océan Indien",
-    titlePre: "Mise en relation directe entre projets bancables et investisseurs de l'",
+    kicker: "Le portail de capital privé — Océan Indien",
+    titlePre: "Le portail de capital privé de l'",
     titleHi: "Océan Indien",
     titlePost: ".",
-    lead: "Capital Hub centralise les opportunités d'investissement qualifiées et les présente en toute confidentialité aux fonds, family offices et banques de la région.",
+    lead: "KAPEX relie les projets bancables aux fonds, family offices et banques qualifiés de la région — en toute confidentialité.",
     ctaRaise: "Je cherche des financements",
     ctaInvestor: "Je suis investisseur",
     paths: "Porteurs : déposez en toute confidentialité · Investisseurs : enregistrez votre mandat",
@@ -100,7 +100,7 @@ export const fr = {
     idx: "La méthode",
     quotePre: "« Lors du sommet, nous avons réalisé que des investisseurs actifs et des porteurs de projets à fort potentiel étaient ",
     quoteHi: "dans la même pièce sans se trouver",
-    quotePost: ". Capital Hub a été créé pour combler ce vide, de manière structurée et discrète. »",
+    quotePost: ". KAPEX a été créé pour combler ce vide, de manière structurée et discrète. »",
     sigName: "Zosoa Rasoarahona",
     sigRole: "Head of Capital & Finance · CEO Summit IO",
     steps: [
@@ -123,7 +123,8 @@ export const fr = {
     btnInvestor: "Je suis investisseur",
   },
   footer: {
-    about: "Le portail de financement privé du CEO Summit Indian Ocean. Nous connectons les porteurs de projets aux investisseurs actifs de la région, en toute confidentialité.",
+    about: "KAPEX — le portail de capital privé de l'Océan Indien. Nous relions les porteurs de projets aux investisseurs actifs de la région, en toute confidentialité.",
+    initiative: "Une initiative du CEO Summit Indian Ocean",
     colPortal: "Portail",
     fDeposit: "Déposer un dossier",
     fMethod: "La méthode",
@@ -141,9 +142,9 @@ export type Dict = typeof fr;
 
 export const en: Dict = {
   meta: {
-    title: "Capital Hub — CEO Summit IO · Indian Ocean private finance",
+    title: "KAPEX — Kapital Exchange Portal · Indian Ocean private finance",
     description:
-      "Direct introductions between bankable projects and Indian Ocean investors. Capital Hub consolidates qualified opportunities for the region's funds, family offices and banks — in strict confidence.",
+      "KAPEX connects the Indian Ocean's bankable projects with qualified funds, family offices and banks — in strict confidence. An initiative of the CEO Summit Indian Ocean.",
   },
   nav: {
     raise: "Raise capital",
@@ -153,11 +154,11 @@ export const en: Dict = {
     deposit: "Submit a project",
   },
   hero: {
-    kicker: "The Indian Ocean's leading private-finance portal",
-    titlePre: "Direct introductions between bankable projects and ",
+    kicker: "The private-capital portal — Indian Ocean",
+    titlePre: "The private-capital portal of the ",
     titleHi: "Indian Ocean",
-    titlePost: " investors.",
-    lead: "Capital Hub consolidates qualified investment opportunities and presents them, in strict confidence, to the region's funds, family offices and banks.",
+    titlePost: ".",
+    lead: "KAPEX connects bankable projects with the region's qualified funds, family offices and banks — in strict confidence.",
     ctaRaise: "I'm seeking funding",
     ctaInvestor: "I'm an investor",
     paths: "Project owners: submit in confidence · Investors: register your mandate",
@@ -237,7 +238,7 @@ export const en: Dict = {
     idx: "The method",
     quotePre: "“At the summit, we realised that active investors and high-potential project owners were ",
     quoteHi: "in the same room without finding one another",
-    quotePost: ". Capital Hub was built to close that gap — in a structured and discreet way.”",
+    quotePost: ". KAPEX was built to close that gap — in a structured and discreet way.”",
     sigName: "Zosoa Rasoarahona",
     sigRole: "Head of Capital & Finance · CEO Summit IO",
     steps: [
@@ -260,7 +261,8 @@ export const en: Dict = {
     btnInvestor: "I'm an investor",
   },
   footer: {
-    about: "The private-finance portal of the CEO Summit Indian Ocean. We connect project owners with the region's active investors, in strict confidence.",
+    about: "KAPEX — the private-capital portal of the Indian Ocean. We connect project owners with the region's active investors, in strict confidence.",
+    initiative: "An initiative of the CEO Summit Indian Ocean",
     colPortal: "Portal",
     fDeposit: "Submit a file",
     fMethod: "The method",

@@ -11,7 +11,7 @@ import { deleteAccount, exportAccountData } from "@/app/actions/account";
 function PasswordStrength({ password }: { password: string }) {
   const len = password.length;
   const strength = len === 0 ? 0 : len < 6 ? 1 : len < 8 ? 2 : len < 12 ? 3 : 4;
-  const colors = ["bg-white", "bg-red-400", "bg-yellow-400", "bg-[#BC5A34]", "bg-green-400"];
+  const colors = ["bg-white", "bg-red-400", "bg-yellow-400", "bg-[#1F4E79]", "bg-green-400"];
   const labels = ["", "Trop court", "Faible", "Bon", "Fort"];
   return (
     <div className="mt-2">
@@ -38,7 +38,7 @@ function Section({ title, icon, children }: {
   return (
     <div className="rounded-xl border border-[#E4E7EC] bg-white overflow-hidden">
       <div className="px-6 py-4 border-b border-[#E4E7EC] flex items-center gap-2.5">
-        <div className="w-7 h-7 rounded-lg bg-[#BC5A34]/10 text-[#BC5A34] flex items-center justify-center flex-shrink-0">
+        <div className="w-7 h-7 rounded-lg bg-[#1F4E79]/10 text-[#1F4E79] flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <h2 className="text-[#22201B] font-semibold text-sm">{title}</h2>

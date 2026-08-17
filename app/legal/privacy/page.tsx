@@ -5,8 +5,8 @@ export const metadata = {
 
 export default function PrivacyPage() {
   return (
-    <article className="prose  max-w-none prose-headings:font-display prose-headings:font-bold prose-h1:text-3xl prose-h2:text-xl prose-h2:mt-10 prose-h2:text-[#A44B29] prose-p:text-[#575249] prose-p:leading-relaxed prose-li:text-[#575249] prose-strong:text-[#22201B]">
-      <div className="text-[#BC5A34] text-[10px] font-semibold uppercase tracking-[0.22em] mb-4">Mentions légales</div>
+    <article className="prose  max-w-none prose-headings:font-display prose-headings:font-bold prose-h1:text-3xl prose-h2:text-xl prose-h2:mt-10 prose-h2:text-[#163C5E] prose-p:text-[#575249] prose-p:leading-relaxed prose-li:text-[#575249] prose-strong:text-[#22201B]">
+      <div className="text-[#1F4E79] text-[10px] font-semibold uppercase tracking-[0.22em] mb-4">Mentions légales</div>
       <h1 className="font-display text-3xl font-bold text-[#22201B] mb-2">Politique de confidentialité</h1>
       <p className="text-[#918A7C] text-sm mb-10">Version 1.0 · En vigueur au 21 avril 2026</p>
 
@@ -23,7 +23,7 @@ export default function PrivacyPage() {
       </p>
       <p>
         Contact délégué à la protection des données :
-        <a href="mailto:capital@ceo-summit.mg" className="text-[#BC5A34] hover:underline"> capital@ceo-summit.mg</a>
+        <a href="mailto:capital@ceo-summit.mg" className="text-[#1F4E79] hover:underline"> capital@ceo-summit.mg</a>
       </p>
 
       <h2>2. Données collectées</h2>
@@ -89,7 +89,7 @@ export default function PrivacyPage() {
       </ul>
       <p>
         Pour exercer ces droits, contactez-nous à
-        <a href="mailto:capital@ceo-summit.mg" className="text-[#BC5A34] hover:underline"> capital@ceo-summit.mg</a>.
+        <a href="mailto:capital@ceo-summit.mg" className="text-[#1F4E79] hover:underline"> capital@ceo-summit.mg</a>.
         Réponse sous 30 jours maximum.
       </p>
 
@@ -123,8 +123,8 @@ export default function PrivacyPage() {
         réglementation, vous pouvez introduire une réclamation auprès de l&apos;autorité compétente :
       </p>
       <ul>
-        <li>Maurice : Data Protection Office — <a href="https://dataprotection.govmu.org" target="_blank" rel="noopener noreferrer" className="text-[#BC5A34] hover:underline">dataprotection.govmu.org</a></li>
-        <li>France/UE : CNIL — <a href="https://cnil.fr" target="_blank" rel="noopener noreferrer" className="text-[#BC5A34] hover:underline">cnil.fr</a></li>
+        <li>Maurice : Data Protection Office — <a href="https://dataprotection.govmu.org" target="_blank" rel="noopener noreferrer" className="text-[#1F4E79] hover:underline">dataprotection.govmu.org</a></li>
+        <li>France/UE : CNIL — <a href="https://cnil.fr" target="_blank" rel="noopener noreferrer" className="text-[#1F4E79] hover:underline">cnil.fr</a></li>
         <li>Madagascar : Commission Malagasy de l&apos;Informatique et des Libertés (CMIL).</li>
       </ul>
     </article>

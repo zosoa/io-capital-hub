@@ -17,7 +17,7 @@ function SkeletonCard() {
         <div className="h-5 w-24 bg-white rounded-full"/>
         <div className="ml-auto h-5 w-20 bg-white rounded"/>
       </div>
-      <div className="mt-4 h-8 rounded-lg border border-[#BC5A34]/20 bg-[#BC5A34]/5"/>
+      <div className="mt-4 h-8 rounded-lg border border-[#1F4E79]/20 bg-[#1F4E79]/5"/>
     </div>
   );
 }

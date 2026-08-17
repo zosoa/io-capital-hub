@@ -9,7 +9,7 @@ import { friendlyError } from "@/lib/friendlyError";
 function PasswordStrength({ password }: { password: string }) {
   const len = password.length;
   const strength = len === 0 ? 0 : len < 6 ? 1 : len < 8 ? 2 : len < 12 ? 3 : 4;
-  const colors = ["bg-[#E4E7EC]","bg-red-400","bg-yellow-400","bg-[#BC5A34]","bg-green-400"];
+  const colors = ["bg-[#E4E7EC]","bg-red-400","bg-yellow-400","bg-[#1F4E79]","bg-green-400"];
   const labels = ["","Trop court","Faible","Bon","Fort"];
   return (
     <div className="mt-2">
@@ -63,7 +63,7 @@ export default function UpdatePasswordPage() {
   if (checking) {
     return (
       <div className="min-h-screen ed bg-white flex items-center justify-center">
-        <div className="w-6 h-6 border-2 border-[#BC5A34]/30 border-t-[#BC5A34] rounded-full animate-spin"/>
+        <div className="w-6 h-6 border-2 border-[#1F4E79]/30 border-t-[#1F4E79] rounded-full animate-spin"/>
       </div>
     );
   }
@@ -75,7 +75,7 @@ export default function UpdatePasswordPage() {
           <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-9 w-auto"/>
           <div className="text-center">
             <div className="font-bold text-[#22201B] text-sm tracking-wide">CEO Summit IO</div>
-            <div className="text-[#BC5A34] text-xs tracking-[0.15em] uppercase mt-0.5">Investment Hub · Cluster Capital &amp; Finance</div>
+            <div className="text-[#1F4E79] text-xs tracking-[0.15em] uppercase mt-0.5">Investment Hub · Cluster Capital &amp; Finance</div>
           </div>
         </Link>
 

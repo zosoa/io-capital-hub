@@ -4,14 +4,28 @@ import { Toaster } from "sonner";
 import CookieBanner from "@/components/legal/CookieBanner";
 
 export const metadata: Metadata = {
-  title: "CEO Summit Investment Hub — Portail de Financement Privé",
-  description: "Soumettez votre dossier de financement. Notre équipe du Cluster Capital & Finance du CEO Summit Indian Ocean vous met en relation avec les bons investisseurs — en toute confidentialité.",
-  keywords: "financement, investissement, CEO Summit, Océan Indien, Madagascar, PME, capital, equity, private equity, impact",
+  title: "KAPEX — Kapital Exchange Portal · Financement privé de l'Océan Indien",
+  description: "KAPEX met en relation les projets bancables de l'Océan Indien avec les fonds, family offices et banques qualifiés — en toute confidentialité. Une initiative du CEO Summit Indian Ocean.",
+  keywords: "KAPEX, financement, investissement, capital privé, CEO Summit, Océan Indien, Madagascar, Maurice, PME, equity, private equity, impact",
+  manifest: "/site.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+    shortcut: "/favicon.ico",
+  },
   openGraph: {
-    title: "CEO Summit Investment Hub",
-    description: "Le portail de financement privé du CEO Summit Indian Ocean",
+    title: "KAPEX — Kapital Exchange Portal",
+    description: "Le portail de capital privé de l'Océan Indien. Une initiative du CEO Summit Indian Ocean.",
     type: "website",
   },
+};
+
+export const viewport = {
+  themeColor: "#0C1F36",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

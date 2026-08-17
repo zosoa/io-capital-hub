@@ -32,7 +32,7 @@ export default async function AccountDeletedPage() {
           <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-9 w-auto"/>
           <div>
             <div className="font-bold text-[#22201B] text-sm tracking-wide">CEO Summit IO</div>
-            <div className="text-[#BC5A34] text-xs tracking-[0.15em] uppercase mt-0.5">
+            <div className="text-[#1F4E79] text-xs tracking-[0.15em] uppercase mt-0.5">
               Investment Hub · Cluster Capital &amp; Finance
             </div>
           </div>

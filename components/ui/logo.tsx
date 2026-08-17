@@ -1,109 +1,88 @@
-"use client";
-
 /**
- * CEO Summit logo components.
+ * KAPEX — Kapital Exchange Portal logo components.
  *
- * SETUP: copy the CEO Summit logo PNG to /public/ceo-summit-logo.png
+ * The KAPEX mark is a geometric "K" (navy blade + red diagonal + a red
+ * compass node). It's inlined as SVG so it recolors cleanly per background:
+ *   variant="dark"  → navy mark, for light backgrounds
+ *   variant="light" → white mark, for dark backgrounds (e.g. the navy sidebar)
+ * Red always stays red — per brand, red lives only inside the logo.
  *
- * Until the file is placed, all components fall back to the SVG mark automatically.
+ * Exports keep the historical names (LogoMark / LogoBadge / LogoImage) so
+ * existing imports keep working; KapexLogo is the canonical alias.
  */
 
-import { useState } from "react";
+const NAVY = "#0C1F36";
+const RED = "#D80000";
+const WORDMARK_NAVY = "#0E2841";
+const WORDMARK_RED = "#C00000";
+const DESCRIPTOR = "#808080";
 
-// ── SVG mark ────────────────────────────────────────────────────────────────
-// Approximates the CEO Summit visual identity (two arcs + red circle + star).
-// Used as fallback when the PNG is not yet placed, and for tiny icon contexts.
-export function LogoMark({
-  size = 32,
-  variant = "light",
-}: {
-  size?: number;
-  variant?: "light" | "dark";
-}) {
-  const arc    = variant === "light" ? "#FFFFFF" : "#0E1B2E";
-  const circle = "#C0392B";
+type Variant = "light" | "dark";
 
+// ── The K symbol ─────────────────────────────────────────────────────────────
+export function LogoMark({ size = 32, variant = "dark" }: { size?: number; variant?: Variant }) {
+  const blade = variant === "light" ? "#FFFFFF" : NAVY;
   return (
     <svg
-      width={size}
+      width={size * 0.8636}
       height={size}
-      viewBox="0 0 48 48"
+      viewBox="0 0 863.6 1000"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      aria-label="CEO Summit"
-      style={{ flexShrink: 0 }}
+      aria-label="KAPEX"
+      style={{ flexShrink: 0, display: "block" }}
     >
-      {/* Outer arc */}
-      <path d="M6 24C6 13.5 14.5 5 24 5C18 5 12 11.5 12 24C12 36.5 18 43 24 43C14.5 43 6 34.5 6 24Z" fill={arc}/>
-      {/* Inner arc */}
-      <path d="M12 24C12 16 17 10 24 10C19.5 10 16 16 16 24C16 32 19.5 38 24 38C17 38 12 32 12 24Z" fill={arc} opacity="0.55"/>
-      {/* Red circle */}
-      <circle cx="32" cy="24" r="14" fill={circle}/>
-      {/* 4-pointed star */}
-      <path d="M32 16L33.8 22.2L40 24L33.8 25.8L32 32L30.2 25.8L24 24L30.2 22.2Z" fill="white"/>
+      <path d="M 0.0007,0 L 264.9355,0 L 264.9355,1000 L 0.0007,1000 Z M 569.2486,1000 L 264.9353,600.6505 L 264.9353,214.374 L 863.6001,1000 Z" fill={blade} />
+      <path d="M 0,500.8632 L 460.9172,0 L 779.2214,0 L 0,846.7536 Z" fill={RED} />
+      <path d="M 67.0086,889.2347 A 70.8544,70.8544 0 1 0 208.7173,889.2347 A 70.8544,70.8544 0 1 0 67.0086,889.2347 Z" fill={RED} />
+      <path d="M 137.863,826.3361 C 142.1416,859.139 167.9586,884.9561 200.7615,889.2347 C 167.9586,893.5134 142.1416,919.3304 137.863,952.1333 C 133.5843,919.3304 107.7673,893.5134 74.9644,889.2347 C 107.7673,884.9561 133.5843,859.139 137.863,826.3361 Z" fill={blade} />
     </svg>
   );
 }
 
-// ── LogoBadge: real image in white pill → falls back to SVG on dark bg ───────
-export function LogoBadge({
-  height = 40,
+// ── Full horizontal lockup: mark + KAPEX wordmark (+ optional descriptor) ─────
+export function KapexLogo({
+  height = 34,
+  variant = "dark",
+  showDescriptor = true,
   className = "",
 }: {
   height?: number;
+  variant?: Variant;
+  showDescriptor?: boolean;
   className?: string;
 }) {
-  const [failed, setFailed] = useState(false);
-
-  if (failed) {
-    // Fallback: compact mark + text in a subtle pill
-    return (
-      <div
-        className={`inline-flex items-center gap-2 flex-shrink-0 ${className}`}
-        style={{ height: height + 8 }}
-      >
-        <LogoMark size={height - 2} variant="light"/>
-      </div>
-    );
-  }
-
-  const pad = Math.round(height * 0.12);
+  const kap = variant === "light" ? "#FFFFFF" : WORDMARK_NAVY;
+  const desc = variant === "light" ? "rgba(255,255,255,0.62)" : DESCRIPTOR;
   return (
-    <div
-      className={`bg-white rounded-lg inline-flex items-center justify-center flex-shrink-0 overflow-hidden ${className}`}
-      style={{ padding: pad, height: height + pad * 2, maxWidth: height * 5 }}
-    >
-      <img
-        src="/ceo-summit-logo.png"
-        alt="CEO Summit"
-        onError={() => setFailed(true)}
-        style={{ height, width: "auto", maxWidth: height * 4, display: "block", objectFit: "contain" }}
-      />
-    </div>
+    <span className={`inline-flex items-center ${className}`} style={{ gap: height * 0.28, lineHeight: 1 }}>
+      <LogoMark size={height} variant={variant} />
+      <span style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: height * 0.09 }}>
+        <span style={{
+          fontWeight: 800, fontSize: height * 0.66, letterSpacing: "-0.01em",
+          lineHeight: 0.9, fontFamily: "'Inter', system-ui, sans-serif",
+        }}>
+          <span style={{ color: kap }}>KAP</span><span style={{ color: WORDMARK_RED }}>EX</span>
+        </span>
+        {showDescriptor && (
+          <span className="kapex-descriptor" style={{
+            fontSize: Math.max(7, height * 0.185), letterSpacing: "0.12em", textTransform: "uppercase",
+            color: desc, fontWeight: 600, whiteSpace: "nowrap",
+          }}>
+            Kapital Exchange Portal
+          </span>
+        )}
+      </span>
+    </span>
   );
 }
 
-// ── LogoImage: real image directly (for light/cream backgrounds) ─────────────
-export function LogoImage({
-  height = 40,
-  className = "",
-}: {
-  height?: number;
-  className?: string;
-}) {
-  const [failed, setFailed] = useState(false);
+// ── Back-compat aliases ──────────────────────────────────────────────────────
+export function LogoBadge({ height = 34, className = "", variant = "light" as Variant, showDescriptor = true }:
+  { height?: number; className?: string; variant?: Variant; showDescriptor?: boolean }) {
+  return <KapexLogo height={height} variant={variant} showDescriptor={showDescriptor} className={className} />;
+}
 
-  if (failed) {
-    return <LogoMark size={height} variant="dark"/>;
-  }
-
-  return (
-    <img
-      src="/ceo-summit-logo.png"
-      alt="CEO Summit Investment Hub"
-      className={className}
-      onError={() => setFailed(true)}
-      style={{ height, width: "auto", display: "block" }}
-    />
-  );
+export function LogoImage({ height = 34, className = "" }: { height?: number; className?: string }) {
+  return <KapexLogo height={height} variant="dark" className={className} />;
 }
