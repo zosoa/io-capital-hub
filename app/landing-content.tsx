@@ -299,7 +299,7 @@ export default function LandingContent({ t, locale }: { t: Dict; locale: "fr" | 
           <div className="foot-grid">
             <div className="about">
               <Link href={home} className="brand" aria-label="KAPEX">
-                <KapexLogo height={32} variant="light" />
+                <KapexLogo height={32} variant="dark" />
               </Link>
               <p>{t.footer.about}</p>
               <p className="foot-initiative">{t.footer.initiative}</p>

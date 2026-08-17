@@ -167,3 +167,9 @@
 .lp .final .btn-terra:hover{background:#EAF1FB}
 .lp .final .btn-line{border:1px solid rgba(255,255,255,.42);color:#fff;background:transparent}
 .lp .final .btn-line:hover{background:rgba(255,255,255,.1)}
+
+/* ── Spacing fix: separate the confidential card from the final band,
+      and let the final band flow into the footer (no white strip) ── */
+.lp .confid{margin-bottom:104px}
+.lp footer{margin-top:0}
+@media(max-width:640px){.lp .confid{margin-bottom:72px}}
