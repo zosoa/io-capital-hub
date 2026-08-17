@@ -818,7 +818,7 @@ export default function InvestorProfilePage() {
               </div>
 
               <div className="p-4 bg-[#F6F7F9] rounded-xl border border-[#E4E7EC] text-xs text-[#918A7C] leading-relaxed">
-                En enregistrant votre profil, vous consentez à ce que vos informations soient utilisées dans le cadre des activités de mise en relation du CEO Summit Investment Hub. Vos données ne seront jamais partagées avec des tiers sans votre accord explicite.
+                En enregistrant votre profil, vous consentez à ce que vos informations soient utilisées dans le cadre des activités de mise en relation du KAPEX. Vos données ne seront jamais partagées avec des tiers sans votre accord explicite.
               </div>
             </div>
           )}

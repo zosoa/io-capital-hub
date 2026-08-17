@@ -83,7 +83,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             </div>
             <div>
               <div className="font-bold text-white text-sm">Admin Panel</div>
-              <div className="text-gray-600 text-xs">CEO Summit IO — Investment Hub</div>
+              <div className="text-gray-600 text-xs">KAPEX</div>
             </div>
           </Link>
         </div>

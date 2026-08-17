@@ -31,9 +31,9 @@ export default async function AccountDeletedPage() {
         <Link href="/" className="flex flex-col items-center gap-3 mb-10">
           <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-9 w-auto"/>
           <div>
-            <div className="font-bold text-[#22201B] text-sm tracking-wide">CEO Summit IO</div>
+            <div className="font-bold text-[#22201B] text-sm tracking-wide">KAPEX</div>
             <div className="text-[#1F4E79] text-xs tracking-[0.15em] uppercase mt-0.5">
-              Investment Hub · Cluster Capital &amp; Finance
+              Kapital Exchange Portal
             </div>
           </div>
         </Link>

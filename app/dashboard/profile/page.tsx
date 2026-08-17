@@ -359,7 +359,7 @@ export default function ProfilePage() {
               </div>
               <div className="text-[#9A9FAF] text-xs leading-relaxed">
                 Je déclare avoir le pouvoir et l&apos;autorité nécessaires pour soumettre des dossiers de financement au nom
-                de mon organisation sur la plateforme CEO Summit IO — Investment Hub.
+                de mon organisation sur la plateforme KAPEX.
                 Je m&apos;engage à ce que toutes les informations fournies soient exactes et complètes.
               </div>
             </div>

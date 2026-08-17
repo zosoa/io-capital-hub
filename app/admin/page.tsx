@@ -27,7 +27,7 @@ export default async function AdminPage() {
     <div className="p-6 md:p-8 max-w-6xl mx-auto">
       <div className="mb-8">
         <h1 className="text-2xl font-black text-white">Administration</h1>
-        <p className="text-gray-400 text-sm mt-1">CEO Summit IO — Investment Hub — Tableau de bord opérationnel</p>
+        <p className="text-gray-400 text-sm mt-1">KAPEX — Tableau de bord opérationnel</p>
       </div>
 
       {/* Stats grid */}

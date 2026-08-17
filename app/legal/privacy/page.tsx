@@ -18,7 +18,7 @@ export default function PrivacyPage() {
 
       <h2>1. Responsable du traitement</h2>
       <p>
-        <strong>Gelios Investment &amp; Partners Ltd</strong>, éditeur de la plateforme CEO Summit IO — Investment Hub,
+        <strong>Gelios Investment &amp; Partners Ltd</strong>, éditeur de la plateforme KAPEX,
         agit en qualité de responsable du traitement des données collectées.
       </p>
       <p>

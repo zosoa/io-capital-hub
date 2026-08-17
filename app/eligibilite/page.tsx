@@ -114,7 +114,7 @@ export default function EligibilitePage() {
         <div className="elig-bar-in">
           <Link href="/" className="elig-brand">
             <img src="/landing/ceo-logo.png" alt="CEO Summit" />
-            <b>Capital Hub</b>
+            <b>KAPEX</b>
           </Link>
           {!done && (
             <div className="elig-steps">
@@ -262,7 +262,7 @@ export default function EligibilitePage() {
                   </div>
                   <label className="elig-consent">
                     <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
-                    <span>En vérifiant mon éligibilité, j&apos;accepte les <a href="/legal/cgu">Conditions d&apos;utilisation</a> et la <a href="/legal/privacy">Politique de confidentialité</a> de Capital Hub.</span>
+                    <span>En vérifiant mon éligibilité, j&apos;accepte les <a href="/legal/cgu">Conditions d&apos;utilisation</a> et la <a href="/legal/privacy">Politique de confidentialité</a> de KAPEX.</span>
                   </label>
                 </>
               )}

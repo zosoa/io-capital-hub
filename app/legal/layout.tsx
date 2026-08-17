@@ -8,9 +8,9 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
         <Link href="/" className="inline-flex items-center gap-3">
           <img src="/landing/ceo-logo.png" alt="CEO Summit" className="h-8 w-auto"/>
           <div>
-            <div className="font-display text-[#22201B] font-semibold text-base leading-tight tracking-wide">CEO Summit IO</div>
+            <div className="font-display text-[#22201B] font-semibold text-base leading-tight tracking-wide">KAPEX</div>
             <div className="text-[#1F4E79] font-semibold text-[10px] tracking-widest uppercase leading-tight mt-0.5">
-              Investment Hub · Cluster Capital &amp; Finance
+              Kapital Exchange Portal
             </div>
           </div>
         </Link>

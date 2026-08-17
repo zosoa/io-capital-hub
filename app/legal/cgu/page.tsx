@@ -1,6 +1,6 @@
 export const metadata = {
   title:       "Conditions Générales d'Utilisation — CEO Summit IO",
-  description: "Conditions générales d'utilisation de la plateforme CEO Summit IO — Investment Hub.",
+  description: "Conditions générales d'utilisation de la plateforme KAPEX.",
 };
 
 export default function CguPage() {
@@ -19,7 +19,7 @@ export default function CguPage() {
       <h2>1. Objet</h2>
       <p>
         Les présentes Conditions Générales d&apos;Utilisation (« CGU ») régissent l&apos;accès et l&apos;utilisation
-        de la plateforme <strong>CEO Summit IO — Investment Hub</strong> (ci-après « la Plateforme »),
+        de la plateforme <strong>KAPEX</strong> (ci-après « la Plateforme »),
         éditée par <strong>Gelios Investment &amp; Partners Ltd</strong> dans le cadre du Cluster Capital &amp;
         Finance du CEO Summit Indian Ocean.
       </p>

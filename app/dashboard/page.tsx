@@ -252,7 +252,7 @@ export default async function DashboardPage() {
           </h1>
           <p className="text-[#7A8098] text-sm mt-1.5">
             {stats.total === 0
-              ? "Bienvenue sur CEO Summit IO — Investment Hub. Soumettez votre premier dossier pour commencer."
+              ? "Bienvenue sur KAPEX. Soumettez votre premier dossier pour commencer."
               : `Vous avez ${stats.total} dossier${stats.total > 1 ? "s" : ""} actif${stats.total > 1 ? "s" : ""} sur la plateforme.`}
           </p>
         </div>

@@ -122,8 +122,8 @@ function Navbar() {
           <Link href="/" className="flex items-center gap-3">
             <LogoBadge height={28}/>
             <div>
-              <div className="text-white font-bold text-sm leading-tight">CEO Summit IO</div>
-              <div className="text-[#B8913A] text-[10px] tracking-widest uppercase leading-tight mt-0.5">Investment Hub</div>
+              <div className="text-white font-bold text-sm leading-tight">KAPEX</div>
+              <div className="text-[#B8913A] text-[10px] tracking-widest uppercase leading-tight mt-0.5">Kapital Exchange Portal</div>
             </div>
           </Link>
           <div className="flex items-center gap-3">
@@ -174,7 +174,7 @@ export default function InvestisseursPage() {
           </h1>
 
           <p className="text-white/50 text-lg mt-8 max-w-2xl mx-auto leading-relaxed font-light">
-            Rejoignez le registre investisseurs du CEO Summit IO — Investment Hub et recevez
+            Rejoignez le registre investisseurs du KAPEX et recevez
             des introductions ciblées aux projets de financement les mieux structurés
             de la région, sélectionnés selon votre mandat.
           </p>
@@ -422,7 +422,7 @@ export default function InvestisseursPage() {
         <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-white/22 text-xs font-light">
           <div className="flex items-center gap-3">
             <LogoMark size={16} variant="light"/>
-            <span>© 2026 CEO Summit IO · Investment Hub</span>
+            <span>© 2026 KAPEX</span>
           </div>
           <div className="flex gap-5">
             <Link href="/" className="hover:text-white/50 transition-colors">Porteurs de projets</Link>

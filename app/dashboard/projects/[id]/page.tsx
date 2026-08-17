@@ -241,7 +241,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
     under_review: { title: "En cours d'examen",  desc: "Notre équipe examine votre dossier. Nous vous contacterons si nous avons besoin d'informations supplémentaires." },
     approved:     { title: "Dossier qualifié",   desc: "Félicitations — votre dossier a été validé et est maintenant présenté à notre réseau d'investisseurs." },
     rejected:     { title: "Non retenu",         desc: "Votre dossier n'a pas été retenu pour cette session. Consultez les retours de notre équipe pour améliorer votre présentation." },
-    funded:       { title: "Financement obtenu", desc: "Félicitations — votre projet a trouvé son financement via CEO Summit IO — Investment Hub." },
+    funded:       { title: "Financement obtenu", desc: "Félicitations — votre projet a trouvé son financement via KAPEX." },
   };
   const sm = statusMessages[project.status];
 
